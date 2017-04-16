@@ -75,7 +75,8 @@
    var buttons1_down = ['SHARING_BUTTON_MOUSE_DOWN','RESET_BUTTON_MOUSE_DOWN'];
    var buttons1 = ['SHARING_BUTTON_NORMAL','RESET_BUTTON_NORMAL'];
    sharing_done_btn = game.add.button(20,586, 'atlas1',this.sharing_done_function, this,buttons1_hover[0],buttons1[0],buttons1_down[0]);
-   reset_btn = game.add.button(168, 586,'atlas1',this.reset_function,this,buttons1_hover[1],buttons1[1],buttons1_down[1]);
+   sharing_done_btn.inputEnabled = false;
+  reset_btn = game.add.button(168, 586,'atlas1',this.reset_function,this,buttons1_hover[1],buttons1[1],buttons1_down[1]);
    var buttons_hover = ['1_MOUSE_OVER','2_MOUSE_OVER','3_MOUSE_OVER','4_MOUSE_OVER','5_MOUSE_OVER','6_MOUSE_OVER'];
    var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN','5_MOUSE_DOWN','6_MOUSE_DOWN'];
    //adding plates 
@@ -213,8 +214,13 @@
 
       }
     }
-      
+       if(cake_no == 0)
+        {
+          sharing_done_btn.inputEnabled = true;
+        }
     }
+
+
     else
     {
       cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);
@@ -228,7 +234,7 @@
   },
   help_function : function()
    {
-    window.open("/assets/fraction-chart_copywrite.png");
+    window.open("softwares/food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
    },
   out : function(item)
   {

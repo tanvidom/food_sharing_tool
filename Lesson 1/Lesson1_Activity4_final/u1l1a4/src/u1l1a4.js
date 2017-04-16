@@ -7,6 +7,8 @@
  var answer_text2;
  var instruction_board;
  var instruction_text;
+ var drag_complete;
+ var answer_entered;
  var tray;
  var packets_text = [];
  var cake_num;
@@ -51,32 +53,39 @@
    game.load.image('help_link','assets/HELP_LINK.png');
    //game.load.atlasJSONHash('atlas5','assets/atlas5.png','assets/atlas5.json');
    game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
-   game.load.atlasJSONHash('popups','assets/spritesheet_a4.png','assets/sprites_a4.json');
+   game.load.atlasJSONHash('popups','assets/spritesheet_a41.png','assets/sprites_a41.json');
   },
   create : function()
   {
-    reg.modal = new gameModal(game);
+        reg.modal = new gameModal(game);
         this.createModals();
    background = game.add.sprite(0,0,'background');
    var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-   question_text_upper = game.add.text(120,2,'Help Jamuni distribute 12 cakes fairly among 8 children in two unequal groups of 2 and 6 children. First, drag and drop the children into two equal groups. Then, distribute the cakes fairly and answer the questions below.',style);
+   question_text_upper = game.add.text(120,2,'Help Jamuni distribute 12 cakes fairly among 8 children in two unequal groups of 2 and 6 children.',style);
    question_text_lower = game.add.text(22,524,'What is the share of each group?',style);
-   question_text_upper.wordWrap = true;
+   var style2 = {font: "italic 12px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle"}
+   var question_instructs = game.add.text(125, 20, '1. Drag and drop the children into two groups such that Group A has 2 children and Group B has 6 children.',style2);
+   var question_instructs1 = game.add.text(125, 35, '2. Distribute the cakes fairly among the groups.', style2);
+    question_text_upper.wordWrap = true
    question_text_upper.wordWrapWidth = 590;
    answer_text1 = game.add.text(22, 552, 'Group A : ', style);
    answer_text2 = game.add.text(220,552, 'Group B : ', style);
+   drag_complete = false;
+   answer_entered = false;
    for(var i=0;i<2;i++)
    {
-    packets_text = game.add.text(160 + (i*195),552, 'packets.',style);
+    packets_text = game.add.text(160 + (i*195),552, 'cakes.',style);
    }
    
    tray = game.add.sprite(3,85,'atlas4','TRAY');
    instruction_board = game.add.sprite(2,366,'atlas4','sprite45');
-   var style1 = {font: "italic bold 12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle"}
-   instruction_text = game.add.text(19,390,"When you are done, click the Sharing Done button to check your answers. Enter only whole number or fractions",style1);
+   var style1 = {font: "italic bold 12px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle"}
+
+   instruction_text = game.add.text(19,390,"Enter your answers in the form of whole numbers or fractions and click Sharing Done to check your answers.",style1);
    instruction_text.wordWrap = true;
   instruction_text.wordWrapWidth = 180;
    sharing_done_btn = game.add.button(20,586, 'atlas4',this.final_check_function,this,'sprite68','sprite53','sprite39');
+   sharing_done_btn.inputEnabled = false;
    reset_btn = game.add.button(168, 586,'atlas4',this.reset_function,this,'sprite69','sprite58','sprite70');
    //adding plates 
 
@@ -259,6 +268,8 @@
   },
   stopDragcake : function(item)
   {
+    //this.showModal3();
+    // this.showModal1();
     var cake_no = item.number; 
     var c2=0;
     var pos2;
@@ -281,8 +292,14 @@
         cakes[cake_no-1].x = cakes[cake_no-1].x - 7;
         cakes[cake_no-1].y = cakes[cake_no-1].y - 7;
         }
+        if(cake_no == 0)
+        {
+          sharing_done_btn.inputEnabled = true;
+        }
+
 
       }
+      
       else
       {
         cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);
@@ -305,8 +322,8 @@
           {
             type: "image",
             content: "close_button",
-            offsetX: 146,
-            offsetY: -83,
+            offsetX: 210,
+            offsetY: -90,
             callback: function(){
                       reg.modal.hideModal("modal1");
                     }
@@ -316,7 +333,7 @@
           atlasParent: "atlas4",
           content: 'sprite52',
           offsetX : 90,
-          offsetY: 30,
+          offsetY: 35,
           callback: function()
           {
             reg.modal.hideModal("modal1");
@@ -347,7 +364,7 @@
             {
             type: "image",
             content: "close_button",
-            offsetX: 205,
+            offsetX: 182,
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal2");
@@ -379,14 +396,14 @@
         itemsArr: [{
             type: 'sprite',
             atlasParent :'popups',
-            content : 'sprite2'
+            content : 'sprite5'
 
           },
             {
             type: "image",
             content: "close_button",
-            offsetX: 208,
-            offsetY: -83,
+            offsetX: 194,
+            offsetY: -70,
             callback: function(){
                       reg.modal.hideModal("modal3");
                     }},
@@ -395,7 +412,7 @@
           atlasParent: 'atlas4',
           content: 'sprite39',
           offsetX : 110,
-          offsetY: 30,
+          offsetY: 20,
           callback: function()
           {
             reg.modal.hideModal("modal3");
@@ -604,7 +621,7 @@
    },
    help_function : function()
    {
-    window.open("/assets/fraction-chart_copywrite.png");
+    window.open("softwares/food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
    },
   final_check_function : function()
   {
@@ -649,7 +666,7 @@
    }
      if(groups[0].numberof_childreningroup == '2' && groups[1].numberof_childreningroup == '6')
     {
-    if(plates[0].sum == '3' && plates[1].sum== '9' && input_answer1.value== '3' && input_answer2.value == '9')
+    if(plates[0].sum == '3' && plates[1].sum== '9' && input_answer1.value == '3' && input_answer2.value == '9')
     {
       this.showModal1();
 
@@ -661,29 +678,7 @@
     }
     else if (((plates[0].sum == '3' && plates[1].sum =='9') && (input_answer2.value !== '3' && input_answer1.value !=='9')))
     {
-      this.showModal3();
-      console.log("incorrect ans, correct distribution");
-    }
-    else
-    {
-      this.showModal4();
-      console.log("try again");
-    }
-    }
-    else if(groups[0].numberof_childreningroup == '6' && groups[1].numberof_childreningroup == '2')
-    {
-    if(plates[0].sum == '9' && plates[1].sum == '3' && (input_answer1.value== '9' || input_answer2.value == '3'))
-    { 
-      this.showModal1();
-    }
-    else if(((plates[0].sum!== '9' && plates[1].sum!=='3') &&(input_answer1.value == '9' && input_answer2.value =='3')))
-    {
-     this.showModal2();
-     console.log("incorrect distribution, correct numeric entry"); 
-    }
-    else if (((plates[0].sum == '9' && plates[1].sum =='3') &&(input_answer1.value !== '9' && input_answer2.value !=='3')))
-    {
-      this.showModal3();
+      this.showModal2();
       console.log("incorrect ans, correct distribution");
     }
     else
@@ -694,7 +689,7 @@
     }
    else 
    {
-    this.showModal5();
+    this.showModal3();
     console.log('incorrect grouping');
    }
     }
@@ -714,20 +709,34 @@
 var answerScreen = function(game){}
     answerScreen.prototype = 
     {
+      init : function()
+  {
+     game.load = new CustomLoader(game);
+  },
       preload : function()
       {
        game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
+       game.load.image('answer_screen1','assets/answerscreen_a4q1.png');
+       game.load.webfont('tahoma','Tahoma');
+       game.load.image('background_top','assets/bubble.png')
       },
       create : function()
       {
-       game.stage.backgroundColor = "#D3FEB4"; 
-       var answer_screen1 = game.add.sprite(120,120,'answerscreens','sprite5');
-       answer_screen1.scale.setTo(2, 2);
+       game.stage.backgroundColor = "#D3D3D3"; 
+       var answer_screen1 = game.add.sprite(2,146,'answer_screen1');
+       answer_screen1.scale.setTo(1,0.95);
+       //answer_screen1.scale.setTo(2, 2);
+       var background = game.add.image(20,15,'background_top');
+       background.scale.setTo(2,0.4);
        var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is how you distribute 12 cakes among 2 unequal groups. Click Next to proceed to the next activity.',style);
+       var text1 = game.add.text(105,30,'This is how you distribute 12 cakes among 2 unequal groups.',style);
+       var style2 = { font: "italic 14px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text2 = game.add.text(105,55,'Click           to proceed to the next activity.',style2);
+       var style3 = { font: "bold italic 14px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text3 = game.add.text(140,55,'NEXT ',style3);
        text1.wordWrap = true;
        text1.wordWrapWidth = 800;
-       var button1 = game.add.button(680,580,'answerscreens',this.next_buttonaction,this,'NEXT_BUTTON_MOUSE_OVER','NEXT_BUTTON_NORMAL','NEXT_BUTTON_MOUSE_DOWN');
+       var button1 = game.add.button(720,100,'answerscreens',this.next_buttonaction,this,'NEXT_BUTTON_MOUSE_OVER','NEXT_BUTTON_NORMAL','NEXT_BUTTON_MOUSE_DOWN');
       },
       next_buttonaction : function()
       {
@@ -749,7 +758,7 @@ var answerScreen = function(game){}
        game.load.webfont('tahoma','Tahoma');
        game.load.atlasJSONHash('atlas4', 'assets/atlas4.png', 'assets/atlas4.json'); 
        game.load.image('help_link','assets/HELP_LINK.png');
-       game.load.atlasJSONHash('atlas5','assets/spritesheet_a4_part2.png','assets/sprites_a4_part2.json');
+       game.load.atlasJSONHash('atlas5','assets/spritesheet_a41_part2.png','assets/sprites_a41_part2.json');
       },
       create : function()
       {

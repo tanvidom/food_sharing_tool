@@ -8,6 +8,8 @@
  var instruction_board;
  var instruction_text;
  var tray;
+ var question_text_instruction11;
+ var question_text_instruction22;
  var tips = [];
  var count_no_of_attempts = 0;
  var cake_num;
@@ -63,10 +65,16 @@
     reg.modal = new gameModal(game);
         this.createModals();
    background = game.add.sprite(0,0,'background');
-   var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+   var style = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(185,10,'Help Jamuni distribute 3 cakes fairly among 4 children.',style);
-   question_text_lower = game.add.text(20,510,'What is the share of each child?',style);
-   answer_text1 = game.add.text(130,548,'cakes.',style);
+   question_text_lower = game.add.text(20,505,'What is the share of each child?',style);
+   var style4 = { font: "italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center" , boundsAlignV : "middle" };
+   var style5 = { font: "bold italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+   question_text_instruction11 = game.add.text(20,525,'Enter your answer in the form of a whole number or fraction and click                      to check your answer.',style4);
+   //question_text_instruction11.wordWrap = true;
+  //question_text_instruction11.wordWrapWidth = 1600;
+   question_text_instruction22 = game.add.text(395,525,'Sharing Done ',style5);
+   answer_text1 = game.add.text(100,557,'cakes.',style);
    tray = game.add.sprite(5,83,'atlas2','TRAY');
    instruction_board = game.add.sprite(5,365,'atlas2','INSTRUCTION_BOARD');
    instruction_text = game.add.text();
@@ -78,6 +86,7 @@
    var buttons1_down = ['SHARING_BUTTON_MOUSE_DOWN','RESET_BUTTON_MOUSE_DOWN'];
    var buttons1 = ['SHARING_BUTTON_NORMAL','RESET_BUTTON_NORMAL'];
    sharing_done_btn = game.add.button(20,586, 'atlas1',this.sharing_done_function, this,buttons1_hover[0],buttons1[0],buttons1_down[0]);
+   sharing_done_btn.inputEnabled = false;
    reset_btn = game.add.button(168, 586,'atlas1',this.reset_function,this,buttons1_hover[1],buttons1[1],buttons1_down[1]);
    var buttons_hover = ['1_MOUSE_OVER','2_MOUSE_OVER','3_MOUSE_OVER','4_MOUSE_OVER','5_MOUSE_OVER','6_MOUSE_OVER'];
    var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN','5_MOUSE_DOWN','6_MOUSE_DOWN'];
@@ -152,18 +161,22 @@
 
    //line1 = new Phaser.Line(12, 356, 178, 356);
    //line1.stroke = "005DBA";
-   var style2 = { font: "italic 12px tahoma", boundsAlignH: "center", boundsAlignV: "middle" };
-   instruction_text = game.add.text(24,384,'Use the Cutting tool to cut food packets in smaller pieces and drag and drop the food packets or the pieces to each child',style2);
+   var style2 = { font: "italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center" };
+   var style3 = { font: "bold italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+   instruction_text = game.add.text(24,384,'Use the                    to cut the cake into smaller pieces and drag and drop the cake or the pieces to each child.',style2);
+
   instruction_text.wordWrap = true;
-  instruction_text.wordWrapWidth = 175;
+  instruction_text.wordWrapWidth = 175;  
+  var instruction_text1 = game.add.text(70,384, 'Cutting Tool ',style3);
   help_button = game.add.sprite(732,3,'atlas2','HELP_LINK');
   help_button.inputEnabled = true;
   help_button.events.onInputDown.add(this.help_function,this);
-   input_answer = game.add.inputField(20, 543, {
-    font: '12px Arial',
+   input_answer = game.add.inputField(20, 547, {
+    font: '11px Arial',
     fill: '#212121',
     fontWeight: 'bold',
-    width: 80,
+    width: 50,
+    height : 9,
     padding: 8,
     borderWidth: 2,
     borderColor: '#0EC2F5',
@@ -195,7 +208,6 @@
     }
     if(c>=1)
     {
-
       //cakes[cake_no].x = rect[pos].x + rect[pos].width * 0.5;
 
       //cakes[cake_no].y = rect[pos].y + rect[pos].height * 0.5;
@@ -209,6 +221,7 @@
       //glow plates
       if(pos == 0)
       {
+
       for(var x1=0;x1<4;x1++)
       {
         cutting_board.loadTexture('atlas2','CUTTING_BOARD_WITHOUT_GLOW');
@@ -216,12 +229,18 @@
 
       }
     }
+    if(cake_no == 0)
+        {
+          sharing_done_btn.inputEnabled = true;
+        }
       
     }
+
     else
     {
       cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);
     }
+
 
   },
   over : function(item)
@@ -231,7 +250,7 @@
   },
   help_function : function()
    {
-    window.open("/assets/fraction-chart_copywrite.png");
+    window.open("softwares/food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
    },
   out : function(item)
   {

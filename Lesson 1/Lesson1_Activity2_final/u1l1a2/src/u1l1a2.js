@@ -70,11 +70,19 @@
    
    tray = game.add.sprite(3,85,'atlas4','TRAY');
    instruction_board = game.add.sprite(2,366,'atlas4','sprite45');
-   var style1 = {font: "italic bold 12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle"}
-   instruction_text = game.add.text(19,390,"When you are done, click the Sharing Done button to check your answers. Enter only whole number or fractions",style1);
-   instruction_text.wordWrap = true;
-  instruction_text.wordWrapWidth = 180;
+   var style2 = { font: "italic 12px tahoma",fill: "#000066", boundsAlignH: "center", boundsAlignV: "middle" };
+   instruction_text = game.add.text(19,390,'Use the                    to cut the cake into smaller pieces and drag and drop the cake or the pieces to each child.',style2);
+  instruction_text.wordWrap = true;
+  instruction_text.wordWrapWidth = 175;
+  var style3 = { font: "bold italic 12px tahoma",fill: "#000066", boundsAlignH: "center", boundsAlignV: "middle" };
+  var instruction_text1 = game.add.text(70,390, 'Cutting Tool ',style3);
+
+   //var style1 = {font: "italic bold 12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle"}
+   //instruction_text = game.add.text(19,390,"When you are done, click the Sharing Done button to check your answers. Enter only whole number or fractions",style1);
+   //instruction_text.wordWrap = true;
+  //instruction_text.wordWrapWidth = 180;
    sharing_done_btn = game.add.button(20,586, 'atlas4',this.final_check_function,this,'sprite68','sprite53','sprite39');
+   sharing_done_btn.inputEnabled = false;
    reset_btn = game.add.button(168, 586,'atlas4',this.reset_function,this,'sprite69','sprite58','sprite70');
    //adding plates 
 
@@ -279,6 +287,11 @@
         cakes[cake_no-1].x = cakes[cake_no-1].x - 7;
         cakes[cake_no-1].y = cakes[cake_no-1].y - 7;
         }
+        if(cake_no == 0)
+        {
+          sharing_done_btn.inputEnabled = true;
+        }
+
 
       }
       else
@@ -468,7 +481,7 @@
    },
    help_function : function()
    {
-    window.open("/assets/fraction-chart_copywrite.png");
+    window.open("softwares/food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
    },
   final_check_function : function()
   {
