@@ -187,6 +187,19 @@
 
       if(check[i] == true)
       {
+         if(check[0] == true)
+        {
+            for(var i=0;i<5;i++)
+            {
+              if(i !== cake_no)
+              {
+              var check_cake_on_board1 = game.physics.arcade.overlap(cakes[i],rect[0]);
+               if(check_cake_on_board1 == true)
+               {
+                  cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);         
+               }
+            }  }    
+         }
         pos = i;
         c++;
       }
@@ -234,7 +247,7 @@
   },
   help_function : function()
    {
-    window.open("softwares/food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
+    window.open("food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
    },
   out : function(item)
   {

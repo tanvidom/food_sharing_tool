@@ -47,6 +47,7 @@
    game.add.plugin(PhaserInput.Plugin);
    game.load.image('cookie1/2','assets/images/HALF1.png');
     game.load.image('cookie1/3','assets/images/ONE_THIRD_3.png');
+    game.load.image('answer_11','assets/answers_l1a1.png');
     game.load.image('cookie1/4','assets/images/ONE_FORTH_4.png');
     game.load.image('cookie1/5','assets/images/ONE_FIFTH_5.png');
     game.load.image('cookie1/6','assets/images/ONE_SIXTH_5.png');
@@ -65,9 +66,10 @@
     reg.modal = new gameModal(game);
         this.createModals();
    background = game.add.sprite(0,0,'background');
-   var style = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+   var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(185,10,'Help Jamuni distribute 3 cakes fairly among 4 children.',style);
-   question_text_lower = game.add.text(20,505,'What is the share of each child?',style);
+   var style11 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+   question_text_lower = game.add.text(20,505,'What is the share of each child?',style11);
    var style4 = { font: "italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center" , boundsAlignV : "middle" };
    var style5 = { font: "bold italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_instruction11 = game.add.text(20,525,'Enter your answer in the form of a whole number or fraction and click                      to check your answer.',style4);
@@ -202,9 +204,23 @@
 
       if(check[i] == true)
       {
+        if(check[0] == true)
+        {
+            for(var i=0;i<3;i++)
+            {
+              if(i !== cake_no)
+              {
+              var check_cake_on_board1 = game.physics.arcade.overlap(cakes[i],rect[0]);
+               if(check_cake_on_board1 == true)
+               {
+                  cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);         
+               }
+            }  }    
+         }
         pos = i;
         c++;
       }
+
     }
     if(c>=1)
     {
