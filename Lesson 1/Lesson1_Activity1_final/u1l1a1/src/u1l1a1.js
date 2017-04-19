@@ -102,7 +102,7 @@
    { 
          rect[k] = game.add.sprite(plates[i].x,plates[i].y,null);
          game.physics.enable(rect[k], Phaser.Physics.ARCADE);
-         rect[k].body.setSize(112,76,0,0);
+         rect[k].body.setSize(61,76,0,0);
          console.log(rect[k]);
          k++;
     } 
@@ -266,7 +266,7 @@
   },
   help_function : function()
    {
-    window.open("softwares/food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
+    window.open("../softwares/food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
    },
   out : function(item)
   {
