@@ -266,7 +266,7 @@
   },
   help_function : function()
    {
-    window.open("../assets/fraction-chart_copywrite.png");
+    window.open("../u1l1a1/assets/fraction-chart_copywrite.png");
    },
   out : function(item)
   {
