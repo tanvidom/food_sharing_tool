@@ -481,7 +481,7 @@
    },
    help_function : function()
    {
-    window.open("softwares/food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
+    window.open("../u1l1a1/assets/fraction-chart_copywrite.png");
    },
   final_check_function : function()
   {

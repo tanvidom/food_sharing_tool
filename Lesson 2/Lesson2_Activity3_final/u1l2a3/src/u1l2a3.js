@@ -65,34 +65,34 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
        reg.modal = new gameModal(game);
         this.createModals();
     background = game.add.sprite(0,0,'background');
-    var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(185,15,'Group A has one worker less than Group B. So I have given Group A one paratha less than I have given Group B.',style);
+    var style = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+    question_text_upper = game.add.text(185,15,' I have given 5 parathas to the 4 workers in Group A and given 4 parathas to the 5 workers in Group B. So the numbers 4 and 5 are the same in both groups.',style);
     question_text_upper.wordWrap = true;
-    question_text_upper.wordWrapWidth = 400;
+    question_text_upper.wordWrapWidth = 500;
     groups[0] = game.add.sprite(30,95,'lesson2','WORKER_BACK_GROUP_A');
     groups[1] = game.add.sprite(30,310,'lesson2','WORKER_BACK_GROUP_B');
     plates[0] = game.add.sprite(29,207,'lesson2','FOOD_PLATE');
     plates[1] = game.add.sprite(29,423,'lesson2','FOOD_PLATE');
     for (var i =0; i<9; i++)
     {
-      if(i<4)
+      if(i<5)
       {
-       rotis[i] = game.add.sprite(271 + (i*70), 220,'lesson2','PARATHA');
+       rotis[i] = game.add.sprite(240 + (i*70), 220,'lesson2','PARATHA');
       }
-      if(i >=4)
+      if(i >=5)
       {
-        rotis[i] = game.add.sprite(238 + ((i-4)*70), 435,'lesson2','PARATHA');
+        rotis[i] = game.add.sprite(180 + ((i-4)*70), 435,'lesson2','PARATHA');
       }
     }
-    for(var j = 0;j<11;j++)
+    for(var j = 0;j<9;j++)
     {
-      if(j<5)
+      if(j<4)
       {
-      workers[j] = game.add.sprite(140 + (j*110),127,'lesson2',worker_names[j]);
+      workers[j] = game.add.sprite(200 + (j*110),127,'lesson2',worker_names[j]);
       }
-      if(j>=5)
+      if(j>=4)
       {
-       workers[j] = game.add.sprite(100 + ((j-5)*110),342,'lesson2',worker_names[j]);
+       workers[j] = game.add.sprite(250 + ((j-5)*110),342,'lesson2',worker_names[j]);
       }
     }
     var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -214,7 +214,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.image('background','assets/full_background.png');
     game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
     game.load.webfont('tahoma','Tahoma');
-    game.load.image('scrnshot','assets/prnt_screen_q1.png');
+    game.load.image('scrnshot','assets/scrensht_a3.png');
     game.load.image('lower_band','assets/lower.png');
 
   },
@@ -310,24 +310,24 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     plates[1] = game.add.sprite(29,493,'lesson2','FOOD_PLATE');
      for (var i =0; i<9; i++)
     {
-      if(i<4)
+      if(i<5)
       {
-       rotis[i] = game.add.sprite(271 + (i*70), 220,'lesson2','PARATHA');
+       rotis[i] = game.add.sprite(230 + (i*70), 220,'lesson2','PARATHA');
       }
-      if(i >=4)
+      if(i >=5)
       {
-        rotis[i] = game.add.sprite(238 + ((i-4)*70), 510,'lesson2','PARATHA');
+        rotis[i] = game.add.sprite(200 + ((i-4)*70), 510,'lesson2','PARATHA');
       }
     }
-    for(var j = 0;j<11;j++)
+    for(var j = 0;j<9;j++)
     {
-      if(j<5)
+      if(j<4)
       {
-      workers[j] = game.add.sprite(140 + (j*110),127,'lesson2',worker_names[j]);
+      workers[j] = game.add.sprite(200 + (j*110),127,'lesson2',worker_names[j]);
       }
-      if(j>=5)
+      if(j>=4)
       {
-       workers[j] = game.add.sprite(100 + ((j-5)*110),414,'lesson2',worker_names[j]);
+       workers[j] = game.add.sprite(150 + ((j-4)*110),414,'lesson2',worker_names[j]);
       }
     }
     share_button_A = game.add.button(303,300,'lesson2',this.share_a_function,this,'sprite145','sprite141','sprite146');
@@ -349,7 +349,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     preload : function()
     {
      game.load.webfont('tahoma','Tahoma');
-    game.load.image('scrnshot','assets/prnt_screen_q1.png');
+    game.load.image('scrnshot','assets/scrensht_a3.png');
     game.load.image('lower_band','assets/lower.png'); 
     game.add.plugin(PhaserInput.Plugin);
     },
@@ -481,12 +481,12 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    game.physics.enable(rect[0],Phaser.Physics.ARCADE);
    rect[0].body.setSize(196,90,0,0);
    //adding workers 
-   for(var i=0;i<5;i++)
+   for(var i=0;i<4;i++)
    {
-    if(i<3)
+    if(i<2)
     {
-    workers1[i] = game.add.sprite(295 + (i*180),135,'lesson2',worker_names[i]);
-    plates1[i] = game.add.sprite(275 + (i*180),210,'lesson2','SCREEN_5_and_7_PLATES_ONLY_PLATE');
+    workers1[i] = game.add.sprite(380 + (i*190),135,'lesson2',worker_names[i]);
+    plates1[i] = game.add.sprite(350 + (i*190),200,'lesson2','SCREEN_5_and_7_PLATES_ONLY_PLATE');
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
@@ -494,8 +494,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     }
     else
     {
-    workers1[i] = game.add.sprite(386 + ((i-3)*180),295,'lesson2',worker_names[i]);
-    plates1[i] = game.add.sprite(358 + ((i-3)*180),368,'lesson2','SCREEN_5_and_7_PLATES_ONLY_PLATE');
+    workers1[i] = game.add.sprite(380 + ((i-2)*190),325,'lesson2',worker_names[i]);
+    plates1[i] = game.add.sprite(350 + ((i-2)*190),388,'lesson2','SCREEN_5_and_7_PLATES_ONLY_PLATE');
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
@@ -523,9 +523,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    number_of_pieces[i].num = i;
 
    }
-    for(var i=0;i<4;i++)
+    for(var i=0;i<5;i++)
     {
-     parathas1[i] = game.add.sprite(84,125 + (i*35),'lesson2','PARATHA');
+     parathas1[i] = game.add.sprite(84,107 + (i*35),'lesson2','PARATHA');
      parathas1[i].inputEnabled = true;
     parathas1[i].input.enableDrag(true);
    // parathas1[i].achor.x = 0.5;
@@ -540,8 +540,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     parathas1[i].originalPosition = parathas1[i].position.clone();
     }
     paratha_num = i +1;
-   parathas1[3].loadTexture('lesson2','PARATHA_WITH_GLOW');
-   parathas1[3].x = 80;
+   parathas1[4].loadTexture('lesson2','PARATHA_WITH_GLOW');
+   parathas1[4].x = 80;
    help_button = game.add.sprite(720,5,'lesson2','HELP_mouse_over');
   help_button.inputEnabled = true;
   help_button.events.onInputDown.add(this.help_function,this);
@@ -761,7 +761,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     paratha_no = item.number;
     var c =0;
     
-    for(var i=0;i<6;i++)
+    for(var i=0;i<5;i++)
     {
       var pos;
       //game.physics.arcade.enable(parathas1[cake_no]);
@@ -830,7 +830,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    stopDrag_1 : function(item)
  {
    var paratha_position = item.number;
-   for(var i=1;i<4;i++)
+   for(var i=1;i<5;i++)
    {
     var check_paratha_on_plate = game.physics.arcade.overlap(parathas1[paratha_position],rect[i]);
     //console.log(check_cake_on_plate);

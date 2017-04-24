@@ -66,7 +66,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         this.createModals();
     background = game.add.sprite(0,0,'background');
     var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(185,15,'Group A has one worker less than Group B. So I have given Group A one paratha less than I have given Group B.',style);
+    question_text_upper = game.add.text(185,15,' I have given 5 parathas to the 4 workers in Group A and given 4 parathas to the 5 workers in Group B. So the numbers 4 and 5 are the same in both groups.',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 400;
     groups[0] = game.add.sprite(30,95,'lesson2','WORKER_BACK_GROUP_A');

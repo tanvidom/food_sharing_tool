@@ -102,7 +102,8 @@
    { 
          rect[k] = game.add.sprite(plates[i].x,plates[i].y,null);
          game.physics.enable(rect[k], Phaser.Physics.ARCADE);
-         rect[k].body.setSize(61,76,0,0);
+         //plates[k].scale.setTo(1.5,1.5);
+         rect[k].body.setSize(111,80,0,0);
          console.log(rect[k]);
          k++;
     } 
@@ -188,15 +189,22 @@
    
    
 },
+ render : function()
+         { 
+          game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
+    
+          },
   stopDrag : function(item,pointer)
   {
     cake_no = item.number;
     var c =0;
+
+
     
     for(var i=0;i<5;i++)
     {
       var pos;
-      //game.physics.arcade.enable(cakes[cake_no]);
+            //game.physics.arcade.enable(cakes[cake_no]);
       check[i]=game.physics.arcade.overlap(cakes[cake_no],rect[i]);
       //check[i] = Phaser.Rectangle.containsRect(cakes[cake_no].body, rect[i].body);
       console.log(rect[i]);
@@ -206,6 +214,13 @@
       {
         if(check[0] == true)
         {
+            for(var x1=0;x1<4;x1++)
+           {
+             console.log('hihihi1234');
+             cutting_board.loadTexture('atlas2','CUTTING_BOARD_WITHOUT_GLOW');
+             plates[x1].loadTexture('atlas2','PLATE_WITH_GLOW');
+ 
+           }
             for(var i=0;i<3;i++)
             {
               if(i !== cake_no)
@@ -235,16 +250,17 @@
     }
       //cakes[cake_no - 1].loadTexture('atlas1','CAKE_WITH_GLOW');
       //glow plates
-      if(pos == 0)
+      /*if(pos == 0)
       {
-
+       console.log('hihihi123');
       for(var x1=0;x1<4;x1++)
       {
+        console.log('hihihi1234');
         cutting_board.loadTexture('atlas2','CUTTING_BOARD_WITHOUT_GLOW');
         plates[x1].loadTexture('atlas2','PLATE_WITH_GLOW');
 
       }
-    }
+    } */
     if(cake_no == 0)
         {
           sharing_done_btn.inputEnabled = true;
@@ -695,18 +711,18 @@
           {
             type: "image",
             content: "close_button",
-            offsetX: 146,
+            offsetX: 200,
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal6");
                     }
         },
         {
-          type : "image",
-          //atlasParent: "atlas1",
-          content: "OK_BUTTON_NORMAL",
-          offsetX : 90,
-          offsetY: 30,
+          type : 'sprite',
+          atlasParent: 'atlas1',
+          content: 'TRY_AGAIN_BUTTON_NORMAL',
+          offsetX : 120,
+          offsetY: 35,
           callback: function()
           {
             reg.modal.hideModal("modal6");
@@ -743,9 +759,9 @@
                     }
         },
         {
-          type : "image",
-          //atlasParent: "atlas1",
-          content: "OK_BUTTON_NORMAL",
+          type : 'sprite',
+          atlasParent: 'atlas1',
+          content: 'TRY_AGAIN_BUTTON_NORMAL',
           offsetX : 120,
           offsetY: 30,
           callback: function()
@@ -777,18 +793,18 @@
           {
             type: "image",
             content: "close_button",
-            offsetX: 146,
+            offsetX: 190,
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal8");
                     }
         },
         {
-          type : "image",
-          //atlasParent: "atlas1",
-          content: 'OK_BUTTON_NORMAL',
-          offsetX : 90,
-          offsetY: 30,
+          type : 'sprite',
+          atlasParent: 'atlas1',
+          content: 'TRY_AGAIN_BUTTON_NORMAL',
+          offsetX : 105,
+          offsetY: 26,
           callback: function()
           {
             reg.modal.hideModal("modal8");
@@ -863,6 +879,7 @@ showModal8 : function()
  },
  sharing_done_function : function()
  {
+  var splitted_text = [];
   count_no_of_attempts = count_no_of_attempts + 1;
   if(count_no_of_attempts < 4)
   {
@@ -876,6 +893,12 @@ showModal8 : function()
   }
   else
   {
+    var cd = input_answer.value;
+  splitted_text = cd.split("/"); 
+  console.log("a : " + splitted_text[0] );
+  console.log("b :" + splitted_text[1] ); 
+  var is_ans_true = this.division(splitted_text[0],splitted_text[1],3,4);
+  console.log(is_ans_true);
   for(var i=0;i<4;i++)
   {
     plates[i].sum = 0;
@@ -901,35 +924,47 @@ showModal8 : function()
   }
     if(k == 4 && input_answer.value!== null)
     {
+      console.log('modal5');
      this.showModal5();
     }
 
-    else if(l == 4 && input_answer.value == '3/4')
+    else if(l == 4 && (input_answer.value == '3/4' || is_ans_true == true))
     {
+      console.log('modal1');
       this.showModal1();
     }
-    else if( l==4 && input_answer.value!=='3/4')
+    else if( l==4 && (input_answer.value!=='3/4' || is_ans_true == false))
     {
+      console.log('modal2');
       this.showModal2();
     }
-    else if( l!==4 && input_answer.value == '3/4')
+    else if( l!==4 && (input_answer.value == '3/4' || is_ans_true == true))
     {
       if(count_no_of_attempts == 1)
       {
+         console.log('modal6');
         this.showModal6();
       }
       else if(count_no_of_attempts >= 2 || count_no_of_attempts == 3)
       {
+        console.log('modal7');
         this.showModal7();
       }
       else 
       {
+        console.log('modal8');
         this.showModal8();
       }
       
     }
+    else if( l!==4 && (input_answer.value!=='3/4' || is_ans_true == false))
+    {
+      console.log('modal81');
+      this.showModal8();
+    }
     else 
     {
+      console.log('modal4');
       this.showModal4();
     }
  } } 
@@ -938,6 +973,24 @@ showModal8 : function()
   game.state.start('answer_screen');
 
  }
+},
+division : function(a,b,c,d)
+ {
+   console.log(a/b);
+   console.log(c/d);
+   var and = a/b;
+   var mans = c/d;
+    var value;
+    if (and == mans)
+    {
+      value = true;
+    }
+    else 
+    {
+      value = false;
+    }
+
+    return value;
 }
 }
 var answerScreen = function(game){}
