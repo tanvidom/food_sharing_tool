@@ -189,11 +189,11 @@
    
    
 },
- render : function()
+ /*render : function()
          { 
           game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
     
-          },
+          }, */
   stopDrag : function(item,pointer)
   {
     cake_no = item.number;
@@ -752,7 +752,7 @@
           {
             type: "image",
             content: "close_button",
-            offsetX: 700,
+            offsetX: 200,
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal7");
@@ -1000,13 +1000,14 @@ var answerScreen = function(game){}
       preload : function()
       {
        game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
+       game.load.image('answers1','assets/answers_l1a1.png');
        //game.load.image('background','assets/full_background.png');
       },
       create : function()
       {
        game.stage.backgroundColor = "#00FA9A"; 
-       var answer_screen1 = game.add.sprite(120,120,'answerscreens','sprite1');
-       answer_screen1.scale.setTo(2, 2);
+       var answer_screen1 = game.add.sprite(0,120,'answers1');
+       //answer_screen1.scale.setTo(2, 2);
        var style = { font: "20px Arial", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
        var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 3 cakes among 4 children. Click Next to proceed to the next activity.',style);
        text1.wordWrap = true;

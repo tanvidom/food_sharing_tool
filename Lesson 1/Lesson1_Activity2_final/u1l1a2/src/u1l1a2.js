@@ -42,6 +42,7 @@
   },
   preload : function()
   {
+    game.load.atlasJSONHash('atlas6','assets/spritesheet_111.png','assets/sprites_111.json');
    game.load.image('background','assets/background.png');
    game.load.image('close_button','assets/close_button_normal.png');
    game.load.atlasJSONHash('atlas4', 'assets/atlas4.png', 'assets/atlas4.json'); 
@@ -56,11 +57,15 @@
     reg.modal = new gameModal(game);
         this.createModals();
    background = game.add.sprite(0,0,'background');
-   var style = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-   question_text_upper = game.add.text(120,2,'Help Jamuni distribute 12 cakes fairly among 8 children. First, drag and drop the children into two equal groups. Then, distribute the cakes fairly and answer the questions below.',style);
+   var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+   question_text_upper = game.add.text(120,2,'Help Jamuni divide the 8 children into 2 equal groups and then distribute 12 cakes fairly between the 2 groups so that each child gets an equal share of the cake.',style);
+   question_text_upper.lineSpacing = -5;
    question_text_lower = game.add.text(22,524,'What is the share of each group?',style);
    question_text_upper.wordWrap = true;
    question_text_upper.wordWrapWidth = 580;
+   var style2 = {font: "italic 11px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle"}
+   var question_instructs = game.add.text(125, 35, '1. Drag and drop the children into two equal groups.',style2);
+   var question_instructs1 = game.add.text(400, 35, '2. Then, distribute the cakes fairly among the groups.', style2);
    answer_text1 = game.add.text(22, 552, 'Group A : ', style);
    answer_text2 = game.add.text(220,552, 'Group B : ', style);
    for(var i=0;i<2;i++)
@@ -71,11 +76,11 @@
    tray = game.add.sprite(3,85,'atlas4','TRAY');
    instruction_board = game.add.sprite(2,366,'atlas4','sprite45');
    var style2 = { font: "italic 12px tahoma",fill: "#000066", boundsAlignH: "center", boundsAlignV: "middle" };
-   instruction_text = game.add.text(19,390,'Use the                    to cut the cake into smaller pieces and drag and drop the cake or the pieces to each child.',style2);
+   instruction_text = game.add.text(19,390,'Enter your answers in the form of whole numbers or fractions and click                      to check your answers.',style2);
   instruction_text.wordWrap = true;
   instruction_text.wordWrapWidth = 175;
   var style3 = { font: "bold italic 12px tahoma",fill: "#000066", boundsAlignH: "center", boundsAlignV: "middle" };
-  var instruction_text1 = game.add.text(70,390, 'Cutting Tool ',style3);
+  var instruction_text1 = game.add.text(70,430, 'Sharing Done ',style3);
 
    //var style1 = {font: "italic bold 12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle"}
    //instruction_text = game.add.text(19,390,"When you are done, click the Sharing Done button to check your answers. Enter only whole number or fractions",style1);
@@ -405,7 +410,7 @@
         {
           type : "button",
           atlasParent: "atlas4",
-          content: 'sprite51',
+          content: 'sprite40',
           offsetX : 110,
           offsetY: 30,
           callback: function()
@@ -444,7 +449,7 @@
         {
           type : "button",
           atlasParent: "atlas4",
-          content: 'sprite51',
+          content: 'sprite40',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -462,6 +467,82 @@
         }]
           
         
+    }); 
+    reg.modal.createModal({
+        type: "modal5",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'atlas6',
+            content : 'sprite1'
+
+          },
+            {
+            type: "image",
+            content: "close_button",
+            offsetX: 208,
+            offsetY: -83,
+            callback: function(){
+                      reg.modal.hideModal("modal5");
+                    }},
+        {
+          type : "button",
+          atlasParent: "atlas4",
+          content: 'sprite40',
+          offsetX : 110,
+          offsetY: 30,
+          callback: function()
+          {
+            reg.modal.hideModal("modal5");
+          }
+
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'answerscreens',
+          content: 'SMILEY_SAD',  
+          offsetX : 40,
+          offsetY:  - 140,
+        }]     
+    }); 
+    reg.modal.createModal({
+        type: "modal6",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'atlas6',
+            content : 'sprite2'
+
+          },
+            {
+            type: "image",
+            content: "close_button",
+            offsetX: 208,
+            offsetY: -83,
+            callback: function(){
+                      reg.modal.hideModal("modal6");
+                    }},
+        {
+          type : "button",
+          atlasParent: "atlas4",
+          content: 'sprite40',
+          offsetX : 110,
+          offsetY: 30,
+          callback: function()
+          {
+            reg.modal.hideModal("modal6");
+          }
+
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'answerscreens',
+          content: 'SMILEY_SAD',  
+          offsetX : 40,
+          offsetY:  - 140,
+        }]     
     });   
   }, 
   showModal1:function() {
@@ -479,6 +560,14 @@
    {
     reg.modal.showModal("modal4");
    },
+   showModal5 : function()
+   {
+     reg.modal.showModal("modal5");
+   },
+   showModal6 : function()
+   {
+     reg.modal.showModal("modal6");
+   },
    help_function : function()
    {
     window.open("../u1l1a1/assets/fraction-chart_copywrite.png");
@@ -494,7 +583,13 @@
     var final_check_function=[];
     var correct_count = 0;
     console.log(input_answer1.value);
-    console.log(input_answer2.value)
+    console.log(input_answer2.value);
+    if(input_answer2.value == '' || input_answer1.value == '')
+    {
+      this.showModal6();
+    }
+    else
+    {
    for(var i=0;i<2;i++)
    {
      groups[i].numberof_childreningroup = 0;
@@ -522,30 +617,36 @@
     {
     if(plates[0].sum == '6' && plates[1].sum== '6' && input_answer1.value== '6' && input_answer2.value == '6')
     {
+      console.log('modal1');
       this.showModal1();
 
 
     }
     else if(plates[0].sum == '6' && plates[1].sum == '6' && (input_answer1.value!== '6' || input_answer2.value!== '6'))
     { 
+      console.log('modal3');
       this.showModal3();
       //this.showModal2();
     }
     else if((plates[0].sum!== '6' || plates[1].sum !=='6') && (input_answer2.value == '6' && input_answer1.value =='6'))
     {
-      
+      console.log('modal2');
       this.showModal2();  
     }
-    else
+    else if((plates[0].sum!== '6' || plates[1].sum !=='6') && (input_answer2.value !== '6' && input_answer1.value !=='6'))
     {
+      console.log('modal4');
+      
       this.showModal4();
     }
    }
    else 
    {
-    this.showModal4();
+    console.log('modal5');
+    this.showModal5();
    }
    }
+ }
     else
     {
       game.state.start('answerScreen');
@@ -567,17 +668,23 @@
       {
        game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
        game.load.webfont('tahoma','Tahoma');
+       game.load.image('answerscreens1','assets/answerl1a2.png');
 
       },
       create : function()
       {
          game.stage.backgroundColor = "#D3FEB6"; 
-       var answer_screen1 = game.add.sprite(50,120,'answerscreens','sprite4');
-       answer_screen1.scale.setTo(1.7, 1.7);
+       var answer_screen1 = game.add.sprite(50,120,'answerscreens1');
+       //answer_screen1.scale.setTo(1.7, 1.7);
        var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is how you distribute 12 cakes among 2 equal groups. Click Next to proceed to the next question in this activity.',style);
+       var text1 = game.add.text(20,25,'This is how you distribute 12 cakes among 2 equal groups.',style);
+
        text1.wordWrap = true;
        text1.wordWrapWidth = 800;
+       var style2 = { font: "italic 14px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text2 = game.add.text(20,45,'Click           to proceed to the next activity.',style2);
+       var style3 = { font: "bold italic 14px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text3 = game.add.text(55,45,'NEXT ',style3);
        var button1 = game.add.button(680,580,'answerscreens',this.next_buttonaction,this,'NEXT_BUTTON_MOUSE_OVER','NEXT_BUTTON_NORMAL','NEXT_BUTTON_MOUSE_DOWN');
       },
       next_buttonaction : function()
@@ -594,23 +701,33 @@
       },
       preload : function()
       {
+        game.load.image('background','assets/background.png');
+        game.load.image('answerscreens1','assets/answerl1a2.png');
+        game.add.plugin(PhaserInput.Plugin);
        game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
        game.load.webfont('tahoma','Tahoma');
        game.load.atlasJSONHash('atlas4', 'assets/atlas4.png', 'assets/atlas4.json'); 
        game.load.atlasJSONHash('atlas5','assets/atlas5.png','assets/atlas5.json');
+        game.load.image('close_button','assets/close_button_normal.png');
+
       },
       create : function()
       {
         reg.modal = new gameModal(game);
         this.createModals();
         game.stage.backgroundColor = "#D3FEB6"; 
-       var answer_screen1 = game.add.sprite(0,0,'answerscreens','sprite4');
-       answer_screen1.scale.setTo(2, 2);
+
+       
+       background = game.add.sprite(0,0,'background');
+       var answer_screen1 = game.add.sprite(365,60,'answerscreens1');
+       //answer_screen1.scale.setTo(2, 2);
        var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(22,525,'Help Jamuni find the share of each group as a part of total number of cakes.',style);
-       var style1 = { font: "italic 12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text2 = game.add.text(22,545,'Enter your answer in the form of a whole number or fraction and click Submit to check your answer.',style1);
+       var text1 = game.add.text(133,20,'Help Jamuni find the share of each group as a part of total number of cakes.',style);
+       var style1 = { font: "italic 13px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+        var style2 = { font: "bold 13px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text2 = game.add.text(22,535,'Enter your answer in the form of a whole number or fraction and click              to check your answer.',style1);
        var text3 = game.add.text(22,570, 'The share of each group is  ',style);
+       var text4 = game.add.text(433,535,'Submit',style2);
        input_answer3 = game.add.inputField(200, 565, {
     font: '11px Arial',
     fill: '#212121',
@@ -628,6 +745,11 @@
        //text1.wordWrapWidth = 800;
 
       },
+      render : function()
+         { 
+          game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
+    
+          },
       check2_function : function()
       {
         no_of_attempts1 = no_of_attempts1 + 1;
@@ -665,7 +787,7 @@
           {
             type: "image",
             content: "close_button",
-            offsetX: 146,
+            offsetX: 180,
             offsetY: -75,
             callback: function(){
                       reg.modal.hideModal("modal1");
@@ -673,14 +795,15 @@
         },
         {
           type : "button",
-          atlasParent: "answerscreens",
-          content: 'NEXT_BUTTON_NORMAL',
-          offsetX : 100,
-          offsetY: 30,
-          /*callback: function()
+          atlasParent: "atlas4",
+          content: 'sprite51',
+          offsetX : 110,
+          offsetY: 35,
+          callback: function()
           {
            //not decided yet
-          }*/
+           reg.modal.hideModal("modal1");
+          }
 
         }, 
          {
@@ -707,8 +830,8 @@
             {
             type: "image",
             content: "close_button",
-            offsetX: 205,
-            offsetY: -83,
+            offsetX: 200,
+            offsetY: -70,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }},
@@ -716,8 +839,8 @@
           type : "button",
           atlasParent: "atlas4",
           content: 'sprite51',
-          offsetX : 110,
-          offsetY: 30,
+          offsetX : 120,
+          offsetY: 28,
           callback: function()
           {
             reg.modal.hideModal("modal2");
