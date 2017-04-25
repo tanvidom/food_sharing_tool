@@ -7,15 +7,18 @@
  var answer_text2;
  var instruction_board;
  var instruction_text;
+ var drag_complete;
+ var answer_entered;
  var tray;
+ var submit_buttom;
  var packets_text = [];
  var cake_num;
  var cake_no;
- var check_child_on_group = [];
- var check_cake_on_plate = [];
- var cakes_on_board = [];t 
  var no_of_attempts = 0;
  var no_of_attempts1 = 0;
+ var check_child_on_group = [];
+ var check_cake_on_plate = [];
+ var cakes_on_board = [];
  var plates = [];
  var children = [];
  var cakes = [];
@@ -26,6 +29,7 @@
  var input_answer1;
  var input_answer2;
  var input_answer3;
+ var input_answer4;
  var linkofdemo;
  var line1;
  var reg={};
@@ -42,32 +46,33 @@
   },
   preload : function()
   {
-    game.load.atlasJSONHash('atlas6','assets/spritesheet_111.png','assets/sprites_111.json');
    game.load.image('background','assets/background.png');
    game.load.image('close_button','assets/close_button_normal.png');
    game.load.atlasJSONHash('atlas4', 'assets/atlas4.png', 'assets/atlas4.json'); 
    game.add.plugin(PhaserInput.Plugin);
    game.load.webfont('tahoma','Tahoma');
    game.load.image('help_link','assets/HELP_LINK.png');
-   game.load.atlasJSONHash('atlas5','assets/atlas5.png','assets/atlas5.json');
+   //game.load.atlasJSONHash('atlas5','assets/atlas5.png','assets/atlas5.json');
    game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
+   game.load.atlasJSONHash('popups','assets/spritesheet_a41.png','assets/sprites_a41.json');
   },
   create : function()
   {
-    reg.modal = new gameModal(game);
+        reg.modal = new gameModal(game);
         this.createModals();
    background = game.add.sprite(0,0,'background');
    var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-   question_text_upper = game.add.text(120,2,'Help Jamuni divide the 8 children into 2 equal groups and then distribute 12 cakes fairly between the 2 groups so that each child gets an equal share of the cake.',style);
-   question_text_upper.lineSpacing = -5;
+   question_text_upper = game.add.text(120,2,'Help Jamuni distribute 12 cakes fairly among 8 children in two unequal groups of 2 and 6 children.',style);
    question_text_lower = game.add.text(22,524,'What is the share of each group?',style);
-   question_text_upper.wordWrap = true;
-   question_text_upper.wordWrapWidth = 580;
-   var style2 = {font: "italic 11px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle"}
-   var question_instructs = game.add.text(125, 35, '1. Drag and drop the children into two equal groups.',style2);
-   var question_instructs1 = game.add.text(400, 35, '2. Then, distribute the cakes fairly among the groups.', style2);
+   var style2 = {font: "italic 12px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle"}
+   var question_instructs = game.add.text(125, 20, '1. Drag and drop the children into two groups such that Group A has 2 children and Group B has 6 children.',style2);
+   var question_instructs1 = game.add.text(125, 35, '2. Distribute the cakes fairly among the groups.', style2);
+    question_text_upper.wordWrap = true
+   question_text_upper.wordWrapWidth = 590;
    answer_text1 = game.add.text(22, 552, 'Group A : ', style);
    answer_text2 = game.add.text(220,552, 'Group B : ', style);
+   drag_complete = false;
+   answer_entered = false;
    for(var i=0;i<2;i++)
    {
     packets_text = game.add.text(160 + (i*195),552, 'cakes.',style);
@@ -75,17 +80,11 @@
    
    tray = game.add.sprite(3,85,'atlas4','TRAY');
    instruction_board = game.add.sprite(2,366,'atlas4','sprite45');
-   var style2 = { font: "italic 12px tahoma",fill: "#000066", boundsAlignH: "center", boundsAlignV: "middle" };
-   instruction_text = game.add.text(19,390,'Enter your answers in the form of whole numbers or fractions and click                      to check your answers.',style2);
-  instruction_text.wordWrap = true;
-  instruction_text.wordWrapWidth = 175;
-  var style3 = { font: "bold italic 12px tahoma",fill: "#000066", boundsAlignH: "center", boundsAlignV: "middle" };
-  var instruction_text1 = game.add.text(70,430, 'Sharing Done ',style3);
+   var style1 = {font: "italic bold 12px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle"}
 
-   //var style1 = {font: "italic bold 12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle"}
-   //instruction_text = game.add.text(19,390,"When you are done, click the Sharing Done button to check your answers. Enter only whole number or fractions",style1);
-   //instruction_text.wordWrap = true;
-  //instruction_text.wordWrapWidth = 180;
+   instruction_text = game.add.text(19,390,"Enter your answers in the form of whole numbers or fractions and click Sharing Done to check your answers.",style1);
+   instruction_text.wordWrap = true;
+  instruction_text.wordWrapWidth = 180;
    sharing_done_btn = game.add.button(20,586, 'atlas4',this.final_check_function,this,'sprite68','sprite53','sprite39');
    sharing_done_btn.inputEnabled = false;
    reset_btn = game.add.button(168, 586,'atlas4',this.reset_function,this,'sprite69','sprite58','sprite70');
@@ -222,7 +221,7 @@
       if(c>=1)
       {
         groups[pos1].loadTexture('atlas4',group_name[pos1]);
-        //groups[pos1].numberof_childreningroup ++;
+        groups[pos1].numberof_childreningroup ++;
       }
       else
       {
@@ -270,6 +269,8 @@
   },
   stopDragcake : function(item)
   {
+    //this.showModal3();
+    // this.showModal1();
     var cake_no = item.number; 
     var c2=0;
     var pos2;
@@ -299,41 +300,41 @@
 
 
       }
+      
       else
       {
         cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);
       }
    
   },
-  createModals: function() {
-
-    //////// modal 5////////////
-      reg.modal.createModal({
+  createModals: function() 
+  {
+   reg.modal.createModal({
         type: "modal1",
         includeBackground: true,
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite2'
+            atlasParent :'popups',
+            content : 'sprite1'
 
 
           },
           {
             type: "image",
             content: "close_button",
-            offsetX: 146,
-            offsetY: -83,
+            offsetX: 210,
+            offsetY: -90,
             callback: function(){
                       reg.modal.hideModal("modal1");
                     }
         },
         {
-          type : "button",
-          atlasParent: "answerscreens",
+          type : 'sprite',
+          atlasParent: 'answerscreens',
           content: 'NEXT_BUTTON_NORMAL',
-          offsetX : 90,
-          offsetY: 30,
+          offsetX : 145,
+          offsetY: 38,
           callback: function()
           {
             game.state.start('playGame2');
@@ -357,22 +358,22 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite4'
+            atlasParent :'popups',
+            content : 'sprite2'
 
           },
             {
             type: "image",
             content: "close_button",
-            offsetX: 205,
+            offsetX: 182,
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }},
         {
-          type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite51',
+          type : 'sprite',
+          atlasParent: 'atlas4',
+          content: 'sprite40',
           offsetX : 110,
           offsetY: 30,
           callback: function()
@@ -395,24 +396,24 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite3'
+            atlasParent :'popups',
+            content : 'sprite5'
 
           },
             {
             type: "image",
             content: "close_button",
-            offsetX: 208,
-            offsetY: -83,
+            offsetX: 194,
+            offsetY: -70,
             callback: function(){
                       reg.modal.hideModal("modal3");
                     }},
         {
-          type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite40',
+          type : 'sprite',
+          atlasParent: 'atlas4',
+          content: 'sprite40  ',
           offsetX : 110,
-          offsetY: 30,
+          offsetY: 20,
           callback: function()
           {
             reg.modal.hideModal("modal3");
@@ -434,8 +435,8 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite5'
+            atlasParent :'popups',
+            content : 'sprite3'
 
           },
             {
@@ -447,10 +448,10 @@
                       reg.modal.hideModal("modal4");
                     }},
         {
-          type : "button",
+          type : "sprite",
           atlasParent: "atlas4",
           content: 'sprite40',
-          offsetX : 90,
+          offsetX : 120,
           offsetY: 30,
           callback: function()
           {
@@ -467,15 +468,16 @@
         }]
           
         
-    }); 
-    reg.modal.createModal({
+    });   
+
+        reg.modal.createModal({
         type: "modal5",
         includeBackground: true,
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas6',
-            content : 'sprite1'
+            atlasParent :'popups',
+            content : 'sprite4'
 
           },
             {
@@ -487,10 +489,10 @@
                       reg.modal.hideModal("modal5");
                     }},
         {
-          type : "button",
+          type : "sprite",
           atlasParent: "atlas4",
           content: 'sprite40',
-          offsetX : 110,
+          offsetX : 90,
           offsetY: 30,
           callback: function()
           {
@@ -504,16 +506,19 @@
           content: 'SMILEY_SAD',  
           offsetX : 40,
           offsetY:  - 140,
-        }]     
-    }); 
-    reg.modal.createModal({
+        }]
+          
+        
+    });
+
+        reg.modal.createModal({
         type: "modal6",
         includeBackground: true,
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas6',
-            content : 'sprite2'
+            atlasParent :'popups',
+            content : 'sprite6'
 
           },
             {
@@ -525,10 +530,10 @@
                       reg.modal.hideModal("modal6");
                     }},
         {
-          type : "button",
-          atlasParent: "atlas4",
+          type : 'sprite',
+          atlasParent: 'atlas4',
           content: 'sprite40',
-          offsetX : 110,
+          offsetX : 90,
           offsetY: 30,
           callback: function()
           {
@@ -542,8 +547,51 @@
           content: 'SMILEY_SAD',  
           offsetX : 40,
           offsetY:  - 140,
-        }]     
-    });   
+        }]
+          
+        
+    }); 
+
+        reg.modal.createModal({
+        type: "modal7",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'popups',
+            content : 'sprite7'
+
+          },
+            {
+            type: "image",
+            content: "close_button",
+            offsetX: 180,
+            offsetY: -83,
+            callback: function(){
+                      reg.modal.hideModal("modal7");
+                    }},
+        {
+          type : 'sprite',
+          atlasParent: 'atlas4',
+          content: 'sprite40',
+          offsetX : 90,
+          offsetY: 30,
+          callback: function()
+          {
+            reg.modal.hideModal("modal7");
+          }
+
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'answerscreens',
+          content: 'SMILEY_SAD',  
+          offsetX : 40,
+          offsetY:  - 140,
+        }]
+          
+        
+    });       
   }, 
   showModal1:function() {
     reg.modal.showModal("modal1");
@@ -562,39 +610,42 @@
    },
    showModal5 : function()
    {
-     reg.modal.showModal("modal5");
+    reg.modal.showModal("modal5");
    },
-   showModal6 : function()
+    showModal6 : function()
    {
-     reg.modal.showModal("modal6");
+    reg.modal.showModal("modal6");
+   },
+     showModal7 : function()
+   {
+    reg.modal.showModal("modal7");
    },
    help_function : function()
    {
-    window.open("../u1l1a1/assets/fraction-chart_copywrite.png");
+    window.open("softwares/food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
    },
   final_check_function : function()
   {
     var check_child_on_group1 = [];
-
-
     no_of_attempts = no_of_attempts + 1;
-    if(no_of_attempts <= 3)
+    if(no_of_attempts < 4)
     {
     var final_check_function=[];
     var correct_count = 0;
+
     console.log(input_answer1.value);
     console.log(input_answer2.value);
     if(input_answer2.value == '' || input_answer1.value == '')
     {
-      this.showModal6();
+      this.showModal7();
     }
     else
     {
    for(var i=0;i<2;i++)
-   {
-     groups[i].numberof_childreningroup = 0;
-     plates[i].sum = 0;
-     for(var j1 = 0; j1<8; j1++)
+     {
+      plates[i].sum = 0;
+      groups[i].numberof_childreningroup = 0;
+        for(var j1 = 0; j1<8; j1++)
      {
       check_child_on_group1[i] = game.physics.arcade.overlap(children[j1],rect[i+2]);
       if(check_child_on_group1[i] == true)
@@ -602,6 +653,7 @@
         groups[i].numberof_childreningroup = groups[i].numberof_childreningroup + 1;
       }
      }
+
      for(var j =0;j<12;j++)
      {
       final_check_function[j] = game.physics.arcade.overlap(cakes[j],rect[i]);
@@ -613,86 +665,88 @@
      }
      console.log("sum"+ plates[i].sum);
    }
-    if(groups[0].numberof_childreningroup == '4' && groups[1].numberof_childreningroup == '4')
+     if(groups[0].numberof_childreningroup == '2' && groups[1].numberof_childreningroup == '6')
     {
-    if(plates[0].sum == '6' && plates[1].sum== '6' && input_answer1.value== '6' && input_answer2.value == '6')
+    if(plates[0].sum == '3' && plates[1].sum== '9' && input_answer1.value == '3' && input_answer2.value == '9')
     {
-      console.log('modal1');
       this.showModal1();
 
-
-    }
-    else if(plates[0].sum == '6' && plates[1].sum == '6' && (input_answer1.value!== '6' || input_answer2.value!== '6'))
-    { 
-      console.log('modal3');
-      this.showModal3();
-      //this.showModal2();
-    }
-    else if((plates[0].sum!== '6' || plates[1].sum !=='6') && (input_answer2.value == '6' && input_answer1.value =='6'))
+    } 
+    else if(((plates[0].sum!== '3' && plates[1].sum !=='9') &&(input_answer2.value == '3' && input_answer1.value =='9')))
     {
-      console.log('modal2');
-      this.showModal2();  
+      this.showModal2();
+      console.log("incorrect distribution, correct numeric entry"); 
     }
-    else if((plates[0].sum!== '6' || plates[1].sum !=='6') && (input_answer2.value !== '6' && input_answer1.value !=='6'))
+    else if (((plates[0].sum == '3' && plates[1].sum =='9') && (input_answer2.value !== '3' && input_answer1.value !=='9')))
     {
-      console.log('modal4');
-      
-      this.showModal4();
+      this.showModal2();
+      console.log("incorrect ans, correct distribution");
     }
-   }
-   else 
-   {
-    console.log('modal5');
-    this.showModal5();
-   }
-   }
- }
     else
     {
-      game.state.start('answerScreen');
+      this.showModal4();
+      console.log("try again");
     }
+    }
+   else 
+   {
+    this.showModal3();
+    console.log('incorrect grouping');
+   }
+    }
+  }
+   else 
+   {
+    game.state.start("answerScreen")
+   }
    },
+   
+ 
  reset_function : function()
  {
   game.state.start('PlayGame');
  }
 }
- var answerScreen = function(game){}
+var answerScreen = function(game){}
     answerScreen.prototype = 
     {
-       init : function()
-      {
-       game.load = new CustomLoader(game);
-      },
+      init : function()
+  {
+     game.load = new CustomLoader(game);
+  },
       preload : function()
       {
        game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
+       game.load.image('answer_screen1','assets/answerscreen_a4q1.png');
        game.load.webfont('tahoma','Tahoma');
-       game.load.image('answerscreens1','assets/answerl1a2.png');
-
+       game.load.image('background_top','assets/bubble.png')
       },
       create : function()
       {
-         game.stage.backgroundColor = "#D3FEB6"; 
-       var answer_screen1 = game.add.sprite(50,120,'answerscreens1');
-       //answer_screen1.scale.setTo(1.7, 1.7);
+       game.stage.backgroundColor = "#D3D3D3"; 
+       var answer_screen1 = game.add.sprite(2,146,'answer_screen1');
+       answer_screen1.scale.setTo(1,0.95);
+       //answer_screen1.scale.setTo(2, 2);
+       var background = game.add.image(20,15,'background_top');
+       background.scale.setTo(2,0.4);
        var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is how you distribute 12 cakes among 2 equal groups.',style);
-
+       var text1 = game.add.text(105,30,'This is how you distribute 12 cakes among 2 unequal groups.',style);
+       var style2 = { font: "italic 14px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text2 = game.add.text(105,55,'Click           to proceed to the next activity.',style2);
+       var style3 = { font: "bold italic 14px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text3 = game.add.text(140,55,'NEXT ',style3);
        text1.wordWrap = true;
        text1.wordWrapWidth = 800;
-       var style2 = { font: "italic 14px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text2 = game.add.text(20,45,'Click           to proceed to the next activity.',style2);
-       var style3 = { font: "bold italic 14px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text3 = game.add.text(55,45,'NEXT ',style3);
-       var button1 = game.add.button(680,580,'answerscreens',this.next_buttonaction,this,'NEXT_BUTTON_MOUSE_OVER','NEXT_BUTTON_NORMAL','NEXT_BUTTON_MOUSE_DOWN');
+       var button1 = game.add.button(720,100,'answerscreens',this.next_buttonaction,this,'NEXT_BUTTON_MOUSE_OVER','NEXT_BUTTON_NORMAL','NEXT_BUTTON_MOUSE_DOWN');
       },
       next_buttonaction : function()
       {
         game.state.start('playGame2');
       }
     }
-  var playGame2 = function(game){}
+      
+    
+ var playGame2 = function(game){}
     playGame2.prototype = 
     {
        init : function()
@@ -701,35 +755,43 @@
       },
       preload : function()
       {
-        game.load.image('background','assets/background.png');
-        game.load.image('answerscreens1','assets/answerl1a2.png');
+        game.load.image('close_button','assets/close_button_normal.png');
+        game.load.image('upper_q','assets/HEADER_PLATE.png');
+        game.load.image('lower_q','assets/LOWER_BAND.png');
+        game.load.image('bg','assets/ONLY_BACKGROUND.png');
+        game.load.image('a4','assets/a4.png');
+        game.load.atlasJSONHash('submitbuttons','assets/submit.png','assets/submit.json');
         game.add.plugin(PhaserInput.Plugin);
        game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
        game.load.webfont('tahoma','Tahoma');
        game.load.atlasJSONHash('atlas4', 'assets/atlas4.png', 'assets/atlas4.json'); 
-       game.load.atlasJSONHash('atlas5','assets/atlas5.png','assets/atlas5.json');
-        game.load.image('close_button','assets/close_button_normal.png');
-
+       game.load.image('help_link','assets/HELP_LINK.png');
+       game.load.atlasJSONHash('atlas5','assets/spritesheet_a41_part2.png','assets/sprites_a41_part2.json');
+       game.load.image('background1','assets/background.png');
       },
       create : function()
       {
         reg.modal = new gameModal(game);
         this.createModals();
-        game.stage.backgroundColor = "#D3FEB6"; 
-
-       
-       background = game.add.sprite(0,0,'background');
-       var answer_screen1 = game.add.sprite(365,60,'answerscreens1');
-       //answer_screen1.scale.setTo(2, 2);
+        var upper_question = game.add.sprite(80,0,'upper_q');
+        //game.stage.backgroundColor = "#D3FEB6"; 
+        game.stage.backgroundColor = "#BCED91";
+       //background = game.add.sprite(0,0,'background1');
+       var answer_screen1 = game.add.sprite(260,80,'a4');
+       help_button = game.add.sprite(730,3,'help_link');
+       help_button.inputEnabled = true;
+  //events.onInputDown.add(this.showModal5,this);
+       help_button.events.onInputDown.add(this.help_function,this);
+        answer_screen1.scale.setTo(0.75, 0.75);
        var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(133,20,'Help Jamuni find the share of each group as a part of total number of cakes.',style);
+       var text1 = game.add.text(170,7,'  Help Jamuni find the share of each group as a part of total number of cakes.',style);
        var style1 = { font: "italic 13px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
-        var style2 = { font: "bold 13px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text2 = game.add.text(22,535,'Enter your answer in the form of a whole number or fraction and click              to check your answer.',style1);
-       var text3 = game.add.text(22,570, 'The share of each group is  ',style);
-       var text4 = game.add.text(433,535,'Submit',style2);
-       input_answer3 = game.add.inputField(200, 565, {
-    font: '11px Arial',
+       var text2 = game.add.text(129,29,'Enter your answer in the form of a whole number or fraction and click           to check your answer.',style1);
+       var style2 = { font: "bold 12px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text4 = game.add.text(535,29,'Submit ',style2);
+       var text3 = game.add.text(100,420, 'How would you represent Group A’s share as a fraction of the total of 12 cakes?',style);
+       input_answer3 = game.add.inputField(180, 450, {
+    font: '12px Arial',
     fill: '#212121',
     fontWeight: 'bold',
     width: 50,
@@ -739,35 +801,66 @@
     borderRadius: 6,
     
 });
-       var text4 = game.add.text(280, 570, 'of the total 12 cakes.',style);
-       var submit_buttom = game.add.button(20,605, 'atlas4',this.check2_function,this,'sprite68','sprite53','sprite39');
+       var text4 = game.add.text(100, 450, 'Answer : ',style);
+       submit_buttom = game.add.button(97,595, 'submitbuttons',this.check2_function,this,'SUBMIT_BUTTON_MOUSE_OVER','SUBMIT_BUTTON_NORMAL','SUBMIT_BUTTON_MOUSE_DOWN');
+       //submit_buttom.inputEnabled = false;
 //text1.wordWrap = true;
        //text1.wordWrapWidth = 800;
+       var text5 = game.add.text(100,520,'How would you represent Group B’s share as a fraction of the total of 12 cakes?',style);
+       var text6 = game.add.text(100,550,'Answer : ',style);
+       input_answer4 = game.add.inputField(180, 550, {
+    font: '12px Arial',
+    fill: '#212121',
+    fontWeight: 'bold',
+    width: 50,
+    padding: 8,
+    borderWidth: 2,
+    borderColor: '#0EC2F5',
+    borderRadius: 6,
+    
+});
 
       },
-      render : function()
-         { 
-          game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
-    
-          },
+        help_function : function()
+   {
+    window.open("../u1l1a1/assets/fraction-chart_copywrite.png");
+   },
       check2_function : function()
       {
         no_of_attempts1 = no_of_attempts1 + 1;
-        if(no_of_attempts1 < 2)
+        if(no_of_attempts1 < 5)
         {
-        if(input_answer3.value == '1/2')
+        if(input_answer3.value == '' && input_answer4.value == '')
         {
-          this.showModal1();
-          
+           
         }
-        else
+        else if(input_answer3.value == '1/4' && input_answer4.value == '3/4')
         {
-          this.showModal3();
+          //console.log("modal2");
+          //this.showModal2();
+          this.showModal4();
         }
-        }
-        else
+        else if(input_answer3.value !=='1/4' && input_answer4.value =='3/4')
         {
           this.showModal2();
+          
+          
+        }
+        else if(input_answer3.value == '1/4' && input_answer4.value!== '3/4')
+        {
+          console.log("modal3");
+          this.showModal3();
+        }
+        else
+        {
+          console.log("modal1")
+          this.showModal1();
+        }
+        }
+        else
+        {
+          console.log("modal5")
+          this.showModal5();
         }
       },
       createModals: function() {
@@ -780,15 +873,15 @@
         itemsArr: [{
             type: 'sprite',
             atlasParent :'atlas5',
-            content : 'sprite1'
+            content : 'sprite4'
 
 
           },
           {
             type: "image",
             content: "close_button",
-            offsetX: 180,
-            offsetY: -75,
+            offsetX: 205,
+            offsetY: -80,
             callback: function(){
                       reg.modal.hideModal("modal1");
                     }
@@ -796,20 +889,62 @@
         {
           type : "button",
           atlasParent: "atlas4",
-          content: 'sprite51',
-          offsetX : 110,
-          offsetY: 35,
+          content: 'sprite40',
+          offsetX : 130,
+          offsetY: 30,
           callback: function()
           {
-           //not decided yet
-           reg.modal.hideModal("modal1");
+           reg.modal.hideModal('modal1');
           }
 
         }, 
          {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_SAD',  
+          offsetX : 40,
+          offsetY:  - 140,
+        },
+
+          ]
+        
+    }); 
+      reg.modal.createModal({
+        type: "modal2",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'atlas5',
+            content : 'sprite2'
+
+
+          },
+          {
+            type: "image",
+            content: "close_button",
+            offsetX: 200,
+            offsetY: -80,
+            callback: function(){
+                      reg.modal.hideModal("modal2");
+                    }
+        },
+        {
+          type : "button",
+          atlasParent: "atlas4",
+          content: 'sprite40',
+          offsetX : 120,
+          offsetY: 30,
+          callback: function()
+          {
+           reg.modal.hideModal("modal2");
+          }
+
+        }, 
+         {
+          type : 'sprite',
+          atlasParent: 'answerscreens',
+          content: 'SMILEY_SAD',  
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -818,63 +953,25 @@
         
     });
         reg.modal.createModal({
-        type: "modal2",
-        includeBackground: true,
-        modalCloseOnInput: true,
-        itemsArr: [{
-            type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite7'
-
-          },
-            {
-            type: "image",
-            content: "close_button",
-            offsetX: 200,
-            offsetY: -70,
-            callback: function(){
-                      reg.modal.hideModal("modal2");
-                    }},
-        {
-          type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite51',
-          offsetX : 120,
-          offsetY: 28,
-          callback: function()
-          {
-            reg.modal.hideModal("modal2");
-          }
-
-        },
-        {
-          type : 'sprite',
-          atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
-          offsetX : 40,
-          offsetY:  - 140,
-        }]     
-    });
-            reg.modal.createModal({
         type: "modal3",
         includeBackground: true,
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
             atlasParent :'atlas5',
-            content : 'sprite6'
+            content : 'sprite3'
 
           },
             {
             type: "image",
             content: "close_button",
-            offsetX: 208,
+            offsetX: 205,
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal3");
                     }},
         {
-          type : "button",
+          type : "sprite",
           atlasParent: "atlas4",
           content: 'sprite51',
           offsetX : 110,
@@ -892,9 +989,91 @@
           offsetX : 40,
           offsetY:  - 140,
         }]     
+    });
+            reg.modal.createModal({
+        type: "modal4",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'atlas5',
+            content : 'sprite1'
+
+          },
+            {
+            type: "image",
+            content: "close_button",
+            offsetX: 185,
+            offsetY: -130,
+            callback: function(){
+                      reg.modal.hideModal("modal4");
+                    }},
+        {
+          type : "button",
+          atlasParent: "atlas4",
+          content: 'sprite51',
+          offsetX : 110,
+          offsetY: 60,
+          callback: function()
+          {
+            reg.modal.hideModal("modal4");
+          }
+
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'answerscreens',
+          content: 'SMILEY_HAPPY',  
+          offsetX : 20,
+          offsetY:  - 180,
+        }]     
     });  
+            reg.modal.createModal({
+        type: "modal5",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'atlas5',
+            content : 'sprite5'
+
+
+          },
+          {
+            type: "image",
+            content: "close_button",
+            offsetX: 355,
+            offsetY: -125,
+            callback: function(){
+                      reg.modal.hideModal("modal5");
+                    }
+        },
+        {
+          type : "button",
+          atlasParent: "answerscreens",
+          content: 'NEXT_BUTTON_NORMAL',
+          offsetX : 300,
+          offsetY: 60,
+          callback: function()
+          {
+           reg.modal.hideModal('modal5');
+          }
+
+        }, 
+         {
+          type : 'sprite',
+          atlasParent: 'answerscreens',
+          content: 'SMILEY_SAD',  
+          offsetX : 40,
+          offsetY:  - 200,
+        },
+
+          ]
+        
+    });
   }, 
-  showModal1:function() {
+  showModal1:function() 
+   {
     reg.modal.showModal("modal1");
    },
    showModal2: function()
@@ -905,7 +1084,21 @@
    {
     reg.modal.showModal("modal3");
    },
+   showModal4 : function()
+   {
+    reg.modal.showModal("modal4");
+   },
+   showModal5 : function()
+   {
+    reg.modal.showModal("modal5");
+   },
+   render : function()
+   {
+    game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
+   }
     }
+   
+//game.state.add('videoScreen',videoScreen);
 game.state.add('PlayGame', playGame);
 game.state.add('answerScreen',answerScreen);
 game.state.add('playGame2',playGame2);

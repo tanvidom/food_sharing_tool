@@ -622,7 +622,7 @@
    },
    help_function : function()
    {
-    window.open("softwares/food_sharing_tool/Lesson%201/Lesson1_Activity1_final/u1l1a1/assets/fraction-chart_copywrite.png");
+    window.open("../u1l1a1/assets/fraction-chart_copywrite.png");
    },
   final_check_function : function()
   {
@@ -1091,18 +1091,18 @@ var answerScreen = function(game){}
    showModal5 : function()
    {
     reg.modal.showModal("modal5");
-   },
-   render : function()
+   }
+   /*render : function()
    {
     game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
-   }
+   }*/
     }
    
 //game.state.add('videoScreen',videoScreen);
 game.state.add('PlayGame', playGame);
 game.state.add('answerScreen',answerScreen);
 game.state.add('playGame2',playGame2);
-game.state.start('playGame2');
+game.state.start('PlayGame');
 }
 
 
