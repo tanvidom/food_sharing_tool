@@ -13,7 +13,7 @@
  var cake_no;
  var check_child_on_group = [];
  var check_cake_on_plate = [];
- var cakes_on_board = [];t 
+ var cakes_on_board = [];
  var no_of_attempts = 0;
  var no_of_attempts1 = 0;
  var plates = [];
@@ -570,7 +570,7 @@
    },
    help_function : function()
    {
-    window.open("../u1l1a1/assets/fraction-chart_copywrite.png");
+    window.open("../u1l1a2/assets/fraction-chart_copywrite.png");
    },
   final_check_function : function()
   {
