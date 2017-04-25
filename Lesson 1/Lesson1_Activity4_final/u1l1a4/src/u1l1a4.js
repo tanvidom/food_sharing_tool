@@ -10,6 +10,7 @@
  var drag_complete;
  var answer_entered;
  var tray;
+ var submit_buttom;
  var packets_text = [];
  var cake_num;
  var cake_no;
@@ -329,14 +330,14 @@
                     }
         },
         {
-          type : "sprite",
-          atlasParent: "atlas4",
-          content: 'sprite52',
-          offsetX : 90,
-          offsetY: 35,
+          type : 'sprite',
+          atlasParent: 'answerscreens',
+          content: 'NEXT_BUTTON_NORMAL',
+          offsetX : 145,
+          offsetY: 38,
           callback: function()
           {
-            reg.modal.hideModal("modal1");
+            game.state.start('playGame2');
           }
 
         }, 
@@ -410,7 +411,7 @@
         {
           type : 'sprite',
           atlasParent: 'atlas4',
-          content: 'sprite39',
+          content: 'sprite40  ',
           offsetX : 110,
           offsetY: 20,
           callback: function()
@@ -754,28 +755,40 @@ var answerScreen = function(game){}
       },
       preload : function()
       {
+        game.load.image('close_button','assets/close_button_normal.png');
+        game.load.image('upper_q','assets/HEADER_PLATE.png');
+        game.load.image('lower_q','assets/LOWER_BAND.png');
+        game.load.image('bg','assets/ONLY_BACKGROUND.png');
+        game.load.image('a4','assets/a4.png');
+        game.load.atlasJSONHash('submitbuttons','assets/submit.png','assets/submit.json');
+        game.add.plugin(PhaserInput.Plugin);
        game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
        game.load.webfont('tahoma','Tahoma');
        game.load.atlasJSONHash('atlas4', 'assets/atlas4.png', 'assets/atlas4.json'); 
        game.load.image('help_link','assets/HELP_LINK.png');
        game.load.atlasJSONHash('atlas5','assets/spritesheet_a41_part2.png','assets/sprites_a41_part2.json');
+       game.load.image('background1','assets/background.png');
       },
       create : function()
       {
         reg.modal = new gameModal(game);
         this.createModals();
+        var upper_question = game.add.sprite(80,0,'upper_q');
         //game.stage.backgroundColor = "#D3FEB6"; 
         game.stage.backgroundColor = "#BCED91";
-       var answer_screen1 = game.add.sprite(180,120,'answerscreens','sprite5');
+       //background = game.add.sprite(0,0,'background1');
+       var answer_screen1 = game.add.sprite(260,80,'a4');
        help_button = game.add.sprite(730,3,'help_link');
        help_button.inputEnabled = true;
   //events.onInputDown.add(this.showModal5,this);
        help_button.events.onInputDown.add(this.help_function,this);
-        answer_screen1.scale.setTo(1.5, 1.5);
-       var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(100,20,'Help Jamuni find the share of each group as a part of total number of cakes.',style);
-       var style1 = { font: "italic 14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text2 = game.add.text(100,60,'(Enter your answer in the form of a whole number or fraction and click Submit to check your answer.)',style1);
+        answer_screen1.scale.setTo(0.75, 0.75);
+       var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text1 = game.add.text(170,7,'  Help Jamuni find the share of each group as a part of total number of cakes.',style);
+       var style1 = { font: "italic 13px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text2 = game.add.text(129,29,'Enter your answer in the form of a whole number or fraction and click           to check your answer.',style1);
+       var style2 = { font: "bold 12px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text4 = game.add.text(535,29,'Submit ',style2);
        var text3 = game.add.text(100,420, 'How would you represent Group A’s share as a fraction of the total of 12 cakes?',style);
        input_answer3 = game.add.inputField(180, 450, {
     font: '12px Arial',
@@ -789,7 +802,8 @@ var answerScreen = function(game){}
     
 });
        var text4 = game.add.text(100, 450, 'Answer : ',style);
-       var submit_buttom = game.add.button(20,605, 'atlas4',this.check2_function,this,'sprite68','sprite53','sprite39');
+       submit_buttom = game.add.button(97,595, 'submitbuttons',this.check2_function,this,'SUBMIT_BUTTON_MOUSE_OVER','SUBMIT_BUTTON_NORMAL','SUBMIT_BUTTON_MOUSE_DOWN');
+       //submit_buttom.inputEnabled = false;
 //text1.wordWrap = true;
        //text1.wordWrapWidth = 800;
        var text5 = game.add.text(100,520,'How would you represent Group B’s share as a fraction of the total of 12 cakes?',style);
@@ -816,16 +830,19 @@ var answerScreen = function(game){}
         no_of_attempts1 = no_of_attempts1 + 1;
         if(no_of_attempts1 < 5)
         {
-        if(input_answer3.value == '1/4' && input_answer4.value == '3/4')
+        if(input_answer3.value == '' && input_answer4.value == '')
         {
-          console.log("modal2");
-          this.showModal2();
-          
+           
+        }
+        else if(input_answer3.value == '1/4' && input_answer4.value == '3/4')
+        {
+          //console.log("modal2");
+          //this.showModal2();
+          this.showModal4();
         }
         else if(input_answer3.value !=='1/4' && input_answer4.value =='3/4')
         {
-          console.log("modal4");
-          this.showModal4();
+          this.showModal2();
           
           
         }
@@ -871,8 +888,8 @@ var answerScreen = function(game){}
         },
         {
           type : "button",
-          atlasParent: "answerscreens",
-          content: 'NEXT_BUTTON_NORMAL',
+          atlasParent: "atlas4",
+          content: 'sprite40',
           offsetX : 130,
           offsetY: 30,
           callback: function()
@@ -906,18 +923,18 @@ var answerScreen = function(game){}
           {
             type: "image",
             content: "close_button",
-            offsetX: 180,
-            offsetY: -130,
+            offsetX: 200,
+            offsetY: -80,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }
         },
         {
           type : "button",
-          atlasParent: "answerscreens",
-          content: 'NEXT_BUTTON_NORMAL',
-          offsetX : 140,
-          offsetY: 70,
+          atlasParent: "atlas4",
+          content: 'sprite40',
+          offsetX : 120,
+          offsetY: 30,
           callback: function()
           {
            reg.modal.hideModal("modal2");
@@ -927,7 +944,7 @@ var answerScreen = function(game){}
          {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_SAD',  
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -986,8 +1003,8 @@ var answerScreen = function(game){}
             {
             type: "image",
             content: "close_button",
-            offsetX: 208,
-            offsetY: -83,
+            offsetX: 185,
+            offsetY: -130,
             callback: function(){
                       reg.modal.hideModal("modal4");
                     }},
@@ -996,7 +1013,7 @@ var answerScreen = function(game){}
           atlasParent: "atlas4",
           content: 'sprite51',
           offsetX : 110,
-          offsetY: 30,
+          offsetY: 60,
           callback: function()
           {
             reg.modal.hideModal("modal4");
@@ -1006,9 +1023,9 @@ var answerScreen = function(game){}
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
-          offsetX : 40,
-          offsetY:  - 140,
+          content: 'SMILEY_HAPPY',  
+          offsetX : 20,
+          offsetY:  - 180,
         }]     
     });  
             reg.modal.createModal({
@@ -1074,14 +1091,18 @@ var answerScreen = function(game){}
    showModal5 : function()
    {
     reg.modal.showModal("modal5");
+   },
+   render : function()
+   {
+    game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
    }
     }
-     
+   
 //game.state.add('videoScreen',videoScreen);
 game.state.add('PlayGame', playGame);
 game.state.add('answerScreen',answerScreen);
 game.state.add('playGame2',playGame2);
-game.state.start('PlayGame');
+game.state.start('playGame2');
 }
 
 

@@ -53,6 +53,7 @@
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.webfont('tahoma','Tahoma');
     game.load.webfont('fractionfont','SansFractionsPlain');
+   // game.load.atlasJSONHash('example','assets/spritesheet11.png','assets/sprites11.json');
    
   },
   create : function()
@@ -62,8 +63,17 @@
    background = game.add.sprite(0,0,'background');
    var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(185,10,'Help Jamuni distribute 5 cakes fairly among 4 children.',style);
-   question_text_lower = game.add.text(20,510,'What is the share of each child?',style);
-   answer_text1 = game.add.text(130,548,'cakes.',style);
+   var style11 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+   question_text_lower = game.add.text(20,505,'What is the share of each child?',style11);
+   var style4 = { font: "italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center" , boundsAlignV : "middle" };
+   var style5 = { font: "bold italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+   question_text_instruction11 = game.add.text(20,525,'Enter your answer in the form of a whole number or fraction and click                      to check your answer.',style4);
+   //question_text_instruction11.wordWrap = true;
+  //question_text_instruction11.wordWrapWidth = 1600;
+   question_text_instruction22 = game.add.text(395,525,'Sharing Done ',style5);
+   //answer_text1 = game.add.text(100,557,'cakes.',style);
+   //question_text_lower = game.add.text(20,510,'What is the share of each child?',style);
+   answer_text1 = game.add.text(130,548,'cakes.',style11);
    tray = game.add.sprite(5,83,'atlas2','TRAY');
    instruction_board = game.add.sprite(5,365,'atlas2','INSTRUCTION_BOARD');
    instruction_text = game.add.text();
@@ -89,8 +99,9 @@
    { 
          rect[k] = game.add.sprite(plates[i].x,plates[i].y,null);
          game.physics.enable(rect[k], Phaser.Physics.ARCADE);
-         rect[k].body.setSize(112,76,0,0);
+         rect[k].body.setSize(110,76,0,0);
          console.log(rect[k]);
+         //rect[k].loadTexture('example','sprite1');
          k++;
     } 
    //initialising sum for each plate 
@@ -150,10 +161,17 @@
 
    //line1 = new Phaser.Line(12, 356, 178, 356);
    //line1.stroke = "005DBA";
-   var style2 = { font: "italic 12px tahoma", boundsAlignH: "center", boundsAlignV: "middle" };
-   instruction_text = game.add.text(24,384,'Use the Cutting tool to cut cakes in smaller pieces and drag and drop the food packets or the pieces to each child',style2);
+   var style2 = { font: "italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center" };
+   var style3 = { font: "bold italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+   instruction_text = game.add.text(24,384,'Use the                    to cut the cake into smaller pieces and drag and drop the cake or the pieces to each child.',style2);
+
   instruction_text.wordWrap = true;
-  instruction_text.wordWrapWidth = 175;
+  instruction_text.wordWrapWidth = 175;  
+  var instruction_text1 = game.add.text(70,384, 'Cutting Tool ',style3);
+   //var style2 = { font: "italic 12px tahoma", boundsAlignH: "center", boundsAlignV: "middle" };
+   //instruction_text = game.add.text(24,384,'Use the Cutting tool to cut cakes in smaller pieces and drag and drop the food packets or the pieces to each child',style2);
+  //instruction_text.wordWrap = true;
+  //instruction_text.wordWrapWidth = 175;
   help_button = game.add.sprite(732,3,'atlas2','HELP_LINK');
   help_button.inputEnabled = true;
   help_button.events.onInputDown.add(this.help_function,this);
@@ -171,6 +189,11 @@
    
    
 },
+render : function()
+         { 
+          game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
+          // game.debug.geom(rect,"#ff0000");
+          },
   stopDrag : function(item,pointer)
   {
     cake_no = item.number;
@@ -467,7 +490,7 @@
           {
             type: "image",
             content: "close_button",
-            offsetX: 146,
+            offsetX: 160,
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal1");
@@ -475,8 +498,8 @@
         },
         {
           type : "button",
-          atlasParent: "atlas1",
-          content: 'OK_BUTTON_NORMAL',
+          atlasParent: "answerscreens",
+          content: 'NEXT_BUTTON_NORMAL',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -847,6 +870,12 @@ showModal8:function() {
   }
   else
   {
+     var cd = input_answer.value;
+  splitted_text = cd.split("/"); 
+  console.log("a : " + splitted_text[0] );
+  console.log("b :" + splitted_text[1] ); 
+  var is_ans_true = this.division(splitted_text[0],splitted_text[1],5,4);
+  console.log(is_ans_true);
   for(var i=0;i<4;i++)
   {
     plates[i].sum = 0;
@@ -870,14 +899,14 @@ showModal8:function() {
       k=k+1;
     }
   }
-    if(k == 4 && input_answer.value!== null)
+    if(k == 4 && input_answer.value!== '5/4')
     {
       this.showModal3();
     }
 
     else if(l == 4 && input_answer.value == '5/4')
     {
-      this.showModal5();
+      this.showModal1();
     }
     else if( l==4 && input_answer.value!=='5/4')
     {
@@ -909,6 +938,24 @@ showModal8:function() {
   game.state.start('answer_screen');
 
  }
+},
+division : function(a,b,c,d)
+ {
+   console.log(a/b);
+   console.log(c/d);
+   var and = a/b;
+   var mans = c/d;
+    var value;
+    if (and == mans)
+    {
+      value = true;
+    }
+    else 
+    {
+      value = false;
+    }
+
+    return value;
 }
 }
 var answerScreen = function(game){}
@@ -922,16 +969,19 @@ var answerScreen = function(game){}
       {
         game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
         game.load.webfont('tahoma','Tahoma');
+        game.load.image('answer_screen2','assets/answer_screen.png');
       },
       create : function()
       {
        game.stage.backgroundColor = "#D3FEB4"; 
-       var answer_screen1 = game.add.sprite(120,120,'answerscreens','sprite2');
-       answer_screen1.scale.setTo(2, 2);
-       var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Can you think of other ways to fairly distribute 5 cakes among 4 children? Click Next to proceed to the next activity.',style);
+       var answer_screen1 = game.add.sprite(120,120,'answer_screen2');
+       //answer_screen1.scale.setTo(2, 2);
+       var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Can you think of other ways to fairly distribute 5 cakes among 4 children?',style);
        text1.wordWrap = true;
        text1.wordWrapWidth = 800;
+       var style4 = { font: "italic 14px tahoma",fill: "#4169E1", boundsAlignH: "center" , boundsAlignV : "middle" };
+       var text4 = game.add.text(20,55,'Click Next to proceed to the next activity.',style4);
       }
     }
     var videoScreen = function(game){}
