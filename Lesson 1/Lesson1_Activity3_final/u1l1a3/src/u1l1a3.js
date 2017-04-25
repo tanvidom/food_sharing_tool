@@ -189,11 +189,11 @@
    
    
 },
-render : function()
+/*render : function()
          { 
           game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
           // game.debug.geom(rect,"#ff0000");
-          },
+          },*/
   stopDrag : function(item,pointer)
   {
     cake_no = item.number;
