@@ -8,6 +8,7 @@
  var instruction_board;
  var instruction_text;
  var tray;
+ var video_play;
  var question_text_instruction11;
  var question_text_instruction22;
  var tips = [];
@@ -1005,6 +1006,7 @@ var answerScreen = function(game){}
       },
       create : function()
       {
+
        game.stage.backgroundColor = "#00FA9A"; 
        var answer_screen1 = game.add.sprite(0,120,'answers1');
        //answer_screen1.scale.setTo(2, 2);
@@ -1017,6 +1019,7 @@ var answerScreen = function(game){}
    var videoScreen = function(game){}
     videoScreen.prototype =
     {
+
       preload : function()
       {
         game.add.image('back','assets/back-button.png')
@@ -1024,30 +1027,38 @@ var answerScreen = function(game){}
       },
       create : function()
       {
+        video_play = 0;
         game.stage.backgroundColor = '#232323';
         video = game.add.video('demo');
-        var sprite = video.addToWorld(0, 40, 0, 0);
+        video.play(true);
+        var sprite = video.addToWorld(0,40,0,0);
         var style2 = { font: "bold 20px tahoma", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
         var back_text = game.add.text(690,10,'BACK',style2);
         back_text.inputEnabled = true;
+        console.log(video.loop);
+        
+        video.loop = false;
+        video.onComplete.add(this.video_stop,this);
         back_text.events.onInputDown.add(this.back_function,this);
         //var image4 = game.add.image(550,590,'back',this.back_function,this);
-        
+        console.log(video.onComplete);
 
     //  true = loop
-       video.play(true);
+       
 
-       game.input.onDown.add(this.pause, this);
+       //game.input.onDown.add(this.pause, this);
       },
-      pause : function() 
+      /*pause : function() 
       {
 
       video.paused = (video.paused) ? false : true;
 
-      },
+      },*/
       video_stop : function()
       {
-       
+        
+       game.state.start('PlayGame');
+        
       },
       back_function : function()
       {

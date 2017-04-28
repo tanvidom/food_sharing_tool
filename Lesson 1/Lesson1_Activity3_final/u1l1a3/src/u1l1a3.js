@@ -994,19 +994,25 @@ var answerScreen = function(game){}
       },
       create : function()
       {
+         video_play = 0;
         game.stage.backgroundColor = '#232323';
         video = game.add.video('demo');
-        var sprite = video.addToWorld(0, 40, 0, 0);
+        video.play(true);
+        var sprite = video.addToWorld(0,40,0,0);
         var style2 = { font: "bold 20px tahoma", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
         var back_text = game.add.text(690,10,'BACK',style2);
         back_text.inputEnabled = true;
+        console.log(video.loop);
+        
+        video.loop = false;
+        video.onComplete.add(this.video_stop,this);
         back_text.events.onInputDown.add(this.back_function,this);
+        //var image4 = game.add.image(550,590,'back',this.back_function,this);
         //var image4 = game.add.image(550,590,'back',this.back_function,this);
         
 
     //  true = loop
-       video.play(true);
-
+    
        game.input.onDown.add(this.pause, this);
       },
       pause : function() 
@@ -1017,7 +1023,7 @@ var answerScreen = function(game){}
       },
       video_stop : function()
       {
-       
+       game.state.start('PlayGame');
       },
       back_function : function()
       {
