@@ -1046,14 +1046,14 @@ var answerScreen = function(game){}
     //  true = loop
        
 
-       //game.input.onDown.add(this.pause, this);
+       game.input.onDown.add(this.pause, this);
       },
-      /*pause : function() 
+      pause : function() 
       {
 
       video.paused = (video.paused) ? false : true;
 
-      },*/
+      },
       video_stop : function()
       {
         
