@@ -46,7 +46,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
  var worker_names = ['1','2','3','4','5','6','7','8','9','10','11','12'];
  var p1 = 0;
  
- var share_of_each_worker = 0.75;
+ var share_of_each_worker = 0.6666666666666666;
  var reg={};
  var help_button;
  var game = new Phaser.Game(800, 640);
@@ -68,7 +68,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.atlasJSONHash('bgelem','assets/spritesheet_1_l3.png','assets/sprites_1_l3.json');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');
     game.load.image('largepop','assets/ONLY_LARGE_POP_UP.png');
-    game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
+    game.load.atlasJSONHash('modals','assets/spritesheet_l3a3.png','assets/sprites_l3a3.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.image('1','assets/1.png');
     game.load.image('q3','assets/q3.png');
@@ -290,7 +290,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
         }]
     });
-           reg.modal.createModal({
+          /* reg.modal.createModal({
         type: "modal4",
         includeBackground: true,
         modalCloseOnInput: true,
@@ -330,7 +330,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           offsetY:  - 140,
         },
           ]
-    });
+    });*/
             reg.modal.createModal({
         type: "modal5",
         includeBackground: true,
@@ -773,7 +773,7 @@ reset_function : function()
   {
    game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json'); 
     game.load.webfont('tahoma','Tahoma');
-    game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
+    game.load.atlasJSONHash('modals','assets/l3a3_modals.png','assets/l3a3_modals.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
 

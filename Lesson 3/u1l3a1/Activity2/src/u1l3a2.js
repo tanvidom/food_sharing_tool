@@ -45,7 +45,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
  var worker_names = ['1','2','3','4','5','6','7','8','9','10','11','12'];
  var p1 = 0;
  
- var share_of_each_worker = 0.75;
+ var share_of_each_worker = 0.50;
  var reg={};
  var help_button;
  var game = new Phaser.Game(800, 640);
@@ -66,7 +66,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.webfont('tahoma','Tahoma');
     game.load.atlasJSONHash('bgelem','assets/spritesheet_1_l3.png','assets/sprites_1_l3.json');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');
-    game.load.image('largepop','assets/ONLY_LARGE_POP_UP.png');
+    //game.load.image('largepop','assets/ONLY_LARGE_POP_UP.png');
     game.load.atlasJSONHash('modals','assets/l3a2_modals.png','assets/l3a2_modals.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.image('q2','assets/q2.png');
@@ -217,7 +217,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      reg.modal.createModal({
         type: "modal2",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
@@ -258,7 +258,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           reg.modal.createModal({
         type: "modal3",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
@@ -288,51 +288,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
         }]
     });
-           reg.modal.createModal({
-        type: "modal4",
-        includeBackground: true,
-        modalCloseOnInput: true,
-        itemsArr: [{
-            type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite1'
-
-
-          },
-          {
-            type: "image",
-            content: "close_button",
-            offsetX: 146,
-            offsetY: -83,
-            callback: function(){
-                      reg.modal.hideModal("modal4");
-                    }
-        },
-        {
-          type : 'sprite',
-          atlasParent: 'buttons',
-          content: 'TRY_AGAIN_BUTTON_NORMAL',
-          offsetX : 90,
-          offsetY: 30,
-          callback: function()
-          {
-            reg.modal.hideModal("modal4");
-          }
-
-        },
-        {
-          type : 'sprite',
-          atlasParent: 'buttons',
-          content: 'SMILEY_SAD',  
-          offsetX : 40,
-          offsetY:  - 140,
-        },
-          ]
-    });
+           
             reg.modal.createModal({
         type: "modal5",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
@@ -375,7 +335,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
              reg.modal.createModal({
         type: "modal6",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
@@ -416,7 +376,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         reg.modal.createModal({
         type: "modal7",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
@@ -600,7 +560,7 @@ help_function : function()
       }
       else if(count_groups == 3 && group_length == 3)
       {
-        if(input_answer.value == '9')
+        if(input_answer.value == '5')
         {
         this.showModal2();
         }
@@ -612,7 +572,7 @@ help_function : function()
       }
       else if(count_groups == 2 && group_length == 2)
       {
-        if(input_answer.value == '9')
+        if(input_answer.value == '5')
         {
           this.showModal2();
         console.log('correct');
@@ -625,7 +585,7 @@ help_function : function()
       }
       else
       {
-        if(input_answer.value == '9')
+        if(input_answer.value == '5')
         {
           this.showModal7(); 
           console.log('correct answer, incorrect distribution');
@@ -636,6 +596,7 @@ help_function : function()
           console.log('completely incorrect');
         }
       }
+    }
       else
      {
       game.state.start('videoScreen');
@@ -773,6 +734,7 @@ reset_function : function()
     game.load.atlasJSONHash('modals','assets/l3a2_modals.png','assets/l3a2_modals.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
+    game.load.atlasJSONHash('modals1','assets/advice_l3a2_2.png','assets/advice_l3a2_2.json');
 
   },
   create : function()
@@ -781,15 +743,17 @@ reset_function : function()
         this.createModals();
     background = game.add.sprite(0,0,'advice','BACKGROUND');
     var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(93,7,'Jamuni and her friends are trying to solve a similar problem. If 4 parathas are sufficient for 3 workers in Group A, how many parathas are required for 9 workers in Group B if they must get the same share as Group A?',style);
+    question_text_upper = game.add.text(93,7,'Jamuni and her friends are trying to solve a similar problem. If 2 parathas are sufficient for 4 workers in Group A, how many parathas are required for 8 workers in Group B if they must get the same share as Group A?',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 605;
     question_text_upper.lineSpacing = -3;
     var style2 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text1 = game.add.text(120,47,"Leena and Aman have different ideas on how to go about it. Click each of them to view their idea. ",style2);
     var jamuni_advice = game.add.sprite(315,103,'advice','JAMUNI');
-    var aman_advice = game.add.sprite(69,168,'advice','AMAN');
-    var leena_advice = game.add.sprite(487,167,'advice','LEENA');
+    var aman_advice = game.add.sprite(117,168,'modals1','ONLY_AMAN');
+    var leena_advice = game.add.sprite(527,167,'modals1','ONLY_LEENA');
+    var aman_image = game.add.sprite(69,326,'modals1','aman_advice1');
+    var leena_image = game.add.sprite(487,326,'modals1','leena_img1');
     var button1 = game.add.button(72,444,'advice',this.showModal4,this,'MOUSE_OVER','NORMAL','MOUSE_DOWN');
     var button2 = game.add.button(487,444,'advice',this.showModal5,this,'MOUSE_OVER_1','NORMAL_1','MOUSE_DOWN_1');
     question_text_lower = game.add.text(54,537,'Whose advice should Jamuni follow to find the solution to this problem?',style);
@@ -801,11 +765,13 @@ reset_function : function()
     radio_texts[0] = game.add.text(72,578,'Aman',style);
     radio_texts[1] = game.add.text(144,578,'Leena',style);
     radio_texts[2] = game.add.text(233,578,'None of these',style);
+    radio_texts[3] = game.add.text(340,578,'Both of them are correct',style)
     //radio_texts[2] = game.add.text(306,593,'Workers in both groups got the same share',style3);
     //radio_texts[3] = game.add.text(642,593,'I do not know',style3);
     radio_buttons[1] = game.add.sprite(122,575,'advice','radio-highlighted');
     radio_buttons[2] = game.add.sprite(215,575,'advice','radio-highlighted');
-    for(var i=0;i<3;i++)
+    radio_buttons[3] = game.add.sprite(320,575,'advice','radio-highlighted');
+    for(var i=0;i<4;i++)
     {
       radio_buttons[i].number = i;
     radio_buttons[i].inputEnabled =  true;
@@ -824,17 +790,25 @@ reset_function : function()
     if(radio_buttons[0].selectedcheck == true)
     {
       
-       this.showModal2();
+       this.showModal3();
     } 
     else if(radio_buttons[1].selectedcheck == true)
     {
       this.showModal3();
     } 
+    else if(radio_buttons[2].selectedcheck == true)
+    {
+      this.showModal3();
+    }
     else
     {
       this.showModal2();
     }
   },
+  /*render : function()
+  {
+     game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
+   },*/
   input_function : function(item)
   {
     var sprite_number = item.number;
@@ -870,8 +844,8 @@ reset_function : function()
           {
             type: "image",
             content: "close_button",
-            offsetX: 268,
-            offsetY: -140,
+            offsetX: 200,
+            offsetY: -80,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }
@@ -880,11 +854,11 @@ reset_function : function()
           type : "sprite",
           atlasParent: "buttons",
           content: "NEXT_BUTTON_NORMAL",
-          offsetX : 190,
-          offsetY: 65,
+          offsetX : 150,
+          offsetY: 30,
           callback: function()
           {
-            console.log('next acivity');
+            reg.modal.hideModal("modal2");
             //game.state.start('advice_stage');
           }
 
@@ -892,7 +866,7 @@ reset_function : function()
         {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_HAPPY',  
           offsetX : 40,
           offsetY:  - 200,
         },
@@ -933,7 +907,7 @@ reset_function : function()
          {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_SAD',  
           offsetX : 40,
           offsetY:  - 200,
         }]
@@ -944,8 +918,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'advice',
-            content : 'AMAN_ADVICE'
+            atlasParent :'modals1',
+            content : 'aman_big'
 
 
           },
@@ -953,8 +927,8 @@ reset_function : function()
             type: 'button',
             atlasParent :'advice',
             content: 'ADVICE_POP_UP_CLOSE_BUTTOn_NORMAL',
-            offsetX: 280,
-            offsetY: -250,
+            offsetX: 370,
+            offsetY: -300,
             callback: function(){
                       reg.modal.hideModal("modal4");
                     }
@@ -964,7 +938,7 @@ reset_function : function()
           atlasParent: 'advice',
           content: 'OK_BUTTON_NORMAL',
           offsetX : 50,
-          offsetY: 230,
+          offsetY: 300,
           callback: function()
           {
             reg.modal.hideModal("modal4");
@@ -978,8 +952,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'advice',
-            content : 'LEENA_ADVICE'
+            atlasParent :'modals1',
+            content : 'leena'
 
 
           },
@@ -987,8 +961,8 @@ reset_function : function()
             type: 'button',
             atlasParent : 'advice',
             content: 'ADVICE_POP_UP_CLOSE_BUTTOn_NORMAL',
-            offsetX: 332,
-            offsetY: -310,
+            offsetX: 360,
+            offsetY: -300,
             callback: function(){
                       reg.modal.hideModal("modal5");
                       
@@ -998,7 +972,7 @@ reset_function : function()
           type : 'sprite',
           atlasParent: 'advice',
           content: 'OK_BUTTON_NORMAL',
-          offsetX : 50,
+          offsetX : 70,
           offsetY: 230,
           callback: function()
           {
