@@ -57,6 +57,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
     game.load.webfont('tahoma','Tahoma');
     game.load.atlasJSONHash('m1','assets/l2a1_m1.png','assets/l2a1_m1.json');
+    game.load.atlasJSONHash('m2','assets/modals_l2a3.png','assets/modals_l2a3.json');
     game.load.image('close_button','assets/close_button_normal.png');
 
   },
@@ -155,7 +156,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           offsetY: 30,
           callback: function()
           {
-            game.state.start('question_two');
+            game.state.start('a1_p1');
+			  
           }
 
         },
@@ -170,13 +172,13 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   {
     if(radio_buttons[0].selectedcheck == true)
     {
-      
-       game.state.start('a1_p1');
+      this.showModal1();
     } 
     else if(radio_buttons[1].selectedcheck == true)
     {
-      this.showModal1();
-    } 
+//      this.showModal1();
+     game.state.start('question_two');
+	} 
   },
   input_function : function(item)
   {
@@ -295,7 +297,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         //this.createModals();
     background = game.add.sprite(0,0,'top');
     var style = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(125,11,'Distribute the parathas for each groups and find the individual shares.',style);
+    question_text_upper = game.add.text(125,11,'Share the parathas for each groups and find the individual shares.',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -1226,7 +1228,7 @@ showModal8 : function()
   }
   else
   {
-  for(var i=0;i<5;i++)
+  for(var i=0;i<4;i++)
   {
     plates1[i].sum = 0;
     for(var j=0;j<parathas1.length;j++)
