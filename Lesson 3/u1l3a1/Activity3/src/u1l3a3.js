@@ -223,7 +223,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite3'
+            content : 'sprite7'
 
 
           },
@@ -338,7 +338,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite7'
+            content : 'sprite11'
 
 
           },
@@ -381,7 +381,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite4'
+            content : 'sprite8'
 
 
           },
@@ -422,7 +422,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite5'
+            content : 'sprite9'
 
 
           },
@@ -463,7 +463,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite6'
+            content : 'sprite10'
 
 
           },
@@ -582,7 +582,7 @@ help_function : function()
         {
           group_length = group_length - 1;
         }
-        else if(no_of_workers_in_group[i] == 5)
+        else if(no_of_workers_in_group[i] == 5 || no_of_workers_in_group[i] == 2 || no_of_workers_in_group[i] == 4 || no_of_workers_in_group[i] == 7 || no_of_workers_in_group[i]==9)
         {
           flag_1_in_group = true;
         }
