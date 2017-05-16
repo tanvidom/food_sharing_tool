@@ -490,7 +490,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(61,80,0,0);
+    rect[i+1].body.setSize(106,65,0,0);
     }
     else
     {
@@ -499,7 +499,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(61,80,0,0);
+    rect[i+1].body.setSize(106,65,0,0);
     }
    }
    
@@ -560,6 +560,14 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
    
   },
+   linkofdemo_function : function()
+  {
+     game.state.start('videoScreen');
+  },
+  /*render : function()
+  {
+    game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
+  },*/
   cutting_function : function(item)
   {
    for(var i=0; i<parathas1.length; i++)
@@ -754,7 +762,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 },
   help_function : function()
   {
-   window.open("../u1l1a1/assets/fraction-chart_copywrite.png");
+   window.open("../u1l2a1/assets/fraction-chart_copywrite.png");
   },
   stopDrag : function(item)
   {
@@ -848,7 +856,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
  },
   linkofdemo_function : function()
   {
-     //game.state.start('videoScreen');
+     game.state.start('videoScreen');
   },
     createModals: function() {
 
@@ -1186,28 +1194,36 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     });      
   }, 
   showModal1:function() {
+    console.log('modal1');
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
+   console.log('modal2');
     reg.modal.showModal("modal2");
 },
 showModal3:function() {
+   console.log('modal3');
     reg.modal.showModal("modal3");
 },
 showModal4:function() {
+   console.log('modal4');
     reg.modal.showModal("modal4");
 },
 showModal5:function() {
+     console.log('modal5');
     reg.modal.showModal("modal5");
 },
 showModal6:function() {
+     console.log('modal6');
     reg.modal.showModal("modal6");
 },
 showModal7:function() {
+    console.log('modal7');
     reg.modal.showModal("modal7");
 },
 showModal8 : function()
 {
+   console.log('modal8');
   reg.modal.showModal("modal8");
 },
   sharing_done_function : function()
@@ -1260,6 +1276,7 @@ showModal8 : function()
     }
     else if(l==5 && input_answer1.value == '0.8')
     {
+      this.showModal1();
       console.log('correct answer but please enter fractional value in textbox');
     }
     else if( l==5 && input_answer1.value!=='4/5')
@@ -1313,15 +1330,15 @@ showModal8 : function()
        game.stage.backgroundColor = "#00000"; 
        var answer_screen1 = game.add.sprite(100,100,'answer1');
        answer_screen1.scale.setTo(1, 1);
-       var style = { font: "20px Arial", fill: "#ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+       var style = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
        var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 4 parathas among 5 workers.',style);
-       var style1 = { font: "14px Arial", fill: "#ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+       var style1 = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
        var text2= game.add.text(20,45,'Click Next to continue.',style1);
 
 
        text1.wordWrap = true;
        text1.wordWrapWidth = 800;
-       var next_button = game.add.sprite(500,70,'lesson2','sprite120');
+       var next_button = game.add.sprite(600,560,'lesson2','sprite120');
        next_button.inputEnabled = true;
        next_button.events.onInputDown.add(this.next1_function,this);
 
@@ -1369,7 +1386,7 @@ showModal8 : function()
       },
       back_function : function()
       {
-        game.state.start('PlayGame');
+        game.state.start('a1_p2');
       }
 
     }
@@ -1737,7 +1754,7 @@ showModal8 : function()
 },
   help_function : function()
   {
-   window.open("../u1l1a1/assets/fraction-chart_copywrite.png");
+   window.open("../u1l2a1/assets/fraction-chart_copywrite.png");
   },
   stopDrag : function(item)
   {
@@ -1831,7 +1848,7 @@ showModal8 : function()
  },
   linkofdemo_function : function()
   {
-     //game.state.start('videoScreen');
+     game.state.start('videoScreen_1');
   },
     createModals: function() {
 
@@ -2272,16 +2289,148 @@ showModal8 : function()
  } } 
  else 
  {
-  game.state.start('answer_screen');
+  game.state.start('answer_screen_2');
 
  }
 },
   reset_function : function()
   {
-  game.state.start('a1_p4');
+  game.state.start('a1_p5');
   }
 
   }
+  var videoScreen_1 = function(game){}
+    videoScreen_1.prototype =
+    {
+      preload : function()
+      {
+        game.add.image('back','assets/back-button.png')
+        game.load.video('demo','assets/demo.mp4');
+      },
+      create : function()
+      {
+        game.stage.backgroundColor = '#232323';
+        video = game.add.video('demo');
+        var sprite = video.addToWorld(0, 40, 0, 0);
+        var style2 = { font: "bold 20px tahoma", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
+        var back_text = game.add.text(690,10,'BACK',style2);
+        back_text.inputEnabled = true;
+        back_text.events.onInputDown.add(this.back_function,this);
+
+        //var image4 = game.add.image(550,590,'back',this.back_function,this);
+        
+
+    //  true = loop
+       video.play(true);
+
+       game.input.onDown.add(this.pause, this);
+      },
+      pause : function() 
+      {
+
+      video.paused = (video.paused) ? false : true;
+
+      },
+      video_stop : function()
+      {
+       
+      },
+      back_function : function()
+      {
+        game.state.start('a1_p4');
+      }
+
+    }
+      var answer_screen_2 = function(game){}
+    answer_screen_2.prototype = 
+    {
+      
+      preload : function()
+      {
+       game.load.image('answer2','assets/printscreen_2_2.png');
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+       //game.load.atlasJSONHash('')
+      },
+      create : function()
+      {
+       game.stage.backgroundColor = "#00000"; 
+       var answer_screen1 = game.add.sprite(50,100,'answer2');
+       answer_screen1.scale.setTo(0.85, 0.95);
+       var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 3 parathas among 6 workers.',style);
+       var style1 = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text2= game.add.text(20,45,'Click Next to continue.',style1);
+
+
+       text1.wordWrap = true;
+       text1.wordWrapWidth = 800;
+       var next_button = game.add.sprite(680,550,'lesson2','sprite120');
+       next_button.inputEnabled = true;
+       next_button.events.onInputDown.add(this.next1_function,this);
+
+      },
+      next1_function : function()
+      {
+        game.state.start('a1_p5');
+      }
+    }
+    var a1_p5 = function(game){}
+    a1_p5.prototype = 
+    {
+      
+      preload : function()
+      {
+       game.load.image('answer2','assets/last_q_1.png');
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+       game.load.image('lower','assets/lower.png');
+      },
+      create : function()
+      {
+       
+       var answer_screen1 = game.add.sprite(0,0,'answer2');
+       answer_screen1.scale.setTo(1.001,1.01);
+       var lowerband = game.add.sprite(0,500,'lower');
+       lowerband.scale.setTo(1,0.95);
+
+      },
+      next1_function : function()
+      {
+        game.state.start('a1_p6');
+      }
+    }
+     var a1_p6 = function(game){}
+    a1_p6.prototype = 
+    {
+      
+      preload : function()
+      {
+       game.load.image('answer2','assets/printscreen_2_2.png');
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+       //game.load.atlasJSONHash('')
+      },
+      create : function()
+      {
+       game.stage.backgroundColor = "#00000"; 
+       var answer_screen1 = game.add.sprite(50,100,'answer2');
+       answer_screen1.scale.setTo(0.85, 0.95);
+       var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 3 parathas among 6 workers.',style);
+       var style1 = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text2= game.add.text(20,45,'Click Next to continue.',style1);
+
+
+       text1.wordWrap = true;
+       text1.wordWrapWidth = 800;
+       var next_button = game.add.sprite(680,550,'lesson2','sprite120');
+       next_button.inputEnabled = true;
+       next_button.events.onInputDown.add(this.next1_function,this);
+
+      },
+      next1_function : function()
+      {
+        //game.state.start('a1_p5');
+      }
+    }
   /*
   var answer_a1_p2 = function(game){}
   answer_a1_p2.prototype = 
@@ -2298,9 +2447,13 @@ game.state.add('question_three',question_three);
 game.state.add('a1_p1',a1_p1);
 game.state.add('a1_p2',a1_p2);
 game.state.add('answer_screen',answer_screen);
+game.state.add('answer_screen_2',answer_screen);
 game.state.add('videoScreen',videoScreen);
+game.state.add('videoScreen_1',videoScreen_1);
 game.state.add('a1_p3',a1_p3);
 game.state.add('a1_p4',a1_p4);
+game.state.add('a1_p5',a1_p5);
+game.state.add('a1_p6',a1_p6);
 //game.state.add('answer_a1_p1',answer_a1_p1);
 //game.state.add('answer_a1_p2',answer_a1_p2);
 game.state.start('PlayGame');
