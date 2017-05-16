@@ -2,6 +2,8 @@
  {
  var background;
   var count_no_of_attempts = 0;
+   var count_no_of_attempts_1 = 0;
+   var count_no_of_attempts_2 = 0;
  var question_text_upper;
  var question_text_lower;
  var instruction_text;
@@ -1323,7 +1325,7 @@ showModal8 : function()
       {
        game.load.image('answer1','assets/answerscreen1.png');
        game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
-       game.load.atlasJSONHash('')
+       //game.load.atlasJSONHash('')
       },
       create : function()
       {
@@ -1490,7 +1492,7 @@ showModal8 : function()
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(61,80,0,0);
+    rect[i+1].body.setSize(106,65,0,0);
     }
     else
     {
@@ -1499,7 +1501,7 @@ showModal8 : function()
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(61,80,0,0);
+    rect[i+1].body.setSize(106,65,0,0);
     }
    }
    
@@ -2212,8 +2214,8 @@ showModal8 : function()
 },
   sharing_done_function : function()
   {
-   count_no_of_attempts = count_no_of_attempts + 1;
-  if(count_no_of_attempts < 4)
+   count_no_of_attempts_1 = count_no_of_attempts_1 + 1;
+  if(count_no_of_attempts_1 < 4)
   {
   var expected_sum = 0.8;
   var l = 0;
@@ -2347,17 +2349,18 @@ showModal8 : function()
       
       preload : function()
       {
-       game.load.image('answer2','assets/printscreen_2_2.png');
+       game.load.image('answer2_2','assets/ans2.png');
        game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
        //game.load.atlasJSONHash('')
       },
       create : function()
       {
+
        game.stage.backgroundColor = "#00000"; 
-       var answer_screen1 = game.add.sprite(50,100,'answer2');
+       var answer_screen1 = game.add.sprite(50,100,'answer2_2');
        answer_screen1.scale.setTo(0.85, 0.95);
        var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 3 parathas among 6 workers.',style);
+       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 5 parathas among 6 workers.',style);
        var style1 = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
        var text2= game.add.text(20,45,'Click Next to continue.',style1);
 
@@ -2380,83 +2383,348 @@ showModal8 : function()
       
       preload : function()
       {
-       game.load.image('answer2','assets/last_q_1.png');
+       game.load.image('answer2','assets/last_q_2.png');
        game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+       game.load.atlasJSONHash('sprite111', 'assets/spritesheet.png', 'assets/sprites.json'); 
        game.load.image('lower','assets/lower.png');
+       game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
+       game.load.image('close_button','assets/close_button_normal.png');
+
       },
       create : function()
       {
-       
+       reg.modal = new gameModal(game);
+        this.createModals();    
        var answer_screen1 = game.add.sprite(0,0,'answer2');
        answer_screen1.scale.setTo(1.001,1.01);
        var lowerband = game.add.sprite(0,500,'lower');
        lowerband.scale.setTo(1,0.95);
+        var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+        question_text_lower = game.add.text(78,540,'In which group did the workers receive more food per person?',style4);
+        var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    instruction_text = game.add.text(78,560,'Select one of the options below and click the          button',style1);
+    var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    var instruction_text1 = game.add.text(310,560,'Done ',style2);
+    radio_buttons[0] = game.add.sprite(77,578,'lesson2','radio-highlighted');
+    style3 = { font: "italic 13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+    radio_texts[0] = game.add.text(92,580,'Group A',style3);
+    radio_texts[1] = game.add.text(197,580,'Group B',style3);
+    radio_texts[2] = game.add.text(306,580,'Workers in both groups got the same share',style3);
+    radio_buttons[1] = game.add.sprite(176,578,'lesson2','radio-highlighted');
+    radio_buttons[2] = game.add.sprite(285,578,'lesson2','radio-highlighted');
 
-      },
-      next1_function : function()
+    for(var i=0;i<3;i++)
+    {
+      radio_buttons[i].number = i;
+    radio_buttons[i].inputEnabled =  true;
+    radio_buttons[i].events.onInputDown.add(this.input_function1,this);
+     radio_buttons[i].scale.setTo(0.5, 0.5);
+     radio_buttons.selectedcheck = false;
+    }
+    
+     done_button = game.add.button(77,607,'lesson2',this.next11_function,this,'sprite128','sprite132','sprite125');
+     done_button.scale.setTo(0.7,0.7);
+     done_button.inputEnabled = false;
+
+
+  },
+  input_function1 : function(item)
+  {
+    var sprite_number = item.number;
+    radio_buttons[sprite_number].selectedcheck = true;
+
+    for(var i=0;i<3;i++)
+    {
+      if(i !== sprite_number &&  radio_buttons[i].selectedcheck == true)
       {
-        game.state.start('a1_p6');
+        console.log('change');
+        radio_buttons[i].selectedcheck = false;
+        radio_buttons[i].loadTexture('lesson2','radio-highlighted');
+        radio_buttons[i].scale.setTo(0.5,0.5);
       }
     }
-     var a1_p6 = function(game){}
+      radio_buttons[sprite_number].loadTexture('lesson2','radio-selected');
+         radio_buttons[sprite_number].scale.setTo(0.5,0.5);
+       done_button.inputEnabled = true;
+  },
+  createModals: function() {
+
+     reg.modal.createModal({
+        type: "modal1",
+        includeBackground: true,
+        modalCloseOnInput: false,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'sprite111',
+            content : 'sprite2'
+
+
+          },
+          {
+            type: "image",
+            content: "close_button",
+            offsetX: 150,
+            offsetY: -90,
+            callback: function()
+                    {
+                      reg.modal.hideModal("modal1");
+                    }
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'lesson2',
+          content: 'sprite120',
+          offsetX : 90,
+          offsetY: 30,
+          callback: function()
+          {
+            game.state.start('a1_p6');
+          }
+
+        },
+         {
+          type : 'sprite',
+          atlasParent: 'modals11',
+          content: 'sprite12',  
+          offsetX : 20,
+          offsetY:  - 140,
+        },
+
+          ]
+        
+    });
+     //modal 2 
+        reg.modal.createModal({
+        type: "modal2",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'sprite111',
+            content : 'sprite1'
+
+
+          },
+          {
+            type: "image",
+            content: "close_button",
+            offsetX: 200,
+            offsetY: -90,
+            callback: function(){
+                      reg.modal.hideModal("modal2");
+                    }
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'lesson2',
+          content: 'sprite107',
+          offsetX : 130,
+          offsetY: 34,
+          callback: function()
+          {
+            reg.modal.hideModal("modal2");
+          }
+
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'modals11',
+          content: 'sprite11',  
+          offsetX : 40,
+          offsetY:  - 140,
+        },
+          ]
+    });
+          reg.modal.createModal({
+        type: "modal3",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'sprite111',
+            content : 'sprite3'
+
+
+          },
+          {
+            type: "image",
+            content: "close_button",
+            offsetX: 255,
+            offsetY: -150,
+            callback: function(){
+                      reg.modal.hideModal("modal3");
+                    }
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'lesson2',
+          content: 'sprite107',
+          offsetX : 95,
+          offsetY: 30,
+          callback: function()
+          {
+            game.state.start('a1_p6');
+          }
+
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'modals11',
+          content: 'sprite11',  
+          offsetX : 20,
+          offsetY:  - 190,
+        },
+          ]
+    });
+        },
+        showModal1:function() {
+    console.log('modal1');
+    reg.modal.showModal("modal1");
+},
+showModal2:function() {
+   console.log('modal2');
+    reg.modal.showModal("modal2");
+},
+showModal3:function() {
+   console.log('modal3');
+    reg.modal.showModal("modal3");
+},
+
+      
+      next11_function : function()
+      {
+        count_no_of_attempts_2 = count_no_of_attempts_2 + 1;
+        if(count_no_of_attempts_2 < 3)
+        {
+        if(radio_buttons[0].selectedcheck == true)
+        {
+          this.showModal2();
+        }
+        else if(radio_buttons[1].selectedcheck == true)
+        {
+          this.showModal1();
+        }
+        else
+        {
+         this.showModal2();
+        }
+        }
+        else
+        {
+         this.showModal3();
+        }
+      },
+    }
+    var a1_p6 = function(game){}
     a1_p6.prototype = 
     {
       
       preload : function()
       {
-       game.load.image('answer2','assets/printscreen_2_2.png');
+       game.load.image('answer2','assets/last_q_2.png');
        game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
-       //game.load.atlasJSONHash('')
+       game.load.image('lower','assets/lower.png');
+       game.add.plugin(PhaserInput.Plugin);
+       game.load.image('close_button','assets/close_button_normal.png');
+
       },
       create : function()
       {
-       game.stage.backgroundColor = "#00000"; 
-       var answer_screen1 = game.add.sprite(50,100,'answer2');
-       answer_screen1.scale.setTo(0.85, 0.95);
-       var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 3 parathas among 6 workers.',style);
-       var style1 = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text2= game.add.text(20,45,'Click Next to continue.',style1);
-
-
-       text1.wordWrap = true;
-       text1.wordWrapWidth = 800;
-       var next_button = game.add.sprite(680,550,'lesson2','sprite120');
-       next_button.inputEnabled = true;
-       next_button.events.onInputDown.add(this.next1_function,this);
-
-      },
-      next1_function : function()
-      {
-        //game.state.start('a1_p5');
-      }
-    }
-  /*
-  var answer_a1_p2 = function(game){}
-  answer_a1_p2.prototype = 
-  {
-   init : function()
-  {
-     game.load = new CustomLoader(game);
+       reg.modal = new gameModal(game);
+        this.createModals(); 
+       var answer_screen1 = game.add.sprite(0,0,'answer2');
+       answer_screen1.scale.setTo(1.001,1.01);
+       var lowerband = game.add.sprite(0,500,'lower');
+       lowerband.scale.setTo(1,0.95);
+        var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+        question_text_lower = game.add.text(78,540,'How did you decide which group received more food per worker?',style4);
+        var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    instruction_text = game.add.text(78,560,'Enter your answer below and click the             button',style1);
+    var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    var instruction_text1 = game.add.text(305,560,'Done ',style2);
+ var input_answer = game.add.inputField(78, 580, {
+    font: '11px Arial',
+    fill: '#212121',
+    fontWeight: 'bold',
+    width: 550,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#0EC2F5',
+    borderRadius: 6,
+    
+});
+    done_button = game.add.button(77,618,'lesson2',this.showModal1,this,'sprite128','sprite132','sprite125');
+     done_button.scale.setTo(0.7,0.7);
   },
+  createModals: function() {
 
-  }*/
+     reg.modal.createModal({
+        type: "modal1",
+        includeBackground: true,
+        modalCloseOnInput: false,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'sprite111',
+            content : 'sprite4'
+
+
+          },
+          {
+            type: "image",
+            content: "close_button",
+            offsetX: 160,
+            offsetY: -90,
+            callback: function()
+                    {
+                      reg.modal.hideModal("modal1");
+                    }
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'lesson2',
+          content: 'sprite120',
+          offsetX : 90,
+          offsetY: 30,
+          callback: function()
+          {
+            reg.modal.hideModal("modal1");
+                      }
+
+        },
+         {
+          type : 'sprite',
+          atlasParent: 'modals11',
+          content: 'sprite12',  
+          offsetX : 20,
+          offsetY:  - 140,
+        },
+
+          ]
+        
+    });
+},
+showModal1:function() {
+    console.log('modal1');
+    reg.modal.showModal("modal1");
+},
+}
 game.state.add('PlayGame', playGame);
 game.state.add('question_two',question_two);
 game.state.add('question_three',question_three);
 game.state.add('a1_p1',a1_p1);
 game.state.add('a1_p2',a1_p2);
 game.state.add('answer_screen',answer_screen);
-game.state.add('answer_screen_2',answer_screen);
+game.state.add('answer_screen_2',answer_screen_2);
 game.state.add('videoScreen',videoScreen);
 game.state.add('videoScreen_1',videoScreen_1);
 game.state.add('a1_p3',a1_p3);
 game.state.add('a1_p4',a1_p4);
 game.state.add('a1_p5',a1_p5);
 game.state.add('a1_p6',a1_p6);
+
 //game.state.add('answer_a1_p1',answer_a1_p1);
 //game.state.add('answer_a1_p2',answer_a1_p2);
-game.state.start('PlayGame');
+game.state.start('a1_p5');
 }
 
 
