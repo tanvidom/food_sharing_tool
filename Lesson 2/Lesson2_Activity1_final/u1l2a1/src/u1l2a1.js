@@ -2724,7 +2724,7 @@ game.state.add('a1_p6',a1_p6);
 
 //game.state.add('answer_a1_p1',answer_a1_p1);
 //game.state.add('answer_a1_p2',answer_a1_p2);
-game.state.start('a1_p5');
+game.state.start('PlayGame');
 }
 
 

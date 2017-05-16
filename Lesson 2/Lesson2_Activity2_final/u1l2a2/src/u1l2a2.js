@@ -2287,7 +2287,7 @@ game.state.add('a1_p3',a1_p3);
 game.state.add('a1_p4',a1_p4);
 game.state.add('a1_p5',a1_p5);
 game.state.add('a1_p66',a1_p66);
-game.state.start('a1_p5');
+game.state.start('PlayGame');
 }
 
 
