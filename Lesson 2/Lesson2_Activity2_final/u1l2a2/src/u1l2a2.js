@@ -722,7 +722,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           callback: function()
           {
             //start next level 
-            console.log('next level');
+            console.log('a1_p3');
           }
 
         },

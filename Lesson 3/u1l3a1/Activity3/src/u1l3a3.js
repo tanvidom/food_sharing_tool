@@ -771,9 +771,10 @@ reset_function : function()
   },
   preload : function()
   {
-   game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json'); 
+    game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json'); 
+   game.load.atlasJSONHash('advice2', 'assets/advice_l3a3_2.png', 'assets/advice_l3a3_2.json'); 
     game.load.webfont('tahoma','Tahoma');
-    game.load.atlasJSONHash('modals','assets/l3a3_modals.png','assets/l3a3_modals.json');
+    game.load.atlasJSONHash('modals','assets/spritesheet_l3a3.png','assets/sprites_l3a3.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
 
@@ -835,7 +836,7 @@ reset_function : function()
     } 
     else
     {
-      this.showModal2();
+      this.showModal3();
     }
   },
   input_function : function(item)
@@ -867,15 +868,15 @@ reset_function : function()
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite11'
+            content : 'sprite3'
 
 
           },
           {
             type: "image",
             content: "close_button",
-            offsetX: 268,
-            offsetY: -140,
+            offsetX: 200,
+            offsetY: -80,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }
@@ -884,19 +885,19 @@ reset_function : function()
           type : "sprite",
           atlasParent: "buttons",
           content: "NEXT_BUTTON_NORMAL",
-          offsetX : 190,
-          offsetY: 65,
+          offsetX : 130,
+          offsetY: 30,
           callback: function()
           {
-            console.log('next acivity');
-            //game.state.start('advice_stage');
+         
+            game.state.start('advice_stage');
           }
 
         },
         {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_HAPPY',  
           offsetX : 40,
           offsetY:  - 200,
         },
@@ -909,7 +910,7 @@ reset_function : function()
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite10'
+            content : 'sprite4'
 
 
           },
@@ -917,7 +918,7 @@ reset_function : function()
             type: "image",
             content: "close_button",
             offsetX: 200,
-            offsetY: -80,
+            offsetY: -85,
             callback: function(){
                       reg.modal.hideModal("modal3");
                     }
@@ -926,7 +927,7 @@ reset_function : function()
           type : "sprite",
           atlasParent: "buttons",
           content: "NEXT_BUTTON_NORMAL",
-          offsetX : 150,
+          offsetX : 100,
           offsetY: 20,
           callback: function()
           {
@@ -937,7 +938,7 @@ reset_function : function()
          {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_SAD',  
           offsetX : 40,
           offsetY:  - 200,
         }]
@@ -948,8 +949,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'advice',
-            content : 'AMAN_ADVICE'
+            atlasParent :'advice2',
+            content : 'Aman2'
 
 
           },
@@ -957,8 +958,8 @@ reset_function : function()
             type: 'button',
             atlasParent :'advice',
             content: 'ADVICE_POP_UP_CLOSE_BUTTOn_NORMAL',
-            offsetX: 280,
-            offsetY: -250,
+            offsetX: 300,
+            offsetY: -300,
             callback: function(){
                       reg.modal.hideModal("modal4");
                     }
@@ -968,7 +969,7 @@ reset_function : function()
           atlasParent: 'advice',
           content: 'OK_BUTTON_NORMAL',
           offsetX : 50,
-          offsetY: 230,
+          offsetY: 280,
           callback: function()
           {
             reg.modal.hideModal("modal4");
@@ -982,8 +983,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'advice',
-            content : 'LEENA_ADVICE'
+            atlasParent :'advice2',
+            content : 'leena'
 
 
           },
@@ -991,7 +992,7 @@ reset_function : function()
             type: 'button',
             atlasParent : 'advice',
             content: 'ADVICE_POP_UP_CLOSE_BUTTOn_NORMAL',
-            offsetX: 332,
+            offsetX: 349,
             offsetY: -310,
             callback: function(){
                       reg.modal.hideModal("modal5");
@@ -1003,7 +1004,7 @@ reset_function : function()
           atlasParent: 'advice',
           content: 'OK_BUTTON_NORMAL',
           offsetX : 50,
-          offsetY: 230,
+          offsetY: 290,
           callback: function()
           {
             reg.modal.hideModal("modal5");
