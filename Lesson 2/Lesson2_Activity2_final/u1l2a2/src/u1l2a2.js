@@ -643,10 +643,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     }
     
   },
-  render : function()
+ /* render : function()
   {
    game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
-  },
+  }, */
   help_function : function()
   {
    window.open("../u1l2a2/assets/fraction-chart_copywrite.png");
@@ -1436,10 +1436,10 @@ showModal8 : function()
     }
     
   },
-  render : function()
+  /*render : function()
   {
    game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
-  },
+  }, */
   help_function : function()
   {
    window.open("../u1l2a2/assets/fraction-chart_copywrite.png");

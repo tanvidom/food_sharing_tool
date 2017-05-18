@@ -891,7 +891,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           offsetY: 30,
           callback: function()
           {
-            reg.modal.hideModal("modal1");
+            game.state.start('a1_p3');
           }
 
         },
@@ -1464,14 +1464,14 @@ showModal8 : function()
   var label = game.add.sprite(229,87,'lesson2','GROUP_A_LABLE');
   var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(66,545,'What is the share of each worker in Group A?',style4);
+    question_text_lower = game.add.text(66,545,'What is the share of each worker in Group B?',style4);
     instruction_text = game.add.text(110,27,'Use the                   to cut the parathas in smaller pieces and drag and drop the parathas or the pieces to each worker.',style1);
     instruction_text.wordWrap = true; 
     instruction_text.wordWrapWidth = 520; 
     instruction_text.lineSpacing = -5;
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text1 = game.add.text(155,27,'Cutting Tool ',style2);
-    question_text_upper = game.add.text(110,12,'Distribute 4 parathas fairly among the 5 workers in Group A and find the share of each worker.',style4);
+    question_text_upper = game.add.text(110,12,'Distribute 5 parathas fairly among the 6 workers in Group B and find the share of each worker.',style4);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style11 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -2217,7 +2217,7 @@ showModal8 : function()
    count_no_of_attempts_1 = count_no_of_attempts_1 + 1;
   if(count_no_of_attempts_1 < 4)
   {
-  var expected_sum = 0.8;
+  var expected_sum = 0.8333333333333333;
   var l = 0;
   var k =0;
   var check_cake_on_plate;
