@@ -287,12 +287,12 @@
       if(c2>=1)
       {
         plates[pos2].loadTexture('atlas4','sprite71');
-        if(cake_no >0)
+        /*if(cake_no >0)
         {
         cakes[cake_no-1].loadTexture('atlas4','CAKE_WITH_GLOW');
         cakes[cake_no-1].x = cakes[cake_no-1].x - 7;
         cakes[cake_no-1].y = cakes[cake_no-1].y - 7;
-        }
+        }*/
         if(cake_no == 0)
         {
           sharing_done_btn.inputEnabled = true;

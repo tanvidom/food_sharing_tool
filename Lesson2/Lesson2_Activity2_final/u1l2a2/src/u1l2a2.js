@@ -722,7 +722,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           callback: function()
           {
             //start next level 
-            console.log('a1_p3');
+            game.state.start('a1_p3');
           }
 
         },
@@ -1291,16 +1291,16 @@ showModal8 : function()
    {   
    if(i<4)
    {
-   rect[i] = game.add.sprite((410 + (i%2)*170),162,null);
+   rect[i] = game.add.sprite((407 + (i%2)*170),158,null);
    game.physics.enable(rect[i],Phaser.Physics.ARCADE);
-   rect[i].body.setSize(156,63,0,0);
+   rect[i].body.setSize(156,72,0,0);
    rect[i].numberof_workeringroup = 0;
    }
    else
    {
-   rect[i] = game.add.sprite((410 + (i%2)*170),347,null);
+   rect[i] = game.add.sprite((407 + (i%2)*170),347,null);
    game.physics.enable(rect[i],Phaser.Physics.ARCADE);
-   rect[i].body.setSize(156,63,0,0);
+   rect[i].body.setSize(156,72,0,0);
    rect[i].numberof_workeringroup = 0;
    }
    }
@@ -1310,14 +1310,14 @@ showModal8 : function()
     {
     rect[i] = game.add.sprite((409+(i-5)*167),239,null);
    game.physics.enable(rect[i],Phaser.Physics.ARCADE);
-   rect[i].body.setSize(140,65,0,0);
+   rect[i].body.setSize(152,65,0,0);
    rect[i].sum = 0;
    }
    else
    {
    rect[i] = game.add.sprite(409,425,null);
    game.physics.enable(rect[i],Phaser.Physics.ARCADE);
-   rect[i].body.setSize(140,65,0,0);
+   rect[i].body.setSize(152,65,0,0);
    rect[i].sum = 0;
    }
    }
@@ -1439,7 +1439,7 @@ showModal8 : function()
   /*render : function()
   {
    game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
-  }, */
+  },*/
   help_function : function()
   {
    window.open("../u1l2a2/assets/fraction-chart_copywrite.png");
@@ -1515,7 +1515,7 @@ showModal8 : function()
           callback: function()
           {
             //start next level 
-            console.log('next level');
+            game.state.start('a1_p5');
           }
 
         },
@@ -1981,6 +1981,9 @@ showModal8 : function()
     radio_texts[2] = game.add.text(306,580,'Workers in both groups got the same share',style3);
     radio_buttons[1] = game.add.sprite(176,578,'lesson2','radio-highlighted');
     radio_buttons[2] = game.add.sprite(285,578,'lesson2','radio-highlighted');
+       help_button = game.add.sprite(725,5,null);
+  help_button.inputEnabled = true;
+  help_button.events.onInputDown.add(this.help_function,this);
 
     for(var i=0;i<3;i++)
     {
@@ -2014,6 +2017,14 @@ showModal8 : function()
       radio_buttons[sprite_number].loadTexture('lesson2','radio-selected');
          radio_buttons[sprite_number].scale.setTo(0.5,0.5);
        done_button.inputEnabled = true;
+  },
+   /*render : function()
+  {
+   game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
+  },*/
+  help_function : function()
+  {
+   window.open("../u1l2a2/assets/fraction-chart_copywrite.png");
   },
        createModals: function() {
 
