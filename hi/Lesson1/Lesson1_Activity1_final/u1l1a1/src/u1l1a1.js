@@ -73,8 +73,8 @@
    question_text_upper = game.add.text(195,10,'4 बच्चों में 3 केक निष्पक्ष रूप से बाँटने में जामुनी की मदद करें।',style);
    var style11 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_lower = game.add.text(20,507,'प्रत्येक बच्चे का हिस्सा कितना है ?',style11);
-   var style4 = { font: "italic 13px tahoma",fill: "#4169E1", boundsAlignH: "center" , boundsAlignV : "middle" };
-   var style5 = { font: "bold italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+   var style4 = { font: "italic 13px tahoma",fill: "#0000CC", boundsAlignH: "center" , boundsAlignV : "middle" };
+   var style5 = { font: "bold italic 12px tahoma",fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_instruction11 = game.add.text(20,527,'अपने उत्तर को पूर्ण संख्या या भिन्न के रूप में एंटर करें और अपना उत्तर जाँचने के लिए              पर क्लिक करें।',style4);
    //question_text_instruction11.wordWrap = true;
   //question_text_instruction11.wordWrapWidth = 1600;
@@ -169,8 +169,8 @@
 
    //line1 = new Phaser.Line(12, 356, 178, 356);
    //line1.stroke = "005DBA";
-   var style2 = { font: "italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center" };
-   var style3 = { font: "bold italic 12px tahoma",fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle" };
+   var style2 = { font: "italic 12px tahoma",fill: "#0000CC", boundsAlignH: "center" };
+   var style3 = { font: "bold italic 12px tahoma",fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
    instruction_text = game.add.text(24,384,'केक को छोटे टुकड़ों में काटने के लिए                  का उपयोग करें और केक के टुकड़ों को प्रत्येक बच्चे के पास ले जाकर रखें।',style2);
 
   instruction_text.wordWrap = true;
@@ -194,7 +194,7 @@
    
    
 },
- /*render : function()
+/* render : function()
          { 
           game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
     
@@ -226,7 +226,7 @@
              plates[x1].loadTexture('atlas2','PLATE_WITH_GLOW');
  
            }
-            for(var i=0;i<3;i++)
+            for(var i=0;i<cakes.length;i++)
             {
               if(i !== cake_no)
               {
@@ -332,6 +332,7 @@
     cakes[cake_num].input.enableDrag(true);
     cakes[cake_num].weight = 1;
     cakes[cake_num].number = cake_num;
+    cakes[cake_num].originalPosition = cakes[cake_num].position.clone();
     game.physics.enable(cakes[cake_num],Phaser.Physics.ARCADE);
     for(var x1=0; x1 < 6; x1++)
      {
@@ -420,6 +421,7 @@
       game.physics.enable(cakes[cake_num],Phaser.Physics.ARCADE);
       cakes[cake_num].events.onDragStart.add(this.startDrag_1,this);
       cakes[cake_num].events.onDragStop.add(this.stopDrag_1,this);
+      cakes[cake_num].originalPosition = cakes[cake_num].position.clone();
       console.log(angle);
       if(cakes[cake_num].weight == '0.5')
       {
@@ -545,7 +547,7 @@
         itemsArr: [{
             type: 'sprite',
             atlasParent :'hindi_modals',
-            content : 'sprite2'
+            content : 'sprite7'
 
 
           },
@@ -553,7 +555,7 @@
             type: "image",
             content: "close_button",
             offsetX: 195,
-            offsetY: -83,
+            offsetY: -120,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }
@@ -575,7 +577,7 @@
           atlasParent: 'answerscreens',
           content: 'SMILEY_SAD',  
           offsetX : 40,
-          offsetY:  - 140,
+          offsetY:  - 160,
         },
           ]
     });
@@ -586,7 +588,7 @@
         itemsArr: [{
             type: 'sprite',
             atlasParent :'hindi_modals',
-            content : 'sprite5'
+            content : 'sprite6'
 
 
           },
@@ -708,8 +710,8 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
-            content : 'sprite6'
+            atlasParent :'hindi_modals',
+            content : 'sprite2'
 
 
           },
@@ -717,7 +719,7 @@
             type: "image",
             content: "close_button",
             offsetX: 200,
-            offsetY: -83,
+            offsetY: -120,
             callback: function(){
                       reg.modal.hideModal("modal6");
                     }
@@ -739,7 +741,7 @@
           atlasParent: 'answerscreens',
           content: 'SMILEY_SAD',  
           offsetX : 40,
-          offsetY:  - 140,
+          offsetY:  - 160,
         },
           ]
     });
@@ -749,8 +751,8 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
-            content : 'sprite7'
+            atlasParent :'hindi_modals',
+            content : 'sprite3'
 
 
           },
@@ -758,7 +760,7 @@
             type: "image",
             content: "close_button",
             offsetX: 200,
-            offsetY: -83,
+            offsetY: -100,
             callback: function(){
                       reg.modal.hideModal("modal7");
                     }
@@ -768,7 +770,7 @@
           atlasParent: 'atlas1',
           content: 'TRY_AGAIN_BUTTON_NORMAL',
           offsetX : 120,
-          offsetY: 30,
+          offsetY: 40,
           callback: function()
           {
             reg.modal.hideModal("modal7");
@@ -780,7 +782,7 @@
           atlasParent: 'answerscreens',
           content: 'SMILEY_SAD',  
           offsetX : 40,
-          offsetY:  - 140,
+          offsetY:  - 160,
         },
           ]
     });  
@@ -790,7 +792,7 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
+            atlasParent :'hindi_modals',
             content : 'sprite8'
 
 
@@ -866,20 +868,27 @@ showModal8 : function()
  stopDrag_1 : function(item)
  {
    var cake_position = item.number;
-   for(var i=1;i<4;i++)
+   var c3 = 0;
+   for(var i=1;i<5;i++)
    {
     var check_cake_on_plate = game.physics.arcade.overlap(cakes[cake_position],rect[i]);
     console.log(check_cake_on_plate);
     if(check_cake_on_plate == true)
     {
+      c3++;
       //make all plates go glowless
       for(var j=0; j<4; j++)
       {
         plates[j].loadTexture('atlas2','PLATE_WITHOUT_GLOW');
       }
     }
+  }
+    if(c3 == 0)
+    {
+      cakes[cake_position].position.copyFrom(cakes[cake_position].originalPosition);
+    }
 
-   }
+   
    
  },
  sharing_done_function : function()
@@ -1017,7 +1026,7 @@ var answerScreen = function(game){}
        var style = { font: "20px Arial", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
        var text1 = game.add.text(20,25,'सही वितरण का यह एक तरीका है। 3 केक 4 बच्चों में बराबर–बराबर बाँटने के दूसरे तरीके सोचें। अगली गतिविधि पर जाने के लिए  अगला पर क्लिक करें। ',style);
        text1.wordWrap = true;
-       text1.wordWrapWidth = 800;
+       text1.wordWrapWidth = 700;
       }
     }
    var videoScreen = function(game){}
@@ -1037,7 +1046,7 @@ var answerScreen = function(game){}
         video.play(true);
         var sprite = video.addToWorld(0,40,0,0);
         var style2 = { font: "bold 20px tahoma", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-        var back_text = game.add.text(690,10,'BACK',style2);
+        var back_text = game.add.text(690,10,'वापस',style2);
         back_text.inputEnabled = true;
         console.log(video.loop);
         

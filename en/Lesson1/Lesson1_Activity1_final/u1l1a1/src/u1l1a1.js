@@ -331,6 +331,7 @@
     cakes[cake_num].weight = 1;
     cakes[cake_num].number = cake_num;
     game.physics.enable(cakes[cake_num],Phaser.Physics.ARCADE);
+    cakes[cake_num].originalPosition = cakes[cake_num].position.clone();
     for(var x1=0; x1 < 6; x1++)
      {
       number_of_pieces[x1].inputEnabled = false;
@@ -418,6 +419,7 @@
       game.physics.enable(cakes[cake_num],Phaser.Physics.ARCADE);
       cakes[cake_num].events.onDragStart.add(this.startDrag_1,this);
       cakes[cake_num].events.onDragStop.add(this.stopDrag_1,this);
+      cakes[cake_num].originalPosition = cakes[cake_num].position.clone();
       console.log(angle);
       if(cakes[cake_num].weight == '0.5')
       {
@@ -864,12 +866,14 @@ showModal8 : function()
  stopDrag_1 : function(item)
  {
    var cake_position = item.number;
-   for(var i=1;i<4;i++)
+    var c3 = 0;
+   for(var i=1;i<5;i++)
    {
     var check_cake_on_plate = game.physics.arcade.overlap(cakes[cake_position],rect[i]);
     console.log(check_cake_on_plate);
     if(check_cake_on_plate == true)
     {
+      c3++;
       //make all plates go glowless
       for(var j=0; j<4; j++)
       {
@@ -878,6 +882,10 @@ showModal8 : function()
     }
 
    }
+   if(c3 == 0)
+    {
+      cakes[cake_position].position.copyFrom(cakes[cake_position].originalPosition);
+    }
    
  },
  sharing_done_function : function()

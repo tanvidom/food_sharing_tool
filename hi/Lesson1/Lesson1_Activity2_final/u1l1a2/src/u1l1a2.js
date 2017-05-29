@@ -52,21 +52,22 @@
    game.load.atlasJSONHash('atlas5','assets/atlas5.png','assets/atlas5.json');
    game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
    game.load.atlasJSONHash('hindi_buttons1','assets/hindi_buttons1.png','assets/hindi_buttons1.json');
+   game.load.atlasJSONHash('hindi_modals1','assets/hi_modals_l1a2.png','assets/hi_modals_l1a2.json');
   },
   create : function()
   {
     reg.modal = new gameModal(game);
         this.createModals();
    background = game.add.sprite(0,0,'background');
-   var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+   var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(120,2,'8 बच्चों को 2 बराबर समूहों में बाँटने में जामुनी की मदद करें। फिर 12 केक निष्पक्ष रूप से 2 समूहों में बाँटे, ताकि प्रत्येक बच्चे को केक का समान हिस्सा मिले। ',style);
    question_text_upper.lineSpacing = -5;
-   question_text_lower = game.add.text(22,524,'प्रत्येक समूह का हिस्सा कितना है ?',style);
+   question_text_lower = game.add.text(22,517,'प्रत्येक समूह का हिस्सा कितना है ?',style);
    question_text_upper.wordWrap = true;
-   question_text_upper.wordWrapWidth = 580;
-   var style2 = {font: "italic 11px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle"}
-   var question_instructs = game.add.text(125, 35, '1. बच्चों को दो समान समूहों में बाँटें।',style2);
-   var question_instructs1 = game.add.text(400, 35, '2. फिर दोनों समूहों में केक निष्पक्ष रूप से बाँट दें।', style2);
+   question_text_upper.wordWrapWidth = 590;
+   var style2 = {font: "italic 14px tahoma", fill: "#4169E1", boundsAlignH: "center", boundsAlignV: "middle"}
+   var question_instructs = game.add.text(140, 38, '1. बच्चों को दो समान समूहों में बाँटें।',style2);
+   var question_instructs1 = game.add.text(400, 38, '2. फिर दोनों समूहों में केक निष्पक्ष रूप से बाँट दें।', style2);
    answer_text1 = game.add.text(22, 552, 'समूह A : ', style);
    answer_text2 = game.add.text(220,552, 'समूह B : ', style);
    for(var i=0;i<2;i++)
@@ -87,11 +88,12 @@
    //instruction_text = game.add.text(19,390,"When you are done, click the Sharing Done button to check your answers. Enter only whole number or fractions",style1);
    //instruction_text.wordWrap = true;
   //instruction_text.wordWrapWidth = 180;
-   sharing_done_btn = game.add.button(20,586, 'atlas4',this.final_check_function,this,'sprite68','sprite53','sprite39');
+   sharing_done_btn = game.add.button(20,586, 'hindi_buttons1',this.final_check_function,this,'hindi_SHARING_BUTTON_over','hindi_SHARING_BUTTON_normal','hindi_SHARING_BUTTON_down');
    sharing_done_btn.inputEnabled = false;
-   reset_btn = game.add.button(168, 586,'atlas4',this.reset_function,this,'sprite69','sprite58','sprite70');
+   sharing_done_btn.scale.setTo(0.85,0.85);
+   reset_btn = game.add.button(155, 586,'hindi_buttons1',this.reset_function,this,'hindi_RESET_BUTTON_over','hindi_RESET_BUTTON_normal','hindi_RESET_BUTTON_down');
    //adding plates 
-
+  reset_btn.scale.setTo(0.85,0.85);
    plates[0] = game.add.sprite(413,203,'atlas4','sprite72');
    plates[1] = game.add.sprite(413,411,'atlas4','sprite72');
    //defining area for plates
@@ -315,26 +317,26 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite2'
+            atlasParent :'hindi_modals1',
+            content : 'sprite7'
 
 
           },
           {
             type: "image",
             content: "close_button",
-            offsetX: 146,
-            offsetY: -83,
+            offsetX: 156,
+            offsetY: -120,
             callback: function(){
                       reg.modal.hideModal("modal1");
                     }
         },
         {
           type : "button",
-          atlasParent: "answerscreens",
-          content: 'NEXT_BUTTON_NORMAL',
+          atlasParent: "hindi_buttons1",
+          content: 'hindi_NEXT_BUTTON_normal',
           offsetX : 90,
-          offsetY: 30,
+          offsetY: 50,
           callback: function()
           {
             game.state.start('playGame2');
@@ -346,7 +348,7 @@
           atlasParent: 'answerscreens',
           content: 'SMILEY_HAPPY',  
           offsetX : 40,
-          offsetY:  - 140,
+          offsetY:  - 160,
         },
 
           ]
@@ -358,23 +360,23 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite4'
+            atlasParent :'hindi_modals1',
+            content : 'sprite12'
 
           },
             {
             type: "image",
             content: "close_button",
             offsetX: 205,
-            offsetY: -83,
+            offsetY: -120,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }},
         {
           type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite51',
-          offsetX : 110,
+          atlasParent: "hindi_buttons1",
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
+          offsetX : 100,
           offsetY: 30,
           callback: function()
           {
@@ -396,22 +398,22 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite3'
+            atlasParent :'hindi_modals1',
+            content : 'sprite9'
 
           },
             {
             type: "image",
             content: "close_button",
             offsetX: 208,
-            offsetY: -83,
+            offsetY: -120,
             callback: function(){
                       reg.modal.hideModal("modal3");
                     }},
         {
           type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite40',
+          atlasParent: "hindi_buttons1",
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 110,
           offsetY: 30,
           callback: function()
@@ -425,7 +427,7 @@
           atlasParent: 'answerscreens',
           content: 'SMILEY_SAD',  
           offsetX : 40,
-          offsetY:  - 140,
+          offsetY:  - 160,
         }]     
     });
             //modal 4
@@ -435,8 +437,8 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite5'
+            atlasParent :'hindi_modals1',
+            content : 'sprite11'
 
           },
             {
@@ -449,8 +451,8 @@
                     }},
         {
           type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite40',
+          atlasParent: "hindi_buttons1",
+          content: 'hindi_OK_BUTTON_down',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -475,8 +477,8 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas6',
-            content : 'sprite1'
+            atlasParent :'hindi_modals1',
+            content : 'sprite11'
 
           },
             {
@@ -489,8 +491,8 @@
                     }},
         {
           type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite40',
+          atlasParent: "hindi_buttons1",
+          content: 'hindi_OK_BUTTON_down',
           offsetX : 110,
           offsetY: 30,
           callback: function()
@@ -513,8 +515,8 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas6',
-            content : 'sprite2'
+            atlasParent :'hindi_modals1',
+            content : 'sprite11'
 
           },
             {
@@ -527,8 +529,8 @@
                     }},
         {
           type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite40',
+          atlasParent: 'hindi_buttons1',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 110,
           offsetY: 30,
           callback: function()
@@ -671,6 +673,7 @@
        game.load.webfont('tahoma','Tahoma');
        game.load.image('answerscreens1','assets/answerl1a2.png');
        game.load.atlasJSONHash('hindi_buttons1','assets/hindi_buttons1.png','assets/hindi_buttons1.json');
+       
 
       },
       create : function()
@@ -679,15 +682,15 @@
        var answer_screen1 = game.add.sprite(50,120,'answerscreens1');
        //answer_screen1.scale.setTo(1.7, 1.7);
        var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is how you distribute 12 cakes among 2 equal groups.',style);
+       var text1 = game.add.text(20,25,'इस प्रकार आप दो बराबर समूहों में 12 केक का समान वितरण करते हैं।',style);
 
        text1.wordWrap = true;
        text1.wordWrapWidth = 800;
-       var style2 = { font: "italic 14px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text2 = game.add.text(20,45,'Click           to proceed to the next activity.',style2);
-       var style3 = { font: "bold italic 14px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text3 = game.add.text(55,45,'NEXT ',style3);
-       var button1 = game.add.button(680,580,'answerscreens',this.next_buttonaction,this,'NEXT_BUTTON_MOUSE_OVER','NEXT_BUTTON_NORMAL','NEXT_BUTTON_MOUSE_DOWN');
+       var style2 = { font: "italic 15px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text2 = game.add.text(20,55,'इस गतिविधि में अगले प्रश्न पर जाने के लिए            पर क्लिक करें।',style2);
+       var style3 = { font: "bold italic 15px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text3 = game.add.text(260,55,'अगला ',style3);
+       var button1 = game.add.button(680,580,'hindi_buttons1',this.next_buttonaction,this,'hindi_NEXT_BUTTON_over','hindi_NEXT_BUTTON_normal','hindi_NEXT_BUTTON_down');
       },
       next_buttonaction : function()
       {
@@ -712,6 +715,7 @@
        game.load.atlasJSONHash('atlas5','assets/atlas5.png','assets/atlas5.json');
         game.load.image('close_button','assets/close_button_normal.png');
         game.load.atlasJSONHash('hindi_buttons1','assets/hindi_buttons1.png','assets/hindi_buttons1.json');
+        game.load.atlasJSONHash('hindi_modals1','assets/hi_modals_l1a2.png','assets/hi_modals_l1a2.json');
 
       },
       create : function()
@@ -726,11 +730,11 @@
        //answer_screen1.scale.setTo(2, 2);
        var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
        var text1 = game.add.text(133,20,'जामुनी की मदद करें ताकि वह केक की कुल संख्या के भाग के रूप में प्रत्येक समूह के हिस्से का पता लगा सके।',style);
-       var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-        var style2 = { font: "bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text2 = game.add.text(22,535,'अपने उत्तर को पूर्ण संख्या या भिन्न के रूप में एंटर करें और अपने उत्तर की जाँच के लिए           पर क्लिक करें। ',style1);
+       var style1 = { font: "italic 15px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+        var style2 = { font: "bold 15px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text2 = game.add.text(22,530,'अपने उत्तर को पूर्ण संख्या या भिन्न के रूप में एंटर करें और अपने उत्तर की जाँच के लिए           पर क्लिक करें। ',style1);
        var text3 = game.add.text(22,570, 'कुल 12 केकों में प्रत्येक समूह का भाग                    है।  ',style);
-       var text4 = game.add.text(422,535,'सबमिट',style2);
+       var text4 = game.add.text(480,530,'सबमिट',style2);
        input_answer3 = game.add.inputField(220, 565, {
     font: '11px Arial',
     fill: '#212121',
@@ -782,26 +786,26 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite1'
+            atlasParent :'hindi_modals1',
+            content : 'sprite3'
 
 
           },
           {
             type: "image",
             content: "close_button",
-            offsetX: 180,
-            offsetY: -75,
+            offsetX: 200,
+            offsetY: -120,
             callback: function(){
                       reg.modal.hideModal("modal1");
                     }
         },
         {
-          type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite51',
-          offsetX : 110,
-          offsetY: 35,
+          type : 'button',
+          atlasParent: 'hindi_buttons1',
+          content: 'hindi_OK_BUTTON_normal',
+          offsetX : 120,
+          offsetY: 50,
           callback: function()
           {
            //not decided yet
@@ -814,7 +818,7 @@
           atlasParent: 'answerscreens',
           content: 'SMILEY_HAPPY',  
           offsetX : 40,
-          offsetY:  - 140,
+          offsetY:  - 160,
         },
 
           ]
@@ -826,24 +830,24 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite7'
+            atlasParent :'hindi_modals1',
+            content : 'sprite8'
 
           },
             {
             type: "image",
             content: "close_button",
             offsetX: 200,
-            offsetY: -70,
+            offsetY: -120,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }},
         {
           type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite51',
+          atlasParent: "hindi_buttons1",
+          content: 'hindi_OK_BUTTON_normal',
           offsetX : 120,
-          offsetY: 28,
+          offsetY: 45,
           callback: function()
           {
             reg.modal.hideModal("modal2");
@@ -855,7 +859,7 @@
           atlasParent: 'answerscreens',
           content: 'SMILEY_SAD',  
           offsetX : 40,
-          offsetY:  - 140,
+          offsetY:  - 150,
         }]     
     });
             reg.modal.createModal({
@@ -864,8 +868,8 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'atlas5',
-            content : 'sprite6'
+            atlasParent :'hindi_modals1',
+            content : 'sprite5'
 
           },
             {
@@ -878,8 +882,8 @@
                     }},
         {
           type : "button",
-          atlasParent: "atlas4",
-          content: 'sprite51',
+          atlasParent: 'hindi_buttons1',
+          content: 'hindi_OK_BUTTON_normal',
           offsetX : 110,
           offsetY: 30,
           callback: function()
