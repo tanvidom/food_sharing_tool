@@ -66,6 +66,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.atlasJSONHash('modals','assets/l2a2_modals.png','assets/l2a2_modals.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('workers','assets/workers.png','assets/workers.json');
+    game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
+
   },
   create : function()
   {
@@ -73,7 +76,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         this.createModals();
     background = game.add.sprite(0,0,'background');
     var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(185,15,'In Group A, the number of parathas is 3 less than the number of workers. Following the same reasoning, I gave Group B 3 parathas less than the number of workers in that group.',style);
+    question_text_upper = game.add.text(185,15,'समूह A में मज़दूरों की संख्‍या की तुलना में पराठे तीन कम हैं । अत: मैनें इसी तर्क की पालना की और समूह B को उस समूह में मज़दूरों की संख्‍या की तुलना में तीन पराठे कम दे दिए।',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 500;
     question_text_upper.lineSpacing = -5;
@@ -104,15 +107,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       }
     }
     var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(78,550,'Do you think that the distribution of parathas is fair?',style4);
+    question_text_lower = game.add.text(78,550,'क्‍या आपके विचार से पराठों का वितरण से निष्पक्ष रूप हुआ है?',style4);
     var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(78,569,'Select one of the options below and click the          button',style1);
+    instruction_text = game.add.text(78,569,'नीचे दिए गए विकल्‍पों में से एक को चुने और          पर क्लिक करें।',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(339,569,'Done ',style2);
+    var instruction_text1 = game.add.text(280,569,'किया  ',style2);
     style3 = { font: "italic 13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     radio_buttons[0] = game.add.sprite(77,590,'lesson2','radio-highlighted');
-    radio_texts[0] = game.add.text(92,593,'Yes',style3);
-    radio_texts[1] = game.add.text(197,593,'No',style3);
+    radio_texts[0] = game.add.text(92,593,'हाँ',style3);
+    radio_texts[1] = game.add.text(197,593,'नहीं ',style3);
     //radio_texts[2] = game.add.text(306,593,'Workers in both groups got the same share',style3);
     //radio_texts[3] = game.add.text(642,593,'I do not know',style3);
     radio_buttons[1] = game.add.sprite(176,590,'lesson2','radio-highlighted');
@@ -127,7 +130,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      radio_buttons.selectedcheck = false;
     }
     
-     done_button = game.add.button(77,618,'lesson2',this.done_Action,this,'sprite128','sprite132','sprite125');
+     done_button = game.add.button(77,618,'hindi_buttons6',this.done_Action,this,'HINDI_DONE_OVER','HINDI_DONE_normal','HINDI_DONE_DOWN');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
 
@@ -140,8 +143,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite7'
+            atlasParent :'hindi_modals6',
+            content : 'sprite5'
 
 
           },
@@ -157,13 +160,13 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite105',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_NEXT_BUTTON_over',
           offsetX : 90,
           offsetY: 30,
           callback: function()
           {
-            game.state.start('question_two');
+            game.state.start('a1_p1');
           }
 
         },
@@ -184,7 +187,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     } 
     else if(radio_buttons[1].selectedcheck == true)
     {
-      game.state.start('a1_p1');
+      game.state.start('question_two');
       
     } 
   },
@@ -224,27 +227,29 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.image('background','assets/full_background.png');
     game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
     game.load.webfont('tahoma','Tahoma');
-    game.load.image('scrnshot','assets/prntscrn.png');
+    game.load.image('scrnshot1','assets/hi_prnt.png');
     game.load.image('lower_band','assets/lower.png');
+     game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
 
   },
   create : function()
   {
-    var screenshot = game.add.sprite(0,0,'scrnshot');
+    var screenshot = game.add.sprite(0,0,'scrnshot1');
     screenshot.scale.setTo(1.02,1);
     var lowerband = game.add.sprite(0,508,'lower_band');
     var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(78,550,'In which group did the workers get a larger share of the food?',style4);
+    question_text_lower = game.add.text(78,550,'किस समूह में मज़दूरों को भोजन का बड़ा हिस्‍सा मिला?',style4);
     var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(78,569,'Select one of the options below and click the          button',style1);
+    instruction_text = game.add.text(78,569,'नीचे दिए हुए विकल्‍पों में से एक को चुनों और        पर क्लिक करें।',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(339,569,'Done ',style2);
+    var instruction_text1 = game.add.text(280,569,'किया ',style2);
     style3 = { font: "italic 13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     radio_buttons[0] = game.add.sprite(77,590,'lesson2','radio-highlighted');
-    radio_texts[0] = game.add.text(92,593,'Group A',style3);
-    radio_texts[1] = game.add.text(197,593,'Group B',style3);
-    radio_texts[2] = game.add.text(306,593,'Workers in both groups got the same share',style3);
-    radio_texts[3] = game.add.text(642,593,'I do not know',style3);
+    radio_texts[0] = game.add.text(92,593,'समूह A',style3);
+    radio_texts[1] = game.add.text(197,593,'समूह B',style3);
+    radio_texts[2] = game.add.text(306,593,'दोनों समूहों के मज़दूरों को समान हिस्सा  मिला।',style3);
+    radio_texts[3] = game.add.text(642,593,'मुझे नहीं मालुम',style3);
     radio_buttons[1] = game.add.sprite(176,590,'lesson2','radio-highlighted');
     radio_buttons[2] = game.add.sprite(285,590,'lesson2','radio-highlighted');
     radio_buttons[3] = game.add.sprite(623,590,'lesson2','radio-highlighted');
@@ -257,7 +262,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      radio_buttons.selectedcheck = false;
     }
     
-     done_button = game.add.button(77,618,'lesson2',this.done_Action1,this,'sprite128','sprite132','sprite125');
+     done_button = game.add.button(77,618,'hindi_buttons6',this.done_Action1,this,'HINDI_DONE_OVER','HINDI_DONE_normal','HINDI_DONE_DOWN');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
 
@@ -299,6 +304,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
    game.load.webfont('tahoma','Tahoma');
    game.load.image('top','assets/top.png');
+    game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
+        game.load.atlasJSONHash('workers','assets/workers.png','assets/workers.json');
   },
   create : function()
   {
@@ -306,15 +314,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         //this.createModals();
     background = game.add.sprite(0,0,'top');
     var style = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(125,11,'Find the share for a sub-group of 2 workers from each group.',style);
+    question_text_upper = game.add.text(125,11,'प्रत्‍येक समूह से 2 मज़दूरों के उप-समूह के हिस्‍से का पता लगाएँ।',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(130,28,'1. Begin by clicking                                for Group A. ',style1);
+    instruction_text = game.add.text(130,28,'1. समूह A के लिए                 पर क्लिक करके शुरू करें। . ',style1);
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(240,28,'Share Food Packets  ',style2);
-    var instruction_text2 = game.add.text(130,42,'2. After your have completed the sharing for Group A, click                              for Group B.',style1);
-    var instruction_text3 = game.add.text(445,42,' Share Food Packets  ',style2); 
+    var instruction_text1 = game.add.text(215,28,'भोजन बाँटें  ',style2);
+    var instruction_text2 = game.add.text(130,42,'2. अब समूह B के लिए                पर क्लिक करके बाँटने का काम पूरा करें।',style1);
+    var instruction_text3 = game.add.text(229,42,' भोजन बाँटें  ',style2); 
     groups[0] = game.add.sprite(30,95,'lesson2','WORKER_BACK_GROUP_A');
     groups[1] = game.add.sprite(30,380,'lesson2','WORKER_BACK_GROUP_B');
     plates[0] = game.add.sprite(29,207,'lesson2','FOOD_PLATE');
@@ -341,8 +349,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
        workers[j] = game.add.sprite(140 + ((j-8)*90),409,'workers',worker_names1[j-8]);
       }
     }
-    share_button_A = game.add.button(303,300,'lesson2',this.share_a_function,this,'sprite145','sprite141','sprite146');
-    share_button_B = game.add.sprite(303,580,'lesson2','SHARE_FOOD_PACKET_BUTTON_DEACTIVATE');
+    share_button_A = game.add.button(303,300,'hindi_buttons6',this.share_a_function,this,'hindi_SHARE_FOOD_PACKET_BUTTON_over','hindi_SHARE_FOOD_PACKET_BUTTON_normal','hindi_SHARE_FOOD_PACKET_BUTTON_down');
+    share_button_B = game.add.sprite(303,580,'hindi_buttons6','hindi_SHARE_FOOD_PACKET_BUTTON_deactivate');
   },
   share_a_function : function()
   {
@@ -360,23 +368,26 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     preload : function()
     {
      game.load.webfont('tahoma','Tahoma');
-    game.load.image('scrnshot','assets/prntscrn.png');
+    game.load.image('scrnshot1','assets/hi_prnt.png');
     game.load.image('lower_band','assets/lower.png'); 
     game.add.plugin(PhaserInput.Plugin);
+     game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
+        game.load.image('close_button','assets/close_button_normal.png');
     },
     create : function()
     {
        reg.modal = new gameModal(game);
         this.createModals();
-    var screenshot = game.add.sprite(0,0,'scrnshot');
+    var screenshot = game.add.sprite(0,0,'scrnshot1');
     screenshot.scale.setTo(1.02,1);
     var lowerband = game.add.sprite(0,508,'lower_band');
     var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(78,545,'How did you arrive at this conclusion?',style4);
-    instruction_text = game.add.text(78,560,'Enter your answer below and click ',style1);
-    var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(280,560,'Done ',style2);
+    question_text_lower = game.add.text(78,545,'आप इस निष्‍कर्ष पर कैसे पहुँचे?',style4);
+    instruction_text = game.add.text(78,560,'अपना उत्‍तर नीचे एन्‍टर करें और        पर क्लिक करें। ',style1);
+    var style2 = { font: " bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    var instruction_text1 = game.add.text(225,560,' किया ',style2);
     var input_answer = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
@@ -388,7 +399,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     borderRadius: 6,
     
 });
-    done_button = game.add.button(77,618,'lesson2',this.showModal1,this,'sprite128','sprite132','sprite125');
+    done_button = game.add.button(77,618,'hindi_buttons6',this.showModal1,this,'HINDI_DONE_OVER','HINDI_DONE_normal','HINDI_DONE_DOWN');
      done_button.scale.setTo(0.7,0.7);
      
 
@@ -402,8 +413,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite7'
+            atlasParent :'hindi_modals6',
+            content : 'sprite5'
 
 
           },
@@ -419,8 +430,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite105',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_NEXT_BUTTON_over',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -457,6 +468,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    game.load.atlasJSONHash('buttons','assets/spritesheet_112.png','assets/sprites_112.json');
    game.load.atlasJSONHash('workers','assets/workers.png','assets/workers.json');
     game.add.plugin(PhaserInput.Plugin);
+     game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
 
   },
   create : function()
@@ -465,22 +478,22 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         this.createModals();
 
    background = game.add.sprite(0,0,'bg');
-  var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(66,545,'What is the share of each sub-group of 2 workers in Group A?',style4);
-    instruction_text = game.add.text(115,20,'1. Use the                      to make smaller groups of 2 workers each by dragging each worker to a group.',style1);
+  var style4 = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+    var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    question_text_lower = game.add.text(66,542,'समूह A में 2 मज़दूरों वाले प्रत्‍येक उप-समूह का हिस्‍सा कितना है?',style4);
+    instruction_text = game.add.text(115,20,'1.                  का उपयोग करते हुए प्रत्‍येक मज़दूर को एक समूह में लेते हुए दो-दो मज़दूरों के छोटे समूह बनाएँ। ',style1);
     instruction_text.wordWrap = true; 
     instruction_text.wordWrapWidth = 580; 
     instruction_text.lineSpacing = -5;
-    var instruction_text2 = game.add.text(118,37,'2. Distribute the 5 parathas fairly among these sub-groups and find the share of each sub-group.',style1)
-    var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(175,20,'Grouping Tool ',style2);
-    question_text_upper = game.add.text(110,4,'Distribute 5 parathas fairly among the 8 workers in Group A.',style4);
+    var instruction_text2 = game.add.text(118,39,'2. अब 5 पराठों को निष्पक्ष रूप से इन उप-समूहों में बाँट दें  और प्रत्‍येक उप-समूह के हिस्‍से का पता लगाएँ।',style1)
+    var style2 = { font: "bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    var instruction_text1 = game.add.text(134,20,'ग्रुपिंग टूल  ',style2);
+    question_text_upper = game.add.text(110,5,'समूह A के 8 मज़़दूरों में 5 पराठों का निष्पक्ष वितरण करें।',style4);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
-    var style11 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text_lower = game.add.text(66,560,'Enter your answer in the form of a whole number or a fraction and click                      to check your answer. ',style11);  
-    var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
+    var style11 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    var instruction_text_lower = game.add.text(66,560,'अपना उत्‍तर एक पूर्ण संख्‍या या भिन्‍न के रूप में एन्‍टर करें और अपने उत्‍तर की जाँच के लिए              क्लिक करें।  ',style11);  
+    var instruction_text_lower1 = game.add.text(476,560,'बाँट दिया',style2);
    rect[0] = game.add.sprite(72,156,null);
    game.physics.enable(rect[0],Phaser.Physics.ARCADE);
    rect[0].body.setSize(313,143,0,0);
@@ -511,14 +524,14 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     {
     rect[i] = game.add.sprite((420+(i%2)*167),239,null);
    game.physics.enable(rect[i],Phaser.Physics.ARCADE);
-   rect[i].body.setSize(140,65,0,0);
+   rect[i].body.setSize(140,70,0,0);
    rect[i].sum = 0;
    }
    else
    {
    rect[i] = game.add.sprite((420+(i%2)*167),426,null);
    game.physics.enable(rect[i],Phaser.Physics.ARCADE);
-   rect[i].body.setSize(140,65,0,0);
+   rect[i].body.setSize(140,70,0,0);
    rect[i].sum = 0;
    }
    }
@@ -549,10 +562,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    
    var style1 = { font: "bold 13px tahoma", fill: "#005DBA", boundsAlignH: "center", boundsAlignV: "middle" };
    
-   sharing_done_btn = game.add.button(66,615, 'lesson2',this.sharing_done_function,this,'sprite85','sprite87','sprite86');
+   sharing_done_btn = game.add.button(66,615, 'hindi_buttons6',this.sharing_done_function,this,'hindi_SHARING_BUTTON_over','hindi_SHARING_BUTTON_normal','hindi_SHARING_BUTTON_down');
    sharing_done_btn.inputEnabled = false;
    sharing_done_btn.scale.setTo(0.8,0.8);
-   reset_btn = game.add.button(210, 615,'lesson2',this.reset_function,this,'sprite99','sprite97','sprite103');
+   reset_btn = game.add.button(210, 615,'hindi_buttons6',this.reset_function,this,'hindi_RESET_BUTTON_over','hindi_RESET_BUTTON_normal','hindi_RESET_BUTTON_down');
    reset_btn.scale.setTo(0.8,0.8);
    
     for(var i=0;i<10;i++)
@@ -584,7 +597,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
          parathas1[i].originalPosition = parathas1[i].position.clone();
       }
     }
-   help_button = game.add.sprite(725,5,'lesson2','HELP_mouse_over');
+   help_button = game.add.sprite(725,5,'hindi_buttons6','hindi_HELP_OVER');
   help_button.inputEnabled = true;
   help_button.events.onInputDown.add(this.help_function,this);
    input_answer1 = game.add.inputField(66, 580, {
@@ -599,9 +612,22 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     borderRadius: 6,
     
 });
-   var answer_text1 = game.add.text(140,590,'parathas.',style4);
+   var answer_text1 = game.add.text(140,590,'पराठे ।',style4);
    
   },
+   update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
   workers_stopDrag : function(item)
   {
     worker_check_on_group = [];
@@ -701,8 +727,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite11'
+            atlasParent :'hindi_modals6',
+            content : 'sprite8'
 
 
           },
@@ -718,8 +744,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite120',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_NEXT_BUTTON_over',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -747,8 +773,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite10'
+            atlasParent :'hindi_modals6',
+            content : 'sprite16'
 
 
           },
@@ -756,17 +782,17 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
             type: "image",
             content: "close_button",
             offsetX: 200,
-            offsetY: -100,
+            offsetY: -115,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite107',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 130,
-          offsetY: 37,
+          offsetY: 45,
           callback: function()
           {
             reg.modal.hideModal("modal2");
@@ -778,7 +804,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           atlasParent: 'lesson2',
           content: 'sprite90',  
           offsetX : 35,
-          offsetY:  - 140,
+          offsetY:  - 160,
         },
           ]
     });
@@ -788,7 +814,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
+            atlasParent :'hindi_modals6',
             content : 'sprite9'
 
 
@@ -804,8 +830,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite107',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 95,
           offsetY: 25,
           callback: function()
@@ -829,8 +855,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite12'
+            atlasParent :'hindi_modals6',
+            content : 'sprite4'
 
 
           },
@@ -845,8 +871,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite119',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 110,
           offsetY: 38,
           callback: function()
@@ -870,8 +896,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite8'
+            atlasParent :'hindi_modals6',
+            content : 'sprite3'
 
 
           },
@@ -886,8 +912,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite107',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -911,8 +937,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite8'
+            atlasParent :'hindi_modals6',
+            content : 'sprite11'
 
 
           },
@@ -927,8 +953,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite119',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -969,7 +995,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite107',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 120,
           offsetY: 30,
           callback: function()
@@ -993,8 +1019,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite8'
+            atlasParent :'hindi_modals6',
+            content : 'sprite4'
 
 
           },
@@ -1009,8 +1035,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite119',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -1167,6 +1193,7 @@ showModal8 : function()
 },
   reset_function : function()
   {
+    count_no_of_attempts = 0;
   game.state.start('a1_p2');
   }
   }
@@ -1178,6 +1205,8 @@ showModal8 : function()
       {
        game.load.image('answer1','assets/printscreen_2_1.png');
        game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+        game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
        //game.load.atlasJSONHash('')
       },
       create : function()
@@ -1186,14 +1215,14 @@ showModal8 : function()
        var answer_screen1 = game.add.sprite(50,100,'answer1');
        answer_screen1.scale.setTo(0.85, 0.85);
        var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 5 parathas among 8 workers.',style);
+       var text1 = game.add.text(20,25,'यह निष्पक्ष वितरण का एक तरीका है। 4 उप-समूहों में 5 पराठे वितरित करने के अन्‍य ठीक तरीके सोचें।',style);
        var style1 = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text2= game.add.text(20,45,'Click Next to continue.',style1);
+       var text2= game.add.text(20,45,'जारी रखने के लिए अगला पर क्लिक करें।',style1);
 
 
        text1.wordWrap = true;
        text1.wordWrapWidth = 800;
-       var next_button = game.add.sprite(680,550,'lesson2','sprite120');
+       var next_button = game.add.sprite(680,550,'hindi_buttons6','hindi_NEXT_BUTTON_over');
        next_button.inputEnabled = true;
        next_button.events.onInputDown.add(this.next1_function,this);
 
@@ -1216,23 +1245,25 @@ showModal8 : function()
     game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
    game.load.image('top','assets/top.png');
    game.load.image('scrnsht','assets/ppscrn.png');
+    game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
   },
   create : function()
   {
     background = game.add.sprite(0,0,'top');
     var style = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(125,11,'Distribute the parathas for each groups and find the individual shares.',style);
+    question_text_upper = game.add.text(125,11,'प्रत्‍येक समूह से 2 मज़दूरों के उप-समूह के हिस्‍से का पता लगाएँ।',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(130,28,'1. Begin by clicking                                for Group A. ',style1);
+    instruction_text = game.add.text(130,28,'1. समूह A के लिए                  पर क्लिक करके शुरू करें I  ',style1);
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(240,28,'Share Food Packets  ',style2);
-    var instruction_text2 = game.add.text(130,42,'2. After your have completed the sharing for Group A, click                              for Group B.',style1);
-    var instruction_text3 = game.add.text(445,42,' Share Food Packets  ',style2); 
+    var instruction_text1 = game.add.text(210,28,'भोजन बाँटें  ',style2);
+    var instruction_text2 = game.add.text(130,42,'2. फिर समूह B के लिए                   पर क्लिक करें और समूह B के लिए वितरण पूरा करें।',style1);
+    var instruction_text3 = game.add.text(230,42,'भोजन बाँटें   ',style2); 
     var scrnn = game.add.sprite(0,80,'scrnsht');
     scrnn.scale.setTo(1,1);
-    share_button_B = game.add.button(303,590,'lesson2',this.share_b_function,this,'sprite145','sprite141','sprite146');
+    share_button_B = game.add.button(303,590,'hindi_buttons6',this.share_b_function,this,'hindi_SHARE_FOOD_PACKET_BUTTON_over','hindi_SHARE_FOOD_PACKET_BUTTON_normal','hindi_SHARE_FOOD_PACKET_BUTTON_down');
 
   },
   share_b_function : function()
@@ -1260,6 +1291,8 @@ showModal8 : function()
    game.load.image('bg','assets/groupb_bg.png');
    game.load.atlasJSONHash('buttons','assets/spritesheet_112.png','assets/sprites_112.json');
     game.add.plugin(PhaserInput.Plugin);
+     game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
 
   },
   create : function()
@@ -1270,20 +1303,20 @@ showModal8 : function()
    background = game.add.sprite(0,0,'bg');
   var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(66,545,'What is the share of each sub-groups of 2 workers in Group B?',style4);
-    instruction_text = game.add.text(117,23,'1. Use the                      to make smaller groups of 2 workers each by dragging each worker to a group.',style1);
+    question_text_lower = game.add.text(66,545,'समूह B में 2 मज़दूरों के प्रत्‍येक उप समूह का हिस्‍सा क्‍या है?',style4);
+    instruction_text = game.add.text(117,23,'1.                 का उपयोग करते हुए प्रत्‍येक मज़दूर को समूह में लेते हुए दो-दो मज़दूरों के छोटे समूह बनाएँ। ',style1);
     instruction_text.wordWrap = true; 
     instruction_text.wordWrapWidth = 580; 
     instruction_text.lineSpacing = -5;
-    var instruction_text2 = game.add.text(118,39,'2. Distribute the 3 parathas fairly among these sub-groups and find the share of each sub-group.',style1)
+    var instruction_text2 = game.add.text(118,39,'2. अब 3 पराठे निष्पक्ष रूप से इन उप-समूहों में बाँट दें और प्रत्‍येक उप-समूह के हिस्से का पता लगाएँ।  ',style1)
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(175,23,'Grouping Tool ',style2);
-    question_text_upper = game.add.text(113,6,'Distribute 3 parathas fairly among the 6 workers in Group A.',style4);
+    var instruction_text1 = game.add.text(132,23,'ग्रुपिंग टूल  ',style2);
+    question_text_upper = game.add.text(113,6,'समूह A के 6 मज़दूरों में 3 पराठेनिष्पक्ष रूप से वितरित करें।',style4);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style11 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text_lower = game.add.text(66,560,'Enter your answer in the form of a whole number or a fraction and click                      to check your answer. ',style11);  
-    var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
+    var instruction_text_lower = game.add.text(66,560,'अपना उत्‍तर एक पूर्ण संख्‍या या भिन्‍न के रूप में एन्‍टर करें और आपने उत्‍तर की जाँच के लिए             पर क्लिक करें। ',style11);  
+    var instruction_text_lower1 = game.add.text(448,560,'बाँट दिया',style2);
    rect1[0] = game.add.sprite(72,156,null);
    game.physics.enable(rect1[0],Phaser.Physics.ARCADE);
    rect1[0].body.setSize(313,143,0,0);
@@ -1352,10 +1385,10 @@ showModal8 : function()
    
    var style1 = { font: "bold 13px tahoma", fill: "#005DBA", boundsAlignH: "center", boundsAlignV: "middle" };
    
-   sharing_done_btn = game.add.button(66,615, 'lesson2',this.sharing_done_function,this,'sprite85','sprite87','sprite86');
+   sharing_done_btn = game.add.button(66,615, 'hindi_buttons6',this.sharing_done_function,this,'hindi_SHARING_BUTTON_over','hindi_SHARING_BUTTON_normal','hindi_SHARING_BUTTON_down');
    sharing_done_btn.inputEnabled = false;
    sharing_done_btn.scale.setTo(0.8,0.8);
-   reset_btn = game.add.button(210, 615,'lesson2',this.reset_function,this,'sprite99','sprite97','sprite103');
+   reset_btn = game.add.button(210, 615,'hindi_buttons6',this.reset_function,this,'hindi_RESET_BUTTON_over','hindi_RESET_BUTTON_normal','hindi_RESET_BUTTON_down');
    reset_btn.scale.setTo(0.8,0.8);
    
     for(var i=0;i<8;i++)
@@ -1378,7 +1411,7 @@ showModal8 : function()
          parathas1[i].originalPosition = parathas1[i].position.clone();
       }
     }
-   help_button = game.add.sprite(725,5,'lesson2','HELP_mouse_over');
+   help_button = game.add.sprite(725,5,'hindi_buttons6','hindi_HELP_OVER');
   help_button.inputEnabled = true;
   help_button.events.onInputDown.add(this.help_function,this);
    input_answer1 = game.add.inputField(66, 580, {
@@ -1393,9 +1426,22 @@ showModal8 : function()
     borderRadius: 6,
     
 });
-   var answer_text1 = game.add.text(140,590,'parathas.',style4);
+   var answer_text1 = game.add.text(140,590,' पराठे ।',style4);
    
   },
+   update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
   workers_stopDrag : function(item)
   {
    worker_check_on_group = [];
@@ -1497,8 +1543,8 @@ showModal8 : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite2'
+            atlasParent :'hindi_modals6',
+            content : 'sprite7'
 
 
           },
@@ -1514,8 +1560,8 @@ showModal8 : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite120',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_NEXT_BUTTON_over',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -1543,8 +1589,8 @@ showModal8 : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite10'
+            atlasParent :'hindi_modals6',
+            content : 'sprite16'
 
 
           },
@@ -1559,8 +1605,8 @@ showModal8 : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite107',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 130,
           offsetY: 37,
           callback: function()
@@ -1584,7 +1630,7 @@ showModal8 : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
+            atlasParent :'hindi_modals6',
             content : 'sprite9'
 
 
@@ -1600,8 +1646,8 @@ showModal8 : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite107',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 95,
           offsetY: 25,
           callback: function()
@@ -1625,8 +1671,8 @@ showModal8 : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite12'
+            atlasParent :'hindi_modals6',
+            content : 'sprite4'
 
 
           },
@@ -1637,12 +1683,12 @@ showModal8 : function()
             offsetY: -86,
             callback: function(){
                       reg.modal.hideModal("modal4");
-                    }
+                    } 
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite119',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 110,
           offsetY: 38,
           callback: function()
@@ -1666,8 +1712,8 @@ showModal8 : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite8'
+            atlasParent :'hindi_modals6',
+            content : 'sprite3'
 
 
           },
@@ -1682,8 +1728,8 @@ showModal8 : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite107',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -1707,8 +1753,8 @@ showModal8 : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite8'
+            atlasParent :'hindi_modals6',
+            content : 'sprite11'
 
 
           },
@@ -1723,8 +1769,8 @@ showModal8 : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite119',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -1748,8 +1794,8 @@ showModal8 : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite8'
+            atlasParent :'hindi_modals6',
+            content : 'sprite4'
 
 
           },
@@ -1764,8 +1810,8 @@ showModal8 : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite119',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -1917,6 +1963,7 @@ showModal8 : function()
 },
   reset_function : function()
   {
+  count_no_of_attempts_1 = 0;
   game.state.start('a1_p4');
   }
   }
@@ -1929,21 +1976,23 @@ showModal8 : function()
        game.load.image('answer2','assets/printscreen_2_2.png');
        game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
        //game.load.atlasJSONHash('')
+        game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
       },
       create : function()
       {
        game.stage.backgroundColor = "#00000"; 
        var answer_screen1 = game.add.sprite(50,100,'answer2');
        answer_screen1.scale.setTo(0.85, 0.95);
-       var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 3 parathas among 6 workers.',style);
-       var style1 = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text2= game.add.text(20,45,'Click Next to continue.',style1);
+       var style = { font: "15px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text1 = game.add.text(20,25,'यह निष्पक्ष वितरण का एक तरीका है। उप-समूहों में 3 पराठे ठीक से बाँटने के अन्‍य तरीके सोचें',style);
+       var style1 = { font: "15px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
+       var text2= game.add.text(20,45,'जारी रखने के लिए अगला पर क्लिक करें।',style1);
 
 
        text1.wordWrap = true;
        text1.wordWrapWidth = 800;
-       var next_button = game.add.sprite(680,550,'lesson2','sprite120');
+       var next_button = game.add.sprite(680,550,'hindi_buttons6','hindi_NEXT_BUTTON_over');
        next_button.inputEnabled = true;
        next_button.events.onInputDown.add(this.next1_function,this);
 
@@ -1966,6 +2015,8 @@ showModal8 : function()
       game.load.atlasJSONHash('sprite111', 'assets/l2a2_final.png', 'assets/l2a2_final.json');
       game.load.image('close_button','assets/close_button_normal.png');
        game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
+        game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
       },
       create : function()
       {
@@ -1976,16 +2027,16 @@ showModal8 : function()
        var lowerband = game.add.sprite(0,500,'lower');
        lowerband.scale.setTo(1,0.95);
          var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-        question_text_lower = game.add.text(78,540,'In which group did the workers receive more food per person?',style4);
+        question_text_lower = game.add.text(78,540,'किस समूह में मज़़दूरों को प्रति व्‍यक्ति अधिक भोजन मिला?',style4);
         var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(78,560,'Select one of the options below and click the          button',style1);
+    instruction_text = game.add.text(78,560,'नीचे दी गई सूची में से एक विकल्‍प चुनो और           पर क्लिक करें।',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(310,560,'Done ',style2);
+    var instruction_text1 = game.add.text(270,560,'किया ',style2);
     radio_buttons[0] = game.add.sprite(77,578,'lesson2','radio-highlighted');
     style3 = { font: "italic 13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    radio_texts[0] = game.add.text(92,580,'Group A',style3);
-    radio_texts[1] = game.add.text(197,580,'Group B',style3);
-    radio_texts[2] = game.add.text(306,580,'Workers in both groups got the same share',style3);
+    radio_texts[0] = game.add.text(92,580,'समूह A',style3);
+    radio_texts[1] = game.add.text(197,580,'समूह B',style3);
+    radio_texts[2] = game.add.text(306,580,'दोनों समूहों के मजदूरों को समान हिस्सा मिला। ',style3);
     radio_buttons[1] = game.add.sprite(176,578,'lesson2','radio-highlighted');
     radio_buttons[2] = game.add.sprite(285,578,'lesson2','radio-highlighted');
        help_button = game.add.sprite(725,5,null);
@@ -2001,7 +2052,7 @@ showModal8 : function()
      radio_buttons.selectedcheck = false;
     }
     
-     done_button = game.add.button(77,607,'lesson2',this.next1_function,this,'sprite128','sprite132','sprite125');
+     done_button = game.add.button(77,607,'hindi_buttons6',this.next1_function,this,'HINDI_DONE_OVER','HINDI_DONE_normal','HINDI_DONE_DOWN');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
 
@@ -2041,15 +2092,15 @@ showModal8 : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'sprite111',
-            content : 'sprite2'
+            atlasParent :'hindi_modals6',
+            content : 'sprite15'
 
 
           },
           {
             type: "image",
             content: "close_button",
-            offsetX: 150,
+            offsetX: 200,
             offsetY: -90,
             callback: function()
                     {
@@ -2058,8 +2109,8 @@ showModal8 : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite120',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_NEXT_BUTTON_over',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -2086,8 +2137,8 @@ showModal8 : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'sprite111',
-            content : 'sprite3'
+            atlasParent :'hindi_modals6',
+            content : 'sprite14'
 
 
           },
@@ -2102,8 +2153,8 @@ showModal8 : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite107',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 130,
           offsetY: 34,
           callback: function()
@@ -2127,8 +2178,8 @@ showModal8 : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'sprite111',
-            content : 'sprite4'
+            atlasParent :'hindi_modals6',
+            content : 'sprite18'
 
 
           },
@@ -2143,8 +2194,8 @@ showModal8 : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite107',
+          atlasParent: 'hindi_buttons6',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 95,
           offsetY: 30,
           callback: function()
@@ -2206,11 +2257,15 @@ showModal3:function() {
       
        preload : function()
       {
-       game.load.image('answer2','assets/last_q_2.png');
+       game.load.image('answer2','assets/last_q_1.png');
        game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
        game.load.image('lower','assets/lower.png');
        game.add.plugin(PhaserInput.Plugin);
        game.load.image('close_button','assets/close_button_normal.png');
+        game.load.atlasJSONHash('hindi_buttons6','assets/hindi_buttons6.png','assets/hindi_buttons6.json');
+       game.load.atlasJSONHash('hindi_modals6','assets/hi_l2a2_modals.png','assets/hi_l2a2_modals.json');
+       game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
+       game.load.atlasJSONHash('sprite111', 'assets/l2a2_final.png', 'assets/l2a2_final.json');
 
       },
       create : function()
@@ -2222,11 +2277,11 @@ showModal3:function() {
        var lowerband = game.add.sprite(0,500,'lower');
        lowerband.scale.setTo(1,0.95);
         var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-        question_text_lower = game.add.text(78,540,'How did you decide which group received more food per worker?',style4);
+        question_text_lower = game.add.text(78,540,'आपने कैसे तय किया कि किस समूह को प्रति मज़दूर अधिक भोजन मिला?',style4);
         var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(78,560,'Enter your answer below and click the             button',style1);
+    instruction_text = game.add.text(78,560,'अपने अंतर को नीचे एन्‍टर करें और           पर क्लिक करें।',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(305,560,'Done ',style2);
+    var instruction_text1 = game.add.text(237,560,'किया ',style2);
  var input_answer = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
@@ -2238,7 +2293,7 @@ showModal3:function() {
     borderRadius: 6,
     
 });
-    done_button = game.add.button(77,618,'lesson2',this.showModal1,this,'sprite128','sprite132','sprite125');
+    done_button = game.add.button(77,618,'hindi_buttons6',this.showModal1,this,'HINDI_DONE_OVER','HINDI_DONE_normal','HINDI_DONE_DOWN');
      done_button.scale.setTo(0.7,0.7);
   },
   createModals: function() {
@@ -2249,15 +2304,15 @@ showModal3:function() {
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'sprite111',
-            content : 'sprite1'
+            atlasParent :'hindi_modals6',
+            content : 'sprite17'
 
 
           },
           {
             type: "image",
             content: "close_button",
-            offsetX: 160,
+            offsetX: 200,
             offsetY: -90,
             callback: function()
                     {
@@ -2265,24 +2320,19 @@ showModal3:function() {
                     }
         },
         {
-          type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite120',
-          offsetX : 90,
-          offsetY: 30,
-          callback: function()
-          {
-            reg.modal.hideModal("modal1");
-                      }
+          
+          type : "text",
+           content: "आगे बढ़ने के लिए टैब को बंद करें|",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 15,
+          align: "left",
+          color: "0xFF0000",
+
 
         },
-         {
-          type : 'sprite',
-          atlasParent: 'modals11',
-          content: 'sprite12',  
-          offsetX : 20,
-          offsetY:  - 140,
-        },
+       
 
           ]
         

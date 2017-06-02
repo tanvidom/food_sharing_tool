@@ -8,6 +8,7 @@
  var instruction_board;
  var instruction_text;
  var tray;
+ var submit_buttom;
  var packets_text = [];
  var cake_num;
  var cake_no;
@@ -198,6 +199,20 @@
    
    
 },
+update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false && (/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer2.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
+
   add_glow_to_plates : function()
   {
    
@@ -657,6 +672,7 @@
    },
  reset_function : function()
  {
+  no_of_attempts = 0;
   game.state.start('PlayGame');
  }
 }
@@ -747,7 +763,7 @@
     
 });
       // var text4 = game.add.text(280, 570, 'of the total 12 cakes.',style);
-       var submit_buttom = game.add.button(20,605, 'hindi_buttons1',this.check2_function,this,'hindi_SUBMIT_BUTTON_over','hindi_SUBMIT_BUTTON_normal','hindi_SUBMIT_BUTTON_down');
+       submit_buttom = game.add.button(20,605, 'hindi_buttons1',this.check2_function,this,'hindi_SUBMIT_BUTTON_over','hindi_SUBMIT_BUTTON_normal','hindi_SUBMIT_BUTTON_down');
 //text1.wordWrap = true;
        //text1.wordWrapWidth = 800;
 
@@ -757,6 +773,19 @@
           game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
     
           }, */
+          update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer3.value)) == false)
+  {
+            submit_buttom.tint = 0x666677;
+            submit_buttom.inputEnabled = false;
+        }
+        else
+        {
+          submit_buttom.tint = 0xffffff;
+           submit_buttom.inputEnabled = true;
+        }
+},
       check2_function : function()
       {
         no_of_attempts1 = no_of_attempts1 + 1;
@@ -801,16 +830,15 @@
                     }
         },
         {
-          type : 'button',
-          atlasParent: 'hindi_buttons1',
-          content: 'hindi_OK_BUTTON_normal',
-          offsetX : 120,
-          offsetY: 50,
-          callback: function()
-          {
-           //not decided yet
-           reg.modal.hideModal("modal1");
-          }
+          
+           type : "text",
+           content: "आगे बढ़ने के लिए टैब को बंद करें|",
+          offsetX : 0,
+          offsetY: 45,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
 
         }, 
          {
@@ -842,18 +870,17 @@
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }},
-        {
-          type : "button",
-          atlasParent: "hindi_buttons1",
-          content: 'hindi_OK_BUTTON_normal',
-          offsetX : 120,
-          offsetY: 45,
-          callback: function()
-          {
-            reg.modal.hideModal("modal2");
-          }
+          {          
+          type : "text",
+           content: "आगे बढ़ने के लिए टैब को बंद करें|",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
 
-        },
+         },
         {
           type : 'sprite',
           atlasParent: 'answerscreens',

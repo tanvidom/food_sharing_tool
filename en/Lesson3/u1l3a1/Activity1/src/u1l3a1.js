@@ -197,6 +197,19 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
 
   },
+  update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
     createModals: function() {
 
      reg.modal.createModal({
@@ -752,6 +765,7 @@ help_function : function()
     },
 reset_function : function()
   {
+     count_no_of_attempts = 0; 
   game.state.start('PlayGame');
   }
  
@@ -927,17 +941,15 @@ reset_function : function()
                     }
         },
         {
-          type : "sprite",
-          atlasParent: "buttons",
-          content: "NEXT_BUTTON_NORMAL",
-          offsetX : 190,
-          offsetY: 65,
-          callback: function()
-          {
-            console.log('next acivity');
-            //game.state.start('advice_stage');
-          }
-
+          
+           type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
         },
         {
           type : 'sprite',
@@ -969,15 +981,15 @@ reset_function : function()
                     }
         },
         {
-          type : "sprite",
-          atlasParent: "buttons",
-          content: "NEXT_BUTTON_NORMAL",
-          offsetX : 150,
-          offsetY: 20,
-          callback: function()
-          {
-            reg.modal.hideModal("modal3");
-          }
+
+           type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
 
         },
          {

@@ -174,6 +174,16 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       rotis[k].weight=0.3333333333333333;
       rotis[k].number = k;
       rotis[k].originalPosition = rotis[k].position.clone();
+      tips[k-8] = new Phasetips(game,{
+        targetObject: rotis[k],
+        font : 'fractionfont', //can be any phaser object (sprite, group, text, image, etc...)
+        context: "1/3",
+        height : 20,
+        weight : 20,
+        strokeColor: 0xff0000, // red stroke
+        position: "top" 
+        });
+
     }
     //question text
     question_text_lower = game.add.text(22,552,'How many parathas are required for the 9 workers in Group B?',style);
@@ -201,6 +211,19 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
 
   },
+  update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
     createModals: function() {
 
      reg.modal.createModal({
@@ -756,6 +779,7 @@ help_function : function()
     },
 reset_function : function()
   {
+     count_no_of_attempts = 0; 
   game.state.start('PlayGame');
   }
  
@@ -883,16 +907,14 @@ reset_function : function()
                     }
         },
         {
-          type : "sprite",
-          atlasParent: "buttons",
-          content: "NEXT_BUTTON_NORMAL",
-          offsetX : 130,
-          offsetY: 30,
-          callback: function()
-          {
-         
-            game.state.start('advice_stage');
-          }
+           type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
 
         },
         {
@@ -925,15 +947,14 @@ reset_function : function()
                     }
         },
         {
-          type : "sprite",
-          atlasParent: "buttons",
-          content: "NEXT_BUTTON_NORMAL",
-          offsetX : 100,
-          offsetY: 20,
-          callback: function()
-          {
-            reg.modal.hideModal("modal3");
-          }
+           type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
 
         },
          {

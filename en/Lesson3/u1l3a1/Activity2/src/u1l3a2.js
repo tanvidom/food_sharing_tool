@@ -96,7 +96,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     var instruction_text2 = game.add.text(110,28,"1. Use the​ Grouping Tool​ to divide the workers in Group B into a maximum of 3 sub-groups.",style2);
     var instruction_text3 = game.add.text(110,45,"2. Distribute the available parathas such that each sub-group gets the same share as the workers in Group A.",style2);
     var instruction_text4 = game.add.text(110,62,"3. Calculate the total share of Group B",style2);
-    var click_to_image = game.add.image(15,109,'q2');
+    var click_to_image = game.add.image(15,95,'q2');
     click_to_image.scale.setTo(0.9,0.9);
     var click_to_button = game.add.button(22,170,'lesson3',this.click_button,this,'click_to_enlarge_button_up','click_to_enlarge_button_normal','click_to_enlarge_button_normal');
     var help_button = game.add.button(740,2,'buttons',this.help_function,this,'HELP_normal','HELP_normal','HELP_mouse_over');
@@ -172,6 +172,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       rotis[k].weight=0.25;
       rotis[k].number = k;
       rotis[k].originalPosition = rotis[k].position.clone();
+      tips[k-12] = new Phasetips(game,{
+        targetObject: rotis[k],
+        font : 'fractionfont', //can be any phaser object (sprite, group, text, image, etc...)
+        context: '1/4',
+        height : 20,
+        weight : 20,
+        strokeColor: 0xff0000, // red stroke
+        position: "top" 
+        });
     }
     //question text
     question_text_lower = game.add.text(22,552,'How many parathas are required for the 10 workers in Group B?',style);
@@ -199,6 +208,19 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
 
   },
+  update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
     createModals: function() {
 
      reg.modal.createModal({
@@ -714,6 +736,7 @@ help_function : function()
     },
 reset_function : function()
   {
+     count_no_of_attempts = 0; 
   game.state.start('PlayGame');
   }
  
@@ -852,17 +875,15 @@ reset_function : function()
                     }
         },
         {
-          type : "sprite",
-          atlasParent: "buttons",
-          content: "NEXT_BUTTON_NORMAL",
-          offsetX : 150,
-          offsetY: 30,
-          callback: function()
-          {
-            reg.modal.hideModal("modal2");
-            //game.state.start('advice_stage');
-          }
-
+         
+           type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
         },
         {
           type : 'sprite',
@@ -894,15 +915,15 @@ reset_function : function()
                     }
         },
         {
-          type : "sprite",
-          atlasParent: "buttons",
-          content: "NEXT_BUTTON_NORMAL",
-          offsetX : 150,
-          offsetY: 20,
-          callback: function()
-          {
-            reg.modal.hideModal("modal3");
-          }
+          
+           type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
 
         },
          {

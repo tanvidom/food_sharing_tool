@@ -538,7 +538,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(106,65,0,0);
+    rect[i+1].body.setSize(108,70,0,0);
     }
     else
     {
@@ -547,7 +547,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(106,65,0,0);
+    rect[i+1].body.setSize(108,70,0,0);
     }
    }
    
@@ -608,6 +608,19 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
    
   },
+  update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
     linkofdemo_function : function()
   {
     console.log('hi');
@@ -1358,6 +1371,7 @@ showModal8 : function()
 },
   reset_function : function()
   {
+    count_no_of_attempts = 0;
   game.state.start('a1_p2');
   }
   }
@@ -1504,6 +1518,7 @@ showModal8 : function()
   {
     reg.modal = new gameModal(game);
         this.createModals(); 
+        count_no_of_attempts =0;
    background = game.add.sprite(0,0,'back');
   var upper = game.add.sprite(70,0,'top');
   var lower = game.add.sprite(0,500,'lower');
@@ -1538,7 +1553,7 @@ showModal8 : function()
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(106,65,0,0);
+    rect[i+1].body.setSize(108,70,0,0);
     }
     else
     {
@@ -1547,7 +1562,7 @@ showModal8 : function()
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(106,65,0,0);
+    rect[i+1].body.setSize(108,70,0,0);
     }
    }
    
@@ -1608,6 +1623,19 @@ showModal8 : function()
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
    
   },
+  update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
   cutting_function : function(item)
   {
    for(var i=0; i<parathas1.length; i++)
@@ -2344,6 +2372,7 @@ showModal8 : function()
 },
   reset_function : function()
   {
+    count_no_of_attempts = 0;
   game.state.start('a1_p4');
   }
 
@@ -2740,15 +2769,14 @@ showModal3:function() {
                     }
         },
         {
-          type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite120',
-          offsetX : 90,
-          offsetY: 30,
-          callback: function()
-          {
-            reg.modal.hideModal("modal1");
-                      }
+               type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
 
         },
          {

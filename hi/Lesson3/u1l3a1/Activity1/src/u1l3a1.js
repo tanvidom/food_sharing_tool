@@ -70,6 +70,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.image('largepop','assets/ONLY_LARGE_POP_UP.png');
     game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
     game.load.image('close_button','assets/close_button_normal.png');
+     game.load.atlasJSONHash('hindisprites','assets/spritesheet_l3a1_hi.png','assets/sprites_l3a1_hi.json');
+     game.load.atlasJSONHash('hindi_buttons8','assets/hindi_buttons8.png','assets/hindi_buttons8.json');
+     game.add.audio
     
 
   },
@@ -86,18 +89,18 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     worker_set.scale.setTo(1,0.9);
     
     //background.scale.setTo(1,0.99);
-    var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+    var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     question_text_upper = game.add.text(50,6,'जमुनी को गणना करने में मदद करें कि समूह B के मजदूरों को कितने पराठे दिए जाने चाहिए कि उन्हें समूह A के मजदूरों के समान हिस्सा मिले। ',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 800;
-    var style2 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    var style2 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text2 = game.add.text(110,29,"1.  समूह B में मजदूरों को अधिकतम 3 उपसमूहों में बाँटने के लिए ग्रुपिंग टूल का उपयोग करें |",style2);
     var instruction_text3 = game.add.text(110,46,"2. उपलब्ध पराठों को इस प्रकार वितरित करें कि प्रत्येक उपसमूह को उतना ही हिस्सा मिले जितना कि समूह A में मजदूरों को मिला है। ",style2);
     var instruction_text4 = game.add.text(110,63,"3. समूह B के कुल हिस्से की गणना करें।",style2);
     var click_to_image = game.add.sprite(15,109,'lesson3','click_to_enlarge_image');
     click_to_image.scale.setTo(1.05,1.05);
     var click_to_button = game.add.button(22,170,'lesson3',this.click_button,this,'click_to_enlarge_button_up','click_to_enlarge_button_normal','click_to_enlarge_button_normal');
-    var help_button = game.add.button(740,2,'buttons',this.help_function,this,'HELP_normal','HELP_normal','HELP_mouse_over');
+    var help_button = game.add.button(740,2,'hindi_buttons8',this.help_function,this,'hindi_HELP_OVER','hindi_HELP_NORMAL','hindi_HELP_OVER');
     help_button.scale.setTo(0.8,0.7);
     groups[0] = game.add.sprite(298,103,'lesson3','B1_worker_bg');
     groups[1] = game.add.sprite(298,245,'lesson3','B2_worker_bg');
@@ -175,7 +178,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     question_text_lower = game.add.text(22,552,'समूह B में 12 मजदूरों के लिए कितने पराठे चाहिए?',style);
      instruction_text_lower = game.add.text(22,574,'अपना उत्तर पूर्ण संख्या या भिन्न के रूप में एंटर करें और अपने उत्तर की जांच के  लिए                पर क्लिक करें|',style2);
      style3 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-     instruction_text_lower1 = game.add.text(380,574,'बाँट दिया',style3);
+     instruction_text_lower1 = game.add.text(420,574,'बाँट दिया',style3);
      input_answer = game.add.inputField(22, 600, {
     font: '11px Arial',
     fill: '#212121',
@@ -189,14 +192,27 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     
 });
      var parathas_text = game.add.text(95,605,'पराठे |',style);
-     sharing_done_btn = game.add.button(180,600,'buttons',this.sharing_done_function,this,'SHARING_BUTTON_MOUSE_OVER','SHARING_BUTTON_NORMAL','SHARING_BUTTON_MOUSE_DOWN');
-     reset_btn = game.add.button(300,600,'buttons',this.reset_function,this,'RESET_BUTTON_MOUSE_DOWN','RESET_BUTTON_NORMAL','RESET_BUTTON_MOUSE_OVER');
+     sharing_done_btn = game.add.button(180,600,'hindi_buttons8',this.sharing_done_function,this,'hindi_SHARING_BUTTON_over','hindi_SHARING_BUTTON_normal','hindi_SHARING_BUTTON_down');
+     reset_btn = game.add.button(300,600,'hindi_buttons8',this.reset_function,this,'hindi_RESET_BUTTON_over','hindi_RESET_BUTTON_normal','hindi_RESET_BUTTON_down');
      sharing_done_btn.scale.setTo(0.85,0.85);
      sharing_done_btn.inputEnabled = false;
      reset_btn.scale.setTo(0.85,0.85);
 
 
   },
+  update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
     createModals: function() {
 
      reg.modal.createModal({
@@ -216,11 +232,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      reg.modal.createModal({
         type: "modal2",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite3'
+            atlasParent :'hindisprites',
+            content : 'sprite7'
 
 
           },
@@ -228,17 +244,17 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
             type: "image",
             content: "close_button",
             offsetX: 195,
-            offsetY: -83,
+            offsetY: -86,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }
         },
         {
           type : "sprite",
-          atlasParent: "buttons",
-          content: "NEXT_BUTTON_NORMAL",
-          offsetX : 120,
-          offsetY: 27,
+          atlasParent: "hindi_buttons8",
+          content: "hindi_NEXT_BUTTON_over",
+          offsetX : 130,
+          offsetY: 35,
           callback: function()
           {
             game.state.start('advice_stage');
@@ -257,10 +273,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           reg.modal.createModal({
         type: "modal3",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
+            atlasParent :'hindisprites',
             content : 'sprite9'
 
 
@@ -276,8 +292,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : "sprite",
-          atlasParent: "buttons",
-          content: "NEXT_BUTTON_NORMAL",
+          atlasParent: "hindi_buttons8",
+          content: "hindi_NEXT_BUTTON_over",
           offsetX : 120,
           offsetY: 20,
           callback: function()
@@ -290,10 +306,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
            reg.modal.createModal({
         type: "modal4",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
+            atlasParent :'hindisprites',
             content : 'sprite1'
 
 
@@ -309,8 +325,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'buttons',
-          content: 'TRY_AGAIN_BUTTON_NORMAL',
+          atlasParent: 'hindi_buttons8',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -331,11 +347,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
             reg.modal.createModal({
         type: "modal5",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite7'
+            atlasParent :'hindisprites',
+            content : 'sprite2'
 
 
           },
@@ -351,8 +367,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'buttons',
-          content: 'TRY_AGAIN_BUTTON_NORMAL',
+          atlasParent: 'hindi_buttons8',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 90,
           offsetY: 30,
           callback: function()
@@ -374,11 +390,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
              reg.modal.createModal({
         type: "modal6",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite4'
+            atlasParent :'hindisprites',
+            content : 'sprite8'
 
 
           },
@@ -393,8 +409,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'buttons',
-          content: 'TRY_AGAIN_BUTTON_NORMAL',
+          atlasParent: 'hindi_buttons8',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 120,
           offsetY: 35,
           callback: function()
@@ -415,11 +431,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         reg.modal.createModal({
         type: "modal7",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite5'
+            atlasParent :'hindisprites',
+            content : 'sprite10'
 
 
           },
@@ -434,8 +450,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'buttons',
-          content: 'TRY_AGAIN_BUTTON_NORMAL',
+          atlasParent: 'hindi_buttons8',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 120,
           offsetY: 30,
           callback: function()
@@ -456,11 +472,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
            reg.modal.createModal({
         type: "modal8",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite6'
+            atlasParent :'hindisprites',
+            content : 'sprite9'
 
 
           },
@@ -475,8 +491,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'buttons',
-          content: 'TRY_AGAIN_BUTTON_NORMAL',
+          atlasParent: 'hindi_buttons8',
+          content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 105,
           offsetY: 26,
           callback: function()
@@ -752,6 +768,8 @@ help_function : function()
     },
 reset_function : function()
   {
+    console.log('count attempts' + count_no_of_attempts);
+  count_no_of_attempts = 0; 
   game.state.start('PlayGame');
   }
  
@@ -775,7 +793,7 @@ reset_function : function()
         video.play(true);
         var sprite = video.addToWorld(0,30,0,0);
         var style2 = { font: "bold 14px tahoma", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-        var back_text = game.add.text(700,5,'BACK',style2);
+        var back_text = game.add.text(700,5,'वापस',style2);
         back_text.inputEnabled = true;
         console.log(video.loop);
         
@@ -823,6 +841,8 @@ reset_function : function()
     game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
+       game.load.atlasJSONHash('hindisprites','assets/spritesheet_l3a1_hi.png','assets/sprites_l3a1_hi.json');
+     game.load.atlasJSONHash('hindi_buttons8','assets/hindi_buttons8.png','assets/hindi_buttons8.json');
 
   },
   create : function()
@@ -830,23 +850,23 @@ reset_function : function()
     reg.modal = new gameModal(game);
         this.createModals();
     background = game.add.sprite(0,0,'advice','BACKGROUND');
-    var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(93,7,'जामुनी और उसके दोस्त इसी तरह समस्या का हल निकलने की कोशिश कर रहे हैं|  यदि समूह A में 4 मजदूरों के लिए 3 पराठे पर्याप्त हैं, तो समूह B के 16 मजदूरों के लिए कितने पराठे चाहिए, जिससे उन्हें समूह A के समान हिस्सा मिल जाए?',style);
+    var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
+    question_text_upper = game.add.text(93,5,'जामुनी और उसके दोस्त इसी तरह समस्या का हल निकलने की कोशिश कर रहे हैं|  यदि समूह A में 4 मजदूरों के लिए 3 पराठे पर्याप्त हैं, तो समूह B के 16 मजदूरों के लिए कितने पराठे चाहिए, जिससे उन्हें समूह A के समान हिस्सा मिल जाए?',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 605;
     question_text_upper.lineSpacing = -3;
-    var style2 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    var style2 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text1 = game.add.text(120,47,"लीना और अमन  के इस बारे में अलग-अलग विचार हैं| उनके विचार जानने के लिए कर दिया पर बारी-बारी से क्लिक करें। ",style2);
     var jamuni_advice = game.add.sprite(315,103,'advice','JAMUNI');
     var aman_advice = game.add.sprite(69,168,'advice','AMAN');
     var leena_advice = game.add.sprite(487,167,'advice','LEENA');
-    var button1 = game.add.button(72,444,'advice',this.showModal4,this,'MOUSE_OVER','NORMAL','MOUSE_DOWN');
-    var button2 = game.add.button(487,444,'advice',this.showModal5,this,'MOUSE_OVER_1','NORMAL_1','MOUSE_DOWN_1');
-    question_text_lower = game.add.text(54,537,'इस समस्या का हल पाने के लिए जामुनी किसकी सलाह माने?',style);
-    var instruction_text2 = game.add.text(57,555,'नीचे दिए गए विकल्पों में से एक को चुनें और            पर क्लिक करें|',style2);
+    var button1 = game.add.button(72,444,'hindi_buttons8',this.showModal4,this,'HINDI_AMAN_ADVICE_ELEMENTS_OVER','HINDI_AMAN_ADVICE_ELEMENTS_NORMAL','HINDI_AMAN_ADVICE_ELEMENTS_DOWN');
+    var button2 = game.add.button(487,444,'hindi_buttons8',this.showModal5,this,'LEENA_ADVICE_ELEMENTS_OVER','LEENA_ADVICE_ELEMENTSNORMAL','LEENA_ADVICE_ELEMENTS_DOWN');
+    question_text_lower = game.add.text(54,533,'इस समस्या का हल पाने के लिए जामुनी किसकी सलाह माने?',style);
+    var instruction_text2 = game.add.text(57,555,'नीचे दिए गए विकल्पों में से एक को चुनें और                पर क्लिक करें|',style2);
     
-    style3 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text3 = game.add.text(279,555,'उत्तर जाँचें',style3);
+    style3 = { font: "bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
+    var instruction_text3 = game.add.text(265,555,'उत्तर जाँचें',style3);
     radio_buttons[0] = game.add.sprite(53,575,'advice','radio-highlighted');
     radio_texts[0] = game.add.text(72,578,'अमन',style);
     radio_texts[1] = game.add.text(144,578,'लीना',style);
@@ -863,7 +883,7 @@ reset_function : function()
      radio_buttons[i].scale.setTo(0.5, 0.5);
      radio_buttons.selectedcheck = false;
     }
-     done_button = game.add.button(54,610,'advice',this.done_Action,this,'DONE_BUTTON_MOUSE_OVER','DONE_NORMAL_normal','DONE_BUTTON_MOUSE_DOWN');
+     done_button = game.add.button(54,610,'hindi_buttons8',this.done_Action,this,'HINDI_DONE_OVER','HINDI_DONE_normal','HINDI_DONE_DOWN');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
     
@@ -912,31 +932,30 @@ reset_function : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite11'
+            atlasParent :'hindisprites',
+            content : 'sprite4'
 
 
           },
           {
             type: "image",
             content: "close_button",
-            offsetX: 268,
-            offsetY: -140,
+            offsetX: 200,
+            offsetY: -85,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }
         },
         {
-          type : "sprite",
-          atlasParent: "buttons",
-          content: "NEXT_BUTTON_NORMAL",
-          offsetX : 190,
-          offsetY: 65,
-          callback: function()
-          {
-            console.log('next acivity');
-            //game.state.start('advice_stage');
-          }
+          type : "text",
+           content: "आगे बढ़ने के लिए टैब को बंद करें|",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
+
 
         },
         {
@@ -951,11 +970,11 @@ reset_function : function()
           reg.modal.createModal({
         type: "modal3",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite10'
+            atlasParent :'hindisprites',
+            content : 'sprite3'
 
 
           },
@@ -969,15 +988,19 @@ reset_function : function()
                     }
         },
         {
-          type : "sprite",
-          atlasParent: "buttons",
-          content: "NEXT_BUTTON_NORMAL",
-          offsetX : 150,
-          offsetY: 20,
-          callback: function()
+          type : "text",
+          //atlasParent: "h,
+          content: "आगे बढ़ने के लिए टैब को बंद करें|",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
+          /*callback: function()
           {
             reg.modal.hideModal("modal3");
-          }
+          }*/
 
         },
          {
@@ -994,8 +1017,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'advice',
-            content : 'AMAN_ADVICE'
+            atlasParent :'hindisprites',
+            content : 'l3a1_aman'
 
 
           },
@@ -1003,18 +1026,18 @@ reset_function : function()
             type: 'button',
             atlasParent :'advice',
             content: 'ADVICE_POP_UP_CLOSE_BUTTOn_NORMAL',
-            offsetX: 280,
-            offsetY: -250,
+            offsetX: 340,
+            offsetY: -309,
             callback: function(){
                       reg.modal.hideModal("modal4");
                     }
         },
         {
           type : 'sprite',
-          atlasParent: 'advice',
-          content: 'OK_BUTTON_NORMAL',
-          offsetX : 50,
-          offsetY: 230,
+          atlasParent: 'hindi_buttons8',
+          content: 'HINDI_DONE_OVER',
+          offsetX : 11,
+          offsetY: 273,
           callback: function()
           {
             reg.modal.hideModal("modal4");
@@ -1028,8 +1051,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'advice',
-            content : 'LEENA_ADVICE'
+            atlasParent :'hindisprites',
+            content : 'l3a1_leena'
 
 
           },
@@ -1037,8 +1060,8 @@ reset_function : function()
             type: 'button',
             atlasParent : 'advice',
             content: 'ADVICE_POP_UP_CLOSE_BUTTOn_NORMAL',
-            offsetX: 332,
-            offsetY: -310,
+            offsetX: 305,
+            offsetY: -300,
             callback: function(){
                       reg.modal.hideModal("modal5");
                       
@@ -1046,10 +1069,10 @@ reset_function : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'advice',
-          content: 'OK_BUTTON_NORMAL',
-          offsetX : 50,
-          offsetY: 230,
+          atlasParent: 'hindi_buttons8',
+          content: 'HINDI_DONE_OVER',
+          offsetX : 35,
+          offsetY: 250,
           callback: function()
           {
             reg.modal.hideModal("modal5");

@@ -163,7 +163,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           offsetY: 30,
           callback: function()
           {
-            game.state.start('question_two');
+            game.state.start('a1_p1');
           }
 
         },
@@ -184,7 +184,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     } 
     else if(radio_buttons[1].selectedcheck == true)
     {
-      game.state.start('a1_p1');
+      game.state.start('question_two');
       
     } 
   },
@@ -299,6 +299,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
    game.load.webfont('tahoma','Tahoma');
    game.load.image('top','assets/top.png');
+    game.load.atlasJSONHash('workers','assets/workers.png','assets/workers.json');
   },
   create : function()
   {
@@ -602,6 +603,19 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
    
   },
+   update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
   workers_stopDrag : function(item)
   {
     worker_check_on_group = [];
@@ -1167,6 +1181,7 @@ showModal8 : function()
 },
   reset_function : function()
   {
+    count_no_of_attempts = 0;
   game.state.start('a1_p2');
   }
   }
@@ -1250,7 +1265,7 @@ showModal8 : function()
   },
   preload : function()
   {
-    //game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
+    game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
     game.load.atlasJSONHash('modals','assets/l2a2_modals.png','assets/l2a2_modals.json');
     game.load.atlasJSONHash('workers','assets/workers.png','assets/workers.json');
      game.load.image('close_button','assets/close_button_normal.png');
@@ -1396,6 +1411,19 @@ showModal8 : function()
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
    
   },
+   update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
   workers_stopDrag : function(item)
   {
    worker_check_on_group = [];
@@ -1917,6 +1945,7 @@ showModal8 : function()
 },
   reset_function : function()
   {
+    count_no_of_attempts_1 = 0;
   game.state.start('a1_p4');
   }
   }
@@ -2206,11 +2235,13 @@ showModal3:function() {
       
        preload : function()
       {
-       game.load.image('answer2','assets/last_q_2.png');
+       game.load.image('answer2','assets/last_q_1.png');
        game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
        game.load.image('lower','assets/lower.png');
        game.add.plugin(PhaserInput.Plugin);
        game.load.image('close_button','assets/close_button_normal.png');
+       game.load.atlasJSONHash('sprite111', 'assets/l2a2_final.png', 'assets/l2a2_final.json');
+       game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
 
       },
       create : function()
@@ -2265,16 +2296,14 @@ showModal3:function() {
                     }
         },
         {
-          type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite120',
-          offsetX : 90,
-          offsetY: 30,
-          callback: function()
-          {
-            reg.modal.hideModal("modal1");
-                      }
-
+          type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
         },
          {
           type : 'sprite',

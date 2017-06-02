@@ -99,7 +99,7 @@
    { 
          rect[k] = game.add.sprite(plates[i].x,plates[i].y,null);
          game.physics.enable(rect[k], Phaser.Physics.ARCADE);
-         rect[k].body.setSize(110,76,0,0);
+         rect[k].body.setSize(111,80,0,0);
          console.log(rect[k]);
          //rect[k].loadTexture('example','sprite1');
          k++;
@@ -188,6 +188,19 @@
 });
    
    
+},
+update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
 },
 /*render : function()
          { 
@@ -497,15 +510,14 @@
                     }
         },
         {
-          type : "button",
-          atlasParent: "answerscreens",
-          content: 'NEXT_BUTTON_NORMAL',
-          offsetX : 90,
-          offsetY: 30,
-          callback: function()
-          {
-            reg.modal.hideModal("modal1");
-          }
+          type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
 
         }, 
          {
@@ -830,6 +842,7 @@ showModal8:function() {
  },
  reset_function : function()
  {
+  count_no_of_attempts = 0;
   game.state.start('PlayGame')
  },
  startDrag_1 : function(item)

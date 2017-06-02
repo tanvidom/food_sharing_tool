@@ -198,6 +198,19 @@
    
    
 },
+update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false && (/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer2.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
   add_glow_to_plates : function()
   {
    
@@ -709,6 +722,7 @@
  
  reset_function : function()
  {
+  no_of_attempts = 0;
   game.state.start('PlayGame');
  }
 }
@@ -829,6 +843,20 @@ var answerScreen = function(game){}
 });
 
       },
+
+      update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer3.value)) == false && (/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer4.value)) == false)
+  {
+            submit_buttom.tint = 0x666677;
+            submit_buttom.inputEnabled = false;
+        }
+        else
+        {
+          submit_buttom.tint = 0xffffff;
+           submit_buttom.inputEnabled = true;
+        }
+},
         help_function : function()
    {
     window.open("../u1l1a4/assets/fraction-chart_copywrite.png");
@@ -1017,16 +1045,14 @@ var answerScreen = function(game){}
                       reg.modal.hideModal("modal4");
                     }},
         {
-          type : "button",
-          atlasParent: "hindi_buttons3",
-          content: 'hindi_NEXT_BUTTON_normal',
-          offsetX : 120,
-          offsetY: 70,
-          callback: function()
-          {
-            reg.modal.hideModal("modal4");
-          }
-
+           type : "text",
+           content: "आगे बढ़ने के लिए टैब को बंद करें|",
+          offsetX : 0,
+          offsetY: 65,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
         },
         {
           type : 'sprite',
@@ -1056,18 +1082,17 @@ var answerScreen = function(game){}
                       reg.modal.hideModal("modal5");
                     }
         },
-       /* {
-          type : "button",
-          atlasParent: "hindi_buttons3",
-          content: 'hindi_OK_BUTTON_down',
-          offsetX : 300,
-          offsetY: 60,
-          callback: function()  
-          {
-           reg.modal.hideModal('modal5');
-          }
+       {
+         type : "text",
+           content: "आगे बढ़ने के लिए टैब को बंद करें|",
+          offsetX : 0,
+          offsetY: 86,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
 
-        }, */
+        }, 
          {
           type : 'sprite',
           atlasParent: 'answerscreens',
@@ -1082,22 +1107,27 @@ var answerScreen = function(game){}
   }, 
   showModal1:function() 
    {
+     console.log('1');
     reg.modal.showModal("modal1");
    },
    showModal2: function()
    {
+    console.log('2');
     reg.modal.showModal("modal2");
    },
    showModal3 : function()
    {
+    console.log('3');
     reg.modal.showModal("modal3");
    },
    showModal4 : function()
    {
+    console.log('4');
     reg.modal.showModal("modal4");
    },
    showModal5 : function()
    {
+    console.log('5');
     reg.modal.showModal("modal5");
    }
    /*render : function()

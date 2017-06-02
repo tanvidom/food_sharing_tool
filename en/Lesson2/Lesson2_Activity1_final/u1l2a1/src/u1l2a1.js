@@ -492,7 +492,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(106,65,0,0);
+    rect[i+1].body.setSize(108,70,0,0);
     }
     else
     {
@@ -501,7 +501,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(106,65,0,0);
+    rect[i+1].body.setSize(108,70,0,0);
     }
    }
    
@@ -562,6 +562,19 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
    
   },
+   update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
    linkofdemo_function : function()
   {
      game.state.start('videoScreen');
@@ -1320,6 +1333,7 @@ showModal8 : function()
 },
   reset_function : function()
   {
+    count_no_of_attempts = 0;
   game.state.start('a1_p2');
   }
   }
@@ -1568,6 +1582,19 @@ showModal8 : function()
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
    
   },
+   update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
   cutting_function : function(item)
   {
    for(var i=0; i<parathas1.length; i++)
@@ -2269,7 +2296,8 @@ showModal8 : function()
     }
     else if(l==6 && input_answer1.value == '0.8333')
     {
-      console.log('correct answer but please enter fractional value in textbox');
+      this.showModal1();
+      
     }
     else if( l==6 && input_answer1.value!=='5/6')
     {   
@@ -2304,7 +2332,8 @@ showModal8 : function()
 },
   reset_function : function()
   {
-  game.state.start('a1_p5');
+    count_no_of_attempts_1 = 0;
+  game.state.start('a1_p4');
   }
 
   }
@@ -2640,6 +2669,8 @@ showModal3:function() {
        game.load.image('lower','assets/lower.png');
        game.add.plugin(PhaserInput.Plugin);
        game.load.image('close_button','assets/close_button_normal.png');
+       game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
+       game.load.atlasJSONHash('sprite111', 'assets/spritesheet.png', 'assets/sprites.json');
 
       },
       create : function()
@@ -2694,15 +2725,15 @@ showModal3:function() {
                     }
         },
         {
-          type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite120',
-          offsetX : 90,
-          offsetY: 30,
-          callback: function()
-          {
-            reg.modal.hideModal("modal1");
-                      }
+           type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
+
 
         },
          {

@@ -619,6 +619,19 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
    
   },
+  update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
   workers_stopDrag : function(item)
   {
 
@@ -1185,6 +1198,7 @@ showModal8 : function()
 },
   reset_function : function()
   {
+    count_no_of_attempts_1 = 0;
   game.state.start('a1_p2');
   }
   }
@@ -1402,6 +1416,19 @@ showModal8 : function()
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
    
   },
+  update : function()
+{
+  if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer1.value)) == false)
+  {
+            sharing_done_btn.tint = 0x666677;
+            sharing_done_btn.inputEnabled = false;
+        }
+        else
+        {
+          sharing_done_btn.tint = 0xffffff;
+           sharing_done_btn.inputEnabled = true;
+        }
+},
   workers_stopDrag : function(item)
   {
     var worker_no_1 = item.number;
@@ -1972,6 +1999,7 @@ showModal8 : function()
 },
   reset_function : function()
   {
+    count_no_of_attempts_2 = 0;
   game.state.start('a1_p4');
   }
   }
@@ -2264,6 +2292,8 @@ showModal3:function() {
        game.load.image('lower','assets/lower.png');
        game.add.plugin(PhaserInput.Plugin);
        game.load.image('close_button','assets/close_button_normal.png');
+       game.load.atlasJSONHash('sprite111', 'assets/l2a4_final.png', 'assets/l2a4_final.json');
+       game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
 
       },
       create : function()
@@ -2318,15 +2348,14 @@ showModal3:function() {
                     }
         },
         {
-          type : 'sprite',
-          atlasParent: 'lesson2',
-          content: 'sprite120',
-          offsetX : 90,
-          offsetY: 30,
-          callback: function()
-          {
-            reg.modal.hideModal("modal1");
-                      }
+          type : "text",
+           content: "Close the tab to proceed.",
+          offsetX : 0,
+          offsetY: 40,
+          fontFamily: "Arial",
+          fontSize: 16,
+          align: "left",
+          color: "0xFF0000",
 
         },
          {
