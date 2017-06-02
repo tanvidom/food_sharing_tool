@@ -29,6 +29,9 @@
  var line1;
  var p1 = 0;
  var reg={};
+  var cutting_sound;
+ var yay_sound;
+ var click_sound;
  var help_button;
  var game = new Phaser.Game(800, 640);
  var buttons = ['1_normal','2_normal','3_normal','4_normal','5_normal','6_normal'];
@@ -60,6 +63,9 @@
     game.load.image('OK_BUTTON_NORMAL','assets/OK_BUTTON_NORMAL.png');
     game.load.atlasJSONHash('hindi_buttons','assets/hindi_buttons.png','assets/hindi_buttons.json');
     game.load.atlasJSONHash('hindi_modals','assets/hindi_modals_l1a1_p1.png','assets/hindi_modals_l1a1_p1.json');
+    game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
     //game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
     
    
@@ -68,6 +74,9 @@
   {
     reg.modal = new gameModal(game);
         this.createModals();
+         cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
    background = game.add.sprite(0,0,'background');
    var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(195,10,'4 बच्चों में 3 केक निष्पक्ष रूप से बाँटने में जामुनी की मदद करें।',style);
@@ -216,6 +225,7 @@ update : function()
           }, */
   stopDrag : function(item,pointer)
   {
+    click_sound.play('',0,1);
     cake_no = item.number;
     var c =0;
 
@@ -314,7 +324,7 @@ update : function()
   },
   cutting_function : function(item)
   {
-   
+   cutting_sound.play('',0,1);
    for(var i=0; i<cakes.length; i++)
    {
      var check_cake_on_board = game.physics.arcade.overlap(cakes[i],rect[0]);
@@ -535,7 +545,7 @@ update : function()
           type : "text",
            content: "आगे बढ़ने के लिए टैब को बंद करें|",
           offsetX : 0,
-          offsetY: 40,
+          offsetY: 65,
           fontFamily: "Arial",
           fontSize: 15,
           align: "left",
@@ -844,6 +854,7 @@ update : function()
     });      
   }, 
   showModal1:function() {
+     yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
@@ -883,6 +894,7 @@ showModal8 : function()
  },
  stopDrag_1 : function(item)
  {
+  click_sound.play('',0,1);
    var cake_position = item.number;
    var c3 = 0;
    for(var i=1;i<5;i++)

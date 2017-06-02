@@ -54,11 +54,15 @@
    game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
    game.load.atlasJSONHash('hindi_buttons1','assets/hindi_buttons1.png','assets/hindi_buttons1.json');
    game.load.atlasJSONHash('hindi_modals1','assets/hi_modals_l1a2.png','assets/hi_modals_l1a2.json');
+   game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
   },
   create : function()
   {
     reg.modal = new gameModal(game);
         this.createModals();
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
    background = game.add.sprite(0,0,'background');
    var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(120,2,'8 बच्चों को 2 बराबर समूहों में बाँटने में जामुनी की मदद करें। फिर 12 केक निष्पक्ष रूप से 2 समूहों में बाँटे, ताकि प्रत्येक बच्चे को केक का समान हिस्सा मिले। ',style);

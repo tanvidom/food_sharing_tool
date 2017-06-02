@@ -25,6 +25,9 @@
  var sharing_done_btn;
  var reset_btn;
  var input_answer1;
+  var cutting_sound;
+ var yay_sound;
+ var click_sound;
  var input_answer2;
  var input_answer3;
  var linkofdemo;
@@ -52,11 +55,15 @@
    game.load.image('help_link','assets/HELP_LINK.png');
    game.load.atlasJSONHash('atlas5','assets/atlas5.png','assets/atlas5.json');
    game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
+    game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
   },
   create : function()
   {
     reg.modal = new gameModal(game);
         this.createModals();
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
    background = game.add.sprite(0,0,'background');
    var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(120,2,'Help Jamuni divide the 8 children into 2 equal groups and then distribute 12 cakes fairly between the 2 groups so that each child gets an equal share of the cake.',style);
@@ -279,11 +286,13 @@
     },
    startdragcake : function(item)
   {
+    lick_sound.play('',0,1);
     var cake_no1 = item.number;
     cakes[cake_no1].loadTexture('atlas4','sprite57');
   },
   stopDragcake : function(item)
   {
+    lick_sound.play('',0,1);
     var cake_no = item.number; 
     var c2=0;
     var pos2;
@@ -922,6 +931,7 @@
     });  
   }, 
   showModal1:function() {
+    yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
    },
    showModal2: function()

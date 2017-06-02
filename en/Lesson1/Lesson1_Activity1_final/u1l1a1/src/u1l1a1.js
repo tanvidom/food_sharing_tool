@@ -33,6 +33,9 @@
  var game = new Phaser.Game(800, 640);
  var buttons = ['1_normal','2_normal','3_normal','4_normal','5_normal','6_normal'];
  var rect = [];
+ var cutting_sound;
+ var yay_sound;
+ var click_sound;
  var playGame = function(game){}
  playGame.prototype = 
  {
@@ -58,6 +61,9 @@
     game.load.webfont('tahoma','Tahoma');
     game.load.webfont('fractionfont','SansFractionsPlain');
     game.load.image('OK_BUTTON_NORMAL','assets/OK_BUTTON_NORMAL.png');
+    game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
     //game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
     
    
@@ -66,6 +72,9 @@
   {
     reg.modal = new gameModal(game);
         this.createModals();
+        cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
    background = game.add.sprite(0,0,'background');
    var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(185,10,'Help Jamuni distribute 3 cakes fairly among 4 children.',style);
@@ -197,6 +206,7 @@
           }, */
   stopDrag : function(item,pointer)
   {
+    click_sound.play('',0,1);
     cake_no = item.number;
     var c =0;
 
@@ -297,7 +307,7 @@
   },
   cutting_function : function(item)
   {
-   
+   cutting_sound.play('',0,1);
    for(var i=0; i<cakes.length; i++)
    {
      var check_cake_on_board = game.physics.arcade.overlap(cakes[i],rect[0]);
@@ -827,6 +837,7 @@
     });      
   }, 
   showModal1:function() {
+    yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
@@ -866,6 +877,7 @@ showModal8 : function()
  },
  stopDrag_1 : function(item)
  {
+  click_sound.play('',0,1);
    var cake_position = item.number;
     var c3 = 0;
    for(var i=1;i<5;i++)
