@@ -10,6 +10,9 @@
  var tray;
  var video;
  var tips = [];
+  var yay_sound;
+ var click_sound;
+ var sharing_done_btn;
  var count_no_of_attempts = 0;
  var cake_num;
  var cake_no;
@@ -55,6 +58,9 @@
     game.load.webfont('fractionfont','SansFractionsPlain');
     game.load.atlasJSONHash('hindi_buttons2','assets/hindi_buttons2.png','assets/hindi_buttons2.json');
     game.load.atlasJSONHash('hindi_modals2','assets/hi_l1a3_modals.png','assets/hi_l1a3_modals.json');
+     game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
    // game.load.atlasJSONHash('example','assets/spritesheet11.png','assets/sprites11.json');
    
   },
@@ -62,6 +68,9 @@
   {
     reg.modal = new gameModal(game);
         this.createModals();
+        cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
    background = game.add.sprite(0,0,'background');
    var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(185,10,'5 केक 4 बच्चों में निष्पक्ष रूप से बाँटने में जामुनी की मदद करें।',style);
@@ -209,6 +218,7 @@ update : function()
           },*/
   stopDrag : function(item,pointer)
   {
+     click_sound.play('',0,1);
     cake_no = item.number;
     var c =0;
     
@@ -295,7 +305,7 @@ update : function()
   },
   cutting_function : function(item)
   {
-   
+    cutting_sound.play('',0,1);
    for(var i=0; i<cakes.length; i++)
    {
      var check_cake_on_board = game.physics.arcade.overlap(cakes[i],rect[0]);
@@ -819,6 +829,7 @@ update : function()
     reg.modal.showModal("modal5"); // right answer
 },
 showModal1:function() {
+  yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
@@ -850,10 +861,11 @@ showModal8:function() {
  },
  startDrag_1 : function(item)
  {
- 
+ click_sound.play('',0,1);
  },
  stopDrag_1 : function(item)
  {
+  click_sound.play('',0,1);
    var cake_position = item.number;
     var c3 = 0;
 

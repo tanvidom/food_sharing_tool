@@ -22,6 +22,9 @@
  var cakes = [];
  var check = []; 
  var groups = [];
+  var cutting_sound;
+ var yay_sound;
+ var click_sound;
  var sharing_done_btn;
  var reset_btn;
  var input_answer1;
@@ -219,7 +222,7 @@ update : function()
 
   add_glow_to_plates : function()
   {
-   
+      click_sound.play('',0,1);
       groups[0].loadTexture('atlas4','BENCH_A_WITH_GLOW');
       groups[1].loadTexture('atlas4','BENCH_B_WITH_GLOW');
     
@@ -227,6 +230,7 @@ update : function()
   },
   check_grouping : function(item)
   {
+    click_sound.play('',0,1);
     var group_name = ['sprite65','sprite54'];
     var child_no = item.num; 
     var c=0;
@@ -287,11 +291,13 @@ update : function()
     },
    startdragcake : function(item)
   {
+    click_sound.play('',0,1);
     var cake_no1 = item.number;
     cakes[cake_no1].loadTexture('atlas4','sprite57');
   },
   stopDragcake : function(item)
   {
+    click_sound.play('',0,1);
     var cake_no = item.number; 
     var c2=0;
     var pos2;
@@ -568,6 +574,7 @@ update : function()
     });   
   }, 
   showModal1:function() {
+     yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
    },
    showModal2: function()
@@ -933,6 +940,7 @@ update : function()
     });  
   }, 
   showModal1:function() {
+     yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
    },
    showModal2: function()

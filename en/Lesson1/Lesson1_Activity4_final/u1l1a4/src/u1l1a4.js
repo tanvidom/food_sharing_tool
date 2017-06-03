@@ -8,6 +8,9 @@
  var instruction_board;
  var instruction_text;
  var drag_complete;
+  var cutting_sound;
+ var yay_sound;
+ var click_sound;
  var answer_entered;
  var tray;
  var submit_buttom;
@@ -55,12 +58,19 @@
    //game.load.atlasJSONHash('atlas5','assets/atlas5.png','assets/atlas5.json');
    game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
    game.load.atlasJSONHash('popups','assets/spritesheet_a41.png','assets/sprites_a41.json');
+   game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
   },
   create : function()
   {
         reg.modal = new gameModal(game);
         this.createModals();
    background = game.add.sprite(0,0,'background');
+    cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
+
    var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(120,2,'Help Jamuni distribute 12 cakes fairly among 8 children in two unequal groups of 2 and 6 children.',style);
    question_text_lower = game.add.text(22,524,'What is the share of each group?',style);
@@ -210,7 +220,7 @@ update : function()
 
   add_glow_to_plates : function()
   {
-   
+       click_sound.play('',0,1);
       groups[0].loadTexture('atlas4','BENCH_A_WITH_GLOW');
       groups[1].loadTexture('atlas4','BENCH_B_WITH_GLOW');
     
@@ -218,6 +228,7 @@ update : function()
   },
   check_grouping : function(item)
   {
+     click_sound.play('',0,1);
     var group_name = ['sprite65','sprite54'];
     var child_no = item.num; 
     var c=0;
@@ -278,11 +289,13 @@ update : function()
     },
    startdragcake : function(item)
   {
+     click_sound.play('',0,1);
     var cake_no1 = item.number;
     cakes[cake_no1].loadTexture('atlas4','sprite57');
   },
   stopDragcake : function(item)
   {
+     click_sound.play('',0,1);
     //this.showModal3();
     // this.showModal1();
     var cake_no = item.number; 
@@ -425,7 +438,7 @@ update : function()
         {
           type : 'sprite',
           atlasParent: 'atlas4',
-          content: 'sprite40  ',
+          content: 'sprite40',
           offsetX : 110,
           offsetY: 20,
           callback: function()
@@ -608,6 +621,7 @@ update : function()
     });       
   }, 
   showModal1:function() {
+    yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
    },
    showModal2: function()
@@ -783,6 +797,10 @@ var answerScreen = function(game){}
        game.load.image('help_link','assets/HELP_LINK.png');
        game.load.atlasJSONHash('atlas5','assets/spritesheet_a41_part2.png','assets/sprites_a41_part2.json');
        game.load.image('background1','assets/background.png');
+       game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
+
       },
       create : function()
       {
@@ -791,6 +809,10 @@ var answerScreen = function(game){}
         var upper_question = game.add.sprite(80,0,'upper_q');
         //game.stage.backgroundColor = "#D3FEB6"; 
         game.stage.backgroundColor = "#BCED91";
+         cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
+
        //background = game.add.sprite(0,0,'background1');
        var answer_screen1 = game.add.sprite(260,80,'a4');
        help_button = game.add.sprite(730,3,'help_link');
@@ -1114,6 +1136,7 @@ var answerScreen = function(game){}
    },
    showModal4 : function()
    {
+      yay_sound.play('',0,1);
     reg.modal.showModal("modal4");
    },
    showModal5 : function()

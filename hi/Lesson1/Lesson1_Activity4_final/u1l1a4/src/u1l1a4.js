@@ -29,6 +29,9 @@
  var input_answer1;
  var input_answer2;
  var input_answer3;
+  var cutting_sound;
+ var yay_sound;
+ var click_sound;
  var input_answer4;
  var linkofdemo;
  var line1;
@@ -57,12 +60,19 @@
    game.load.atlasJSONHash('popups','assets/spritesheet_a41.png','assets/sprites_a41.json');
        game.load.atlasJSONHash('hindi_buttons3','assets/hindi_buttons3.png','assets/hindi_buttons3.json');
        game.load.atlasJSONHash('hindi_modals3','assets/hi_modals_l1a4.png','assets/hi_modals_l1a4.json');
+       game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
 
   },
   create : function()
   {
         reg.modal = new gameModal(game);
         this.createModals();
+         cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
+
    background = game.add.sprite(0,0,'background');
    var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
    question_text_upper = game.add.text(120,2,'जामुनी को 12 केक 8 बच्चों के दो असमान उपसमूहों में निष्पक्ष रूप से बाँटने में मदद करें, जिनमें 2 और 6 बच्चे हैं ।',style);
@@ -212,7 +222,8 @@ update : function()
         }
 },
   add_glow_to_plates : function()
-  {
+  { 
+     click_sound.play('',0,1);
    
       groups[0].loadTexture('atlas4','BENCH_A_WITH_GLOW');
       groups[1].loadTexture('atlas4','BENCH_B_WITH_GLOW');
@@ -221,6 +232,7 @@ update : function()
   },
   check_grouping : function(item)
   {
+     click_sound.play('',0,1);
     var group_name = ['sprite65','sprite54'];
     var child_no = item.num; 
     var c=0;
@@ -281,11 +293,13 @@ update : function()
     },
    startdragcake : function(item)
   {
+     click_sound.play('',0,1);
     var cake_no1 = item.number;
     cakes[cake_no1].loadTexture('atlas4','sprite57');
   },
   stopDragcake : function(item)
   {
+     click_sound.play('',0,1);
     //this.showModal3();
     // this.showModal1();
     var cake_no = item.number; 
@@ -611,6 +625,7 @@ update : function()
     });       
   }, 
   showModal1:function() {
+    yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
    },
    showModal2: function()
@@ -790,18 +805,29 @@ var answerScreen = function(game){}
        game.load.image('background1','assets/background.png');
        game.load.atlasJSONHash('hindi_modals3','assets/hi_modals_l1a4.png','assets/hi_modals_l1a4.json');
        game.load.atlasJSONHash('hindi_buttons3','assets/hindi_buttons3.png','assets/hindi_buttons3.json');
+       game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
       },
       create : function()
       {
         reg.modal = new gameModal(game);
         this.createModals();
         var upper_question = game.add.sprite(80,0,'upper_q');
+         cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
+
         //game.stage.backgroundColor = "#D3FEB6"; 
         game.stage.backgroundColor = "#BCED91";
        //background = game.add.sprite(0,0,'background1');
        var answer_screen1 = game.add.sprite(260,80,'a4');
        help_button = game.add.sprite(730,3,'hindi_buttons3','hindi_HELP_OVER');
        help_button.inputEnabled = true;
+        cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
+
   //events.onInputDown.add(this.showModal5,this);
        help_button.events.onInputDown.add(this.help_function,this);
         answer_screen1.scale.setTo(0.75, 0.75);
@@ -1108,6 +1134,7 @@ var answerScreen = function(game){}
   showModal1:function() 
    {
      console.log('1');
+     yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
    },
    showModal2: function()
@@ -1123,6 +1150,7 @@ var answerScreen = function(game){}
    showModal4 : function()
    {
     console.log('4');
+      yay_sound.play('',0,1);
     reg.modal.showModal("modal4");
    },
    showModal5 : function()

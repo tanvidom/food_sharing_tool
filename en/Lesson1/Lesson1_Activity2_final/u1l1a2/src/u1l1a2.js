@@ -205,7 +205,7 @@
 },
   add_glow_to_plates : function()
   {
-   
+       click_sound.play('',0,1);
       groups[0].loadTexture('atlas4','BENCH_A_WITH_GLOW');
       groups[1].loadTexture('atlas4','BENCH_B_WITH_GLOW');
     
@@ -226,6 +226,7 @@
 },
   check_grouping : function(item)
   {
+    click_sound.play('',0,1);
     var group_name = ['sprite65','sprite54'];
     var child_no = item.num; 
     var c=0;
@@ -286,13 +287,13 @@
     },
    startdragcake : function(item)
   {
-    lick_sound.play('',0,1);
+    click_sound.play('',0,1);
     var cake_no1 = item.number;
     cakes[cake_no1].loadTexture('atlas4','sprite57');
   },
   stopDragcake : function(item)
   {
-    lick_sound.play('',0,1);
+    click_sound.play('',0,1);
     var cake_no = item.number; 
     var c2=0;
     var pos2;
@@ -569,6 +570,7 @@
     });   
   }, 
   showModal1:function() {
+     yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
    },
    showModal2: function()
