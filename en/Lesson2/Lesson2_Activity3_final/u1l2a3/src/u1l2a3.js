@@ -12,6 +12,9 @@
 var number_of_pieces = [];
  var linkofdemo;
   var tips = [];
+   var yay_sound;
+ var click_sound;
+ var cutting_board;
  var plates = [];
  var workers1 = [];
  var cutting_board;
@@ -498,12 +501,18 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.image('cookie1/6','assets/images/6/1.png');
     game.load.image('close_button','assets/close_button_normal.png');
     game.add.plugin(PhaserInput.Plugin);
+     game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
 
   },
   create : function()
   {
     reg.modal = new gameModal(game);
         this.createModals(); 
+         cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
    background = game.add.sprite(0,0,'back');
   var upper = game.add.sprite(70,0,'top');
   var lower = game.add.sprite(0,500,'lower');
@@ -628,6 +637,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   cutting_function : function(item)
   {
+     cutting_sound.play('',0,1);
    for(var i=0; i<parathas1.length; i++)
    {
      var check_cake_on_board = game.physics.arcade.overlap(parathas1[i],rect[0]);
@@ -825,6 +835,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   stopDrag : function(item)
   {
+     click_sound.play('',0,1);
     paratha_no = item.number;
     var c =0;
     
@@ -892,10 +903,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   startDrag_1 : function(item)
   {
-
+    click_sound.play('',0,1);
   },
    stopDrag_1 : function(item)
  {
+   click_sound.play('',0,1);
    var paratha_position = item.number;
    for(var i=1;i<5;i++)
    {
@@ -1253,6 +1265,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     });      
   }, 
   showModal1:function() {
+      yay_sound.play('',0,1);
     console.log('modal1');
     reg.modal.showModal("modal1");
 },
@@ -1512,6 +1525,9 @@ showModal8 : function()
     game.load.image('cookie1/6','assets/images/6/1.png');
     game.add.plugin(PhaserInput.Plugin);
     game.load.image('close_button','assets/close_button_normal.png');
+     game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
 
   },
   create : function()
@@ -1519,6 +1535,9 @@ showModal8 : function()
     reg.modal = new gameModal(game);
         this.createModals(); 
         count_no_of_attempts =0;
+        cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
    background = game.add.sprite(0,0,'back');
   var upper = game.add.sprite(70,0,'top');
   var lower = game.add.sprite(0,500,'lower');
@@ -1638,6 +1657,7 @@ showModal8 : function()
 },
   cutting_function : function(item)
   {
+     cutting_sound.play('',0,1);
    for(var i=0; i<parathas1.length; i++)
    {
      var check_cake_on_board = game.physics.arcade.overlap(parathas1[i],rect[0]);
@@ -1835,6 +1855,7 @@ showModal8 : function()
   },
   stopDrag : function(item)
   {
+     click_sound.play('',0,1);
     paratha_no = item.number;
     var c =0;
     
@@ -1902,10 +1923,11 @@ showModal8 : function()
   },
   startDrag_1 : function(item)
   {
-
+     click_sound.play('',0,1);
   },
    stopDrag_1 : function(item)
  {
+   click_sound.play('',0,1);
    var paratha_position = item.number;
    for(var i=1;i<6;i++)
    {
@@ -1958,7 +1980,7 @@ showModal8 : function()
           offsetY: 30,
           callback: function()
           {
-            reg.modal.hideModal("modal1");
+           game.state.start('a1_p5');
           }
 
         },
@@ -2263,6 +2285,7 @@ showModal8 : function()
     });      
   }, 
   showModal1:function() {
+      yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
@@ -2659,6 +2682,7 @@ showModal8 : function()
     });
         },
         showModal1:function() {
+            yay_sound.play('',0,1);
     console.log('modal1');
     reg.modal.showModal("modal1");
 },
