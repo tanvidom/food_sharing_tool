@@ -10,7 +10,9 @@
  var instruction_text;
  var answer_text1;
  var groups = [];
-
+  var yay_sound;
+ var click_sound;
+ var cutting_board;
  var rect1 = [];
 var number_of_pieces = [];
  var linkofdemo;
@@ -457,6 +459,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    game.load.image('bg','assets/groupa_bg.png');
    game.load.atlasJSONHash('buttons','assets/spritesheet_112.png','assets/sprites_112.json');
    game.load.atlasJSONHash('workers','assets/workers.png','assets/workers.json');
+   game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
     game.add.plugin(PhaserInput.Plugin);
 
   },
@@ -464,6 +469,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   {
     reg.modal = new gameModal(game);
         this.createModals();
+       cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
 
    background = game.add.sprite(0,0,'bg');
   var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -618,6 +626,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 },
   workers_stopDrag : function(item)
   {
+     click_sound.play('',0,1);
     worker_check_on_group = [];
     var worker_no = item.number;
     var c = 0;
@@ -670,6 +679,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   parathas_stopDrag : function(item)
   {
+     click_sound.play('',0,1);
     paratha_no = item.number;
     var c =0;
     var c1 = 0;
@@ -1044,6 +1054,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     });      
   }, 
   showModal1:function() {
+    yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
@@ -1275,13 +1286,17 @@ showModal8 : function()
    game.load.image('bg','assets/groupb_bg.png');
    game.load.atlasJSONHash('buttons','assets/spritesheet_112.png','assets/sprites_112.json');
     game.add.plugin(PhaserInput.Plugin);
+     game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+
 
   },
   create : function()
   {
     reg.modal = new gameModal(game);
         this.createModals();
-
+  yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
    background = game.add.sprite(0,0,'bg');
   var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -1426,6 +1441,7 @@ showModal8 : function()
 },
   workers_stopDrag : function(item)
   {
+    click_sound.play('',0,1);
    worker_check_on_group = [];
     var worker_no = item.number;
     var c = 0;
@@ -1480,6 +1496,7 @@ showModal8 : function()
   },
   parathas_stopDrag : function(item)
   {
+    click_sound.play('',0,1);
     paratha_no = item.number;
     var c =0;
     var c1 = 0;
@@ -1813,6 +1830,7 @@ showModal8 : function()
     });      
   }, 
   showModal1:function() {
+     yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
@@ -1995,6 +2013,7 @@ showModal8 : function()
       game.load.atlasJSONHash('sprite111', 'assets/l2a2_final.png', 'assets/l2a2_final.json');
       game.load.image('close_button','assets/close_button_normal.png');
        game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
+           game.load.audio('yay','assets/sounds/yay.wav');
       },
       create : function()
       {
@@ -2002,6 +2021,7 @@ showModal8 : function()
         this.createModals(); 
        var answer_screen1 = game.add.sprite(0,0,'answer2');
        answer_screen1.scale.setTo(1.001,1.01);
+       yay_sound = game.add.audio('yay');
        var lowerband = game.add.sprite(0,500,'lower');
        lowerband.scale.setTo(1,0.95);
          var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -2193,6 +2213,7 @@ showModal8 : function()
     });
         },
         showModal1:function() {
+            yay_sound.play('',0,1);
     console.log('modal1');
     reg.modal.showModal("modal1");
 },

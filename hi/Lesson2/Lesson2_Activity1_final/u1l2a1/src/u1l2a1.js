@@ -34,6 +34,9 @@ var number_of_pieces = [];
  var rotis = [];
  var workers = [];
  var rect = [];
+  var yay_sound;
+ var click_sound;
+ var cutting_board;
  var style3;
  var buttons = ['1_normal','2_normal','3_normal','4_normal','5_normal','6_normal'];
 var buttons_hover = ['1_MOUSE_OVER','2_MOUSE_OVER','3_MOUSE_OVER','4_MOUSE_OVER','5_MOUSE_OVER','6_MOUSE_OVER'];
@@ -461,6 +464,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      game.load.image('close_button','assets/close_button_normal.png');
       game.load.atlasJSONHash('hindi_buttons4','assets/hindi_buttons4.png','assets/hindi_buttons4.json');
       game.load.atlasJSONHash('hindi_modals4','assets/hi_l2a1_modals.png','assets/hi_l2a1_modals.json');
+      game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
 
   },
   create : function()
@@ -468,6 +474,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     
     reg.modal = new gameModal(game);
         this.createModals(); 
+         cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
    background = game.add.sprite(0,0,'back');
   var upper = game.add.sprite(70,0,'top');
   var lower = game.add.sprite(0,500,'lower');
@@ -595,6 +604,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },*/
   cutting_function : function(item)
   {
+     cutting_sound.play('',0,1);
    console.log('paraths3 :' + parathas1);
    console.log(parathas_on_board);
    for(var i=0; i<parathas1.length; i++)
@@ -797,6 +807,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   stopDrag : function(item)
   {
+     click_sound.play('',0,1);
     paratha_no = item.number;
     var c =0;
     
@@ -868,10 +879,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   startDrag_1 : function(item)
   {
-
+     click_sound.play('',0,1);
   },
    stopDrag_1 : function(item)
  {
+   click_sound.play('',0,1);
    var paratha_position = item.number;
    for(var i=1;i<4;i++)
    {
@@ -1229,6 +1241,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     });      
   }, 
   showModal1:function() {
+      yay_sound.play('',0,1);
     console.log('modal1');
     reg.modal.showModal("modal1");
 },
@@ -1500,6 +1513,9 @@ showModal8 : function()
     game.add.plugin(PhaserInput.Plugin);
      game.load.atlasJSONHash('hindi_buttons4','assets/hindi_buttons4.png','assets/hindi_buttons4.json');
       game.load.atlasJSONHash('hindi_modals4','assets/hi_l2a1_modals.png','assets/hi_l2a1_modals.json');
+       game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+    game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
 
   },
   create : function()
@@ -1509,6 +1525,9 @@ showModal8 : function()
    background = game.add.sprite(0,0,'back');
   var upper = game.add.sprite(70,0,'top');
   var lower = game.add.sprite(0,500,'lower');
+   cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
   var label = game.add.sprite(229,87,'lesson2','GROUP_B_LABLE');
   var style4 = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -1629,6 +1648,7 @@ showModal8 : function()
   },*/
   cutting_function : function(item)
   {
+     cutting_sound.play('',0,1);
    for(var i=0; i<parathas1.length; i++)
    {
      var check_cake_on_board = game.physics.arcade.overlap(parathas1[i],rect[0]);
@@ -1826,6 +1846,7 @@ showModal8 : function()
   },
   stopDrag : function(item)
   {
+     click_sound.play('',0,1);
     paratha_no = item.number;
     var c =0;
     
@@ -1893,10 +1914,11 @@ showModal8 : function()
   },
   startDrag_1 : function(item)
   {
-
+     click_sound.play('',0,1);
   },
    stopDrag_1 : function(item)
  {
+   click_sound.play('',0,1);
    var paratha_position = item.number;
    for(var i=1;i<6;i++)
    {
@@ -2255,6 +2277,7 @@ showModal8 : function()
     });      
   }, 
   showModal1:function() {
+      yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
@@ -2669,6 +2692,7 @@ showModal8 : function()
     });
         },
         showModal1:function() {
+            yay_sound.play('',0,1);
     console.log('modal1');
     reg.modal.showModal("modal1");
 },
