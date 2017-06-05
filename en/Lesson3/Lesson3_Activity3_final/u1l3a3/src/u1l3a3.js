@@ -15,6 +15,9 @@ var number_of_pieces = [];
  var plates = [];
  var workers1 = [];
  var worker_no;
+   var yay_sound;
+ var click_sound;
+ var cutting_board;
  var cutting_board;
  var plates1 = [];
  var c;
@@ -73,11 +76,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.image('1','assets/1.png');
     game.load.image('q3','assets/q3.png');
     game.load.image('q3_large','assets/q3_large.png');
+     game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
     
 
   },
   create : function()
   {
+    yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
        reg.modal = new gameModal(game);
         this.createModals();
     background = game.add.sprite(0,0,'bgelem','bg');
@@ -526,6 +533,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
+  yay_sound.play('',0,1);
     reg.modal.showModal("modal2");
 },
 showModal3:function() {
@@ -554,7 +562,7 @@ click_button : function()
 },
 help_function : function()
 {
- window.open("../Activity3/assets/fraction-chart_copywrite.png");
+ window.open("../u1l3a3/assets/fraction-chart_copywrite.png");
 },
   
     input_function1 : function(item)
@@ -672,6 +680,7 @@ help_function : function()
     },
     stopDrag_1 :function(item)
     {
+       click_sound.play('',0,1);
         worker_no = item.number;
         var pos = 0;
         
@@ -730,6 +739,7 @@ help_function : function()
  },
     stopDrag_2 : function(item)
     {
+       click_sound.play('',0,1);
        roti_no = item.number;
         var pos = 0;
          for(var i=4;i<7;i++)

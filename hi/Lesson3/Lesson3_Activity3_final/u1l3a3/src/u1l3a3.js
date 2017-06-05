@@ -9,6 +9,9 @@
  var groups = [];
 var number_of_pieces = [];
  var linkofdemo;
+   var yay_sound;
+ var click_sound;
+ var cutting_board;
   var tips = [];
   var radio_buttons = [];
   var radio_texts = [];
@@ -18,6 +21,7 @@ var number_of_pieces = [];
  var cutting_board;
  var plates1 = [];
  var c;
+ var count_no_of_attempts =0;
  var paratha_no;
  var check = [];
  var parathas_on_board = [];
@@ -27,6 +31,9 @@ var number_of_pieces = [];
  var input_answer;
  var parathas2= [];
  var paratha_num;
+  var yay_sound;
+ var click_sound;
+ var cutting_board;
  var parathas2_num;
  var sharing_done_btn;
  var reset_btn;
@@ -45,7 +52,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
  var worker_names = ['1','2','3','4','5','6','7','8','9','10','11','12'];
  var p1 = 0;
  
- var share_of_each_worker = 0.50;
+ var share_of_each_worker = 0.6666666666666666;
  var reg={};
  var help_button;
  var game = new Phaser.Game(800, 640);
@@ -66,13 +73,16 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.webfont('tahoma','Tahoma');
     game.load.atlasJSONHash('bgelem','assets/spritesheet_1_l3.png','assets/sprites_1_l3.json');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');
-    //game.load.image('largepop','assets/ONLY_LARGE_POP_UP.png');
-    game.load.atlasJSONHash('modals','assets/l3a2_modals.png','assets/l3a2_modals.json');
+    game.load.image('largepop','assets/ONLY_LARGE_POP_UP.png');
+    game.load.atlasJSONHash('modals','assets/spritesheet_l3a3.png','assets/sprites_l3a3.json');
     game.load.image('close_button','assets/close_button_normal.png');
-    game.load.atlasJSONHash('hindi_buttons9','assets/hindi_buttons9.png','assets/hindi_buttons9.json');
-    game.load.image('q2','assets/q2.png');
-    game.load.image('q2_large','assets/q2_large.png');
-     game.load.atlasJSONHash('hindisprites1','assets/spritesheet_l3a2_hi.png','assets/sprites_l3a2_hi.json');
+    game.load.image('1','assets/1.png');
+    game.load.image('q3','assets/q3.png');
+    game.load.image('q3_large','assets/q3_large.png');
+    game.load.atlasJSONHash('hindi_buttons10','assets/hindi_buttons10.png','assets/hindi_buttons10.json');
+     game.load.atlasJSONHash('hindisprites2','assets/spritesheet_l3a3_hi.png','assets/sprites_l3a3_hi.json');
+        game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
     
 
   },
@@ -80,6 +90,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   {
        reg.modal = new gameModal(game);
         this.createModals();
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
     background = game.add.sprite(0,0,'bgelem','bg');
     var upper_band = game.add.sprite(5,0,'bgelem','upper');
     upper_band.scale.setTo(1,0.85);
@@ -97,11 +109,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     
     var instruction_text2 = game.add.text(110,29,"1. समूह B के मजदूरों को अधिकतम 3 उपसमूहों में बाँटने के लिए ग्रुपिंग टूल का उपयोग करें। ",style2);
     var instruction_text3 = game.add.text(110,46,"2. उपलब्ध पराठों को इस प्रकार वितरित करें कि प्रत्येक उपसमूह को समूह A के मजदूरों के समान हिस्सा मिले। ",style2);
-    var instruction_text4 = game.add.text(110,63,"3. समूह B के कुल हिस्से की गणना करें।",style2);
-    var click_to_image = game.add.image(15,94,'q2');
-    click_to_image.scale.setTo(0.9,0.9);
+    var instruction_text4 = game.add.text(110,63,"3. समूह B के कुल हिस्से की गणना करें। ",style2);
+    var click_to_image = game.add.sprite(15,109,'q3');
+    click_to_image.scale.setTo(1,0.9);
     var click_to_button = game.add.button(22,170,'lesson3',this.click_button,this,'click_to_enlarge_button_up','click_to_enlarge_button_normal','click_to_enlarge_button_normal');
-    var help_button = game.add.button(740,2,'hindi_buttons9',this.help_function,this,'hindi_HELP_OVER','hindi_HELP_NORMAL','hindi_HELP_OVER');
+    var help_button = game.add.button(740,2,'hindi_buttons10',this.help_function,this,'hindi_HELP_OVER','hindi_HELP_NORMAL','hindi_HELP_OVER');
     help_button.scale.setTo(0.8,0.7);
     groups[0] = game.add.sprite(298,103,'lesson3','B1_worker_bg');
     groups[1] = game.add.sprite(298,245,'lesson3','B2_worker_bg');
@@ -130,11 +142,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.physics.enable(rect[7],Phaser.Physics.ARCADE);
     rect[7].body.setSize(211,261,0,0);
     //adding workers
-    for(var j = 0;j<10;j++)
+    for(var j = 0;j<9;j++)
     {
       if(j<5)
       {
-      workers[j] = game.add.sprite(44 + (j*40),222,'lesson3',worker_names[j]);
+      workers[j] = game.add.sprite(50 + (j*40),222,'lesson3',worker_names[j]);
       workers[j].scale.setTo(0.9,0.9);
       workers[j].inputEnabled = true;
       workers[j].input.enableDrag(true);   
@@ -144,7 +156,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       }
       if(j>=5)
       {
-       workers[j] = game.add.sprite(44 + ((j-5)*40),267,'lesson3',worker_names[j]);
+       workers[j] = game.add.sprite(65 + ((j-5)*40),267,'lesson3',worker_names[j]);
        workers[j].scale.setTo(0.9,0.9);
        workers[j].inputEnabled= true;
        workers[j].input.enableDrag(true);   
@@ -154,30 +166,30 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       }
     }
     //adding rotis 1
-    for(var i=0;i<6;i++)
+    for(var i=0;i<4;i++)
     {
-      rotis[i]=game.add.sprite(50,315+(i*30),'lesson3','ONLY_PARATHA');
+      rotis[i]=game.add.sprite(50,315+(i*45),'lesson3','ONLY_PARATHA');
       rotis[i].weight = 1;
       rotis[i].number = i;
       rotis[i].originalPosition = rotis[i].position.clone();
     }
-    for(var j=6;j<12;j++)
+    for(var j=4;j<8;j++)
     {
-      rotis[j] = game.add.sprite(122,325+((j-6)*30),'lesson3','HALF_PARATHA');
+      rotis[j] = game.add.sprite(122,335+((j-4)*35),'lesson3','HALF_PARATHA');
       rotis[j].weight=0.5;
       rotis[j].number = j;
       rotis[j].originalPosition = rotis[j].position.clone();
     }
-    for(var k=12;k<18;k++)
+    for(var k=8;k<14;k++)
     {
-      rotis[k] = game.add.sprite(195,325 +((k-12)*30),'lesson3','1_4th_PARATHA');
-      rotis[k].weight=0.25;
+      rotis[k] = game.add.sprite(195,335 +((k-8)*30),'1');
+      rotis[k].weight=0.3333333333333333;
       rotis[k].number = k;
       rotis[k].originalPosition = rotis[k].position.clone();
-       tips[k-12] = new Phasetips(game,{
+      tips[k-8] = new Phasetips(game,{
         targetObject: rotis[k],
         font : 'fractionfont', //can be any phaser object (sprite, group, text, image, etc...)
-        context: '1/4',
+        context: "1/3",
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
@@ -185,10 +197,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         });
     }
     //question text
-    question_text_lower = game.add.text(22,552,'समूह B के 10 मजदूरों के लिए कितने पराठों की आवश्यकता है?',style);
-     instruction_text_lower = game.add.text(22,574,'अपना उत्तर पूर्ण संख्या या भिन्न के रूप में एंटर करें और अपने उत्तर की जांच के लिए              पर क्लिक करें। ',style2);
+    question_text_lower = game.add.text(22,552,'समूह B के 9 मजदूरों के लिए कितने पराठों की आवश्यकता है?',style);
+     instruction_text_lower = game.add.text(22,574,'अपना उत्तर पूर्ण संख्या या भिन्न के रूप में एंटर करें और अपने उत्तर की जांच के लिए             पर क्लिक करें।',style2);
      style3 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-     instruction_text_lower1 = game.add.text(380,574,'बाँट दिया',style3);
+     instruction_text_lower1 = game.add.text(410,574,'बाँट दिया',style3);
      input_answer = game.add.inputField(22, 600, {
     font: '11px Arial',
     fill: '#212121',
@@ -202,15 +214,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     
 });
      var parathas_text = game.add.text(95,605,'पराठे |',style);
-     sharing_done_btn = game.add.button(180,600,'hindi_buttons9',this.sharing_done_function,this,'hindi_SHARING_BUTTON_over','hindi_SHARING_BUTTON_normal','hindi_SHARING_BUTTON_down');
-     reset_btn = game.add.button(300,600,'hindi_buttons9',this.reset_function,this,'hindi_RESET_BUTTON_over','hindi_RESET_BUTTON_normal','hindi_RESET_BUTTON_down');
+     sharing_done_btn = game.add.button(180,600,'hindi_buttons10',this.sharing_done_function,this,'hindi_SHARING_BUTTON_over','hindi_SHARING_BUTTON_normal','hindi_SHARING_BUTTON_down');
+     reset_btn = game.add.button(300,600,'hindi_buttons10',this.reset_function,this,'hindi_RESET_BUTTON_over','hindi_RESET_BUTTON_normal','hindi_RESET_BUTTON_down');
      sharing_done_btn.scale.setTo(0.85,0.85);
      sharing_done_btn.inputEnabled = false;
      reset_btn.scale.setTo(0.85,0.85);
 
 
   },
-  update : function()
+   update : function()
 {
   if ((/(^(\+|-)?\d+|-?\d+\/-?\d+)$/.test(input_answer.value)) == false)
   {
@@ -232,7 +244,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'image',
     
-            content : 'q2_large'
+            content : 'q3_large'
 
 
           },
@@ -242,10 +254,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      reg.modal.createModal({
         type: "modal2",
         includeBackground: true,
-        modalCloseOnInput: false,
+        modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'hindisprites1',
+            atlasParent :'hindisprites2',
             content : 'sprite7'
 
 
@@ -253,15 +265,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           {
             type: "image",
             content: "close_button",
-            offsetX: 195,
-            offsetY: -83,
+            offsetX: 200,
+            offsetY: -85,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }
         },
         {
           type : "sprite",
-          atlasParent: "hindi_buttons9",
+          atlasParent: "hindi_buttons10",
           content: "hindi_NEXT_BUTTON_over",
           offsetX : 120,
           offsetY: 27,
@@ -283,11 +295,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           reg.modal.createModal({
         type: "modal3",
         includeBackground: true,
-        modalCloseOnInput: false,
+        modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'hindisprites1',
-            content : 'sprite9'
+            atlasParent :'hindisprites2',
+            content : 'sprite7'
 
 
           },
@@ -302,7 +314,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : "sprite",
-          atlasParent: "hindi_buttons9",
+          atlasParent: "hindi_buttons10",
           content: "hindi_NEXT_BUTTON_over",
           offsetX : 120,
           offsetY: 20,
@@ -313,14 +325,54 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
         }]
     });
-           
+          /* reg.modal.createModal({
+        type: "modal4",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: 'sprite',
+            atlasParent :'modals',
+            content : 'sprite1'
+
+
+          },
+          {
+            type: "image",
+            content: "close_button",
+            offsetX: 146,
+            offsetY: -83,
+            callback: function(){
+                      reg.modal.hideModal("modal4");
+                    }
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'buttons',
+          content: 'TRY_AGAIN_BUTTON_NORMAL',
+          offsetX : 90,
+          offsetY: 30,
+          callback: function()
+          {
+            reg.modal.hideModal("modal4");
+          }
+
+        },
+        {
+          type : 'sprite',
+          atlasParent: 'buttons',
+          content: 'SMILEY_SAD',  
+          offsetX : 40,
+          offsetY:  - 140,
+        },
+          ]
+    });*/
             reg.modal.createModal({
         type: "modal5",
         includeBackground: true,
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'hindisprites1',
+            atlasParent :'hindisprites2',
             content : 'sprite2'
 
 
@@ -337,7 +389,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'hindi_buttons9',
+          atlasParent: 'hindi_buttons10',
           content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 90,
           offsetY: 30,
@@ -363,7 +415,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'hindisprites1',
+            atlasParent :'hindisprites2',
             content : 'sprite8'
 
 
@@ -379,7 +431,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'hindi_buttons9',
+          atlasParent: 'hindi_buttons10',
           content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 120,
           offsetY: 35,
@@ -404,7 +456,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'hindisprites1',
+            atlasParent :'hindisprites2',
             content : 'sprite10'
 
 
@@ -420,7 +472,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'hindi_buttons9',
+          atlasParent: 'hindi_buttons10',
           content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 120,
           offsetY: 30,
@@ -442,10 +494,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
            reg.modal.createModal({
         type: "modal8",
         includeBackground: true,
-        modalCloseOnInput: true,
+        modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'hindisprites1',
+            atlasParent :'hindisprites2',
             content : 'sprite9'
 
 
@@ -461,7 +513,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         },
         {
           type : 'sprite',
-          atlasParent: 'hindi_buttons9',
+          atlasParent: 'hindi_buttons10',
           content: 'hindi_TRY_AGAIN_BUTTON_normal (1)',
           offsetX : 105,
           offsetY: 26,
@@ -485,6 +537,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
+     yay_sound.play('',0,1);
     reg.modal.showModal("modal2");
 },
 showModal3:function() {
@@ -513,7 +566,7 @@ click_button : function()
 },
 help_function : function()
 {
- window.open("../Activity2/assets/fraction-chart_copywrite.png");
+ window.open("../u1l3a3/assets/fraction-chart_copywrite.png");
 },
   
     input_function1 : function(item)
@@ -522,7 +575,7 @@ help_function : function()
     },
     sharing_done_function : function(item)
     {
-      count_no_of_attempts = count_no_of_attempts + 1;
+          count_no_of_attempts = count_no_of_attempts + 1;
       if(count_no_of_attempts < 4)
   {
       var flag_1_in_group = false;
@@ -536,7 +589,7 @@ help_function : function()
       for(var i=0;i<3;i++)
       {
         no_of_workers_in_group[i] = 0;
-        for(var j=0;j<10;j++)
+        for(var j=0;j<9;j++)
         {
           game.physics.arcade.enable(workers[j]);
           check2[j] = game.physics.arcade.overlap(workers[j],rect[i]);
@@ -546,7 +599,7 @@ help_function : function()
           }
         }
         no_of_rotis_in_group[i] = 0;
-        for (var k = 0; k < 18; k++) 
+        for (var k = 0; k < 14; k++) 
         {
           game.physics.arcade.enable(rotis[k]);
           check3[k] = game.physics.arcade.overlap(rotis[k],rect[i+4]);
@@ -565,7 +618,7 @@ help_function : function()
         {
           group_length = group_length - 1;
         }
-        else if(no_of_workers_in_group[i] == 9 || no_of_workers_in_group[i] == 10 || no_of_workers_in_group == 7)
+        else if(no_of_workers_in_group[i] == 5 || no_of_workers_in_group[i] == 2 || no_of_workers_in_group[i] == 4 || no_of_workers_in_group[i] == 7 || no_of_workers_in_group[i]==9)
         {
           flag_1_in_group = true;
         }
@@ -585,7 +638,7 @@ help_function : function()
       }
       else if(count_groups == 3 && group_length == 3)
       {
-        if(input_answer.value == '5')
+        if(input_answer.value == '6')
         {
         this.showModal2();
         }
@@ -597,7 +650,7 @@ help_function : function()
       }
       else if(count_groups == 2 && group_length == 2)
       {
-        if(input_answer.value == '5')
+        if(input_answer.value == '6')
         {
           this.showModal2();
         console.log('correct');
@@ -610,7 +663,7 @@ help_function : function()
       }
       else
       {
-        if(input_answer.value == '5')
+        if(input_answer.value == '6')
         {
           this.showModal7(); 
           console.log('correct answer, incorrect distribution');
@@ -631,6 +684,7 @@ help_function : function()
     },
     stopDrag_1 :function(item)
     {
+      click_sound.play('',0,1);
         worker_no = item.number;
         var pos = 0;
         
@@ -662,7 +716,7 @@ help_function : function()
       //checking if there are any other in the worker area
         c=0;
         var check1 = [];
-        for(i=0;i<10;i++)
+        for(i=0;i<9;i++)
         {
           game.physics.arcade.enable(workers[i]);
           check1[i]= game.physics.arcade.overlap(workers[i],rect[3]);
@@ -673,9 +727,9 @@ help_function : function()
           }
         }
         console.log(c);
-        if(c==10)
+        if(c==9)
         {
-        for(i=0;i<18;i++)
+        for(i=0;i<14;i++)
         {
 
           rotis[i].inputEnabled = true;
@@ -689,6 +743,7 @@ help_function : function()
  },
     stopDrag_2 : function(item)
     {
+      click_sound.play('',0,1);
        roti_no = item.number;
         var pos = 0;
          for(var i=4;i<7;i++)
@@ -718,7 +773,7 @@ help_function : function()
        //checking for rotis on foil
        c=0;
         var check1 = [];
-        for(i=0;i<18;i++)
+        for(i=0;i<14;i++)
         {
           game.physics.arcade.enable(rotis[i]);
           check1[i]= game.physics.arcade.overlap(rotis[i],rect[7]);
@@ -755,51 +810,51 @@ reset_function : function()
   },
   preload : function()
   {
-   game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json'); 
+    game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json'); 
+   game.load.atlasJSONHash('advice2', 'assets/advice_l3a3_2.png', 'assets/advice_l3a3_2.json'); 
     game.load.webfont('tahoma','Tahoma');
-    game.load.atlasJSONHash('modals','assets/l3a2_modals.png','assets/l3a2_modals.json');
+    game.load.atlasJSONHash('modals','assets/spritesheet_l3a3.png','assets/sprites_l3a3.json');
     game.load.image('close_button','assets/close_button_normal.png');
-    game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
-    game.load.atlasJSONHash('modals1','assets/advice_l3a2_2.png','assets/advice_l3a2_2.json');
-    game.load.atlasJSONHash('hindi_buttons9','assets/hindi_buttons9.png','assets/hindi_buttons9.json');
-    game.load.atlasJSONHash('hindisprites1','assets/spritesheet_l3a2_hi.png','assets/sprites_l3a2_hi.json');
-   
+    game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');
+    game.load.atlasJSONHash('hindi_buttons10','assets/hindi_buttons10.png','assets/hindi_buttons10.json');  
+     game.load.atlasJSONHash('hindisprites2','assets/spritesheet_l3a3_hi.png','assets/sprites_l3a3_hi.json');
+       game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
+
   },
   create : function()
   {
     reg.modal = new gameModal(game);
-        this.createModals();
+        this.createModals();  
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
     background = game.add.sprite(0,0,'advice','BACKGROUND');
     var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(93,7,'जामुनी और उसके दोस्त इसी प्रकार की एक समस्या को हल करने का प्रयास कर रहे हैं। यदि समूह A के 2 मजदूरों के लिए 4 पराठे पर्याप्त हैं, तो समूह B के 8 मजदूरों के लिए कितने पराठों की आवश्यकता होगी, यदि उनको समूह A के मजदूरों के समान हिस्सा दिया जाना है?',style);
+    question_text_upper = game.add.text(93,7,'जामुनी और उसके दोस्त इसी प्रकार की एक समस्या को हल करने का प्रयास कर रहे हैं।  यदि समूह A के 3 मजदूरों के लिए 4 पराठे पर्याप्त हैं, तो समूह B के 9 मजदूरों के लिए कितने पराठे चाहिए, यदि उनको समूह A के बराबर हिस्सा मिले?',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 605;
     question_text_upper.lineSpacing = -3;
     var style2 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(120,47,"लीना और अमन के विचार भिन्न  हैं, कि यह कैसे किया जाना है।    उनके विचार जानने के लिए इनमें से प्रत्येक विकल्प पर क्लिक करें।  ",style2);
+    var instruction_text1 = game.add.text(120,47,"यह कैसे करना है, इस परलीना और अमन  के विचार भिन्न हैं।  उनके विचार जानने के लिए प्रत्येक पर क्लिक करें।  ",style2);
     var jamuni_advice = game.add.sprite(315,103,'advice','JAMUNI');
-    var aman_advice = game.add.sprite(117,168,'modals1','ONLY_AMAN');
-    var leena_advice = game.add.sprite(527,167,'modals1','ONLY_LEENA');
-    var aman_image = game.add.sprite(69,326,'modals1','aman_advice1');
-    var leena_image = game.add.sprite(487,326,'modals1','leena_img1');
-    var button1 = game.add.button(72,444,'hindi_buttons9',this.showModal4,this,'HINDI_AMAN_ADVICE_ELEMENTS_OVER','HINDI_AMAN_ADVICE_ELEMENTS_NORMAL','HINDI_AMAN_ADVICE_ELEMENTS_DOWN');
-    var button2 = game.add.button(487,444,'hindi_buttons9',this.showModal5,this,'LEENA_ADVICE_ELEMENTS_OVER','LEENA_ADVICE_ELEMENTSNORMAL','LEENA_ADVICE_ELEMENTS_DOWN');
-    question_text_lower = game.add.text(54,532,'इस समस्या का हल निकालने के लिए जामुनी किसकी सलाह मानें?',style);
-    var instruction_text2 = game.add.text(57,555,'नीचे दिए गए विकल्पों में से एक को चुनें और                 पर क्लिक करें|',style2);
+    var aman_advice = game.add.sprite(69,168,'advice','AMAN');
+    var leena_advice = game.add.sprite(487,167,'advice','LEENA');
+    var button1 = game.add.button(72,444,'hindi_buttons10',this.showModal4,this,'HINDI_AMAN_ADVICE_ELEMENTS_OVER','HINDI_AMAN_ADVICE_ELEMENTS_NORMAL','HINDI_AMAN_ADVICE_ELEMENTS_DOWN');
+    var button2 = game.add.button(487,444,'hindi_buttons10',this.showModal5,this,'LEENA_ADVICE_ELEMENTS_OVER','LEENA_ADVICE_ELEMENTSNORMAL','LEENA_ADVICE_ELEMENTS_DOWN');
+    question_text_lower = game.add.text(54,537,'समस्या के हल के लिए जामुनी किसकी सलाह माने?',style);
+    var instruction_text2 = game.add.text(57,555,'नीचे दिए गए विकल्पों में से एक को चुनें और                   पर क्लिक करें। ',style2);
     
     style3 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text3 = game.add.text(250,555,'उत्तर जाँचें',style3);
+    var instruction_text3 = game.add.text(240,555,'चेक आनसर',style3);
     radio_buttons[0] = game.add.sprite(53,575,'advice','radio-highlighted');
-    radio_texts[0] = game.add.text(72,578,'अमन ',style);
+    radio_texts[0] = game.add.text(72,578,'अमन',style);
     radio_texts[1] = game.add.text(144,578,'लीना ',style);
     radio_texts[2] = game.add.text(233,578,'इनमें से कोई नहीं',style);
-    radio_texts[3] = game.add.text(340,578,'इनमें दोनों सही हैं।',style)
     //radio_texts[2] = game.add.text(306,593,'Workers in both groups got the same share',style3);
     //radio_texts[3] = game.add.text(642,593,'I do not know',style3);
     radio_buttons[1] = game.add.sprite(122,575,'advice','radio-highlighted');
     radio_buttons[2] = game.add.sprite(215,575,'advice','radio-highlighted');
-    radio_buttons[3] = game.add.sprite(320,575,'advice','radio-highlighted');
-    for(var i=0;i<4;i++)
+    for(var i=0;i<3;i++)
     {
       radio_buttons[i].number = i;
     radio_buttons[i].inputEnabled =  true;
@@ -807,7 +862,7 @@ reset_function : function()
      radio_buttons[i].scale.setTo(0.5, 0.5);
      radio_buttons.selectedcheck = false;
     }
-     done_button = game.add.button(54,610,'hindi_buttons9',this.done_Action,this,'HINDI_DONE_OVER','HINDI_DONE_normal','HINDI_DONE_DOWN');
+     done_button = game.add.button(54,610,'hindi_buttons10',this.done_Action,this,'HINDI_DONE_OVER','HINDI_DONE_normal','HINDI_DONE_DOWN');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
     
@@ -818,25 +873,17 @@ reset_function : function()
     if(radio_buttons[0].selectedcheck == true)
     {
       
-       this.showModal3();
+       this.showModal2();
     } 
     else if(radio_buttons[1].selectedcheck == true)
     {
       this.showModal3();
     } 
-    else if(radio_buttons[2].selectedcheck == true)
+    else
     {
       this.showModal3();
     }
-    else
-    {
-      this.showModal2();
-    }
   },
-  /*render : function()
-  {
-     game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
-   },*/
   input_function : function(item)
   {
     var sprite_number = item.number;
@@ -856,7 +903,8 @@ reset_function : function()
          radio_buttons[sprite_number].scale.setTo(0.5,0.5);
        done_button.inputEnabled = true;
     },
-    createModals: function() {
+    createModals: function() 
+    {
 
      reg.modal.createModal({
         type: "modal2",
@@ -864,7 +912,7 @@ reset_function : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'hindisprites1',
+            atlasParent :'hindisprites2',
             content : 'sprite3'
 
 
@@ -888,7 +936,6 @@ reset_function : function()
           align: "left",
           color: "0xFF0000",
 
-
         },
         {
           type : 'sprite',
@@ -905,7 +952,7 @@ reset_function : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'hindisprites1',
+            atlasParent :'hindisprites2',
             content : 'sprite4'
 
 
@@ -914,13 +961,13 @@ reset_function : function()
             type: "image",
             content: "close_button",
             offsetX: 200,
-            offsetY: -80,
+            offsetY: -85,
             callback: function(){
                       reg.modal.hideModal("modal3");
                     }
         },
         {
-           type : "text",
+          type : "text",
            content: "आगे बढ़ने के लिए टैब को बंद करें|",
           offsetX : 0,
           offsetY: 40,
@@ -928,7 +975,6 @@ reset_function : function()
           fontSize: 16,
           align: "left",
           color: "0xFF0000",
-
         },
          {
           type : 'sprite',
@@ -944,8 +990,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'hindisprites1',
-            content : 'l3a2_aman'
+            atlasParent :'hindisprites2',
+            content : 'l3a3_aman'
 
 
           },
@@ -953,18 +999,18 @@ reset_function : function()
             type: 'button',
             atlasParent :'advice',
             content: 'ADVICE_POP_UP_CLOSE_BUTTOn_NORMAL',
-            offsetX: 370,
-            offsetY: -300,
+            offsetX: 385,
+            offsetY: -305,
             callback: function(){
                       reg.modal.hideModal("modal4");
                     }
         },
         {
           type : 'sprite',
-          atlasParent: 'hindi_buttons9',
-          content: 'HINDI_DONE_OVER',
+          atlasParent: 'hindi_buttons10',
+          content: 'HINDI_DONE_DOWN',
           offsetX : 50,
-          offsetY: 300,
+          offsetY: 280,
           callback: function()
           {
             reg.modal.hideModal("modal4");
@@ -978,8 +1024,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'hindisprites1',
-            content : 'l3a2_leena'
+            atlasParent :'hindisprites2',
+            content : 'l3a3_leena'
 
 
           },
@@ -987,8 +1033,8 @@ reset_function : function()
             type: 'button',
             atlasParent : 'advice',
             content: 'ADVICE_POP_UP_CLOSE_BUTTOn_NORMAL',
-            offsetX: 360,
-            offsetY: -300,
+            offsetX: 385,
+            offsetY: -310,
             callback: function(){
                       reg.modal.hideModal("modal5");
                       
@@ -996,10 +1042,10 @@ reset_function : function()
         },
         {
           type : 'sprite',
-          atlasParent: 'hindi_buttons9',
-          content: 'HINDI_DONE_OVER',
-          offsetX : 70,
-          offsetY: 230,
+          atlasParent: 'hindi_buttons10',
+          content: 'HINDI_DONE_normal',
+          offsetX : 50,
+          offsetY: 290,
           callback: function()
           {
             reg.modal.hideModal("modal5");
@@ -1011,6 +1057,7 @@ reset_function : function()
         },
       
 showModal2:function() {
+   yay_sound.play('',0,1);
     reg.modal.showModal("modal2");
 },
 showModal3:function() {
@@ -1030,8 +1077,8 @@ showModal5:function() {
 
       preload : function()
       {
-        game.add.image('back','assets/back-button.png')
-        game.load.video('demo','assets/l3_a2.mp4');
+        //game.add.image('back','assets/back-button.png')
+        game.load.video('demo','assets/l3_a3.mp4');
       },
       create : function()
       {
