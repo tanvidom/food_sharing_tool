@@ -7,7 +7,6 @@
  var instruction_text;
  var answer_text1;
  var groups = [];
- var count_no_of_attempts = 0;
 var number_of_pieces = [];
  var linkofdemo;
   var tips = [];
@@ -16,12 +15,13 @@ var number_of_pieces = [];
  var plates = [];
  var workers1 = [];
  var worker_no;
- var cutting_board;
- var plates1 = [];
- var c;
    var yay_sound;
  var click_sound;
  var cutting_board;
+ var cutting_board;
+ var plates1 = [];
+ var c;
+ var count_no_of_attempts =0;
  var paratha_no;
  var check = [];
  var parathas_on_board = [];
@@ -49,7 +49,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
  var worker_names = ['1','2','3','4','5','6','7','8','9','10','11','12'];
  var p1 = 0;
  
- var share_of_each_worker = 0.75;
+ var share_of_each_worker = 0.6666666666666666;
  var reg={};
  var help_button;
  var game = new Phaser.Game(800, 640);
@@ -71,8 +71,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.atlasJSONHash('bgelem','assets/spritesheet_1_l3.png','assets/sprites_1_l3.json');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');
     game.load.image('largepop','assets/ONLY_LARGE_POP_UP.png');
-    game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
+    game.load.atlasJSONHash('modals','assets/spritesheet_l3a3.png','assets/sprites_l3a3.json');
     game.load.image('close_button','assets/close_button_normal.png');
+    game.load.image('1','assets/1.png');
+    game.load.image('q3','assets/q3.png');
+    game.load.image('q3_large','assets/q3_large.png');
      game.load.audio('click','assets/sounds/clicksound.wav');
     game.load.audio('yay','assets/sounds/yay.wav');
     
@@ -80,7 +83,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   create : function()
   {
-       yay_sound = game.add.audio('yay');
+    yay_sound = game.add.audio('yay');
         click_sound = game.add.audio('click');
        reg.modal = new gameModal(game);
         this.createModals();
@@ -94,15 +97,16 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     
     //background.scale.setTo(1,0.99);
     var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(50,6,'Help Jamuni calculate how many parathas must be given to the workers in Group B so that they get the same share as Group A.',style);
+    question_text_upper = game.add.text(50,8,'Help Jamuni calculate how many parathas must be given to the workers in Group B so that they get the same share as Group A.',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 800;
     var style2 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text2 = game.add.text(110,29,"1. Use the​ Grouping Tool​ to divide the workers in Group B into a maximum of 3 sub-groups.",style2);
-    var instruction_text3 = game.add.text(110,46,"2. Distribute the available parathas such that each sub-group gets the same share as the workers in Group A.",style2);
-    var instruction_text4 = game.add.text(110,63,"3. Calculate the total share of Group B.",style2);
-    var click_to_image = game.add.sprite(15,109,'lesson3','click_to_enlarge_image');
-    click_to_image.scale.setTo(1.05,1.05);
+    
+    var instruction_text2 = game.add.text(110,28,"1. Use the​ Grouping Tool​ to divide the workers in Group B into a maximum of 3 sub-groups.",style2);
+    var instruction_text3 = game.add.text(110,45,"2. Distribute the available parathas such that each sub-group gets the same share as the workers in Group A.",style2);
+    var instruction_text4 = game.add.text(110,62,"3. Calculate the total share of Group B",style2);
+    var click_to_image = game.add.sprite(15,109,'q3');
+    click_to_image.scale.setTo(1,0.9);
     var click_to_button = game.add.button(22,170,'lesson3',this.click_button,this,'click_to_enlarge_button_up','click_to_enlarge_button_normal','click_to_enlarge_button_normal');
     var help_button = game.add.button(740,2,'buttons',this.help_function,this,'HELP_normal','HELP_normal','HELP_mouse_over');
     help_button.scale.setTo(0.8,0.7);
@@ -133,11 +137,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.physics.enable(rect[7],Phaser.Physics.ARCADE);
     rect[7].body.setSize(211,261,0,0);
     //adding workers
-    for(var j = 0;j<12;j++)
+    for(var j = 0;j<9;j++)
     {
-      if(j<6)
+      if(j<5)
       {
-      workers[j] = game.add.sprite(24 + (j*40),222,'lesson3',worker_names[j]);
+      workers[j] = game.add.sprite(50 + (j*40),222,'lesson3',worker_names[j]);
       workers[j].scale.setTo(0.9,0.9);
       workers[j].inputEnabled = true;
       workers[j].input.enableDrag(true);   
@@ -145,9 +149,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       workers[j].number = j;
       workers[j].originalPosition = workers[j].position.clone();
       }
-      if(j>=6)
+      if(j>=5)
       {
-       workers[j] = game.add.sprite(24 + ((j-6)*40),267,'lesson3',worker_names[j]);
+       workers[j] = game.add.sprite(65 + ((j-5)*40),267,'lesson3',worker_names[j]);
        workers[j].scale.setTo(0.9,0.9);
        workers[j].inputEnabled= true;
        workers[j].input.enableDrag(true);   
@@ -157,29 +161,39 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       }
     }
     //adding rotis 1
-    for(var i=0;i<8;i++)
+    for(var i=0;i<4;i++)
     {
-      rotis[i]=game.add.sprite(50,315+(i*22),'lesson3','ONLY_PARATHA');
+      rotis[i]=game.add.sprite(50,315+(i*45),'lesson3','ONLY_PARATHA');
       rotis[i].weight = 1;
       rotis[i].number = i;
       rotis[i].originalPosition = rotis[i].position.clone();
     }
-    for(var j=8;j<16;j++)
+    for(var j=4;j<8;j++)
     {
-      rotis[j] = game.add.sprite(122,315+((j-8)*25),'lesson3','HALF_PARATHA');
+      rotis[j] = game.add.sprite(122,335+((j-4)*35),'lesson3','HALF_PARATHA');
       rotis[j].weight=0.5;
       rotis[j].number = j;
       rotis[j].originalPosition = rotis[j].position.clone();
     }
-    for(var k=16;k<24;k++)
+    for(var k=8;k<14;k++)
     {
-      rotis[k] = game.add.sprite(195,315 +((k-16)*25),'lesson3','1_4th_PARATHA');
-      rotis[k].weight=0.25;
+      rotis[k] = game.add.sprite(195,335 +((k-8)*30),'1');
+      rotis[k].weight=0.3333333333333333;
       rotis[k].number = k;
       rotis[k].originalPosition = rotis[k].position.clone();
+      tips[k-8] = new Phasetips(game,{
+        targetObject: rotis[k],
+        font : 'fractionfont', //can be any phaser object (sprite, group, text, image, etc...)
+        context: "1/3",
+        height : 20,
+        weight : 20,
+        strokeColor: 0xff0000, // red stroke
+        position: "top" 
+        });
+
     }
     //question text
-    question_text_lower = game.add.text(22,552,'How many parathas are required for the 12 workers in Group B?',style);
+    question_text_lower = game.add.text(22,552,'How many parathas are required for the 9 workers in Group B?',style);
      instruction_text_lower = game.add.text(22,574,'Enter your answer in form of a whole number or fraction and click                       to check your answer.',style2);
      style3 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
      instruction_text_lower1 = game.add.text(380,574,'Sharing Done',style3);
@@ -226,7 +240,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'image',
     
-            content : 'largepop'
+            content : 'q3_large'
 
 
           },
@@ -240,7 +254,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite3'
+            content : 'sprite7'
 
 
           },
@@ -307,7 +321,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
         }]
     });
-           reg.modal.createModal({
+          /* reg.modal.createModal({
         type: "modal4",
         includeBackground: true,
         modalCloseOnInput: true,
@@ -347,7 +361,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           offsetY:  - 140,
         },
           ]
-    });
+    });*/
             reg.modal.createModal({
         type: "modal5",
         includeBackground: true,
@@ -355,7 +369,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite7'
+            content : 'sprite11'
 
 
           },
@@ -398,7 +412,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite4'
+            content : 'sprite8'
 
 
           },
@@ -439,7 +453,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite5'
+            content : 'sprite9'
 
 
           },
@@ -480,7 +494,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite6'
+            content : 'sprite10'
 
 
           },
@@ -548,8 +562,7 @@ click_button : function()
 },
 help_function : function()
 {
- console.log('help');
- window.open("../u1l3a1/assets/fraction-chart_copywrite.png");
+ window.open("../u1l3a3/assets/fraction-chart_copywrite.png");
 },
   
     input_function1 : function(item)
@@ -558,7 +571,7 @@ help_function : function()
     },
     sharing_done_function : function(item)
     {
-      count_no_of_attempts = count_no_of_attempts + 1;
+          count_no_of_attempts = count_no_of_attempts + 1;
       if(count_no_of_attempts < 4)
   {
       var flag_1_in_group = false;
@@ -572,7 +585,7 @@ help_function : function()
       for(var i=0;i<3;i++)
       {
         no_of_workers_in_group[i] = 0;
-        for(var j=0;j<12;j++)
+        for(var j=0;j<9;j++)
         {
           game.physics.arcade.enable(workers[j]);
           check2[j] = game.physics.arcade.overlap(workers[j],rect[i]);
@@ -582,7 +595,7 @@ help_function : function()
           }
         }
         no_of_rotis_in_group[i] = 0;
-        for (var k = 0; k < 24; k++) 
+        for (var k = 0; k < 14; k++) 
         {
           game.physics.arcade.enable(rotis[k]);
           check3[k] = game.physics.arcade.overlap(rotis[k],rect[i+4]);
@@ -601,7 +614,7 @@ help_function : function()
         {
           group_length = group_length - 1;
         }
-        else if(no_of_workers_in_group[i] == 5)
+        else if(no_of_workers_in_group[i] == 5 || no_of_workers_in_group[i] == 2 || no_of_workers_in_group[i] == 4 || no_of_workers_in_group[i] == 7 || no_of_workers_in_group[i]==9)
         {
           flag_1_in_group = true;
         }
@@ -621,7 +634,7 @@ help_function : function()
       }
       else if(count_groups == 3 && group_length == 3)
       {
-        if(input_answer.value == '9')
+        if(input_answer.value == '6')
         {
         this.showModal2();
         }
@@ -633,7 +646,7 @@ help_function : function()
       }
       else if(count_groups == 2 && group_length == 2)
       {
-        if(input_answer.value == '9')
+        if(input_answer.value == '6')
         {
           this.showModal2();
         console.log('correct');
@@ -646,7 +659,7 @@ help_function : function()
       }
       else
       {
-        if(input_answer.value == '9')
+        if(input_answer.value == '6')
         {
           this.showModal7(); 
           console.log('correct answer, incorrect distribution');
@@ -657,11 +670,12 @@ help_function : function()
           console.log('completely incorrect');
         }
       }
-     }
-     else
+    }
+      else
      {
       game.state.start('videoScreen');
      }
+
        
     },
     stopDrag_1 :function(item)
@@ -698,7 +712,7 @@ help_function : function()
       //checking if there are any other in the worker area
         c=0;
         var check1 = [];
-        for(i=0;i<12;i++)
+        for(i=0;i<9;i++)
         {
           game.physics.arcade.enable(workers[i]);
           check1[i]= game.physics.arcade.overlap(workers[i],rect[3]);
@@ -709,9 +723,9 @@ help_function : function()
           }
         }
         console.log(c);
-        if(c==12)
+        if(c==9)
         {
-        for(i=0;i<24;i++)
+        for(i=0;i<14;i++)
         {
 
           rotis[i].inputEnabled = true;
@@ -755,7 +769,7 @@ help_function : function()
        //checking for rotis on foil
        c=0;
         var check1 = [];
-        for(i=0;i<24;i++)
+        for(i=0;i<14;i++)
         {
           game.physics.arcade.enable(rotis[i]);
           check1[i]= game.physics.arcade.overlap(rotis[i],rect[7]);
@@ -782,56 +796,6 @@ reset_function : function()
   
 
   }
-  var videoScreen = function(game){}
-    videoScreen.prototype =
-    {
-
-      preload : function()
-      {
-        game.add.image('back','assets/back-button.png')
-        game.load.video('demo','assets/l3_a1.mp4');
-      },
-      create : function()
-      {
-        video_play = 0;
-        game.stage.backgroundColor = '#9C9A89';
-        video = game.add.video('demo');
-        video.play(true);
-        var sprite = video.addToWorld(0,30,0,0);
-        var style2 = { font: "bold 14px tahoma", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-        var back_text = game.add.text(700,5,'BACK',style2);
-        back_text.inputEnabled = true;
-        console.log(video.loop);
-        
-        video.loop = false;
-        video.onComplete.add(this.video_stop,this);
-        back_text.events.onInputDown.add(this.back_function,this);
-        //var image4 = game.add.image(550,590,'back',this.back_function,this);
-        console.log(video.onComplete);
-
-    //  true = loop
-       
-
-       game.input.onDown.add(this.pause, this);
-      },
-      pause : function() 
-      {
-
-      video.paused = (video.paused) ? false : true;
-
-      },
-      video_stop : function()
-      {
-        
-       game.state.start('PlayGame');
-        
-      },
-      back_function : function()
-      {
-        game.state.start('PlayGame');
-      }
-
-    }
   
   var advice_stage = function(game){}
   advice_stage.prototype = 
@@ -842,9 +806,10 @@ reset_function : function()
   },
   preload : function()
   {
-   game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json'); 
+    game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json'); 
+   game.load.atlasJSONHash('advice2', 'assets/advice_l3a3_2.png', 'assets/advice_l3a3_2.json'); 
     game.load.webfont('tahoma','Tahoma');
-    game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
+    game.load.atlasJSONHash('modals','assets/spritesheet_l3a3.png','assets/sprites_l3a3.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
 
@@ -855,7 +820,7 @@ reset_function : function()
         this.createModals();
     background = game.add.sprite(0,0,'advice','BACKGROUND');
     var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(93,7,'Jamuni and her friends are trying to solve a similar problem. If 3 parathas are sufficient for 4 workers in Group A, how many parathas are required for 16 workers in Group B if they must get the same share as Group A?',style);
+    question_text_upper = game.add.text(93,7,'Jamuni and her friends are trying to solve a similar problem. If 4 parathas are sufficient for 3 workers in Group A, how many parathas are required for 9 workers in Group B if they must get the same share as Group A?',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 605;
     question_text_upper.lineSpacing = -3;
@@ -906,7 +871,7 @@ reset_function : function()
     } 
     else
     {
-      this.showModal2();
+      this.showModal3();
     }
   },
   input_function : function(item)
@@ -928,7 +893,8 @@ reset_function : function()
          radio_buttons[sprite_number].scale.setTo(0.5,0.5);
        done_button.inputEnabled = true;
     },
-    createModals: function() {
+    createModals: function() 
+    {
 
      reg.modal.createModal({
         type: "modal2",
@@ -937,21 +903,20 @@ reset_function : function()
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite11'
+            content : 'sprite3'
 
 
           },
           {
             type: "image",
             content: "close_button",
-            offsetX: 268,
-            offsetY: -140,
+            offsetX: 200,
+            offsetY: -80,
             callback: function(){
                       reg.modal.hideModal("modal2");
                     }
         },
         {
-          
            type : "text",
            content: "Close the tab to proceed.",
           offsetX : 0,
@@ -960,11 +925,12 @@ reset_function : function()
           fontSize: 16,
           align: "left",
           color: "0xFF0000",
+
         },
         {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_HAPPY',  
           offsetX : 40,
           offsetY:  - 200,
         },
@@ -977,7 +943,7 @@ reset_function : function()
         itemsArr: [{
             type: 'sprite',
             atlasParent :'modals',
-            content : 'sprite10'
+            content : 'sprite4'
 
 
           },
@@ -985,13 +951,12 @@ reset_function : function()
             type: "image",
             content: "close_button",
             offsetX: 200,
-            offsetY: -80,
+            offsetY: -85,
             callback: function(){
                       reg.modal.hideModal("modal3");
                     }
         },
         {
-
            type : "text",
            content: "Close the tab to proceed.",
           offsetX : 0,
@@ -1005,7 +970,7 @@ reset_function : function()
          {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_SAD',  
           offsetX : 40,
           offsetY:  - 200,
         }]
@@ -1016,8 +981,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'advice',
-            content : 'AMAN_ADVICE'
+            atlasParent :'advice2',
+            content : 'Aman2'
 
 
           },
@@ -1025,8 +990,8 @@ reset_function : function()
             type: 'button',
             atlasParent :'advice',
             content: 'ADVICE_POP_UP_CLOSE_BUTTOn_NORMAL',
-            offsetX: 280,
-            offsetY: -250,
+            offsetX: 300,
+            offsetY: -300,
             callback: function(){
                       reg.modal.hideModal("modal4");
                     }
@@ -1036,7 +1001,7 @@ reset_function : function()
           atlasParent: 'advice',
           content: 'OK_BUTTON_NORMAL',
           offsetX : 50,
-          offsetY: 230,
+          offsetY: 280,
           callback: function()
           {
             reg.modal.hideModal("modal4");
@@ -1050,8 +1015,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'advice',
-            content : 'LEENA_ADVICE'
+            atlasParent :'advice2',
+            content : 'leena'
 
 
           },
@@ -1059,7 +1024,7 @@ reset_function : function()
             type: 'button',
             atlasParent : 'advice',
             content: 'ADVICE_POP_UP_CLOSE_BUTTOn_NORMAL',
-            offsetX: 332,
+            offsetX: 349,
             offsetY: -310,
             callback: function(){
                       reg.modal.hideModal("modal5");
@@ -1071,7 +1036,7 @@ reset_function : function()
           atlasParent: 'advice',
           content: 'OK_BUTTON_NORMAL',
           offsetX : 50,
-          offsetY: 230,
+          offsetY: 290,
           callback: function()
           {
             reg.modal.hideModal("modal5");
@@ -1096,6 +1061,56 @@ showModal5:function() {
 },
 
   }
+   var videoScreen = function(game){}
+    videoScreen.prototype =
+    {
+
+      preload : function()
+      {
+        //game.add.image('back','assets/back-button.png')
+        game.load.video('demo','assets/l3_a3.mp4');
+      },
+      create : function()
+      {
+        video_play = 0;
+        game.stage.backgroundColor = '#9C9A89';
+        video = game.add.video('demo');
+        video.play(true);
+        var sprite = video.addToWorld(0,30,0,0);
+        var style2 = { font: "bold 14px tahoma", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
+        var back_text = game.add.text(700,5,'BACK',style2);
+        back_text.inputEnabled = true;
+        console.log(video.loop);
+        
+        video.loop = false;
+        video.onComplete.add(this.video_stop,this);
+        back_text.events.onInputDown.add(this.back_function,this);
+        //var image4 = game.add.image(550,590,'back',this.back_function,this);
+        console.log(video.onComplete);
+
+    //  true = loop
+       
+
+       game.input.onDown.add(this.pause, this);
+      },
+      pause : function() 
+      {
+
+      video.paused = (video.paused) ? false : true;
+
+      },
+      video_stop : function()
+      {
+        
+       game.state.start('PlayGame');
+        
+      },
+      back_function : function()
+      {
+        game.state.start('PlayGame');
+      }
+
+    }
 game.state.add('PlayGame', playGame);
 game.state.add('advice_stage',advice_stage);
 game.state.add('videoScreen',videoScreen);
