@@ -55,7 +55,7 @@
     game.load.image('cookie1/4','assets/images/ONE_FORTH_4.png');
     game.load.image('cookie1/5','assets/images/ONE_FIFTH_5.png');
     game.load.image('cookie1/6','assets/images/ONE_SIXTH_5.png');
-    game.load.atlasJSONHash('answers','assets/atlasanswer1.png','assets/atlasanswer1.json');
+    game.load.atlasJSONHash('answers1','assets/popups_te.png','assets/popups_te.json');
     game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.webfont('tahoma','Tahoma');
@@ -509,8 +509,8 @@
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
-            content : 'sprite1'
+            atlasParent :'answers1',
+            content : 'sprite6'
 
 
           },
@@ -554,7 +554,7 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
+            atlasParent :'answers1',
             content : 'sprite2'
 
 
@@ -595,7 +595,7 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
+            atlasParent :'answers1',
             content : 'sprite3'
 
 
@@ -636,7 +636,7 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
+            atlasParent :'answers1',
             content : 'sprite4'
 
 
@@ -677,7 +677,7 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
+            atlasParent :'answers1',
             content : 'sprite5'
 
 
@@ -718,7 +718,7 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
+            atlasParent :'answers1',
             content : 'sprite6'
 
 
@@ -759,7 +759,7 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
+            atlasParent :'answers1',
             content : 'sprite7'
 
 
@@ -800,7 +800,7 @@
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'answers',
+            atlasParent :'answers1',
             content : 'sprite8'
 
 

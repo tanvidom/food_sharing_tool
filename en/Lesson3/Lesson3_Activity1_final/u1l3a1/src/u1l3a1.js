@@ -846,11 +846,13 @@ reset_function : function()
     game.load.webfont('tahoma','Tahoma');
     game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
     game.load.image('close_button','assets/close_button_normal.png');
-    game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
+    game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json'); 
+    game.load.audio('yay','assets/sounds/yay.wav'); 
 
   },
   create : function()
   {
+    yay_sound = game.add.audio('yay');
     reg.modal = new gameModal(game);
         this.createModals();
     background = game.add.sprite(0,0,'advice','BACKGROUND');
@@ -1086,6 +1088,7 @@ showModal2:function() {
     reg.modal.showModal("modal2");
 },
 showModal3:function() {
+  yay_sound.play('',0,1);
     reg.modal.showModal("modal3");
 },
 showModal4:function() {

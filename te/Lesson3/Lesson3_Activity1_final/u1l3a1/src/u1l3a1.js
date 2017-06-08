@@ -71,7 +71,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.atlasJSONHash('bgelem','assets/spritesheet_1_l3.png','assets/sprites_1_l3.json');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');
     game.load.image('largepop','assets/ONLY_LARGE_POP_UP.png');
-    game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
+    game.load.atlasJSONHash('modals31','assets/l3_a1_te.png','assets/l3_a1_te.json');
     game.load.image('close_button','assets/close_button_normal.png');
      game.load.audio('click','assets/sounds/clicksound.wav');
     game.load.audio('yay','assets/sounds/yay.wav');
@@ -239,8 +239,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite3'
+            atlasParent :'modals31',
+            content : 'sprite8'
 
 
           },
@@ -280,7 +280,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
+            atlasParent :'modals31',
             content : 'sprite9'
 
 
@@ -313,7 +313,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
+            atlasParent :'modals31',
             content : 'sprite1'
 
 
@@ -354,8 +354,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite7'
+            atlasParent :'modals31',
+            content : 'sprite12'
 
 
           },
@@ -397,8 +397,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite4'
+            atlasParent :'modals31',
+            content : 'sprite7'
 
 
           },
@@ -438,8 +438,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite5'
+            atlasParent :'modals31',
+            content : 'sprite11'
 
 
           },
@@ -479,8 +479,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite6'
+            atlasParent :'modals31',
+            content : 'sprite10'
 
 
           },
@@ -844,37 +844,39 @@ reset_function : function()
   {
    game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json'); 
     game.load.webfont('tahoma','Tahoma');
-    game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
+    game.load.atlasJSONHash('modals31','assets/l3_a1_te.png','assets/l3_a1_te.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
+    game.load.audio('yay','assets/sounds/yay.wav');
 
   },
   create : function()
   {
+    yay_sound = game.add.audio('yay');
     reg.modal = new gameModal(game);
         this.createModals();
     background = game.add.sprite(0,0,'advice','BACKGROUND');
     var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(93,7,'Jamuni and her friends are trying to solve a similar problem. If 3 parathas are sufficient for 4 workers in Group A, how many parathas are required for 16 workers in Group B if they must get the same share as Group A?',style);
+    question_text_upper = game.add.text(93,7,'జముని మరియు ఆమె స్నేహితులు అదే రకమైన సమస్యని సాధించడానికి ప్రయత్నిస్తున్నారు.సమూహం-ఎ లో4మంది పనివారికి3పరాటాలు సరిపోతాయి,సమూహం-బి లో16మంది పనివారికి సమూహం-ఎ లో లేదా సమాన వాటా పొందడానికి వారికి ఎన్ని పరాటాలు అవసరమవుతాయి?',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 605;
     question_text_upper.lineSpacing = -3;
     var style2 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(120,47,"Leena and Aman have different ideas on how to go about it. Click each of them to view their idea. ",style2);
+    var instruction_text1 = game.add.text(120,47,"దీని గురించి ఎలా చేయాలో కనసు మరియు జోకి విభిన్న ఆలోచనలు ఉన్నాయి.వారి డేటా చూడటానికి ఒక్కోటి క్లిక్ చేయండి. ",style2);
     var jamuni_advice = game.add.sprite(315,103,'advice','JAMUNI');
     var aman_advice = game.add.sprite(69,168,'advice','AMAN');
     var leena_advice = game.add.sprite(487,167,'advice','LEENA');
     var button1 = game.add.button(72,444,'advice',this.showModal4,this,'MOUSE_OVER','NORMAL','MOUSE_DOWN');
     var button2 = game.add.button(487,444,'advice',this.showModal5,this,'MOUSE_OVER_1','NORMAL_1','MOUSE_DOWN_1');
-    question_text_lower = game.add.text(54,537,'Whose advice should Jamuni follow to find the solution to this problem?',style);
-    var instruction_text2 = game.add.text(57,555,'Select one of the options below and click',style2);
+    question_text_lower = game.add.text(54,537,'ఈ సమస్యకి సాధన కనుగొనడానికి జముని ఎవరి సలహాని పాటించాలి?',style);
+    var instruction_text2 = game.add.text(57,555,'క్రింది ఎంపికలలో ఒకటి ఎన్నుకోండి మరియు జవాబు సరైందో కాదో చూసుకొనుటకు క్లిక్ చేయండి.',style2);
     
     style3 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text3 = game.add.text(279,555,'Done',style3);
+    //var instruction_text3 = game.add.text(279,555,'Done',style3);
     radio_buttons[0] = game.add.sprite(53,575,'advice','radio-highlighted');
-    radio_texts[0] = game.add.text(72,578,'Aman',style);
-    radio_texts[1] = game.add.text(144,578,'Leena',style);
-    radio_texts[2] = game.add.text(233,578,'None of these',style);
+    radio_texts[0] = game.add.text(72,578,'జో ',style);
+    radio_texts[1] = game.add.text(144,578,'కనసు',style);
+    radio_texts[2] = game.add.text(233,578,'ఇవి ఏవీ కావు',style);
     //radio_texts[2] = game.add.text(306,593,'Workers in both groups got the same share',style3);
     //radio_texts[3] = game.add.text(642,593,'I do not know',style3);
     radio_buttons[1] = game.add.sprite(122,575,'advice','radio-highlighted');
@@ -936,8 +938,8 @@ reset_function : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite11'
+            atlasParent :'modals31',
+            content : 'sprite5'
 
 
           },
@@ -976,8 +978,8 @@ reset_function : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals',
-            content : 'sprite10'
+            atlasParent :'modals31',
+            content : 'sprite13'
 
 
           },
@@ -1016,8 +1018,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'advice',
-            content : 'AMAN_ADVICE'
+            atlasParent :'modals31',
+            content : 'sprite9'
 
 
           },
@@ -1050,8 +1052,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'advice',
-            content : 'LEENA_ADVICE'
+            atlasParent :'modals31',
+            content : 'sprite6'
 
 
           },
@@ -1086,6 +1088,7 @@ showModal2:function() {
     reg.modal.showModal("modal2");
 },
 showModal3:function() {
+    yay_sound.play('',0,1);
     reg.modal.showModal("modal3");
 },
 showModal4:function() {
