@@ -71,7 +71,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.atlasJSONHash('bgelem','assets/spritesheet_1_l3.png','assets/sprites_1_l3.json');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');
     game.load.image('largepop','assets/ONLY_LARGE_POP_UP.png');
-    game.load.atlasJSONHash('modals31','assets/l3_a1_te.png','assets/l3_a1_te.json');
+    game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
+   // game.load.atlasJSONHash('modals31','assets/l3_a1_te.png','assets/l3_a1_te.json');
     game.load.image('close_button','assets/close_button_normal.png');
      game.load.audio('click','assets/sounds/clicksound.wav');
     game.load.audio('yay','assets/sounds/yay.wav');
@@ -239,8 +240,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
-            content : 'sprite8'
+            atlasParent :'modals',
+            content : 'sprite3'
 
 
           },
@@ -280,7 +281,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
+            atlasParent :'modals',
             content : 'sprite9'
 
 
@@ -313,7 +314,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
+            atlasParent :'modals',
             content : 'sprite1'
 
 
@@ -354,8 +355,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
-            content : 'sprite12'
+            atlasParent :'modals',
+            content : 'sprite7'
 
 
           },
@@ -397,8 +398,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
-            content : 'sprite7'
+            atlasParent :'modals',
+            content : 'sprite4'
 
 
           },
@@ -438,8 +439,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
-            content : 'sprite11'
+            atlasParent :'modals',
+            content : 'sprite5'
 
 
           },
@@ -479,8 +480,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
-            content : 'sprite10'
+            atlasParent :'modals',
+            content : 'sprite6'
 
 
           },
@@ -845,6 +846,7 @@ reset_function : function()
    game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json'); 
     game.load.webfont('tahoma','Tahoma');
     game.load.atlasJSONHash('modals31','assets/l3_a1_te.png','assets/l3_a1_te.json');
+      game.load.atlasJSONHash('modals','assets/l3a1_modals.png','assets/l3a1_modals.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
     game.load.audio('yay','assets/sounds/yay.wav');
@@ -938,8 +940,8 @@ reset_function : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
-            content : 'sprite5'
+            atlasParent :'modals',
+            content : 'sprite11'
 
 
           },
@@ -978,8 +980,8 @@ reset_function : function()
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
-            content : 'sprite13'
+            atlasParent :'modals',
+            content : 'sprite10'
 
 
           },
