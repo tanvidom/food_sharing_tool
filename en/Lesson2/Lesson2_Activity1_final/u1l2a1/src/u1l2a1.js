@@ -2645,7 +2645,7 @@ showModal8 : function()
         },
         showModal1:function() {
     console.log('modal1');
-    yay_sound.play('',0,1);
+    //yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {

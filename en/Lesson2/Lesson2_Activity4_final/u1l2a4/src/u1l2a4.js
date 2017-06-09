@@ -1219,7 +1219,7 @@ showModal8 : function()
        var answer_screen1 = game.add.sprite(50,100,'answer1');
        answer_screen1.scale.setTo(0.85, 0.85);
        var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 5 parathas among 8 workers.',style);
+       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 9 parathas among 12 workers.',style);
        var style1 = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
        var text2= game.add.text(20,45,'Click Next to continue.',style1);
 
