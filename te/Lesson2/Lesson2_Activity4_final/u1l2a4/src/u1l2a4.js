@@ -75,7 +75,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         this.createModals();
     background = game.add.sprite(0,0,'background');
     var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(185,15,'Each person in Group A will get 3⁄4th of a paratha and each person in group B will also get 3⁄4th of a paratha, so the distribution is fair.',style);
+    question_text_upper = game.add.text(185,15,'సమూహం-ఎ లో ఒక్కో వ్యక్తి ¾ భాగం పరాటా పొందారు మరియు సమూహం-బి లో ఒక్కో వ్యక్తి కూడా ¾ భాగం పరాటా పొందారు, కావున పంచడం సరిగా ఉన్నది.',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 500;
     question_text_upper.lineSpacing = -5;
@@ -115,15 +115,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       }
     }
     var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(78,550,'Do you think that the distribution of parathas done by overseer is fair?',style4);
+    question_text_lower = game.add.text(78,550,'పరాటాలను సరియైన విధంగా పంచారని మీరు అనుకుంటున్నారా?',style4);
     var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(78,569,'Select one of the options below and click the          button',style1);
+    instruction_text = game.add.text(78,569,'క్రింది ఎంపికలలో ఒకటి ఎన్నుకోండి మరియు చేయడమైనది క్లిక్ చేయండి.',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(339,569,'Done ',style2);
+//    var instruction_text1 = game.add.text(339,569,'Done ',style2);
     style3 = { font: "italic 13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     radio_buttons[0] = game.add.sprite(77,590,'lesson2','radio-highlighted');
-    radio_texts[0] = game.add.text(92,593,'Yes',style3);
-    radio_texts[1] = game.add.text(197,593,'No',style3);
+    radio_texts[0] = game.add.text(92,593,'అవును',style3);
+    radio_texts[1] = game.add.text(197,593,'లేదు',style3);
     //radio_texts[2] = game.add.text(306,593,'Workers in both groups got the same share',style3);
     //radio_texts[3] = game.add.text(642,593,'I do not know',style3);
     radio_buttons[1] = game.add.sprite(176,590,'lesson2','radio-highlighted');
@@ -245,17 +245,17 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     screenshot.scale.setTo(1.02,1);
     var lowerband = game.add.sprite(0,508,'lower_band');
     var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(78,550,'In which group did the workers get a larger share of the food?',style4);
+    question_text_lower = game.add.text(78,550,'ఏ  సమూహంలోని పనివారు ఆహారాన్ని ఎక్కువ వాటా పొందారు?',style4);
     var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(78,569,'Select one of the options below and click the          button',style1);
+    instruction_text = game.add.text(78,569,'క్రింది ఎంపికలలో ఒకటి ఎన్నుకోండి మరియు చేయడమైనది క్లిక్ చేయండి.',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(339,569,'Done ',style2);
+//    var instruction_text1 = game.add.text(339,569,'Done ',style2);
     style3 = { font: "italic 13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     radio_buttons[0] = game.add.sprite(77,590,'lesson2','radio-highlighted');
-    radio_texts[0] = game.add.text(92,593,'Group A',style3);
-    radio_texts[1] = game.add.text(197,593,'Group B',style3);
-    radio_texts[2] = game.add.text(306,593,'Workers in both groups got the same share',style3);
-    radio_texts[3] = game.add.text(642,593,'I do not know',style3);
+    radio_texts[0] = game.add.text(92,593,'సమూహం -ఏ ',style3);
+    radio_texts[1] = game.add.text(197,593,'సమూహం -బి',style3);
+    radio_texts[2] = game.add.text(306,593,'రెండు సమూహాలలోని పనివారు ఒకే వాటాని పొందారు.',style3);
+    radio_texts[3] = game.add.text(642,593,'నాకు తెలియదు ',style3);
     radio_buttons[1] = game.add.sprite(176,590,'lesson2','radio-highlighted');
     radio_buttons[2] = game.add.sprite(285,590,'lesson2','radio-highlighted');
     radio_buttons[3] = game.add.sprite(623,590,'lesson2','radio-highlighted');
@@ -318,15 +318,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         //this.createModals();
     background = game.add.sprite(0,0,'top');
     var style = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(125,6,'Find the share for a sub-group of 6 workers from each group.',style);
+    question_text_upper = game.add.text(125,6,'ఒక్కో సమూహం నుంచి 6 మంది పనివారి ఉప సమూహం కొరకు వాటాని కనుగొనండి.',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(130,23,'1. Begin by clicking                                for Group A. ',style1);
+    instruction_text = game.add.text(130,23,'1.సమూహం-ఎ కొరకు  ఆహారం పంచడం  క్లిక్ చేసి ప్రారంభించండి. ',style1);
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(240,23,'Share Food Packets  ',style2);
-    var instruction_text2 = game.add.text(130,40,'2. After your have completed the sharing for Group A, click                              for Group B.',style1);
-    var instruction_text3 = game.add.text(445,40,' Share Food Packets  ',style2); 
+//    var instruction_text1 = game.add.text(240,23,'Share Food Packets  ',style2);
+    var instruction_text2 = game.add.text(130,40,'2.తరువాత సమూహం-బి  కొరకు ఆహారం పంచండి  మరియు సమూహం-బి  కొరకు పంచడం పూర్తి చేయండి. ',style1);
+//    var instruction_text3 = game.add.text(445,40,' Share Food Packets  ',style2); 
     groups[0] = game.add.sprite(30,95,'lesson2','WORKER_BACK_GROUP_A');
     groups[1] = game.add.sprite(30,380,'lesson2','WORKER_BACK_GROUP_B');
     plates[0] = game.add.sprite(29,207,'lesson2','FOOD_PLATE');
@@ -394,10 +394,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     var lowerband = game.add.sprite(0,508,'lower_band');
     var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(78,545,'How did you arrive at this conclusion?',style4);
-    instruction_text = game.add.text(78,560,'Enter your answer below and click ',style1);
+    question_text_lower = game.add.text(78,545,'ఈ ముగింపుని మీరు ఎలా చేసారు?',style4);
+    instruction_text = game.add.text(78,560,'మీ జవాబు క్రింద నమోదు చేయండి మరియు చేయడమైనది క్లిక్ చేయండి.',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(280,560,'Done ',style2);
+//    var instruction_text1 = game.add.text(280,560,'Done ',style2);
     var input_answer = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
@@ -492,20 +492,20 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    var plastic_area = game.add.sprite(32,286,'bg','PLASTIC');
   var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(66,545,'What is the share of each sub-group of 6 workers in Group A?',style4);
-    instruction_text = game.add.text(115,20,'1. Use the                      to make smaller groups of 6 workers each.',style1);
+    question_text_lower = game.add.text(66,545,'సమూహం-ఎ వాటా ఎంత?',style4);
+    instruction_text = game.add.text(115,20,'1. 6 మంది  పనివారు ఉన్న చిన్న సమూహాలు చేయడానికి డ్రాగింగ్ చేయడం ద్వారా గ్రూపింగ్ టూల్ ఉపయోగించండి.',style1);
     instruction_text.wordWrap = true; 
     instruction_text.wordWrapWidth = 580; 
     instruction_text.lineSpacing = -5;
-    var instruction_text2 = game.add.text(115,35,'2. Distribute the 9 parathas fairly among these sub-groups and find the share of each sub-group.',style1)
+    var instruction_text2 = game.add.text(115,35,'2.అప్పుడు ఈ ఉప-సమూహాలలో 9 పరాటాలను సరిగా పంచండి మరియు ఒక్కో ఉప సమూహం వాటాని కనుగొనండి.',style1)
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(175,20,'Grouping Tool ',style2);
-    question_text_upper = game.add.text(110,4,'Distribute 9 parathas among the 12 workers in Group A.',style4);
+//    var instruction_text1 = game.add.text(175,20,'Grouping Tool ',style2);
+    question_text_upper = game.add.text(110,4,'సమూహం-ఎ లో  12 మంది పనివారికి సరియైన విధంగా 9 పరాటాలు పంచండి.',style4);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style11 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text_lower = game.add.text(66,560,'Enter your answer in the form of a whole number or a fraction and click                      to check your answer. ',style11);  
-    var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
+    var instruction_text_lower = game.add.text(66,560,'మీ జవాబుని ఒక పూర్ణ సంఖ్య లేదా ఒక భిన్నం రూపంలో నమోదు చేయండి మరియు మీ జవాబు సరైందో కాదో చూసుకొనుటకు పంచుట అయినది క్లిక్ చేయండి ',style11);  
+//    var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
    rect[0] = game.add.sprite(49,120,null);
    game.physics.enable(rect[0],Phaser.Physics.ARCADE);
    rect[0].body.setSize(313,144,0,0);
@@ -1219,7 +1219,7 @@ showModal8 : function()
        var answer_screen1 = game.add.sprite(50,100,'answer1');
        answer_screen1.scale.setTo(0.85, 0.85);
        var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 5 parathas among 8 workers.',style);
+       var text1 = game.add.text(20,25,'సమూహం-బి లో 12 మంది పనివారికి సరియైన విధంగా 9 పరాటాలు పంచండి మరియు ఒక్కో పనివారి వాటాను కనుగొనండి.',style);
        var style1 = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
        var text2= game.add.text(20,45,'Click Next to continue.',style1);
 
@@ -1299,20 +1299,20 @@ showModal8 : function()
    //background = game.add.sprite(0,0,'bg');
   var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_lower = game.add.text(66,545,'What is the share of sub-group of 6 workers in Group B?',style4);
-    instruction_text = game.add.text(115,20,'1. Use the                      to make two smaller groups of 6 workers and 2 workers.',style1);
+    question_text_lower = game.add.text(66,545,'సమూహం -బి లో 6 మంది పనివారి ఉప సమూహం వాటా ఎంత?',style4);
+    instruction_text = game.add.text(115,20,'1.(ఇద్దరు)  పనివారు ఉన్న చిన్న సమూహాలు చేయడానికి డ్రాగ్ చేయడం ద్వారా గ్రూపింగ్ టూల్ ఉపయోగించండి',style1);
     instruction_text.wordWrap = true; 
     instruction_text.wordWrapWidth = 580; 
     instruction_text.lineSpacing = -5;
-    var instruction_text2 = game.add.text(115,35,'2. Distribute the 6 parathas fairly among these sub-groups and find the share of each sub-group.',style1)
+    var instruction_text2 = game.add.text(115,35,'2.ఈ ఉప-సమూహాలలో 6 పరాటాలను సరిగా పంచండి మరియు ఒక్కో ఉప సమూహం వాటాని కనుగొనండి.',style1)
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(175,20,'Grouping Tool ',style2);
-    question_text_upper = game.add.text(110,4,'Distribute 6 parathas fairly among the 8 workers in Group B.',style4);
-    question_text_upper.wordWrap = true;
+//    var instruction_text1 = game.add.text(175,20,'Grouping Tool ',style2);
+    question_text_upper = game.add.text(110,4,'సమూహం-బి లో 8 మంది పనివారికి సరియైన విధంగా 6 పరాటాలు పంచండి మరియు ఒక్కో పనివారి వాటాను కనుగొనండి.',style4);
+    question_text_upper.wordWrap = false;
     question_text_upper.wordWrapWidth = 550;
     var style11 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text_lower = game.add.text(66,560,'Enter your answer in the form of a whole number or a fraction and click                      to check your answer. ',style11);  
-    var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
+    var instruction_text_lower = game.add.text(66,560,'మీ జవాబుని ఒక పూర్ణ సంఖ్య లేదా ఒక భిన్నం రూపంలో నమోదు చేయండి మరియు మీ జవాబు సరైందో కాదో చూసుకొనుటకు  పంచుట అయినది క్లిక్ చేయండి',style11);  
+//    var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
     rect1[0] = game.add.sprite(49,120,null);
    game.physics.enable(rect1[0],Phaser.Physics.ARCADE);
    rect1[0].body.setSize(313,144,0,0);
@@ -2019,7 +2019,7 @@ showModal8 : function()
        var answer_screen1 = game.add.sprite(50,100,'answer2');
        //answer_screen1.scale.setTo(, 0.95);
        var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 3 parathas among 6 workers.',style);
+       var text1 = game.add.text(20,25,'ఇది సరియైన విధంగా పంచే ఒక విధానం. 8 మంది పనివారిలో 6 పరాటాలను సరియైనట్లు పంచే ఇతర మార్గాలను ఆలోచించండి.',style);
        var style1 = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
        var text2= game.add.text(20,45,'Click Next to continue.',style1);
 
@@ -2061,16 +2061,16 @@ showModal8 : function()
        var lowerband = game.add.sprite(0,500,'lower');
        lowerband.scale.setTo(1,0.95);
          var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-        question_text_lower = game.add.text(78,540,'In which group did the workers receive more food per person?',style4);
+        question_text_lower = game.add.text(78,540,'ఏ సమూహంలో వ్యక్తికి ఎక్కువ ఆహారాన్ని అందుకున్నారు?',style4);
         var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(78,560,'Select one of the options below and click the          button',style1);
+    instruction_text = game.add.text(78,560,'డ్రాప్‌డౌన్  జాబితా నుండి ఎంపికలలో ఒకటి ఎన్నుకోండి మరియు  చేయడమైనది  క్లిక్ చేయండి.',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(310,560,'Done ',style2);
+//    var instruction_text1 = game.add.text(310,560,'Done ',style2);
     radio_buttons[0] = game.add.sprite(77,578,'lesson2','radio-highlighted');
     style3 = { font: "italic 13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    radio_texts[0] = game.add.text(92,580,'Group A',style3);
-    radio_texts[1] = game.add.text(197,580,'Group B',style3);
-    radio_texts[2] = game.add.text(306,580,'Workers in both groups got the same share',style3);
+    radio_texts[0] = game.add.text(92,580,'సమూహం -ఏ',style3);
+    radio_texts[1] = game.add.text(197,580,'సమూహం -బి',style3);
+    radio_texts[2] = game.add.text(306,580,'రెండు సమూహాలలోని పనివారు ఒకే మొత్తంలో ఆహారం అందుకున్నారు.',style3);
     radio_buttons[1] = game.add.sprite(176,578,'lesson2','radio-highlighted');
     radio_buttons[2] = game.add.sprite(285,578,'lesson2','radio-highlighted');
     help_button = game.add.sprite(729,5,'lesson2','HELP_mouse_over');
@@ -2305,11 +2305,11 @@ showModal3:function() {
        var lowerband = game.add.sprite(0,500,'lower');
        lowerband.scale.setTo(1,0.95);
         var style4 = { font: "13px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-        question_text_lower = game.add.text(78,540,'How did you decide which group received more food per worker?',style4);
+        question_text_lower = game.add.text(78,540,' వ్యక్తికి ఎక్కువ ఆహారం ఏ సమూహం అందుకున్నారో మీరు ఎలా నిర్ణయించారు?',style4);
         var style1 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    instruction_text = game.add.text(78,560,'Enter your answer below and click the             button',style1);
+    instruction_text = game.add.text(78,560,'క్రింద మీ జవాబు టైప్ చేయండి మరియు చేయడమైనది క్లిక్ చేయండి.',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text1 = game.add.text(305,560,'Done ',style2);
+//    var instruction_text1 = game.add.text(305,560,'Done ',style2);
  var input_answer = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
