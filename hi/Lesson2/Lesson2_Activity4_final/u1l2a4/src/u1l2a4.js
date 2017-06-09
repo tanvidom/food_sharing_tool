@@ -12,6 +12,8 @@
  var groups = [];
 var number_of_pieces = [];
  var linkofdemo;
+  var yay_sound;
+ var click_sound;
   var tips = [];
   var worker_set_names = ['A1_worker_bg','A2_worker_bg'];
   var worker_set_names1 = ['B1','B2'];
@@ -490,12 +492,16 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.add.plugin(PhaserInput.Plugin);
      game.load.atlasJSONHash('hindi_buttons7','assets/hindi_buttons7.png','assets/hindi_buttons7.json');
        game.load.atlasJSONHash('hindi_modals7','assets/hi_l2a4_modals.png','assets/hi_l2a4_modals.json');
+       game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
 
   },
   create : function()
   {
     reg.modal = new gameModal(game);
         this.createModals();
+         yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
 
    background = game.add.sprite(0,0,'bg','bg');
    var worker_area = game.add.sprite(30,95,'bg','WORKER_MAIN_AREA');
@@ -645,7 +651,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 },
   workers_stopDrag : function(item)
   {
-
+    click_sound.play('',0,1);
     var worker_no = item.number;
     var c = 0;
     worker_check_on_group = [];
@@ -698,6 +704,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   parathas_stopDrag : function(item)
   {
+    click_sound.play('',0,1);
     paratha_no = item.number;
     var c =0;
     var c1 = 0;
@@ -1072,6 +1079,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     });      
   }, 
   showModal1:function() {
+     yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
@@ -1312,12 +1320,16 @@ showModal8 : function()
       game.load.atlasJSONHash('hindi_buttons7','assets/hindi_buttons7.png','assets/hindi_buttons7.json');
        game.load.atlasJSONHash('hindi_modals7','assets/hi_l2a4_modals.png','assets/hi_l2a4_modals.json');
     game.add.plugin(PhaserInput.Plugin);
+      game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
 
   },
   create : function()
   {
     reg.modal = new gameModal(game);
         this.createModals();
+         yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
  background = game.add.sprite(0,0,'bg','bg');
    var worker_area = game.add.sprite(30,95,'bg','WORKER_MAIN_AREA');
 
@@ -1457,6 +1469,7 @@ showModal8 : function()
       },
   workers_stopDrag : function(item)
   {
+    click_sound.play('',0,1);
     var worker_no_1 = item.number;
     var c = 0;
     worker_check_on_group = [];
@@ -1513,6 +1526,7 @@ showModal8 : function()
   },
   parathas_stopDrag : function(item)
   {
+    click_sound.play('',0,1);
     paratha_no = item.number;
     var c =0;
     var c1 = 0;
@@ -1888,6 +1902,7 @@ showModal8 : function()
     });      
   }, 
   showModal1:function() {
+     yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
