@@ -550,7 +550,7 @@ click_button : function()
 help_function : function()
 {
  console.log('help');
- window.open("../u1l3a1/assets/fraction-chart_copywrite.png");
+ window.open("./assets/fraction-chart_copywrite.png");
 },
   
     input_function1 : function(item)
