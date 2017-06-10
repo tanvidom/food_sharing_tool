@@ -1,4 +1,4 @@
- window.onload = function()
+window.onload = function()
  {
  var background;
   var count_no_of_attempts = 0;
@@ -520,7 +520,9 @@ click_button : function()
 },
 help_function : function()
 {
- window.open("../Activity2/assets/fraction-chart_copywrite.png");
+
+ window.open("./assets/fraction-chart_copywrite.png");
+
 },
   
     input_function1 : function(item)
@@ -1093,7 +1095,10 @@ game.state.add('videoScreen',videoScreen);
 //game.state.add('answer_a1_p1',answer_a1_p1);
 //game.state.add('answer_a1_p2',answer_a1_p2);
 game.state.start('PlayGame');
+
 }
+
+
 
 
  

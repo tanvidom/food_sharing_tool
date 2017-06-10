@@ -312,7 +312,7 @@ update : function()
   },
   help_function : function()
    {
-    window.open("../u1l1a1/assets/fraction-chart_copywrite.png");
+    window.open("./assets/fraction-chart_copywrite.png");
    },
   out : function(item)
   {

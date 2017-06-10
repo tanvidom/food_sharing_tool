@@ -599,7 +599,7 @@ update : function()
    },
    help_function : function()
    {
-    window.open("../u1l1a2/assets/fraction-chart_copywrite.png");
+    window.open("./assets/fraction-chart_copywrite.png");
    },
   final_check_function : function()
   {
