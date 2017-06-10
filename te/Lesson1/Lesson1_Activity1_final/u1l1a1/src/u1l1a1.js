@@ -1047,9 +1047,9 @@ var answerScreen = function(game){}
        var answer_screen1 = game.add.sprite(0,120,'answers1');
        //answer_screen1.scale.setTo(2, 2);
        var style = { font: "20px Arial", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-       var text1 = game.add.text(20,25,'This is one way of making a fair distribution. Think of other ways to fairly distribute 3 cakes among 4 children. Click Next to proceed to the next activity.',style);
+       var text1 = game.add.text(20,25,'ఇది సరియైన విధంగా పంచే ఒక విధానం.3 కేకులను 4 మంది పిల్లలకు సరియైన విధంగా పంచె  ఇతర మార్గాల గురించి ఆలోచించండి. Close tab and proceed to next activity.',style);
        text1.wordWrap = true;
-       text1.wordWrapWidth = 800;
+       text1.wordWrapWidth = 700;
       }
     }
    var videoScreen = function(game){}

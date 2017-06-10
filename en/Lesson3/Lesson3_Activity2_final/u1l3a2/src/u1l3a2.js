@@ -13,10 +13,10 @@ var number_of_pieces = [];
   var radio_buttons = [];
   var radio_texts = [];
  var plates = [];
- var workers1 = [];
-   var yay_sound;
+    var cutting_sound;
+ var yay_sound;
  var click_sound;
- var cutting_board;
+ var workers1 = [];
  var worker_no;
  var cutting_board;
  var plates1 = [];
@@ -74,6 +74,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.image('q2','assets/q2.png');
     game.load.image('q2_large','assets/q2_large.png');
+     game.load.image('close_button','assets/close_button_normal.png');
      game.load.audio('click','assets/sounds/clicksound.wav');
     game.load.audio('yay','assets/sounds/yay.wav');
     
@@ -81,10 +82,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   create : function()
   {
-    yay_sound = game.add.audio('yay');
-        click_sound = game.add.audio('click');
        reg.modal = new gameModal(game);
         this.createModals();
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
     background = game.add.sprite(0,0,'bgelem','bg');
     var upper_band = game.add.sprite(5,0,'bgelem','upper');
     upper_band.scale.setTo(1,0.85);
@@ -487,10 +488,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     });      
    },
     showModal1:function() {
+      yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
-  yay_sound.play('',0,1);
     reg.modal.showModal("modal2");
 },
 showModal3:function() {
@@ -519,7 +520,9 @@ click_button : function()
 },
 help_function : function()
 {
+
  window.open("./assets/fraction-chart_copywrite.png");
+
 },
   
     input_function1 : function(item)
@@ -637,7 +640,7 @@ help_function : function()
     },
     stopDrag_1 :function(item)
     {
-       click_sound.play('',0,1);
+      click_sound.play('',0,1);
         worker_no = item.number;
         var pos = 0;
         
@@ -696,7 +699,7 @@ help_function : function()
  },
     stopDrag_2 : function(item)
     {
-       click_sound.play('',0,1);
+      click_sound.play('',0,1);
        roti_no = item.number;
         var pos = 0;
          for(var i=4;i<7;i++)
@@ -769,12 +772,17 @@ reset_function : function()
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
     game.load.atlasJSONHash('modals1','assets/advice_l3a2_2.png','assets/advice_l3a2_2.json');
+     game.load.image('close_button','assets/close_button_normal.png');
+     game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
 
   },
   create : function()
   {
     reg.modal = new gameModal(game);
         this.createModals();
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
     background = game.add.sprite(0,0,'advice','BACKGROUND');
     var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     question_text_upper = game.add.text(93,7,'Jamuni and her friends are trying to solve a similar problem. If 2 parathas are sufficient for 4 workers in Group A, how many parathas are required for 8 workers in Group B if they must get the same share as Group A?',style);
@@ -1017,6 +1025,7 @@ reset_function : function()
         },
       
 showModal2:function() {
+  yay_sound.play('',0,1);
     reg.modal.showModal("modal2");
 },
 showModal3:function() {
@@ -1086,4 +1095,11 @@ game.state.add('videoScreen',videoScreen);
 //game.state.add('answer_a1_p1',answer_a1_p1);
 //game.state.add('answer_a1_p2',answer_a1_p2);
 game.state.start('PlayGame');
+
 }
+
+
+
+
+ 
+

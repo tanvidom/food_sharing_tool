@@ -1494,6 +1494,8 @@ showModal8 : function()
     var style2 = { font: "bold 11px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     //var instruction_text1 = game.add.text(240,28,'Share Food Packets  ',style2);
     var instruction_text2 = game.add.text(130,35,'2. సమూహం-ఎ కి మీరు ఆహారం పంచడం పూర్తి చేసిన తరువాత, సమూహం బి కొరకు ఆహారం పంచడం  క్లిక్ చేయండి మరియు సమూహం- బి కి పంచడం పూర్తి చేయండి.',style1);
+    instruction_text2.wordWrap = true;
+    instruction_text2.wordWrapWidth = 600;
     //var instruction_text3 = game.add.text(445,42,' Share Food Packets  ',style2); 
     var scrnn = game.add.sprite(0,74,'scrnsht');
     share_button_B = game.add.button(303,530,'lesson2',this.share_b_function,this,'sprite145','sprite141','sprite146');
