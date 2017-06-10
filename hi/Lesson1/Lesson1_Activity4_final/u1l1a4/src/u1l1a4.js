@@ -654,7 +654,7 @@ update : function()
    },
    help_function : function()
    {
-    window.open("../u1l1a4/assets/fraction-chart_copywrite.png");
+    window.open("./assets/fraction-chart_copywrite.png");
    },
   final_check_function : function()
   {
@@ -885,7 +885,7 @@ var answerScreen = function(game){}
 },
         help_function : function()
    {
-    window.open("../u1l1a4/assets/fraction-chart_copywrite.png");
+    window.open("./assets/fraction-chart_copywrite.png");
    },
       check2_function : function()
       {

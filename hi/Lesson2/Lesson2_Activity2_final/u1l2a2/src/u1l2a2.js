@@ -687,7 +687,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   }, */
   help_function : function()
   {
-   window.open("../u1l2a2/assets/fraction-chart_copywrite.png");
+   window.open("./assets/fraction-chart_copywrite.png");
   },
   parathas_stopDrag : function(item)
   {
@@ -1510,7 +1510,7 @@ showModal8 : function()
   },*/
   help_function : function()
   {
-   window.open("../u1l2a2/assets/fraction-chart_copywrite.png");
+   window.open("./assets/fraction-chart_copywrite.png");
   },
   parathas_stopDrag : function(item)
   {
@@ -2103,7 +2103,7 @@ showModal8 : function()
   },*/
   help_function : function()
   {
-   window.open("../u1l2a2/assets/fraction-chart_copywrite.png");
+   window.open("./assets/fraction-chart_copywrite.png");
   },
        createModals: function() {
 
