@@ -1020,8 +1020,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
-            content : 'sprite9'
+            atlasParent :'advice',
+            content : 'AMAN_ADVICE'
 
 
           },
@@ -1054,8 +1054,8 @@ reset_function : function()
         modalCloseOnInput: false,
         itemsArr: [{
             type: 'sprite',
-            atlasParent :'modals31',
-            content : 'sprite6'
+            atlasParent :'advice',
+            content : 'LEENA_ADVICE'
 
 
           },
