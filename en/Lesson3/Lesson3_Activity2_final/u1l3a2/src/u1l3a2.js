@@ -13,10 +13,10 @@ var number_of_pieces = [];
   var radio_buttons = [];
   var radio_texts = [];
  var plates = [];
- var workers1 = [];
-   var yay_sound;
+    var cutting_sound;
+ var yay_sound;
  var click_sound;
- var cutting_board;
+ var workers1 = [];
  var worker_no;
  var cutting_board;
  var plates1 = [];
@@ -74,6 +74,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.image('q2','assets/q2.png');
     game.load.image('q2_large','assets/q2_large.png');
+     game.load.image('close_button','assets/close_button_normal.png');
      game.load.audio('click','assets/sounds/clicksound.wav');
     game.load.audio('yay','assets/sounds/yay.wav');
     
@@ -81,10 +82,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   create : function()
   {
-    yay_sound = game.add.audio('yay');
-        click_sound = game.add.audio('click');
        reg.modal = new gameModal(game);
         this.createModals();
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
     background = game.add.sprite(0,0,'bgelem','bg');
     var upper_band = game.add.sprite(5,0,'bgelem','upper');
     upper_band.scale.setTo(1,0.85);
@@ -95,14 +96,14 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     
     //background.scale.setTo(1,0.99);
     var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
-    question_text_upper = game.add.text(50,6,'సమూహం-ఎ లో లాగా అదే వాటా పొందడానికి సమూహం-బి లో పనివారికి ఎన్ని పరాటాలు తప్పక ఇవ్వాలో లెక్కించడానికి జమునికి సహాయపడండి.',style);
+    question_text_upper = game.add.text(50,6,'Help Jamuni calculate how many parathas must be given to the workers in Group B so that they get the same share as Group A.',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 800;
     var style2 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     
-    var instruction_text2 = game.add.text(110,28,"1. గరిష్టంగా మూడు ఉప-సమూహాలుగా సమూహం- బి ని విభజించడానికి గ్రూపింగ్ టూల్ ఉపయోగించండి.",style2);
-    var instruction_text3 = game.add.text(110,45,"2. సమూహం -ఎ లో పనివారి లాగే అదే వాటా పొందడానికి ఒక్కో ఉప-సమూహంలో అందుబాటులో ఉండే పరాటాలను పంచండి.",style2);
-    var instruction_text4 = game.add.text(110,62,"3. సమూహం -బి యొక్క మొత్తం వాటాని లెక్కించండి.",style2);
+    var instruction_text2 = game.add.text(110,28,"1. Use the​ Grouping Tool​ to divide the workers in Group B into a maximum of 3 sub-groups.",style2);
+    var instruction_text3 = game.add.text(110,45,"2. Distribute the available parathas such that each sub-group gets the same share as the workers in Group A.",style2);
+    var instruction_text4 = game.add.text(110,62,"3. Calculate the total share of Group B",style2);
     var click_to_image = game.add.image(15,95,'q2');
     click_to_image.scale.setTo(0.9,0.9);
     var click_to_button = game.add.button(22,170,'lesson3',this.click_button,this,'click_to_enlarge_button_up','click_to_enlarge_button_normal','click_to_enlarge_button_normal');
@@ -190,10 +191,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         });
     }
     //question text
-    question_text_lower = game.add.text(22,552,'సమూహం-బి లో10మంది పనివారికి ఎన్ని పరాటాలు అవసరమవుతాయి?',style);
-     instruction_text_lower = game.add.text(22,574,'మీ జవాబుని క్రింద ఒక పూర్ణ సంఖ్య లేదా ఒక భిన్నం రూపంలో నమోదు చేయండి మరియు మీ జవాబు సరైందో కాదో సరిచూడటానికి పంచుట అయినది క్లిక్ చేయండి.',style2);
+    question_text_lower = game.add.text(22,552,'How many parathas are required for the 10 workers in Group B?',style);
+     instruction_text_lower = game.add.text(22,574,'Enter your answer in form of a whole number or fraction and click                       to check your answer.',style2);
      style3 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-     //instruction_text_lower1 = game.add.text(380,574,'Sharing Done',style3);
+     instruction_text_lower1 = game.add.text(380,574,'Sharing Done',style3);
      input_answer = game.add.inputField(22, 600, {
     font: '11px Arial',
     fill: '#212121',
@@ -206,7 +207,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     borderRadius: 6,
     
 });
-     var parathas_text = game.add.text(95,605,'పరాటాలు.',style);
+     var parathas_text = game.add.text(95,605,'parathas.',style);
      sharing_done_btn = game.add.button(180,600,'buttons',this.sharing_done_function,this,'SHARING_BUTTON_MOUSE_OVER','SHARING_BUTTON_NORMAL','SHARING_BUTTON_MOUSE_DOWN');
      reset_btn = game.add.button(300,600,'buttons',this.reset_function,this,'RESET_BUTTON_MOUSE_DOWN','RESET_BUTTON_NORMAL','RESET_BUTTON_MOUSE_OVER');
      sharing_done_btn.scale.setTo(0.85,0.85);
@@ -487,10 +488,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     });      
    },
     showModal1:function() {
+      yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
 },
 showModal2:function() {
-  yay_sound.play('',0,1);
     reg.modal.showModal("modal2");
 },
 showModal3:function() {
@@ -519,7 +520,7 @@ click_button : function()
 },
 help_function : function()
 {
- window.open("../u1l3a2/assets/fraction-chart_copywrite.png");
+ window.open("../Activity2/assets/fraction-chart_copywrite.png");
 },
   
     input_function1 : function(item)
@@ -637,7 +638,7 @@ help_function : function()
     },
     stopDrag_1 :function(item)
     {
-       click_sound.play('',0,1);
+      click_sound.play('',0,1);
         worker_no = item.number;
         var pos = 0;
         
@@ -696,7 +697,7 @@ help_function : function()
  },
     stopDrag_2 : function(item)
     {
-       click_sound.play('',0,1);
+      click_sound.play('',0,1);
        roti_no = item.number;
         var pos = 0;
          for(var i=4;i<7;i++)
@@ -769,12 +770,17 @@ reset_function : function()
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');  
     game.load.atlasJSONHash('modals1','assets/advice_l3a2_2.png','assets/advice_l3a2_2.json');
+     game.load.image('close_button','assets/close_button_normal.png');
+     game.load.audio('click','assets/sounds/clicksound.wav');
+    game.load.audio('yay','assets/sounds/yay.wav');
 
   },
   create : function()
   {
     reg.modal = new gameModal(game);
         this.createModals();
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
     background = game.add.sprite(0,0,'advice','BACKGROUND');
     var style = { font: "12px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     question_text_upper = game.add.text(93,7,'Jamuni and her friends are trying to solve a similar problem. If 2 parathas are sufficient for 4 workers in Group A, how many parathas are required for 8 workers in Group B if they must get the same share as Group A?',style);
@@ -1017,6 +1023,7 @@ reset_function : function()
         },
       
 showModal2:function() {
+  yay_sound.play('',0,1);
     reg.modal.showModal("modal2");
 },
 showModal3:function() {
@@ -1090,5 +1097,4 @@ game.state.start('PlayGame');
 
 
  
-
 
