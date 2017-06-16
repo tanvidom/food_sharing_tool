@@ -1,7 +1,7 @@
  window.onload = function()
  {
  var background;
-  var count_no_of_attempts = 0;
+  //var count_no_of_attempts = 0;
  var question_text_upper;
  var question_text_lower;
  var instruction_text;
@@ -1111,12 +1111,13 @@ showModal5:function() {
       },
       video_stop : function()
       {
-        
+       count_no_of_attempts = 0; 
        game.state.start('PlayGame');
         
       },
       back_function : function()
       {
+        count_no_of_attempts = 0;
         game.state.start('PlayGame');
       }
 

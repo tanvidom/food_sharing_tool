@@ -1070,12 +1070,13 @@ showModal5:function() {
       },
       video_stop : function()
       {
-        
+        count_no_of_attempts = 0;
        game.state.start('PlayGame');
         
       },
       back_function : function()
       {
+        count_no_of_attempts = 0;
         game.state.start('PlayGame');
       }
 
