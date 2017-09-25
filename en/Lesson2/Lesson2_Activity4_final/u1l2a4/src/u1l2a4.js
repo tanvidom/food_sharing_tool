@@ -489,7 +489,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   {
     reg.modal = new gameModal(game);
         this.createModals();
-
+//cutting_sound = game.add.audio('cutting_board1');
+        yay_sound = game.add.audio('yay');
+        click_sound = game.add.audio('click');
    background = game.add.sprite(0,0,'bg','bg');
    var worker_area = game.add.sprite(30,95,'bg','WORKER_MAIN_AREA');
 
