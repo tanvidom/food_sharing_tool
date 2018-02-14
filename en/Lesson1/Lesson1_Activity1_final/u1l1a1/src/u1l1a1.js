@@ -37,7 +37,7 @@
  var yay_sound;
  var click_sound;
  var playGame = function(game){}
- playGame.prototype = 
+ playGame.prototype =
  {
   init : function()
   {
@@ -46,8 +46,8 @@
   preload : function()
   {
    game.load.image('background','assets/full_background.png');
-   game.load.atlasJSONHash('atlas1', 'assets/spritesheet1.png', 'assets/sprites1.json'); 
-   game.load.atlasJSONHash('atlas2', 'assets/spritesheet2.png', 'assets/sprites2.json'); 
+   game.load.atlasJSONHash('atlas1', 'assets/spritesheet1.png', 'assets/sprites1.json');
+   game.load.atlasJSONHash('atlas2', 'assets/spritesheet2.png', 'assets/sprites2.json');
    game.add.plugin(PhaserInput.Plugin);
    game.load.image('cookie1/2','assets/images/HALF1.png');
     game.load.image('cookie1/3','assets/images/ONE_THIRD_3.png');
@@ -65,8 +65,8 @@
     game.load.audio('yay','assets/sounds/yay.wav');
     game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
     //game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
-    
-   
+
+
   },
   create : function()
   {
@@ -102,22 +102,22 @@
    reset_btn = game.add.button(168, 586,'atlas1',this.reset_function,this,buttons1_hover[1],buttons1[1],buttons1_down[1]);
    var buttons_hover = ['1_MOUSE_OVER','2_MOUSE_OVER','3_MOUSE_OVER','4_MOUSE_OVER','5_MOUSE_OVER','6_MOUSE_OVER'];
    var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN','5_MOUSE_DOWN','6_MOUSE_DOWN'];
-   //adding plates 
+   //adding plates
    plates[0] = game.add.sprite(345,185,'atlas2','PLATE_WITHOUT_GLOW');
    plates[1] = game.add.sprite(555,185,'atlas2','PLATE_WITHOUT_GLOW');
    plates[2] = game.add.sprite(345,345,'atlas2','PLATE_WITHOUT_GLOW');
-   plates[3] = game.add.sprite(555,345,'atlas2','PLATE_WITHOUT_GLOW'); 
+   plates[3] = game.add.sprite(555,345,'atlas2','PLATE_WITHOUT_GLOW');
    var k=1;
    for(var i=0;i<4;i++)
-   { 
+   {
          rect[k] = game.add.sprite(plates[i].x,plates[i].y,null);
          game.physics.enable(rect[k], Phaser.Physics.ARCADE);
          //plates[k].scale.setTo(1.5,1.5);
          rect[k].body.setSize(111,80,0,0);
          console.log(rect[k]);
          k++;
-    } 
-   //initialising sum for each plate 
+    }
+   //initialising sum for each plate
    for(var k=0;i<4;i++)
    {
     plates[k].sum = 0;
@@ -134,7 +134,7 @@
     //cakes[i].events.onDragStart.add(this.addGreenTiles, this);
     //cakes[i].input.enableSnap(50,50, false, true);
     cakes[i].anchor.setTo(0,0);
-    
+
     game.physics.enable(cakes[i],Phaser.Physics.ARCADE);
     cakes[i].events.onDragStop.add(this.stopDrag,this);
     cakes[i].originalPosition = cakes[i].position.clone();
@@ -142,17 +142,17 @@
    }
    cake_num = i +1;
    cakes[2].loadTexture('atlas1','CAKE_WITH_GLOW');
-   
+
 
    //adding children
    children[0] = game.add.sprite(383,137,'atlas2','student1');
    children[1] = game.add.sprite(590,137,'atlas2','student3');
    children[2] = game.add.sprite(383,295,'atlas2','student4');
    children[4] = game.add.sprite(590,295,'atlas2','student2');
-   
-   //adding buttons 
 
-   
+   //adding buttons
+
+
    for(var i=0;i<6;i++)
    {
    number_of_pieces[i] = game.add.button(18+(i*30),309,'atlas1',this.cutting_function,this, buttons_hover[i],buttons[i],buttons_down[i]);
@@ -179,7 +179,7 @@
    instruction_text = game.add.text(24,384,'Use the                    to cut the cake into smaller pieces and drag and drop the cake or the pieces to each child.',style2);
 
   instruction_text.wordWrap = true;
-  instruction_text.wordWrapWidth = 175;  
+  instruction_text.wordWrapWidth = 175;
   var instruction_text1 = game.add.text(70,384, 'Cutting Tool ',style3);
   help_button = game.add.sprite(732,3,'atlas2','HELP_LINK');
   help_button.inputEnabled = true;
@@ -194,15 +194,15 @@
     borderWidth: 2,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
-   
-   
+
+
 },
  /*render : function()
-         { 
+         {
           game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
-    
+
           }, */
   stopDrag : function(item,pointer)
   {
@@ -211,7 +211,7 @@
     var c =0;
 
 
-    
+
     for(var i=0;i<5;i++)
     {
       var pos;
@@ -230,7 +230,7 @@
              console.log('hihihi1234');
              cutting_board.loadTexture('atlas2','CUTTING_BOARD_WITHOUT_GLOW');
              plates[x1].loadTexture('atlas2','PLATE_WITH_GLOW');
- 
+
            }
             for(var i=0;i<cakes.length;i++)
             {
@@ -241,9 +241,9 @@
               console.log(check_cake_on_board1 + 'checker');
                if(check_cake_on_board1 == true)
                {
-                  cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);         
+                  cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);
                }
-            }  }    
+            }  }
          }
         pos = i;
         c++;
@@ -278,7 +278,7 @@
         {
           sharing_done_btn.inputEnabled = true;
         }
-      
+
     }
 
     else
@@ -290,7 +290,7 @@
   },
   over : function(item)
   {
-   
+
    //item.loadTexture('atlas1', buttons_hover[item.num]);
   },
   help_function : function()
@@ -318,7 +318,7 @@
        cakes_on_board.push(cakes[i]);
      }
 
-   } 
+   }
    console.log('hi');
    var num_of_pieces = item.num+1;
    console.log(num_of_pieces);
@@ -327,7 +327,7 @@
    cutting_board.loadTexture('atlas2','CUTTING_BOARD_WITHOUT_GLOW');
    switch(num_of_pieces)
    {
-    
+
     case 1:
     for(var i = 0; i <cakes_on_board.length; i++)
     {
@@ -348,7 +348,7 @@
     }
     cake_num++;
     break;
-    case 2: 
+    case 2:
      for(var i = 0; i <cakes_on_board.length; i++)
     {
       cakes_on_board[i].destroy();
@@ -359,7 +359,7 @@
       number_of_pieces[x1].inputEnabled = false;
     }
     break;
-    case 3: 
+    case 3:
     for(var i = 0; i <cakes_on_board.length; i++)
     {
       cakes_on_board[i].destroy();
@@ -396,7 +396,7 @@
     for(var i = 0; i <cakes_on_board.length; i++)
     {
       cakes_on_board[i].destroy();
-    } 
+    }
     this.circle(95,270,6,'cookie1/6',0.5,-0.2);
      for(var x1=0; x1 < 6; x1++)
      {
@@ -417,7 +417,7 @@
     var NoOfSection = cuts;
     var divisonangle = (360/NoOfSection);
     console.log(divisonangle);
-    for (p=0;p < NoOfSection; p++) { 
+    for (p=0;p < NoOfSection; p++) {
       var x =x1
       var y =y1
       cakes[cake_num] = game.add.sprite(x,y,sprite);
@@ -440,7 +440,7 @@
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
     });
       }
         if(cakes[cake_num].weight == '0.3333333333333333')
@@ -452,7 +452,7 @@
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         if(cakes[cake_num].weight == '0.25')
@@ -464,7 +464,7 @@
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         if(cakes[cake_num].weight == '0.20')
@@ -476,7 +476,7 @@
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         console.log("weight" + cakes[cake_num].weight);
@@ -490,11 +490,11 @@
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
     console.log(tips[cake_num]);
-      cakes[cake_num].angle = angle;  
+      cakes[cake_num].angle = angle;
       angle += divisonangle;
       console.log(angle);
       cake_num++;
@@ -525,7 +525,7 @@
                     }
         },
         {
-          
+
            type : "text",
            content: "Close the tab to proceed.",
           offsetX : 0,
@@ -539,15 +539,15 @@
          {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_HAPPY',
           offsetX : 40,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
-     //modal 2 
+     //modal 2
         reg.modal.createModal({
         type: "modal2",
         includeBackground: true,
@@ -583,7 +583,7 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -624,7 +624,7 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -665,7 +665,7 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -706,7 +706,7 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -747,7 +747,7 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -788,12 +788,12 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
           ]
-    });  
+    });
            reg.modal.createModal({
         type: "modal8",
         includeBackground: true,
@@ -829,13 +829,13 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
           ]
-    });      
-  }, 
+    });
+  },
   showModal1:function() {
     yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
@@ -864,7 +864,7 @@ showModal8 : function()
 },
  popup_answer : function()
  {
-   
+
  },
  reset_function : function()
  {
@@ -873,7 +873,7 @@ showModal8 : function()
  },
  startDrag_1 : function(item)
  {
- 
+
  },
  stopDrag_1 : function(item)
  {
@@ -899,7 +899,7 @@ showModal8 : function()
     {
       cakes[cake_position].position.copyFrom(cakes[cake_position].originalPosition);
     }
-   
+
  },
  update : function()
 {
@@ -931,9 +931,9 @@ showModal8 : function()
   else
   {
     var cd = input_answer.value;
-  splitted_text = cd.split("/"); 
+  splitted_text = cd.split("/");
   console.log("a : " + splitted_text[0] );
-  console.log("b :" + splitted_text[1] ); 
+  console.log("b :" + splitted_text[1] );
   var is_ans_true = this.division(splitted_text[0],splitted_text[1],3,4);
   console.log(is_ans_true);
   for(var i=0;i<4;i++)
@@ -987,25 +987,25 @@ showModal8 : function()
         console.log('modal7');
         this.showModal7();
       }
-      else 
+      else
       {
         console.log('modal8');
         this.showModal8();
       }
-      
+
     }
     else if( l!==4 && (input_answer.value!=='3/4' || is_ans_true == false))
     {
       console.log('modal81');
       this.showModal8();
     }
-    else 
+    else
     {
       console.log('modal4');
       this.showModal4();
     }
- } } 
- else 
+ } }
+ else
  {
   game.state.start('answer_screen');
 
@@ -1022,7 +1022,7 @@ division : function(a,b,c,d)
     {
       value = true;
     }
-    else 
+    else
     {
       value = false;
     }
@@ -1031,9 +1031,9 @@ division : function(a,b,c,d)
 }
 }
 var answerScreen = function(game){}
-    answerScreen.prototype = 
+    answerScreen.prototype =
     {
-      
+
       preload : function()
       {
        game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
@@ -1043,7 +1043,7 @@ var answerScreen = function(game){}
       create : function()
       {
 
-       game.stage.backgroundColor = "#00FA9A"; 
+       game.stage.backgroundColor = "#00FA9A";
        var answer_screen1 = game.add.sprite(0,120,'answers1');
        //answer_screen1.scale.setTo(2, 2);
        var style = { font: "20px Arial", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -1072,7 +1072,7 @@ var answerScreen = function(game){}
         var back_text = game.add.text(690,10,'BACK',style2);
         back_text.inputEnabled = true;
         console.log(video.loop);
-        
+
         video.loop = false;
         video.onComplete.add(this.video_stop,this);
         back_text.events.onInputDown.add(this.back_function,this);
@@ -1080,11 +1080,11 @@ var answerScreen = function(game){}
         console.log(video.onComplete);
 
     //  true = loop
-       
+
 
        game.input.onDown.add(this.pause, this);
       },
-      pause : function() 
+      pause : function()
       {
 
       video.paused = (video.paused) ? false : true;
@@ -1092,9 +1092,9 @@ var answerScreen = function(game){}
       },
       video_stop : function()
       {
-        
+
        game.state.start('PlayGame');
-        
+
       },
       back_function : function()
       {
@@ -1107,8 +1107,3 @@ game.state.add('PlayGame', playGame);
 game.state.add('answer_screen',answerScreen);
 game.state.start('PlayGame');
 }
-
-
- 
-
-

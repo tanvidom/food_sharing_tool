@@ -20,7 +20,7 @@
  var plates = [];
  var children = [];
  var cakes = [];
- var check = []; 
+ var check = [];
  var groups = [];
  var sharing_done_btn;
  var reset_btn;
@@ -38,7 +38,7 @@
  var buttons = ['1_normal','2_normal','3_normal','4_normal','5_normal','6_normal'];
  var rect = [];
  var playGame = function(game){}
- playGame.prototype = 
+ playGame.prototype =
  {
   init : function()
   {
@@ -49,7 +49,7 @@
     game.load.atlasJSONHash('atlas6','assets/spritesheet_111.png','assets/sprites_111.json');
    game.load.image('background','assets/background.png');
    game.load.image('close_button','assets/close_button_normal.png');
-   game.load.atlasJSONHash('atlas4', 'assets/atlas4.png', 'assets/atlas4.json'); 
+   game.load.atlasJSONHash('atlas4', 'assets/atlas4.png', 'assets/atlas4.json');
    game.add.plugin(PhaserInput.Plugin);
    game.load.webfont('tahoma','Tahoma');
    game.load.image('help_link','assets/HELP_LINK.png');
@@ -80,7 +80,7 @@
    {
     packets_text = game.add.text(160 + (i*195),552, 'cakes.',style);
    }
-   
+
    tray = game.add.sprite(3,85,'atlas4','TRAY');
    instruction_board = game.add.sprite(2,366,'atlas4','sprite45');
    var style2 = { font: "italic 12px tahoma",fill: "#000066", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -97,12 +97,12 @@
    sharing_done_btn = game.add.button(20,586, 'atlas4',this.final_check_function,this,'sprite68','sprite53','sprite39');
    sharing_done_btn.inputEnabled = false;
    reset_btn = game.add.button(168, 586,'atlas4',this.reset_function,this,'sprite69','sprite58','sprite70');
-   //adding plates 
+   //adding plates
 
    plates[0] = game.add.sprite(413,203,'atlas4','sprite72');
    plates[1] = game.add.sprite(413,411,'atlas4','sprite72');
    //defining area for plates
-  
+
    rect[0] = game.add.sprite(413,203,null);
    game.physics.enable(rect[0],Phaser.Physics.ARCADE);
    rect[0].body.setSize(360,60,0,0);
@@ -110,7 +110,7 @@
    rect[1] = game.add.sprite(413,411,null);
    game.physics.enable(rect[1],Phaser.Physics.ARCADE);
    rect[1].body.setSize(360,60,0,0)
-       
+
    //adding groups
    groups[0] = game.add.sprite(407,81,'atlas4','sprite65');
    groups[1] = game.add.sprite(407,288,'atlas4','sprite54');
@@ -126,7 +126,7 @@
    rect[5] = game.add.sprite(239,103,null);
    game.physics.enable(rect[5],Phaser.Physics.ARCADE);
    rect[5].body.setSize(111,240,0,0);
-   //initialising sum for each plate 
+   //initialising sum for each plate
    for(var k=0;i<2;i++)
    {
     plates[k].sum = 0;
@@ -143,12 +143,12 @@
     {
     cakes[i] = game.add.sprite(19+((i%6)*25),154,'atlas4','sprite57');
     }
-    cakes[i].number = i; 
-    cakes[i].anchor.setTo(0,0);  
+    cakes[i].number = i;
+    cakes[i].anchor.setTo(0,0);
     game.physics.enable(cakes[i],Phaser.Physics.ARCADE);
-    cakes[i].originalPosition = cakes[i].position.clone();   
+    cakes[i].originalPosition = cakes[i].position.clone();
    }
-   
+
 
    //adding children
    children[0] = game.add.sprite(248,117,'atlas4','sprite50');
@@ -159,7 +159,7 @@
    children[5] = game.add.sprite(301,221,'atlas4','sprite43');
    children[6] = game.add.sprite(248,280,'atlas4','sprite49');
    children[7] = game.add.sprite(301,280,'atlas4','sprite60');
-   //enabling drag for children 
+   //enabling drag for children
    for(var i=0; i <8;i++)
    {
     children[i].inputEnabled = true;
@@ -172,7 +172,7 @@
     children[i].num = i;
    }
 
-  
+
   help_button = game.add.sprite(730,3,'help_link');
   help_button.inputEnabled = true;
   //events.onInputDown.add(this.showModal5,this);
@@ -186,7 +186,7 @@
     borderWidth: 2,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
     input_answer2 = game.add.inputField(280, 545, {
     font: '12px Arial',
@@ -197,18 +197,18 @@
     borderWidth: 2,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
-   
-   
-   
+
+
+
 },
   add_glow_to_plates : function()
   {
        click_sound.play('',0,1);
       groups[0].loadTexture('atlas4','BENCH_A_WITH_GLOW');
       groups[1].loadTexture('atlas4','BENCH_B_WITH_GLOW');
-    
+
 
   },
   update : function()
@@ -228,11 +228,11 @@
   {
     click_sound.play('',0,1);
     var group_name = ['sprite65','sprite54'];
-    var child_no = item.num; 
+    var child_no = item.num;
     var c=0;
     var pos1;
     for(var i=0;i<2;i++)
-    { 
+    {
       check_child_on_group[i] = game.physics.arcade.overlap(children[child_no],rect[i+2]);
       console.log("test"+check_child_on_group);
       if(check_child_on_group[i] == true)
@@ -294,11 +294,11 @@
   stopDragcake : function(item)
   {
     click_sound.play('',0,1);
-    var cake_no = item.number; 
+    var cake_no = item.number;
     var c2=0;
     var pos2;
     for(var i=0;i<2;i++)
-    { 
+    {
       check_cake_on_plate[i] = game.physics.arcade.overlap(cakes[cake_no],rect[i]);
       console.log(check_cake_on_plate[i]);
       if(check_cake_on_plate[i] == true)
@@ -327,7 +327,7 @@
       {
         cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);
       }
-   
+
   },
   createModals: function() {
 
@@ -363,17 +363,17 @@
             game.state.start('playGame2');
           }
 
-        }, 
+        },
          {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_HAPPY',
           offsetX : 40,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
         reg.modal.createModal({
         type: "modal2",
@@ -408,10 +408,10 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
-        }]     
+        }]
     });
             reg.modal.createModal({
         type: "modal3",
@@ -446,10 +446,10 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
-        }]     
+        }]
     });
             //modal 4
         reg.modal.createModal({
@@ -485,13 +485,13 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         }]
-          
-        
-    }); 
+
+
+    });
     reg.modal.createModal({
         type: "modal5",
         includeBackground: true,
@@ -525,11 +525,11 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
-        }]     
-    }); 
+        }]
+    });
     reg.modal.createModal({
         type: "modal6",
         includeBackground: true,
@@ -563,12 +563,12 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
-        }]     
-    });   
-  }, 
+        }]
+    });
+  },
   showModal1:function() {
      yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
@@ -634,7 +634,7 @@
       if(final_check_function[j] == true)
       {
         plates[i].sum = plates[i].sum+1;
-      }      
+      }
      }
      console.log("sum"+ plates[i].sum);
    }
@@ -648,7 +648,7 @@
 
     }
     else if(plates[0].sum == '6' && plates[1].sum == '6' && (input_answer1.value!== '6' || input_answer2.value!== '6'))
-    { 
+    {
       console.log('modal3');
       this.showModal3();
       //this.showModal2();
@@ -656,16 +656,16 @@
     else if((plates[0].sum!== '6' || plates[1].sum !=='6') && (input_answer2.value == '6' && input_answer1.value =='6'))
     {
       console.log('modal2');
-      this.showModal2();  
+      this.showModal2();
     }
     else if((plates[0].sum!== '6' || plates[1].sum !=='6') && (input_answer2.value !== '6' && input_answer1.value !=='6'))
     {
       console.log('modal4');
-      
+
       this.showModal4();
     }
    }
-   else 
+   else
    {
     console.log('modal5');
     this.showModal5();
@@ -684,7 +684,7 @@
  }
 }
  var answerScreen = function(game){}
-    answerScreen.prototype = 
+    answerScreen.prototype =
     {
        init : function()
       {
@@ -699,7 +699,7 @@
       },
       create : function()
       {
-         game.stage.backgroundColor = "#D3FEB6"; 
+         game.stage.backgroundColor = "#D3FEB6";
        var answer_screen1 = game.add.sprite(50,120,'answerscreens1');
        //answer_screen1.scale.setTo(1.7, 1.7);
        var style = { font: "16px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -719,7 +719,7 @@
       }
     }
   var playGame2 = function(game){}
-    playGame2.prototype = 
+    playGame2.prototype =
     {
        init : function()
       {
@@ -732,7 +732,7 @@
         game.add.plugin(PhaserInput.Plugin);
        game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
        game.load.webfont('tahoma','Tahoma');
-       game.load.atlasJSONHash('atlas4', 'assets/atlas4.png', 'assets/atlas4.json'); 
+       game.load.atlasJSONHash('atlas4', 'assets/atlas4.png', 'assets/atlas4.json');
        game.load.atlasJSONHash('atlas5','assets/atlas5.png','assets/atlas5.json');
         game.load.image('close_button','assets/close_button_normal.png');
 
@@ -741,9 +741,9 @@
       {
         reg.modal = new gameModal(game);
         this.createModals();
-        game.stage.backgroundColor = "#D3FEB6"; 
+        game.stage.backgroundColor = "#D3FEB6";
 
-       
+
        background = game.add.sprite(0,0,'background');
        var answer_screen1 = game.add.sprite(365,60,'answerscreens1');
        //answer_screen1.scale.setTo(2, 2);
@@ -763,7 +763,7 @@
     borderWidth: 2,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
        var text4 = game.add.text(280, 570, 'of the total 12 cakes.',style);
        submit_buttom = game.add.button(20,605, 'atlas4',this.check2_function,this,'sprite68','sprite53','sprite39');
@@ -785,19 +785,45 @@
         }
 },
       /*render : function()
-         { 
+         {
           game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
-    
+
           },*/
+          division : function(a,b,c,d)
+           {
+             console.log(a/b);
+             console.log(c/d);
+             var and = a/b;
+             var mans = c/d;
+              var value;
+              if (and == mans)
+              {
+                value = true;
+              }
+              else
+              {
+                value = false;
+              }
+
+              return value;
+          },
       check2_function : function()
       {
+        var splitted_text = [];
         no_of_attempts1 = no_of_attempts1 + 1;
-        if(no_of_attempts1 < 2)
+        var cd = input_answer3.value;
+      splitted_text = cd.split("/");
+      console.log("a : " + splitted_text[0] );
+      console.log("b :" + splitted_text[1] );
+      var is_ans_true = this.division(splitted_text[0],splitted_text[1],1,2);
+      console.log(is_ans_true);
+        if(no_of_attempts1 < 4)
         {
-        if(input_answer3.value == '1/2')
+
+        if(input_answer3.value == '1/2' || is_ans_true == true)
         {
           this.showModal1();
-          
+
         }
         else
         {
@@ -833,7 +859,7 @@
                     }
         },
         {
-         
+
            type : "text",
            content: "Close the tab to proceed.",
           offsetX : 0,
@@ -843,17 +869,17 @@
           align: "left",
           color: "0xFF0000",
 
-        }, 
+        },
          {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_HAPPY',
           offsetX : 40,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
         reg.modal.createModal({
         type: "modal2",
@@ -874,7 +900,7 @@
                       reg.modal.hideModal("modal2");
                     }},
         {
-          
+
            type : "text",
            content: "Close the tab to proceed.",
           offsetX : 0,
@@ -888,10 +914,10 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
-        }]     
+        }]
     });
             reg.modal.createModal({
         type: "modal3",
@@ -926,12 +952,12 @@
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
-        }]     
-    });  
-  }, 
+        }]
+    });
+  },
   showModal1:function() {
     yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
@@ -950,8 +976,3 @@ game.state.add('answerScreen',answerScreen);
 game.state.add('playGame2',playGame2);
 game.state.start('PlayGame');
 }
-
-
- 
-
-

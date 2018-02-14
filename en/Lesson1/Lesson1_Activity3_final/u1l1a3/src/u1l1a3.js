@@ -34,7 +34,7 @@
  var buttons = ['1_normal','2_normal','3_normal','4_normal','5_normal','6_normal'];
  var rect = [];
  var playGame = function(game){}
- playGame.prototype = 
+ playGame.prototype =
  {
   init : function()
   {
@@ -43,8 +43,8 @@
   preload : function()
   {
    game.load.image('background','assets/full_background.png');
-   game.load.atlasJSONHash('atlas1', 'assets/spritesheet1.png', 'assets/sprites1.json'); 
-   game.load.atlasJSONHash('atlas2', 'assets/spritesheet2.png', 'assets/sprites2.json'); 
+   game.load.atlasJSONHash('atlas1', 'assets/spritesheet1.png', 'assets/sprites1.json');
+   game.load.atlasJSONHash('atlas2', 'assets/spritesheet2.png', 'assets/sprites2.json');
    game.load.atlasJSONHash('answerscreens','assets/answers_l1.png','assets/answers_l1.json');
    game.add.plugin(PhaserInput.Plugin);
    game.load.image('cookie1/2','assets/images/HALF1.png');
@@ -60,7 +60,7 @@
     game.load.audio('yay','assets/sounds/yay.wav');
     game.load.audio('cutting_board1','assets/sounds/cutting_board_sound_chop3.wav');
    // game.load.atlasJSONHash('example','assets/spritesheet11.png','assets/sprites11.json');
-   
+
   },
   create : function()
   {
@@ -98,22 +98,22 @@
   reset_btn = game.add.button(168, 586,'atlas1',this.reset_function,this,buttons1_hover[1],buttons1[1],buttons1_down[1]);
    var buttons_hover = ['1_MOUSE_OVER','2_MOUSE_OVER','3_MOUSE_OVER','4_MOUSE_OVER','5_MOUSE_OVER','6_MOUSE_OVER'];
    var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN','5_MOUSE_DOWN','6_MOUSE_DOWN'];
-   //adding plates 
+   //adding plates
    plates[0] = game.add.sprite(345,185,'atlas2','PLATE_WITHOUT_GLOW');
    plates[1] = game.add.sprite(555,185,'atlas2','PLATE_WITHOUT_GLOW');
    plates[2] = game.add.sprite(345,345,'atlas2','PLATE_WITHOUT_GLOW');
-   plates[3] = game.add.sprite(555,345,'atlas2','PLATE_WITHOUT_GLOW'); 
+   plates[3] = game.add.sprite(555,345,'atlas2','PLATE_WITHOUT_GLOW');
    var k=1;
    for(var i=0;i<4;i++)
-   { 
+   {
          rect[k] = game.add.sprite(plates[i].x,plates[i].y,null);
          game.physics.enable(rect[k], Phaser.Physics.ARCADE);
          rect[k].body.setSize(111,80,0,0);
          console.log(rect[k]);
          //rect[k].loadTexture('example','sprite1');
          k++;
-    } 
-   //initialising sum for each plate 
+    }
+   //initialising sum for each plate
    for(var k=0;i<4;i++)
    {
     plates[k].sum = 0;
@@ -130,7 +130,7 @@
     //cakes[i].events.onDragStart.add(this.addGreenTiles, this);
     //cakes[i].input.enableSnap(50,50, false, true);
     cakes[i].anchor.setTo(0,0);
-    
+
     game.physics.enable(cakes[i],Phaser.Physics.ARCADE);
     cakes[i].events.onDragStop.add(this.stopDrag,this);
     cakes[i].originalPosition = cakes[i].position.clone();
@@ -138,17 +138,17 @@
    }
    cake_num = i +1;
    cakes[4].loadTexture('atlas1','CAKE_WITH_GLOW');
-   
+
 
    //adding children
    children[0] = game.add.sprite(383,137,'atlas2','student1');
    children[1] = game.add.sprite(590,137,'atlas2','student3');
    children[2] = game.add.sprite(383,295,'atlas2','student4');
    children[4] = game.add.sprite(590,295,'atlas2','student2');
-   
-   //adding buttons 
 
-   
+   //adding buttons
+
+
    for(var i=0;i<6;i++)
    {
    number_of_pieces[i] = game.add.button(18+(i*30),309,'atlas1',this.cutting_function,this, buttons_hover[i],buttons[i],buttons_down[i]);
@@ -175,7 +175,7 @@
    instruction_text = game.add.text(24,384,'Use the                    to cut the cake into smaller pieces and drag and drop the cake or the pieces to each child.',style2);
 
   instruction_text.wordWrap = true;
-  instruction_text.wordWrapWidth = 175;  
+  instruction_text.wordWrapWidth = 175;
   var instruction_text1 = game.add.text(70,384, 'Cutting Tool ',style3);
    //var style2 = { font: "italic 12px tahoma", boundsAlignH: "center", boundsAlignV: "middle" };
    //instruction_text = game.add.text(24,384,'Use the Cutting tool to cut cakes in smaller pieces and drag and drop the food packets or the pieces to each child',style2);
@@ -193,10 +193,10 @@
     borderWidth: 2,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
-   
-   
+
+
 },
 update : function()
 {
@@ -212,7 +212,7 @@ update : function()
         }
 },
 /*render : function()
-         { 
+         {
           game.debug.text('x: ' + game.input.x + ' y: ' + game.input.y, 32, 32);
           // game.debug.geom(rect,"#ff0000");
           },*/
@@ -221,7 +221,7 @@ update : function()
     click_sound.play('',0,1);
     cake_no = item.number;
     var c =0;
-    
+
     for(var i=0;i<5;i++)
     {
       var pos;
@@ -242,9 +242,9 @@ update : function()
               var check_cake_on_board1 = game.physics.arcade.overlap(cakes[i],rect[0]);
                if(check_cake_on_board1 == true)
                {
-                  cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);         
+                  cakes[cake_no].position.copyFrom(cakes[cake_no].originalPosition);
                }
-            }  }    
+            }  }
          }
         pos = i;
         c++;
@@ -288,7 +288,7 @@ update : function()
   },
   over : function(item)
   {
-   
+
    //item.loadTexture('atlas1', buttons_hover[item.num]);
   },
   help_function : function()
@@ -316,7 +316,7 @@ update : function()
        cakes_on_board.push(cakes[i]);
      }
 
-   } 
+   }
    console.log('hi');
    var num_of_pieces = item.num+1;
    console.log(num_of_pieces);
@@ -325,7 +325,7 @@ update : function()
    cutting_board.loadTexture('atlas2','CUTTING_BOARD_WITHOUT_GLOW');
    switch(num_of_pieces)
    {
-    
+
     case 1:
     for(var i = 0; i <cakes_on_board.length; i++)
     {
@@ -345,7 +345,7 @@ update : function()
     }
     cake_num++;
     break;
-    case 2: 
+    case 2:
      for(var i = 0; i <cakes_on_board.length; i++)
     {
       cakes_on_board[i].destroy();
@@ -356,7 +356,7 @@ update : function()
       number_of_pieces[x1].inputEnabled = false;
     }
     break;
-    case 3: 
+    case 3:
     for(var i = 0; i <cakes_on_board.length; i++)
     {
       cakes_on_board[i].destroy();
@@ -393,7 +393,7 @@ update : function()
     for(var i = 0; i <cakes_on_board.length; i++)
     {
       cakes_on_board[i].destroy();
-    } 
+    }
     this.circle(95,270,6,'cookie1/6',0.5,-0.2);
      for(var x1=0; x1 < 6; x1++)
      {
@@ -414,7 +414,7 @@ update : function()
     var NoOfSection = cuts;
     var divisonangle = (360/NoOfSection);
     console.log(divisonangle);
-    for (p=0;p < NoOfSection; p++) { 
+    for (p=0;p < NoOfSection; p++) {
       var x =x1
       var y =y1
       cakes[cake_num] = game.add.sprite(x,y,sprite);
@@ -436,7 +436,7 @@ update : function()
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
     });
       }
         if(cakes[cake_num].weight == '0.3333333333333333')
@@ -448,7 +448,7 @@ update : function()
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         if(cakes[cake_num].weight == '0.25')
@@ -460,7 +460,7 @@ update : function()
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         if(cakes[cake_num].weight == '0.20')
@@ -472,7 +472,7 @@ update : function()
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         console.log("weight" + cakes[cake_num].weight);
@@ -486,11 +486,11 @@ update : function()
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
     console.log(tips[cake_num]);
-      cakes[cake_num].angle = angle;  
+      cakes[cake_num].angle = angle;
       angle += divisonangle;
       console.log(angle);
       cake_num++;
@@ -529,17 +529,17 @@ update : function()
           align: "left",
           color: "0xFF0000",
 
-        }, 
+        },
          {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_HAPPY',
           offsetX : 40,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
         reg.modal.createModal({
         type: "modal2",
@@ -574,10 +574,10 @@ update : function()
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
-        }]     
+        }]
     });
             reg.modal.createModal({
         type: "modal3",
@@ -612,10 +612,10 @@ update : function()
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
-        }]     
+        }]
     });
             //modal 4
         reg.modal.createModal({
@@ -651,13 +651,13 @@ update : function()
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         }]
-          
-        
-    });   
+
+
+    });
 
         reg.modal.createModal({
         type: "modal5",
@@ -692,12 +692,12 @@ update : function()
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         }]
-          
-        
+
+
     });
 
         reg.modal.createModal({
@@ -733,13 +733,13 @@ update : function()
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         }]
-          
-        
-    }); 
+
+
+    });
 
         reg.modal.createModal({
         type: "modal7",
@@ -774,13 +774,13 @@ update : function()
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         }]
-          
-        
-    });   
+
+
+    });
         reg.modal.createModal({
         type: "modal8",
         includeBackground: true,
@@ -814,14 +814,14 @@ update : function()
         {
           type : 'sprite',
           atlasParent: 'answerscreens',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         }]
-          
-        
-    });        
-  }, 
+
+
+    });
+  },
   showModal5:function() {
     reg.modal.showModal("modal5"); // right answer
 },
@@ -849,7 +849,7 @@ showModal8:function() {
 },
  popup_answer : function()
  {
-   
+
  },
  reset_function : function()
  {
@@ -878,7 +878,7 @@ showModal8:function() {
     }
 
    }
-   
+
  },
  sharing_done_function : function()
  {
@@ -896,9 +896,9 @@ showModal8:function() {
   else
   {
      var cd = input_answer.value;
-  splitted_text = cd.split("/"); 
+  splitted_text = cd.split("/");
   console.log("a : " + splitted_text[0] );
-  console.log("b :" + splitted_text[1] ); 
+  console.log("b :" + splitted_text[1] );
   var is_ans_true = this.division(splitted_text[0],splitted_text[1],5,4);
   console.log(is_ans_true);
   for(var i=0;i<4;i++)
@@ -924,20 +924,20 @@ showModal8:function() {
       k=k+1;
     }
   }
-    if(k == 4 && input_answer.value!== '5/4')
+    if(k == 4 && input_answer.value!== '5/4' || is_ans_true == false)
     {
       this.showModal3();
     }
 
-    else if(l == 4 && input_answer.value == '5/4')
+    else if(l == 4 && input_answer.value == '5/4' || is_ans_true == true )
     {
       this.showModal1();
     }
-    else if( l==4 && input_answer.value!=='5/4')
+    else if( l==4 && input_answer.value!=='5/4' || is_ans_true == false)
     {
       this.showModal4();
     }
-    else if( l!==4 && input_answer.value == '5/4')
+    else if( l!==4 && input_answer.value == '5/4' || is_ans_true == true )
     {
       if(count_no_of_attempts == 1)
       {
@@ -947,18 +947,18 @@ showModal8:function() {
       {
         this.showModal7();
       }
-      else 
+      else
       {
         this.showModal8();
       }
-      
+
     }
-    else 
+    else
     {
       this.showModal8();
     }
- } } 
- else 
+ } }
+ else
  {
   game.state.start('answer_screen');
 
@@ -975,7 +975,7 @@ division : function(a,b,c,d)
     {
       value = true;
     }
-    else 
+    else
     {
       value = false;
     }
@@ -984,7 +984,7 @@ division : function(a,b,c,d)
 }
 }
 var answerScreen = function(game){}
-    answerScreen.prototype = 
+    answerScreen.prototype =
     {
       init : function()
       {
@@ -998,7 +998,7 @@ var answerScreen = function(game){}
       },
       create : function()
       {
-       game.stage.backgroundColor = "#D3FEB4"; 
+       game.stage.backgroundColor = "#D3FEB4";
        var answer_screen1 = game.add.sprite(120,120,'answer_screen2');
        //answer_screen1.scale.setTo(2, 2);
        var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -1028,19 +1028,19 @@ var answerScreen = function(game){}
         var back_text = game.add.text(690,10,'BACK',style2);
         back_text.inputEnabled = true;
         console.log(video.loop);
-        
+
         video.loop = false;
         video.onComplete.add(this.video_stop,this);
         back_text.events.onInputDown.add(this.back_function,this);
         //var image4 = game.add.image(550,590,'back',this.back_function,this);
         //var image4 = game.add.image(550,590,'back',this.back_function,this);
-        
+
 
     //  true = loop
-    
+
        game.input.onDown.add(this.pause, this);
       },
-      pause : function() 
+      pause : function()
       {
 
       video.paused = (video.paused) ? false : true;
@@ -1061,8 +1061,3 @@ game.state.add('PlayGame', playGame);
 game.state.add('answer_screen',answerScreen);
 game.state.start('PlayGame');
 }
-
-
- 
-
-
