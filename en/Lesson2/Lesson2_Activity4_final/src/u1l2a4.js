@@ -56,7 +56,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
  var rect = [];
  var done_button;
  var playGame = function(game){}
- playGame.prototype = 
+ playGame.prototype =
  {
   init : function()
   {
@@ -65,7 +65,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   preload : function()
   {
     game.load.image('background','assets/full_background.png');
-    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
     game.load.webfont('tahoma','Tahoma');
     game.load.atlasJSONHash('modals','assets/l2a2_modals.png','assets/l2a2_modals.json');
     game.load.image('close_button','assets/close_button_normal.png');
@@ -103,7 +103,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       {
       workers[j] = game.add.sprite(50 + (j*60),138,'lesson2',worker_names[j]);
       workers[j].scale.setTo(0.9,0.85);
- 
+
       }
       if(j==11)
       {
@@ -139,7 +139,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      radio_buttons[i].scale.setTo(0.5, 0.5);
      radio_buttons.selectedcheck = false;
     }
-    
+
      done_button = game.add.button(77,618,'lesson2',this.done_Action,this,'sprite128','sprite132','sprite125');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
@@ -181,25 +181,25 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
         },
           ]
-        
+
     });
    },
     showModal1:function() {
     reg.modal.showModal("modal1");
 },
-  done_Action : function() 
+  done_Action : function()
   {
     if(radio_buttons[0].selectedcheck == true)
     {
-      
+
       this.showModal1();
-       
-    } 
+
+    }
     else if(radio_buttons[1].selectedcheck == true)
     {
       game.state.start('a1_p1');
-      
-    } 
+
+    }
   },
   input_function : function(item)
   {
@@ -212,7 +212,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       {
         console.log('change');
         radio_buttons[i].selectedcheck = false;
-        radio_buttons[i].loadTexture('lesson2','radio-highlighted');  
+        radio_buttons[i].loadTexture('lesson2','radio-highlighted');
         radio_buttons[i].scale.setTo(0.5,0.5);
       }
     }
@@ -222,11 +222,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     },
     input_function1 : function(item)
     {
-        
+
     }
  }
  var question_two = function(game){}
- question_two.prototype = 
+ question_two.prototype =
  {
   init : function()
   {
@@ -235,7 +235,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   preload : function()
   {
     game.load.image('background','assets/full_background.png');
-    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
     game.load.webfont('tahoma','Tahoma');
     game.load.image('scrnshot14','assets/qscreenl2a4.png');
     game.load.image('lower_band','assets/lower.png');
@@ -269,7 +269,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      radio_buttons[i].scale.setTo(0.5, 0.5);
      radio_buttons.selectedcheck = false;
     }
-    
+
      done_button = game.add.button(77,618,'lesson2',this.done_Action1,this,'sprite128','sprite132','sprite125');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
@@ -309,7 +309,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   preload : function()
   {
-   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
    game.load.webfont('tahoma','Tahoma');
    game.load.image('top','assets/top.png');
    game.load.atlasJSONHash('workers','assets/workers.png','assets/workers.json');
@@ -328,7 +328,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text1 = game.add.text(240,23,'Share Food Packets  ',style2);
     var instruction_text2 = game.add.text(130,40,'2. After your have completed the sharing for Group A, click                              for Group B.',style1);
-    var instruction_text3 = game.add.text(445,40,' Share Food Packets  ',style2); 
+    var instruction_text3 = game.add.text(445,40,' Share Food Packets  ',style2);
     groups[0] = game.add.sprite(30,95,'lesson2','WORKER_BACK_GROUP_A');
     groups[1] = game.add.sprite(30,380,'lesson2','WORKER_BACK_GROUP_B');
     plates[0] = game.add.sprite(29,207,'lesson2','FOOD_PLATE');
@@ -350,7 +350,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       {
       workers[j] = game.add.sprite(50 + (j*60),138,'lesson2',worker_names[j]);
       workers[j].scale.setTo(0.9,0.85);
- 
+
       }
       if(j==11)
       {
@@ -373,7 +373,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
   }
   var question_three = function(game){}
-  question_three.prototype = 
+  question_three.prototype =
   {
     init : function()
     {
@@ -384,7 +384,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      game.load.webfont('tahoma','Tahoma');
     game.load.image('scrnshot14','assets/qscreenl2a4.png');
 
-    game.load.image('lower_band','assets/lower.png'); 
+    game.load.image('lower_band','assets/lower.png');
     game.add.plugin(PhaserInput.Plugin);
     },
     create : function()
@@ -409,14 +409,14 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     borderWidth: 1,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
     done_button = game.add.button(77,618,'lesson2',this.showModal1,this,'sprite128','sprite132','sprite125');
      done_button.scale.setTo(0.7,0.7);
-     
 
 
-    }, 
+
+    },
   createModals: function() {
 
      reg.modal.createModal({
@@ -453,10 +453,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
         },
           ]
-        
+
     });
    },
-    showModal1:function() 
+    showModal1:function()
   {
     reg.modal.showModal("modal1");
   },
@@ -475,7 +475,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.atlasJSONHash('modals','assets/l2a2_modals.png','assets/l2a2_modals.json');
     game.load.atlasJSONHash('modals2','assets/l2a4_q1.png','assets/l2a4_q1.json');
    game.load.image('close_button','assets/close_button_normal.png');
-   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
    game.load.webfont('tahoma','Tahoma');
    game.load.atlasJSONHash('bg','assets/bg.png','assets/bg.json');
    game.load.atlasJSONHash('buttons','assets/spritesheet_112.png','assets/sprites_112.json');
@@ -500,8 +500,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     question_text_lower = game.add.text(66,545,'What is the share of each sub-group of 6 workers in Group A?',style4);
     instruction_text = game.add.text(115,20,'1. Use the                      to make smaller groups of 6 workers each.',style1);
-    instruction_text.wordWrap = true; 
-    instruction_text.wordWrapWidth = 580; 
+    instruction_text.wordWrap = true;
+    instruction_text.wordWrapWidth = 580;
     instruction_text.lineSpacing = -5;
     var instruction_text2 = game.add.text(115,35,'2. Distribute the 9 parathas fairly among these sub-groups and find the share of each sub-group.',style1)
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -510,7 +510,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style11 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text_lower = game.add.text(66,560,'Enter your answer in the form of a whole number or a fraction and click                      to check your answer. ',style11);  
+    var instruction_text_lower = game.add.text(66,560,'Enter your answer in the form of a whole number or a fraction and click                      to check your answer. ',style11);
     var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
    rect[0] = game.add.sprite(49,120,null);
    game.physics.enable(rect[0],Phaser.Physics.ARCADE);
@@ -518,27 +518,27 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    rect[1] = game.add.sprite(53,287,null);
    game.physics.enable(rect[1],Phaser.Physics.ARCADE);
    rect[1].body.setSize(214,144,0,0);
-   //adding workers 
-   
+   //adding workers
+
    for(var i=2;i<4;i++)
-   {    
+   {
     groups[i-2] = game.add.sprite(380,120+((i-2)*200),'bg',worker_set_names[i-2]);
     groups[i-2].scale.setTo(0.85,1);
    rect[i] = game.add.sprite((groups[i-2].x + 20),groups[i-2].y,null);
    game.physics.enable(rect[i],Phaser.Physics.ARCADE);
    rect[i].body.setSize(400,58,0,0);
-   rect[i].numberof_workeringroup = 0;  
+   rect[i].numberof_workeringroup = 0;
    }
    for(var i=4;i<6;i++)
-   {    
+   {
     plates[i-4] = game.add.sprite(400,192+((i-4)*200),'bg','1');
     plates[i-4].scale.setTo(0.85,1);
    rect[i] = game.add.sprite((plates[i-4].x + 20),plates[i-4].y,null);
    game.physics.enable(rect[i],Phaser.Physics.ARCADE);
    rect[i].body.setSize(400,58,0,0);
-   rect[i].sum = 0;  
+   rect[i].sum = 0;
    }
-  
+
    for(var i=0;i<12;i++)
    {
     if(i<6)
@@ -573,24 +573,24 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     workers1[i].events.onDragStop.add(this.workers_stopDrag,this);
     workers1[i].number = i;
      workers1[i].scale.setTo(0.85,0.9);
-    
+
     }
    }
-   
+
    var style1 = { font: "bold 13px tahoma", fill: "#005DBA", boundsAlignH: "center", boundsAlignV: "middle" };
-   
+
    sharing_done_btn = game.add.button(66,615, 'lesson2',this.sharing_done_function,this,'sprite85','sprite87','sprite86');
    sharing_done_btn.inputEnabled = false;
    sharing_done_btn.scale.setTo(0.8,0.8);
    reset_btn = game.add.button(210, 615,'lesson2',this.reset_function,this,'sprite99','sprite97','sprite103');
    reset_btn.scale.setTo(0.8,0.8);
-   
+
     for(var i=0;i<12;i++)
     {
       if(i<6)
       {
         parathas1[i] = game.add.sprite(100,300 + (i*28),'lesson2','PARATHA');
-         
+
          parathas1[i].weight = 1;
          parathas1[i].number = i;
          parathas1[i].anchor.setTo(0,0);
@@ -599,13 +599,13 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       if(i>=6)
       {
         parathas1[i] = game.add.sprite(185,300 + ((i-6)*30),'workers','HALF_PARATHA');
-         
+
          parathas1[i].weight = 0.5;
          parathas1[i].number = i;
          parathas1[i].anchor.setTo(0,0);
          parathas1[i].originalPosition = parathas1[i].position.clone();
       }
-     
+
     }
    help_button = game.add.sprite(725,5,'lesson2','HELP_mouse_over');
   help_button.inputEnabled = true;
@@ -620,10 +620,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     borderWidth: 2,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
-   
+
   },
   update : function()
 {
@@ -656,7 +656,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    }
       if(c==0)
      {
-      workers1[worker_no].position.copyFrom(workers1[worker_no].originalPosition);   
+      workers1[worker_no].position.copyFrom(workers1[worker_no].originalPosition);
      }
      //checking if all r not on worker area
        var c1 = 0;
@@ -664,7 +664,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     {
     game.physics.enable(workers1[r],Phaser.Physics.ARCADE);
     var check_if_worker_on_area = game.physics.arcade.overlap(workers1[r],rect[0]);
-    
+
     if(check_if_worker_on_area == true)
     {
       c1++;
@@ -672,16 +672,16 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     }
     if(c1 == 0)
     {
-     
+
       for(var i =0;i<12;i++)
       {
         parathas1[i].inputEnabled = true;
         parathas1[i].input.enableDrag(true);
         parathas1[i].events.onDragStop.add(this.parathas_stopDrag,this);
-        
+
       }
     }
-    
+
   },
   /*render : function()
   {
@@ -707,12 +707,12 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       if(check[i] == true)
       {
         c++;
-      }     
+      }
     }
 
     if(c == 0)
     {
-      parathas1[paratha_no].position.copyFrom(parathas1[paratha_no].originalPosition);  
+      parathas1[paratha_no].position.copyFrom(parathas1[paratha_no].originalPosition);
     }
     for(var i=0;i<12;i++)
     {
@@ -762,7 +762,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           offsetY: 30,
           callback: function()
           {
-            //start next level 
+            //start next level
             game.state.start('a1_p3');
           }
 
@@ -770,15 +770,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
          {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite89',  
+          content: 'sprite89',
           offsetX : 20,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
-     //modal 2 
+     //modal 2
         reg.modal.createModal({
         type: "modal2",
         includeBackground: true,
@@ -814,7 +814,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 35,
           offsetY:  - 140,
         },
@@ -855,7 +855,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 20,
           offsetY:  - 140,
         },
@@ -896,7 +896,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -937,7 +937,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -978,7 +978,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -1019,7 +1019,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -1060,13 +1060,13 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 40,
           offsetY:  - 140,
         },
           ]
-    });      
-  }, 
+    });
+  },
   showModal1:function() {
      yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
@@ -1093,11 +1093,30 @@ showModal8 : function()
 {
   reg.modal.showModal("modal8");
 },
+division : function(a,b,c,d)
+ {
+   console.log(a/b);
+   console.log(c/d);
+   var and = a/b;
+   var mans = c/d;
+    var value;
+    if (and == mans)
+    {
+      value = true;
+    }
+    else
+    {
+      value = false;
+    }
+
+    return value;
+},
   sharing_done_function : function()
   {
    count_no_of_attempts_1 = count_no_of_attempts_1 + 1;
   if(count_no_of_attempts_1 < 4)
   {
+    var splitted_text = [];
   var expected_sum = 4.5;
   var l = 0;
   var k =0;
@@ -1111,6 +1130,11 @@ showModal8 : function()
   }
   else
   {
+    var cd = input_answer1.value;
+  splitted_text = cd.split("/");
+  console.log("a : " + splitted_text[0] );
+  console.log("b :" + splitted_text[1] );
+  var is_ans_true = this.division(splitted_text[0],splitted_text[1],9,2);
   for(var i=0;i<2;i++)
   {
     rect[i+2].numberof_workeringroup = 0;
@@ -1161,21 +1185,21 @@ showModal8 : function()
      this.showModal5();
     }
 
-    else if((l == 2 && m==2) && input_answer1.value == '9/2')
+    else if((l == 2 && m==2) && (input_answer1.value == '9/2' || is_ans_true == true))
     {
       this.showModal1();
     }
-    else if((l==2 && m==2) && input_answer1.value == '4.5')
+    else if((l==2 && m==2) && (input_answer1.value == '4.5' || is_ans_true == true))
     {
       this.showModal1();
       console.log('correct answer but please enter fractional value in textbox');
     }
-    else if((l==2 && m == 2)&& input_answer1.value!=='9/2')
-    {   
+    else if((l==2 && m == 2)&& (input_answer1.value!=='9/2' || is_ans_true == false))
+    {
       console.log('modal2');
       this.showModal2();
     }
-    else if((l!==2 || m!==2) && input_answer1.value == '9/2')
+    else if((l!==2 || m!==2) && (input_answer1.value == '9/2' || is_ans_true == true))
     {
       if(count_no_of_attempts_1 == 1)
       {
@@ -1186,19 +1210,19 @@ showModal8 : function()
         console.log('modal6');
         this.showModal6();
       }
-      else 
+      else
       {
         console.log('modal8');
         this.showModal8();
       }
-      
+
     }
-    else 
+    else
     {
       this.showModal4();
     }
- } } 
- else 
+ } }
+ else
  {
   game.state.start('answer_screen');
 
@@ -1211,19 +1235,19 @@ showModal8 : function()
   }
   }
   var answer_screen = function(game){}
-    answer_screen.prototype = 
+    answer_screen.prototype =
     {
-      
+
       preload : function()
       {
        game.load.image('answer1','assets/scrnsht_ans1.png');
-       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
-       //game.load.atlasJSONHash('scrnshots', 'assets/spritesheet_123.png', 'assets/sprites_123.json'); 
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
+       //game.load.atlasJSONHash('scrnshots', 'assets/spritesheet_123.png', 'assets/sprites_123.json');
        //game.load.atlasJSONHash('')
       },
       create : function()
       {
-       game.stage.backgroundColor = "#00000"; 
+       game.stage.backgroundColor = "#00000";
        var answer_screen1 = game.add.sprite(50,100,'answer1');
        answer_screen1.scale.setTo(0.85, 0.85);
        var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -1244,9 +1268,9 @@ showModal8 : function()
         game.state.start('a1_p3');
       }
     }
-  
+
   var a1_p3 = function(game){}
-  a1_p3.prototype = 
+  a1_p3.prototype =
   {
    init : function()
   {
@@ -1254,14 +1278,14 @@ showModal8 : function()
   },
   preload : function()
   {
-    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
    game.load.image('top','assets/top.png');
    //game.load.image('scrnsht','assets/ppscrn.png');
    game.load.atlasJSONHash('scrnshots', 'assets/spritesheet_123.png', 'assets/sprites_123.json');
   },
   create : function()
   {
-    background = game.add.sprite(0,0,'top'); 
+    background = game.add.sprite(0,0,'top');
     var scrnn = game.add.sprite(0,0,'scrnshots','q1_after_printscreen');
     scrnn.scale.setTo(1,1);
     share_button_B = game.add.button(303,530,'lesson2',this.share_b_function,this,'sprite145','sprite141','sprite146');
@@ -1274,7 +1298,7 @@ showModal8 : function()
 
   }
   var a1_p4 = function(game){}
-  a1_p4.prototype = 
+  a1_p4.prototype =
   {
    init : function()
   {
@@ -1282,14 +1306,14 @@ showModal8 : function()
   },
   preload : function()
   {
-     
+
     game.load.atlasJSONHash('modals2','assets/l2a4_q1.png','assets/l2a4_q1.json');
-   game.load.atlasJSONHash('bg','assets/bg.png','assets/bg.json');  
+   game.load.atlasJSONHash('bg','assets/bg.png','assets/bg.json');
     game.load.atlasJSONHash('modals','assets/l2a2_modals.png','assets/l2a2_modals.json');
     game.load.atlasJSONHash('workers','assets/workers.png','assets/workers.json');
      game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('scrnshots', 'assets/spritesheet_123.png', 'assets/sprites_123.json');
-   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
    game.load.webfont('tahoma','Tahoma');
    //game.load.image('bg','assets/groupb_bg.png');
    game.load.atlasJSONHash('buttons','assets/spritesheet_112.png','assets/sprites_112.json');
@@ -1313,8 +1337,8 @@ showModal8 : function()
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     question_text_lower = game.add.text(66,545,'What is the share of sub-group of 6 workers in Group B?',style4);
     instruction_text = game.add.text(115,20,'1. Use the                      to make two smaller groups of 6 workers and 2 workers.',style1);
-    instruction_text.wordWrap = true; 
-    instruction_text.wordWrapWidth = 580; 
+    instruction_text.wordWrap = true;
+    instruction_text.wordWrapWidth = 580;
     instruction_text.lineSpacing = -5;
     var instruction_text2 = game.add.text(115,35,'2. Distribute the 6 parathas fairly among these sub-groups and find the share of each sub-group.',style1)
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -1323,7 +1347,7 @@ showModal8 : function()
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style11 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text_lower = game.add.text(66,560,'Enter your answer in the form of a whole number or a fraction and click                      to check your answer. ',style11);  
+    var instruction_text_lower = game.add.text(66,560,'Enter your answer in the form of a whole number or a fraction and click                      to check your answer. ',style11);
     var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
     rect1[0] = game.add.sprite(49,120,null);
    game.physics.enable(rect1[0],Phaser.Physics.ARCADE);
@@ -1331,10 +1355,10 @@ showModal8 : function()
    rect1[1] = game.add.sprite(53,287,null);
    game.physics.enable(rect1[1],Phaser.Physics.ARCADE);
    rect1[1].body.setSize(214,144,0,0);
-   //adding workers 
-   
+   //adding workers
+
    for(var i=2;i<4;i++)
-   {    
+   {
     groups[i-2] = game.add.sprite(380,120+((i-2)*200),'scrnshots',worker_set_names1[i-2]);
     groups[i-2].scale.setTo(0.85,1);
    rect1[i] = game.add.sprite((groups[i-2].x + 20),groups[i-2].y,null);
@@ -1342,22 +1366,22 @@ showModal8 : function()
   //game.physics.arcade.enable(rect1[i]);
 
    rect1[i].body.setSize(400,58,0,0);
-   rect1[i].numberof_workeringroup = 0;  
+   rect1[i].numberof_workeringroup = 0;
    }
    for(var i=4;i<6;i++)
-   {    
+   {
     plates[i-4] = game.add.sprite(400,192+((i-4)*200),'bg','1');
     plates[i-4].scale.setTo(0.85,1);
    rect1[i] = game.add.sprite((plates[i-4].x + 20),plates[i-4].y,null);
    game.physics.enable(rect1[i],Phaser.Physics.ARCADE);
    rect1[i].body.setSize(400,58,0,0);
-   rect1[i].sum = 0;  
+   rect1[i].sum = 0;
    }
-  
+
    for(var i=0;i<8;i++)
    {
     if(i<4)
-    {  
+    {
     workers2[i] = game.add.sprite(60 + (i*65),130,'lesson2',worker_names[i]);
     workers2[i].scale.setTo(1,0.9);
      workers2[i].inputEnabled = true;
@@ -1367,7 +1391,7 @@ showModal8 : function()
     workers2[i].number = i;
     workers2[i].scale.setTo(0.85,0.9);
     }
-    else 
+    else
     {
      workers2[i] = game.add.sprite(60 + ((i-4)*65),206,'lesson2',worker_names[i]);
     workers2[i].scale.setTo(1,0.85);
@@ -1383,19 +1407,19 @@ showModal8 : function()
 
 
    var style1 = { font: "bold 13px tahoma", fill: "#005DBA", boundsAlignH: "center", boundsAlignV: "middle" };
-   
+
    sharing_done_btn = game.add.button(66,615, 'lesson2',this.sharing_done_function,this,'sprite85','sprite87','sprite86');
    sharing_done_btn.inputEnabled = false;
    sharing_done_btn.scale.setTo(0.8,0.8);
    reset_btn = game.add.button(210, 615,'lesson2',this.reset_function,this,'sprite99','sprite97','sprite103');
    reset_btn.scale.setTo(0.8,0.8);
-   
+
     for(var i=0;i<8;i++)
     {
       if(i<4)
       {
         parathas1[i] = game.add.sprite(94,316 + ((i)*40),'workers','PARATHA');
-         
+
          parathas1[i].weight = 1;
          parathas1[i].number = i;
          parathas1[i].anchor.setTo(0,0);
@@ -1423,10 +1447,10 @@ showModal8 : function()
     borderWidth: 2,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
-   
+
   },
   update : function()
 {
@@ -1440,6 +1464,24 @@ showModal8 : function()
           sharing_done_btn.tint = 0xffffff;
            sharing_done_btn.inputEnabled = true;
         }
+},
+division : function(a,b,c,d)
+ {
+   console.log(a/b);
+   console.log(c/d);
+   var and = a/b;
+   var mans = c/d;
+    var value;
+    if (and == mans)
+    {
+      value = true;
+    }
+    else
+    {
+      value = false;
+    }
+
+    return value;
 },
   workers_stopDrag : function(item)
   {
@@ -1463,7 +1505,7 @@ showModal8 : function()
    }
       if(c==0)
      {
-      workers2[worker_no_1].position.copyFrom(workers2[worker_no_1].originalPosition);   
+      workers2[worker_no_1].position.copyFrom(workers2[worker_no_1].originalPosition);
      }
      //checking if all r not on worker area
        var c1 = 0;
@@ -1471,7 +1513,7 @@ showModal8 : function()
     {
     game.physics.enable(workers2[r],Phaser.Physics.ARCADE);
     var check_if_worker_on_area = game.physics.arcade.overlap(workers2[r],rect1[0]);
-    
+
     if(check_if_worker_on_area == true)
     {
       c1++;
@@ -1479,16 +1521,16 @@ showModal8 : function()
     }
     if(c1 == 0)
     {
-     
+
       for(var i =0;i<8;i++)
       {
         parathas1[i].inputEnabled = true;
         parathas1[i].input.enableDrag(true);
         parathas1[i].events.onDragStop.add(this.parathas_stopDrag,this);
-        
+
       }
     }
-    
+
   },
   /*render : function()
   {
@@ -1516,12 +1558,12 @@ showModal8 : function()
       if(check[i] == true)
       {
         c++;
-      }     
+      }
     }
 
     if(c == 0)
     {
-      parathas1[paratha_no].position.copyFrom(parathas1[paratha_no].originalPosition);  
+      parathas1[paratha_no].position.copyFrom(parathas1[paratha_no].originalPosition);
     }
     for(var i=0;i<8;i++)
     {
@@ -1570,7 +1612,7 @@ showModal8 : function()
           offsetY: 30,
           callback: function()
           {
-            //start next level 
+            //start next level
             game.state.start('a1_p5');
           }
 
@@ -1578,15 +1620,15 @@ showModal8 : function()
          {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite89',  
+          content: 'sprite89',
           offsetX : 20,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
-     //modal 2 
+     //modal 2
         reg.modal.createModal({
         type: "modal2",
         includeBackground: true,
@@ -1622,7 +1664,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 35,
           offsetY:  - 140,
         },
@@ -1663,7 +1705,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 20,
           offsetY:  - 140,
         },
@@ -1704,7 +1746,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -1745,7 +1787,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -1786,7 +1828,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -1827,7 +1869,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -1868,13 +1910,13 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite90',  
+          content: 'sprite90',
           offsetX : 40,
           offsetY:  - 140,
         },
           ]
-    });      
-  }, 
+    });
+  },
   showModal1:function() {
      yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
@@ -1906,6 +1948,7 @@ showModal8 : function()
    count_no_of_attempts_2 = count_no_of_attempts_2 + 1;
   if(count_no_of_attempts_2 < 4)
   {
+    var splitted_text = [];
   var expected_sum_1 = 4.5;
   var expected_sum_2 = 1.5;
   var l = 0;
@@ -1920,6 +1963,11 @@ showModal8 : function()
   }
   else
   {
+    var cd = input_answer1.value;
+  splitted_text = cd.split("/");
+  console.log("a : " + splitted_text[0] );
+  console.log("b :" + splitted_text[1] );
+  var is_ans_true = this.division(splitted_text[0],splitted_text[1],9,2);
   for(var i=0;i<2;i++)
   {
     rect1[i+2].numberof_workeringroup = 0;
@@ -1955,35 +2003,35 @@ showModal8 : function()
     {
       k=k+1;
     }
-  
-    
+
+
     if((rect1[2].numberof_workeringroup == 6 && rect1[3].numberof_workeringroup == 2) || (rect1[2].numberof_workeringroup == 2 && rect1[3].numberof_workeringroup == 6))
     {
      console.log('mmm' + m);
      m = m+ 1;
     }
-   
+
    console.log('m : ' + m);
     if((k == 1 && m==1) && input_answer1.value!== null)
     {
      this.showModal5();
     }
 
-    else if((l == 1 && m==1) && input_answer1.value == '9/2')
+    else if((l == 1 && m==1) && (input_answer1.value == '9/2' || is_ans_true == true))
     {
       this.showModal1();
     }
-    else if((l==1 && m==1) && input_answer1.value == '4.5')
+    else if((l==1 && m==1) && (input_answer1.value == '4.5' || is_ans_true == true))
     {
       this.showModal1();
       console.log('correct answer but please enter fractional value in textbox');
     }
-    else if((l==1 && m == 1)&& input_answer1.value!=='9/2')
-    {   
+    else if((l==1 && m == 1)&& (input_answer1.value!=='9/2' || is_ans_true == false))
+    {
       console.log('modal2');
       this.showModal2();
     }
-    else if((l!==1 || m!==1) && input_answer1.value == '9/2')
+    else if((l!==1 || m!==1) && (input_answer1.value == '9/2' || is_ans_true == true))
     {
       if(count_no_of_attempts_2 == 1)
       {
@@ -1994,19 +2042,19 @@ showModal8 : function()
         console.log('modal6');
         this.showModal6();
       }
-      else 
+      else
       {
         console.log('modal8');
         this.showModal8();
       }
-      
+
     }
-    else 
+    else
     {
       this.showModal4();
     }
- } } 
- else 
+ } }
+ else
  {
   game.state.start('answer_screen_2');
 
@@ -2019,18 +2067,18 @@ showModal8 : function()
   }
   }
     var answer_screen_2 = function(game){}
-    answer_screen_2.prototype = 
+    answer_screen_2.prototype =
     {
-      
+
       preload : function()
       {
        game.load.image('answer2','assets/q2_ans.png');
-       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
        //game.load.atlasJSONHash('')
       },
       create : function()
       {
-       game.stage.backgroundColor = "#00000"; 
+       game.stage.backgroundColor = "#00000";
        var answer_screen1 = game.add.sprite(50,100,'answer2');
        //answer_screen1.scale.setTo(, 0.95);
        var style = { font: "13px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -2052,15 +2100,15 @@ showModal8 : function()
       }
     }
      var a1_p5 = function(game){}
-    a1_p5.prototype = 
+    a1_p5.prototype =
     {
-      
+
       preload : function()
       {
-        game.load.atlasJSONHash('scrnshots', 'assets/spritesheet_123.png', 'assets/sprites_123.json'); 
+        game.load.atlasJSONHash('scrnshots', 'assets/spritesheet_123.png', 'assets/sprites_123.json');
 
        //game.load.image('answer2','assets/last_q_1.png');
-       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
        game.load.image('lower','assets/lower.png');
       game.load.atlasJSONHash('sprite111', 'assets/l2a4_final.png', 'assets/l2a4_final.json');
       game.load.image('close_button','assets/close_button_normal.png');
@@ -2070,7 +2118,7 @@ showModal8 : function()
       {
 
          reg.modal = new gameModal(game);
-        this.createModals(); 
+        this.createModals();
        var answer_screen1 = game.add.sprite(0,0,'scrnshots','Lesson 2 Activity 4');
        answer_screen1.scale.setTo(1.001,1.01);
        var lowerband = game.add.sprite(0,500,'lower');
@@ -2099,7 +2147,7 @@ showModal8 : function()
      radio_buttons[i].scale.setTo(0.5, 0.5);
      radio_buttons.selectedcheck = false;
     }
-    
+
      done_button = game.add.button(77,607,'lesson2',this.next1_function,this,'sprite128','sprite132','sprite125');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
@@ -2166,15 +2214,15 @@ showModal8 : function()
          {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite12',  
+          content: 'sprite12',
           offsetX : 20,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
-     //modal 2 
+     //modal 2
         reg.modal.createModal({
         type: "modal2",
         includeBackground: true,
@@ -2210,7 +2258,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -2251,7 +2299,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 20,
           offsetY:  - 190,
         },
@@ -2296,14 +2344,14 @@ showModal3:function() {
       },
     }
      var a1_p66 = function(game){}
-    a1_p66.prototype = 
+    a1_p66.prototype =
     {
-      
+
        preload : function()
       {
-        game.load.atlasJSONHash('scrnshots', 'assets/spritesheet_123.png', 'assets/sprites_123.json'); 
+        game.load.atlasJSONHash('scrnshots', 'assets/spritesheet_123.png', 'assets/sprites_123.json');
        //game.load.image('answer2','assets/last_q_2.png');
-       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
        game.load.image('lower','assets/lower.png');
        game.add.plugin(PhaserInput.Plugin);
        game.load.image('close_button','assets/close_button_normal.png');
@@ -2314,7 +2362,7 @@ showModal3:function() {
       create : function()
       {
        reg.modal = new gameModal(game);
-        this.createModals(); 
+        this.createModals();
        var answer_screen1 = game.add.sprite(0,0,'scrnshots','Lesson 2 Activity 4');
        //answer_screen1.scale.setTo(1.001,1.01);
        var lowerband = game.add.sprite(0,500,'lower');
@@ -2334,7 +2382,7 @@ showModal3:function() {
     borderWidth: 1,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
     done_button = game.add.button(77,618,'lesson2',this.showModal1,this,'sprite128','sprite132','sprite125');
      done_button.scale.setTo(0.7,0.7);
@@ -2376,13 +2424,13 @@ showModal3:function() {
          {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite12',  
+          content: 'sprite12',
           offsetX : 20,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
 },
 showModal1:function() {
@@ -2404,8 +2452,3 @@ game.state.add('a1_p5',a1_p5);
 game.state.add('a1_p66',a1_p66);
 game.state.start('PlayGame');
 }
-
-
- 
-
-

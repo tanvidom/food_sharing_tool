@@ -50,7 +50,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
  var rect = [];
  var done_button;
  var playGame = function(game){}
- playGame.prototype = 
+ playGame.prototype =
  {
   init : function()
   {
@@ -59,7 +59,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   preload : function()
   {
     game.load.image('background','assets/full_background.png');
-    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
     game.load.webfont('tahoma','Tahoma');
     game.load.atlasJSONHash('m1','assets/l2a1_m1.png','assets/l2a1_m1.json');
     game.load.atlasJSONHash('m2','assets/modals_l2a3.png','assets/modals_l2a3.json');
@@ -124,7 +124,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      radio_buttons[i].scale.setTo(0.5, 0.5);
      radio_buttons.selectedcheck = false;
     }
-    
+
      done_button = game.add.button(77,618,'lesson2',this.done_Action,this,'sprite128','sprite132','sprite125');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
@@ -162,28 +162,28 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           callback: function()
           {
             game.state.start('a1_p1');
-			  
+
           }
 
         },
           ]
-        
+
     });
    },
     showModal1:function() {
     reg.modal.showModal("modal1");
 },
-  done_Action : function() 
+  done_Action : function()
   {
     if(radio_buttons[0].selectedcheck == true)
     {
       this.showModal1();
-    } 
+    }
     else if(radio_buttons[1].selectedcheck == true)
     {
 //      this.showModal1();
      game.state.start('question_two');
-	} 
+	}
   },
   input_function : function(item)
   {
@@ -196,7 +196,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       {
         console.log('change');
         radio_buttons[i].selectedcheck = false;
-        radio_buttons[i].loadTexture('lesson2','radio-highlighted');  
+        radio_buttons[i].loadTexture('lesson2','radio-highlighted');
         radio_buttons[i].scale.setTo(0.5,0.5);
       }
     }
@@ -206,11 +206,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     },
     input_function1 : function(item)
     {
-        
+
     }
  }
  var question_two = function(game){}
- question_two.prototype = 
+ question_two.prototype =
  {
   init : function()
   {
@@ -219,7 +219,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   preload : function()
   {
     game.load.image('background','assets/full_background.png');
-    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
     game.load.webfont('tahoma','Tahoma');
     game.load.image('scrnshot','assets/scrensht_a3.png');
     game.load.image('lower_band','assets/lower.png');
@@ -252,7 +252,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      radio_buttons[i].scale.setTo(0.5, 0.5);
      radio_buttons.selectedcheck = false;
     }
-    
+
      done_button = game.add.button(77,618,'lesson2',this.done_Action1,this,'sprite128','sprite132','sprite125');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
@@ -292,7 +292,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   preload : function()
   {
-   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
    game.load.webfont('tahoma','Tahoma');
    game.load.image('top','assets/top.png');
   },
@@ -314,7 +314,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     instruction_text2.wordWrapWidth = 540;
     instruction_text2.lineSpacing = -5;
 
-    //var instruction_text3 = game.add.text(445,42,' Share Food Packets  ',style2); 
+    //var instruction_text3 = game.add.text(445,42,' Share Food Packets  ',style2);
     groups[0] = game.add.sprite(30,95,'lesson2','WORKER_BACK_GROUP_A');
     groups[1] = game.add.sprite(30,380,'lesson2','WORKER_BACK_GROUP_B');
     plates[0] = game.add.sprite(29,207,'lesson2','FOOD_PLATE');
@@ -351,7 +351,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
   }
   var question_three = function(game){}
-  question_three.prototype = 
+  question_three.prototype =
   {
     init : function()
     {
@@ -361,7 +361,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     {
      game.load.webfont('tahoma','Tahoma');
     game.load.image('scrnshot','assets/scrensht_a3.png');
-    game.load.image('lower_band','assets/lower.png'); 
+    game.load.image('lower_band','assets/lower.png');
     game.add.plugin(PhaserInput.Plugin);
     },
     create : function()
@@ -385,14 +385,14 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     borderWidth: 1,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
     done_button = game.add.button(77,618,'lesson2',this.showModal1,this,'sprite128','sprite132','sprite125');
      done_button.scale.setTo(0.7,0.7);
-     
 
 
-    }, 
+
+    },
   createModals: function() {
 
      reg.modal.createModal({
@@ -429,15 +429,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
         },
           ]
-        
+
     });
    },
-    showModal1:function() 
+    showModal1:function()
   {
     reg.modal.showModal("modal1");
   },
 
-  } 
+  }
    var videoScreen = function(game){}
     videoScreen.prototype =
     {
@@ -457,14 +457,14 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         back_text.events.onInputDown.add(this.back_function,this);
 
         //var image4 = game.add.image(550,590,'back',this.back_function,this);
-        
+
 
     //  true = loop
        video.play(true);
 
        game.input.onDown.add(this.pause, this);
       },
-      pause : function() 
+      pause : function()
       {
 
       video.paused = (video.paused) ? false : true;
@@ -472,7 +472,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       },
       video_stop : function()
       {
-       
+
       },
       back_function : function()
       {
@@ -480,7 +480,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       }
 
     }
-  
+
   var a1_p2 = function(game){}
   a1_p2.prototype=
   {
@@ -494,7 +494,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     game.load.atlasJSONHash('m12','assets/modals_l2a3.png','assets/modals_l2a3.json');
    game.load.image('back','assets/BG_SCREEN_4_6.png');
    game.load.image('top','assets/top_band.png');
-   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
    game.load.webfont('tahoma','Tahoma');
    game.load.image('lower','assets/lower.png');
    game.load.atlasJSONHash('buttons','assets/spritesheet_112.png','assets/sprites_112.json');
@@ -513,7 +513,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   create : function()
   {
     reg.modal = new gameModal(game);
-        this.createModals(); 
+        this.createModals();
          cutting_sound = game.add.audio('cutting_board1');
         yay_sound = game.add.audio('yay');
         click_sound = game.add.audio('click');
@@ -525,8 +525,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     question_text_lower = game.add.text(66,545,'సమూహం-ఎ వాటా ఎంత?   ',style4);
     instruction_text = game.add.text(110,24,'పరాటాలను చిక్క ముక్కలుగా చేయడానికి కటింగ్ టూల్ ఉపయోగించండి మరియు పరాటాలు లేదా ముక్కలను ఒక్కో పని వారికి డ్రాగ్ చేసి మరియు డ్రాప్ చేయండి. ',style1);
-    instruction_text.wordWrap = true; 
-    instruction_text.wordWrapWidth = 520; 
+    instruction_text.wordWrap = true;
+    instruction_text.wordWrapWidth = 520;
     instruction_text.lineSpacing = -5;
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     //var instruction_text1 = game.add.text(155,24,'Cutting Tool ',style2);
@@ -534,14 +534,14 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style11 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text_lower = game.add.text(66,560,'మీ జవాబుని ఒక పూర్ణ సంఖ్య లేదా ఒక భిన్నం రూపంలో నమోదు చేయండి మరియు మీ జవాబు సరైందో కాదో చూసుకొనుటకు పంచుట అయినది క్లిక్ చేయండి ',style11);  
+    var instruction_text_lower = game.add.text(66,560,'మీ జవాబుని ఒక పూర్ణ సంఖ్య లేదా ఒక భిన్నం రూపంలో నమోదు చేయండి మరియు మీ జవాబు సరైందో కాదో చూసుకొనుటకు పంచుట అయినది క్లిక్ చేయండి ',style11);
     //var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
     cutting_board = game.add.sprite(10,325,'lesson2','sprite126');
     var demo_bg = game.add.sprite(32,445,'lesson2','VIEW_DEMO_LINK_BG');
    rect[0] = game.add.sprite(10,325,null);
    game.physics.enable(rect[0],Phaser.Physics.ARCADE);
    rect[0].body.setSize(196,90,0,0);
-   //adding workers 
+   //adding workers
    for(var i=0;i<4;i++)
    {
     if(i<2)
@@ -563,7 +563,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     rect[i+1].body.setSize(108,70,0,0);
     }
    }
-   
+
    var style1 = { font: "bold 13px tahoma", fill: "#005DBA", boundsAlignH: "center", boundsAlignV: "middle" };
    linkofdemo = game.add.text(35,448,'యొక్క డెమో చూడండి కట్టింగ్ టూల్',style1);
    linkofdemo.inputEnabled = true;
@@ -595,7 +595,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     //parathas1[i].events.onDragStart.add(this.addGreenTiles, this);
     //parathas1[i].input.enableSnap(50,50, false, true);
     parathas1[i].anchor.setTo(0,0);
-    
+
     game.physics.enable(parathas1[i],Phaser.Physics.ARCADE);
     parathas1[i].events.onDragStop.add(this.stopDrag,this);
     parathas1[i].originalPosition = parathas1[i].position.clone();
@@ -616,10 +616,10 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     borderWidth: 2,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
    var answer_text1 = game.add.text(140,590,'parathas.',style4);
-   
+
   },
   update : function()
 {
@@ -652,7 +652,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
        parathas_on_board.push(parathas1[i]);
      }
 
-   } 
+   }
    console.log('hi');
    var num_of_pieces = item.num+1;
    console.log(num_of_pieces);
@@ -661,7 +661,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    cutting_board.loadTexture('lesson2','sprite126');
    switch(num_of_pieces)
    {
-    
+
     case 1:
     for(var i = 0; i <parathas_on_board.length; i++)
     {
@@ -681,7 +681,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     }
     paratha_num++;
     break;
-    case 2: 
+    case 2:
      for(var i = 0; i <parathas_on_board.length; i++)
     {
       parathas_on_board[i].destroy();
@@ -692,7 +692,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       number_of_pieces[x1].inputEnabled = false;
     }
     break;
-    case 3: 
+    case 3:
     for(var i = 0; i <parathas_on_board.length; i++)
     {
       parathas_on_board[i].destroy();
@@ -729,7 +729,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     for(var i = 0; i <parathas_on_board.length; i++)
     {
       parathas_on_board[i].destroy();
-    } 
+    }
     this.circle(95,370,6,'cookie1/6',0.5,-0.2);
      for(var x1=0; x1 < 6; x1++)
      {
@@ -749,7 +749,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     var NoOfSection = cuts;
     var divisonangle = (360/NoOfSection);
     console.log(divisonangle);
-    for (p=0;p < NoOfSection; p++) { 
+    for (p=0;p < NoOfSection; p++) {
       var x =x1
       var y =y1
       parathas1[paratha_num] = game.add.sprite(x,y,sprite);
@@ -772,7 +772,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
     });
       }
         if(parathas1[paratha_num].weight == '0.3333333333333333')
@@ -784,7 +784,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         if(parathas1[paratha_num].weight == '0.25')
@@ -796,7 +796,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         if(parathas1[paratha_num].weight == '0.20')
@@ -808,7 +808,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         console.log("weight" + parathas1[paratha_num].weight);
@@ -822,11 +822,11 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
     console.log(tips[paratha_num]);
-      parathas1[paratha_num].angle = angle;  
+      parathas1[paratha_num].angle = angle;
       angle += divisonangle;
       console.log(angle);
       paratha_num++;
@@ -842,7 +842,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      click_sound.play('',0,1);
     paratha_no = item.number;
     var c =0;
-    
+
     for(var i=0;i<5;i++)
     {
       var pos;
@@ -863,9 +863,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
               var check_paratha_on_board1 = game.physics.arcade.overlap(parathas1[i],rect[0]);
                if(check_paratha_on_board1 == true)
                {
-                  parathas1[paratha_no].position.copyFrom(parathas1[paratha_no].originalPosition);         
+                  parathas1[paratha_no].position.copyFrom(parathas1[paratha_no].originalPosition);
                }
-            }  }    
+            }  }
          }
         pos = i;
         c++;
@@ -896,7 +896,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           sharing_done_btn.inputEnabled = true;
         }
-      
+
     }
 
     else
@@ -927,7 +927,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     }
 
    }
-   
+
  },
   linkofdemo_function : function()
   {
@@ -971,15 +971,15 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
          {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite12',  
+          content: 'sprite12',
           offsetX : 20,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
-     //modal 2 
+     //modal 2
         reg.modal.createModal({
         type: "modal2",
         includeBackground: true,
@@ -1015,7 +1015,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 30,
           offsetY:  -160,
         },
@@ -1056,7 +1056,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 20,
           offsetY:  - 140,
         },
@@ -1097,7 +1097,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -1138,7 +1138,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -1179,7 +1179,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -1220,12 +1220,12 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
           ]
-    });  
+    });
            reg.modal.createModal({
         type: "modal8",
         includeBackground: true,
@@ -1261,13 +1261,13 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
           ]
-    });      
-  }, 
+    });
+  },
   showModal1:function() {
       yay_sound.play('',0,1);
     console.log('modal1');
@@ -1302,11 +1302,30 @@ showModal8 : function()
 {
   reg.modal.showModal("modal8");
 },
+division : function(a,b,c,d)
+ {
+   console.log(a/b);
+   console.log(c/d);
+   var and = a/b;
+   var mans = c/d;
+    var value;
+    if (and == mans)
+    {
+      value = true;
+    }
+    else
+    {
+      value = false;
+    }
+
+    return value;
+},
   sharing_done_function : function()
   {
    count_no_of_attempts = count_no_of_attempts + 1;
   if(count_no_of_attempts < 4)
   {
+    var splitted_text = [];
   var expected_sum = 1.25;
   var l = 0;
   var k =0;
@@ -1318,6 +1337,11 @@ showModal8 : function()
   }
   else
   {
+    var cd = input_answer1.value;
+  splitted_text = cd.split("/");
+  console.log("a : " + splitted_text[0] );
+  console.log("b :" + splitted_text[1] );
+  var is_ans_true = this.division(splitted_text[0],splitted_text[1],5,4);
   for(var i=0;i<4;i++)
   {
     plates1[i].sum = 0;
@@ -1346,20 +1370,20 @@ showModal8 : function()
      this.showModal5();
     }
 
-    else if(l == 4 && input_answer1.value == '5/4')
+    else if(l == 4 && (input_answer1.value == '5/4' || is_ans_true == true))
     {
       this.showModal1();
     }
-    else if(l==4 && input_answer1.value == '1.25')
+    else if(l==4 && (input_answer1.value == '1.25' || is_ans_true == true))
     {
       this.showModal1();
       console.log('correct answer but please enter fractional value in textbox');
     }
-    else if( l==4 && input_answer1.value!=='5/4')
-    {   
+    else if( l==4 && (input_answer1.value!=='5/4' || is_ans_true == false))
+    {
       this.showModal2();
     }
-    else if( l!==4 && input_answer1.value == '5/4')
+    else if( l!==4 && (input_answer1.value == '5/4' || is_ans_true == true))
     {
       if(count_no_of_attempts == 1)
       {
@@ -1369,18 +1393,18 @@ showModal8 : function()
       {
         this.showModal6();
       }
-      else 
+      else
       {
         this.showModal8();
       }
-      
+
     }
-    else 
+    else
     {
       this.showModal4();
     }
- } } 
- else 
+ } }
+ else
  {
   game.state.start('answer_screen');
 
@@ -1393,18 +1417,18 @@ showModal8 : function()
   }
   }
   var answer_screen = function(game){}
-    answer_screen.prototype = 
+    answer_screen.prototype =
     {
-      
+
       preload : function()
       {
        game.load.image('answer1','assets/l2a3_q1.png');
-       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
-       
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
+
       },
       create : function()
       {
-       game.stage.backgroundColor = "#00000"; 
+       game.stage.backgroundColor = "#00000";
        var answer_screen1 = game.add.sprite(100,100,'answer1');
        answer_screen1.scale.setTo(1, 1);
        var style = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -1444,14 +1468,14 @@ showModal8 : function()
         back_text.events.onInputDown.add(this.back_function,this);
 
         //var image4 = game.add.image(550,590,'back',this.back_function,this);
-        
+
 
     //  true = loop
        video.play(true);
 
        game.input.onDown.add(this.pause, this);
       },
-      pause : function() 
+      pause : function()
       {
 
       video.paused = (video.paused) ? false : true;
@@ -1459,7 +1483,7 @@ showModal8 : function()
       },
       video_stop : function()
       {
-       
+
       },
       back_function : function()
       {
@@ -1467,9 +1491,9 @@ showModal8 : function()
       }
 
     }
-  
+
   var a1_p3 = function(game){}
-  a1_p3.prototype = 
+  a1_p3.prototype =
   {
    init : function()
   {
@@ -1477,7 +1501,7 @@ showModal8 : function()
   },
   preload : function()
   {
-    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+    game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
    game.load.image('top','assets/top.png');
    game.load.image('scrnsht','assets/scrnshot.png');
    game.load.webfont('tahoma','Tahoma');
@@ -1496,7 +1520,7 @@ showModal8 : function()
     var instruction_text2 = game.add.text(130,35,'2. సమూహం-ఎ కి మీరు ఆహారం పంచడం పూర్తి చేసిన తరువాత, సమూహం బి కొరకు ఆహారం పంచడం  క్లిక్ చేయండి మరియు సమూహం- బి కి పంచడం పూర్తి చేయండి.',style1);
     instruction_text2.wordWrap = true;
     instruction_text2.wordWrapWidth = 600;
-    //var instruction_text3 = game.add.text(445,42,' Share Food Packets  ',style2); 
+    //var instruction_text3 = game.add.text(445,42,' Share Food Packets  ',style2);
     var scrnn = game.add.sprite(0,74,'scrnsht');
     share_button_B = game.add.button(303,530,'lesson2',this.share_b_function,this,'sprite145','sprite141','sprite146');
 
@@ -1508,7 +1532,7 @@ showModal8 : function()
 
   }
   var a1_p4 = function(game){}
-  a1_p4.prototype = 
+  a1_p4.prototype =
   {
    init : function()
   {
@@ -1520,7 +1544,7 @@ showModal8 : function()
     game.load.atlasJSONHash('m1','assets/l2a1_m1.png','assets/l2a1_m1.json');
    game.load.image('back','assets/BG_SCREEN_4_6.png');
    game.load.image('top','assets/top_band.png');
-   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+   game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
    game.load.webfont('tahoma','Tahoma');
    game.load.image('lower','assets/lower.png');
    game.load.atlasJSONHash('buttons','assets/spritesheet_112.png','assets/sprites_112.json');
@@ -1539,7 +1563,7 @@ showModal8 : function()
   create : function()
   {
     reg.modal = new gameModal(game);
-        this.createModals(); 
+        this.createModals();
         count_no_of_attempts =0;
         cutting_sound = game.add.audio('cutting_board1');
         yay_sound = game.add.audio('yay');
@@ -1552,8 +1576,8 @@ showModal8 : function()
     var style1 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     question_text_lower = game.add.text(66,545,'సమూహం-బి వాటా ఎంత?',style4);
     instruction_text = game.add.text(110,24,'పరాటాలను చిక్క ముక్కలుగా చేయడానికి కటింగ్ టూల్ ఉపయోగించండి మరియు పరాటాలు లేదా ముక్కలను ఒక్కో పని వారికి డ్రాగ్ చేసి మరియు డ్రాప్ చేయండి. ',style1);
-    instruction_text.wordWrap = true; 
-    instruction_text.wordWrapWidth = 520; 
+    instruction_text.wordWrap = true;
+    instruction_text.wordWrapWidth = 520;
     instruction_text.lineSpacing = -5;
     var style2 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
    // var instruction_text1 = game.add.text(155,24,'Cutting Tool ',style2);
@@ -1561,14 +1585,14 @@ showModal8 : function()
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 550;
     var style11 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    var instruction_text_lower = game.add.text(66,560,'మీ జవాబుని ఒక పూర్ణ సంఖ్య లేదా ఒక భిన్నం రూపంలో నమోదు చేయండి మరియు మీ జవాబు సరైందో కాదో చూసుకొనుటకు  పంచుట అయినది క్లిక్ చేయండి ',style11);  
+    var instruction_text_lower = game.add.text(66,560,'మీ జవాబుని ఒక పూర్ణ సంఖ్య లేదా ఒక భిన్నం రూపంలో నమోదు చేయండి మరియు మీ జవాబు సరైందో కాదో చూసుకొనుటకు  పంచుట అయినది క్లిక్ చేయండి ',style11);
     //var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
     cutting_board = game.add.sprite(10,325,'lesson2','sprite126');
     var demo_bg = game.add.sprite(32,445,'lesson2','VIEW_DEMO_LINK_BG');
    rect[0] = game.add.sprite(10,325,null);
    game.physics.enable(rect[0],Phaser.Physics.ARCADE);
    rect[0].body.setSize(196,90,0,0);
-   //adding workers 
+   //adding workers
    for(var i=0;i<5;i++)
    {
     if(i<3)
@@ -1590,7 +1614,7 @@ showModal8 : function()
     rect[i+1].body.setSize(108,70,0,0);
     }
    }
-   
+
    var style1 = { font: "bold 13px tahoma", fill: "#005DBA", boundsAlignH: "center", boundsAlignV: "middle" };
    linkofdemo = game.add.text(35,448,'యొక్క డెమో చూడండి కట్టింగ్ టూల',style1);
    linkofdemo.inputEnabled = true;
@@ -1622,7 +1646,7 @@ showModal8 : function()
     //parathas1[i].events.onDragStart.add(this.addGreenTiles, this);
     //parathas1[i].input.enableSnap(50,50, false, true);
     parathas1[i].anchor.setTo(0,0);
-    
+
     game.physics.enable(parathas1[i],Phaser.Physics.ARCADE);
     parathas1[i].events.onDragStop.add(this.stopDrag,this);
     parathas1[i].originalPosition = parathas1[i].position.clone();
@@ -1643,10 +1667,10 @@ showModal8 : function()
     borderWidth: 2,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
    var answer_text1 = game.add.text(140,590,'పరాటాలు.',style4);
-   
+
   },
   update : function()
 {
@@ -1661,6 +1685,24 @@ showModal8 : function()
            sharing_done_btn.inputEnabled = true;
         }
 },
+division : function(a,b,c,d)
+ {
+   console.log(a/b);
+   console.log(c/d);
+   var and = a/b;
+   var mans = c/d;
+    var value;
+    if (and == mans)
+    {
+      value = true;
+    }
+    else
+    {
+      value = false;
+    }
+
+    return value;
+},
   cutting_function : function(item)
   {
      cutting_sound.play('',0,1);
@@ -1674,7 +1716,7 @@ showModal8 : function()
        parathas_on_board.push(parathas1[i]);
      }
 
-   } 
+   }
    console.log('hi');
    var num_of_pieces = item.num+1;
    console.log(num_of_pieces);
@@ -1683,7 +1725,7 @@ showModal8 : function()
    cutting_board.loadTexture('lesson2','sprite126');
    switch(num_of_pieces)
    {
-    
+
     case 1:
     for(var i = 0; i <parathas_on_board.length; i++)
     {
@@ -1703,7 +1745,7 @@ showModal8 : function()
     }
     paratha_num++;
     break;
-    case 2: 
+    case 2:
      for(var i = 0; i <parathas_on_board.length; i++)
     {
       parathas_on_board[i].destroy();
@@ -1714,7 +1756,7 @@ showModal8 : function()
       number_of_pieces[x1].inputEnabled = false;
     }
     break;
-    case 3: 
+    case 3:
     for(var i = 0; i <parathas_on_board.length; i++)
     {
       parathas_on_board[i].destroy();
@@ -1751,7 +1793,7 @@ showModal8 : function()
     for(var i = 0; i <parathas_on_board.length; i++)
     {
       parathas_on_board[i].destroy();
-    } 
+    }
     this.circle(95,370,6,'cookie1/6',0.5,-0.2);
      for(var x1=0; x1 < 6; x1++)
      {
@@ -1771,7 +1813,7 @@ showModal8 : function()
     var NoOfSection = cuts;
     var divisonangle = (360/NoOfSection);
     console.log(divisonangle);
-    for (p=0;p < NoOfSection; p++) { 
+    for (p=0;p < NoOfSection; p++) {
       var x =x1
       var y =y1
       parathas1[paratha_num] = game.add.sprite(x,y,sprite);
@@ -1794,7 +1836,7 @@ showModal8 : function()
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
     });
       }
         if(parathas1[paratha_num].weight == '0.3333333333333333')
@@ -1806,7 +1848,7 @@ showModal8 : function()
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         if(parathas1[paratha_num].weight == '0.25')
@@ -1818,7 +1860,7 @@ showModal8 : function()
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         if(parathas1[paratha_num].weight == '0.20')
@@ -1830,7 +1872,7 @@ showModal8 : function()
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
         console.log("weight" + parathas1[paratha_num].weight);
@@ -1844,11 +1886,11 @@ showModal8 : function()
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
         }
     console.log(tips[paratha_num]);
-      parathas1[paratha_num].angle = angle;  
+      parathas1[paratha_num].angle = angle;
       angle += divisonangle;
       console.log(angle);
       paratha_num++;
@@ -1864,7 +1906,7 @@ showModal8 : function()
      click_sound.play('',0,1);
     paratha_no = item.number;
     var c =0;
-    
+
     for(var i=0;i<6;i++)
     {
       var pos;
@@ -1885,9 +1927,9 @@ showModal8 : function()
               var check_paratha_on_board1 = game.physics.arcade.overlap(parathas1[i],rect[0]);
                if(check_paratha_on_board1 == true)
                {
-                  parathas1[paratha_no].position.copyFrom(parathas1[paratha_no].originalPosition);         
+                  parathas1[paratha_no].position.copyFrom(parathas1[paratha_no].originalPosition);
                }
-            }  }    
+            }  }
          }
         pos = i;
         c++;
@@ -1918,7 +1960,7 @@ showModal8 : function()
         {
           sharing_done_btn.inputEnabled = true;
         }
-      
+
     }
 
     else
@@ -1928,7 +1970,7 @@ showModal8 : function()
 
   },
   startDrag_1 : function(item)
-  { 
+  {
      click_sound.play('',0,1);
   },
    stopDrag_1 : function(item)
@@ -1949,7 +1991,7 @@ showModal8 : function()
     }
 
    }
-   
+
  },
   linkofdemo_function : function()
   {
@@ -1993,15 +2035,15 @@ showModal8 : function()
          {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite12',  
+          content: 'sprite12',
           offsetX : 20,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
-     //modal 2 
+     //modal 2
         reg.modal.createModal({
         type: "modal2",
         includeBackground: true,
@@ -2037,7 +2079,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -2078,7 +2120,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 20,
           offsetY:  - 140,
         },
@@ -2119,7 +2161,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -2160,7 +2202,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -2201,7 +2243,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -2242,12 +2284,12 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
           ]
-    });  
+    });
            reg.modal.createModal({
         type: "modal8",
         includeBackground: true,
@@ -2283,13 +2325,13 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'lesson2',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
           ]
-    });      
-  }, 
+    });
+  },
   showModal1:function() {
       yay_sound.play('',0,1);
     reg.modal.showModal("modal1");
@@ -2321,6 +2363,7 @@ showModal8 : function()
    count_no_of_attempts = count_no_of_attempts + 1;
   if(count_no_of_attempts < 4)
   {
+    var splitted_text = [];
   var expected_sum = 0.8;
   var l = 0;
   var k =0;
@@ -2332,6 +2375,11 @@ showModal8 : function()
   }
   else
   {
+    var cd = input_answer1.value;
+  splitted_text = cd.split("/");
+  console.log("a : " + splitted_text[0] );
+  console.log("b :" + splitted_text[1] );
+  var is_ans_true = this.division(splitted_text[0],splitted_text[1],4,5);
   for(var i=0;i<5;i++)
   {
     plates1[i].sum = 0;
@@ -2360,7 +2408,7 @@ showModal8 : function()
      this.showModal5();
     }
 
-    else if(l == 5 && input_answer1.value == '4/5')
+    else if(l == 5 && (input_answer1.value == '4/5' || is_ans_true == true))
     {
       this.showModal1();
     }
@@ -2368,11 +2416,11 @@ showModal8 : function()
     {
       console.log('correct answer but please enter fractional value in textbox');
     }*/
-    else if( l==5 && input_answer1.value!=='4/5')
-    {   
+    else if( l==5 && (input_answer1.value!=='4/5' || is_ans_true == false))
+    {
       this.showModal2();
     }
-    else if( l!==5 && input_answer1.value == '4/5')
+    else if( l!==5 && (input_answer1.value == '4/5' || is_ans_true == true))
     {
       if(count_no_of_attempts == 1)
       {
@@ -2382,18 +2430,18 @@ showModal8 : function()
       {
         this.showModal6();
       }
-      else 
+      else
       {
         this.showModal8();
       }
-      
+
     }
-    else 
+    else
     {
       this.showModal4();
     }
- } } 
- else 
+ } }
+ else
  {
   game.state.start('answer_screen_2');
 
@@ -2425,14 +2473,14 @@ showModal8 : function()
         back_text.events.onInputDown.add(this.back_function,this);
 
         //var image4 = game.add.image(550,590,'back',this.back_function,this);
-        
+
 
     //  true = loop
        video.play(true);
 
        game.input.onDown.add(this.pause, this);
       },
-      pause : function() 
+      pause : function()
       {
 
       video.paused = (video.paused) ? false : true;
@@ -2440,7 +2488,7 @@ showModal8 : function()
       },
       video_stop : function()
       {
-       
+
       },
       back_function : function()
       {
@@ -2448,20 +2496,20 @@ showModal8 : function()
       }
 
     }
-  
+
    var answer_screen_2 = function(game){}
-    answer_screen_2.prototype = 
+    answer_screen_2.prototype =
     {
-      
+
       preload : function()
       {
        game.load.image('answer1','assets/answerscreen1.png');
-       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
-       
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
+
       },
       create : function()
       {
-       game.stage.backgroundColor = "#00000"; 
+       game.stage.backgroundColor = "#00000";
        var answer_screen1 = game.add.sprite(100,100,'answer1');
        answer_screen1.scale.setTo(1, 1);
        var style = { font: "14px Arial", fill: "#FFFFFF", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -2483,18 +2531,18 @@ showModal8 : function()
       }
     }
     var a1_p5 = function(game){}
-    a1_p5.prototype = 
+    a1_p5.prototype =
     {
       init : function()
        {
      game.load = new CustomLoader(game);
       },
-      
+
       preload : function()
       {
        game.load.image('answer21','assets/final.png');
-       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
-       game.load.atlasJSONHash('sprite111', 'assets/l2a3_final.png', 'assets/l2a3_final.json'); 
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
+       game.load.atlasJSONHash('sprite111', 'assets/l2a3_final.png', 'assets/l2a3_final.json');
        game.load.image('lower','assets/lower.png');
        game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
        game.load.image('close_button','assets/close_button_normal.png');
@@ -2504,7 +2552,7 @@ showModal8 : function()
       create : function()
       {
        reg.modal = new gameModal(game);
-        this.createModals();    
+        this.createModals();
        var answer_screen1 = game.add.sprite(0,0,'answer21');
        answer_screen1.scale.setTo(1,0.98);
        var lowerband = game.add.sprite(0,500,'lower');
@@ -2531,7 +2579,7 @@ showModal8 : function()
      radio_buttons[i].scale.setTo(0.5, 0.5);
      radio_buttons.selectedcheck = false;
     }
-    
+
      done_button = game.add.button(77,607,'lesson2',this.next11_function,this,'sprite128','sprite132','sprite125');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
@@ -2595,15 +2643,15 @@ showModal8 : function()
          {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite12',  
+          content: 'sprite12',
           offsetX : 20,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
-     //modal 2 
+     //modal 2
         reg.modal.createModal({
         type: "modal2",
         includeBackground: true,
@@ -2639,7 +2687,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -2680,7 +2728,7 @@ showModal8 : function()
         {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite11',  
+          content: 'sprite11',
           offsetX : 20,
           offsetY:  - 190,
         },
@@ -2701,7 +2749,7 @@ showModal3:function() {
     reg.modal.showModal("modal3");
 },
 
-      
+
       next11_function : function()
       {
         count_no_of_attempts_2 = count_no_of_attempts_2 + 1;
@@ -2727,19 +2775,19 @@ showModal3:function() {
       },
     }
     var a1_p6 = function(game){}
-    a1_p6.prototype = 
+    a1_p6.prototype =
     {
       init : function()
   {
      game.load = new CustomLoader(game);
   },
-      
+
       preload : function()
       {
         game.load.image('answer21','assets/final.png');
        //game.load.image('answer2','assets/last_q_2.png');
        game.load.atlasJSONHash('modals11','assets/modals_a1.png','assets/modals_a1.json');
-       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json'); 
+       game.load.atlasJSONHash('lesson2', 'assets/lesson2.png', 'assets/lesson2.json');
        game.load.image('lower','assets/lower.png');
        game.add.plugin(PhaserInput.Plugin);
        game.load.image('close_button','assets/close_button_normal.png');
@@ -2750,7 +2798,7 @@ showModal3:function() {
       create : function()
       {
        reg.modal = new gameModal(game);
-        this.createModals(); 
+        this.createModals();
        var answer_screen1 = game.add.sprite(0,0,'answer21');
        answer_screen1.scale.setTo(1,0.98);
        var lowerband = game.add.sprite(0,500,'lower');
@@ -2770,7 +2818,7 @@ showModal3:function() {
     borderWidth: 1,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
     done_button = game.add.button(77,618,'lesson2',this.showModal1,this,'sprite128','sprite132','sprite125');
      done_button.scale.setTo(0.7,0.7);
@@ -2812,13 +2860,13 @@ showModal3:function() {
          {
           type : 'sprite',
           atlasParent: 'modals11',
-          content: 'sprite12',  
+          content: 'sprite12',
           offsetX : 20,
           offsetY:  - 140,
         },
 
           ]
-        
+
     });
 },
 showModal1:function() {
@@ -2829,7 +2877,7 @@ showModal1:function() {
 
   /*
   var answer_a1_p2 = function(game){}
-  answer_a1_p2.prototype = 
+  answer_a1_p2.prototype =
   {
    init : function()
   {
@@ -2854,7 +2902,3 @@ game.state.add('a1_p6',a1_p6);
 //game.state.add('answer_a1_p2',answer_a1_p2);
 game.state.start('PlayGame');
 }
-
- 
-
-
