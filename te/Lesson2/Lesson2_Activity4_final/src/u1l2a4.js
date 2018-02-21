@@ -1117,6 +1117,7 @@ division : function(a,b,c,d)
    count_no_of_attempts_1 = count_no_of_attempts_1 + 1;
   if(count_no_of_attempts_1 < 4)
   {
+    var splitted_text = [];
   var expected_sum = 4.5;
   var l = 0;
   var k =0;
@@ -1130,6 +1131,11 @@ division : function(a,b,c,d)
   }
   else
   {
+    var cd = input_answer1.value;
+  splitted_text = cd.split("/");
+  console.log("a : " + splitted_text[0] );
+  console.log("b :" + splitted_text[1] );
+  var is_ans_true = this.division(splitted_text[0],splitted_text[1],9,2);
   for(var i=0;i<2;i++)
   {
     rect[i+2].numberof_workeringroup = 0;
@@ -1180,21 +1186,21 @@ division : function(a,b,c,d)
      this.showModal5();
     }
 
-    else if((l == 2 && m==2) && input_answer1.value == '9/2')
+    else if((l == 2 && m==2) && (input_answer1.value == '9/2' || is_ans_true == true))
     {
       this.showModal1();
     }
-    else if((l==2 && m==2) && input_answer1.value == '4.5')
+    else if((l==2 && m==2) && (input_answer1.value == '4.5' || is_ans_true == true))
     {
       this.showModal1();
       console.log('correct answer but please enter fractional value in textbox');
     }
-    else if((l==2 && m == 2)&& input_answer1.value!=='9/2')
+    else if((l==2 && m == 2)&& (input_answer1.value!=='9/2' || is_ans_true == false))
     {
       console.log('modal2');
       this.showModal2();
     }
-    else if((l!==2 || m!==2) && input_answer1.value == '9/2')
+    else if((l!==2 || m!==2) && (input_answer1.value == '9/2' || is_ans_true == true))
     {
       if(count_no_of_attempts_1 == 1)
       {
@@ -1943,6 +1949,7 @@ division : function(a,b,c,d)
    count_no_of_attempts_2 = count_no_of_attempts_2 + 1;
   if(count_no_of_attempts_2 < 4)
   {
+    var splitted_text = [];
   var expected_sum_1 = 4.5;
   var expected_sum_2 = 1.5;
   var l = 0;
@@ -1957,6 +1964,11 @@ division : function(a,b,c,d)
   }
   else
   {
+    var cd = input_answer1.value;
+  splitted_text = cd.split("/");
+  console.log("a : " + splitted_text[0] );
+  console.log("b :" + splitted_text[1] );
+  var is_ans_true = this.division(splitted_text[0],splitted_text[1],9,2);
   for(var i=0;i<2;i++)
   {
     rect1[i+2].numberof_workeringroup = 0;
