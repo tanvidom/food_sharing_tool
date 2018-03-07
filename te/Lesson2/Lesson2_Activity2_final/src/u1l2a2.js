@@ -1099,6 +1099,7 @@ division : function(a,b,c,d)
 },
   sharing_done_function : function()
   {
+    var splitted_text = [];
     worker_check_on_group = [];
    count_no_of_attempts = count_no_of_attempts + 1;
   if(count_no_of_attempts < 4)
@@ -1115,6 +1116,11 @@ division : function(a,b,c,d)
   }
   else
   {
+    var cd = input_answer1.value;
+  splitted_text = cd.split("/");
+  console.log("a : " + splitted_text[0] );
+  console.log("b :" + splitted_text[1] );
+  var is_ans_true = this.division(splitted_text[0],splitted_text[1],5,4);
   for(var i=0;i<4;i++)
   {
     rect[i+2].numberof_workeringroup = 0;
@@ -1873,8 +1879,27 @@ showModal8 : function()
 {
   reg.modal.showModal("modal8");
 },
+division : function(a,b,c,d)
+ {
+   console.log(a/b);
+   console.log(c/d);
+   var and = a/b;
+   var mans = c/d;
+    var value;
+    if (and == mans)
+    {
+      value = true;
+    }
+    else
+    {
+      value = false;
+    }
+
+    return value;
+},
   sharing_done_function : function()
   {
+    var splitted_text = [];
     worker_check_on_group = [];
    count_no_of_attempts_1 = count_no_of_attempts_1 + 1;
   if(count_no_of_attempts_1 < 4)
@@ -1891,6 +1916,11 @@ showModal8 : function()
   }
   else
   {
+    var cd = input_answer1.value;
+  splitted_text = cd.split("/");
+  console.log("a : " + splitted_text[0] );
+  console.log("b :" + splitted_text[1] );
+  var is_ans_true = this.division(splitted_text[0],splitted_text[1],1,1);
   for(var i=0;i<3;i++)
   {
     rect1[i+2].numberof_workeringroup = 0;
@@ -1941,16 +1971,16 @@ showModal8 : function()
      this.showModal5();
     }
 
-    else if((l == 3 && m==3) && input_answer1.value == '1')
+    else if((l == 3 && m==3) && (input_answer1.value == '1' || is_ans_true == true))
     {
       this.showModal1();
     }
-    else if((l==3 && m == 3)&& input_answer1.value!=='1')
+    else if((l==3 && m == 3)&& (input_answer1.value!=='1' || is_ans_true == false))
     {
       console.log('modal2');
       this.showModal2();
     }
-    else if((l!==4 || m!==4) && input_answer1.value == '1')
+    else if((l!==4 || m!==4) && (input_answer1.value == '1' || is_ans_true == true))
     {
       if(count_no_of_attempts_1 == 1)
       {

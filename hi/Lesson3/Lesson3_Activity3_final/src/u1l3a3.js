@@ -40,7 +40,7 @@ var number_of_pieces = [];
  var radio_buttons = [];
  var radio_texts = [];
  var selected = false;
- 
+
  var rotis = [];
  var roti_no;
  var workers = [];
@@ -51,7 +51,7 @@ var buttons_hover = ['1_MOUSE_OVER','2_MOUSE_OVER','3_MOUSE_OVER','4_MOUSE_OVER'
 var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN','5_MOUSE_DOWN','6_MOUSE_DOWN'];
  var worker_names = ['1','2','3','4','5','6','7','8','9','10','11','12'];
  var p1 = 0;
- 
+
  var share_of_each_worker = 0.6666666666666666;
  var reg={};
  var help_button;
@@ -60,7 +60,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
  var rect = [];
  var done_button;
  var playGame = function(game){}
- playGame.prototype = 
+ playGame.prototype =
  {
   init : function()
   {
@@ -69,7 +69,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   preload : function()
   {
     game.add.plugin(PhaserInput.Plugin);
-    game.load.atlasJSONHash('lesson3', 'assets/spritesheet_lesson3.png', 'assets/sprites_lesson3.json'); 
+    game.load.atlasJSONHash('lesson3', 'assets/spritesheet_lesson3.png', 'assets/sprites_lesson3.json');
     game.load.webfont('tahoma','Tahoma');
     game.load.atlasJSONHash('bgelem','assets/spritesheet_1_l3.png','assets/sprites_1_l3.json');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');
@@ -83,7 +83,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
      game.load.atlasJSONHash('hindisprites2','assets/spritesheet_l3a3_hi.png','assets/sprites_l3a3_hi.json');
         game.load.audio('click','assets/sounds/clicksound.wav');
     game.load.audio('yay','assets/sounds/yay.wav');
-    
+
 
   },
   create : function()
@@ -99,14 +99,14 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     var lower_band = game.add.sprite(0,537,'bgelem','lower');
     var worker_set = game.add.sprite(15,200,'bgelem','worker_set');
     worker_set.scale.setTo(1,0.9);
-    
+
     //background.scale.setTo(1,0.99);
     var style = { font: "14px tahoma", fill: "ffff", boundsAlignH: "center", boundsAlignV: "middle" };
     question_text_upper = game.add.text(50,6,'जामुनी को गणना करने में मदद करें कि समूह B के मजदूरों को कितने पराठे दिए जाएँ, जिससे उन्हें समूह A के समान हिस्सा मिले। ',style);
     question_text_upper.wordWrap = true;
     question_text_upper.wordWrapWidth = 800;
     var style2 = { font: "italic 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
-    
+
     var instruction_text2 = game.add.text(110,29,"1. समूह B के मजदूरों को अधिकतम 3 उपसमूहों में बाँटने के लिए ग्रुपिंग टूल का उपयोग करें। ",style2);
     var instruction_text3 = game.add.text(110,46,"2. उपलब्ध पराठों को इस प्रकार वितरित करें कि प्रत्येक उपसमूह को समूह A के मजदूरों के समान हिस्सा मिले। ",style2);
     var instruction_text4 = game.add.text(110,63,"3. समूह B के कुल हिस्से की गणना करें। ",style2);
@@ -118,7 +118,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     groups[0] = game.add.sprite(298,103,'lesson3','B1_worker_bg');
     groups[1] = game.add.sprite(298,245,'lesson3','B2_worker_bg');
     groups[2] = game.add.sprite(298,390,'lesson3','B3_worker_bg');
-    //adding rect 
+    //adding rect
     for(var i=0;i<3;i++)
     {
       rect[i] = game.add.sprite(groups[i].x,groups[i].y,null);
@@ -149,7 +149,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       workers[j] = game.add.sprite(50 + (j*40),222,'lesson3',worker_names[j]);
       workers[j].scale.setTo(0.9,0.9);
       workers[j].inputEnabled = true;
-      workers[j].input.enableDrag(true);   
+      workers[j].input.enableDrag(true);
       workers[j].events.onDragStop.add(this.stopDrag_1,this);
       workers[j].number = j;
       workers[j].originalPosition = workers[j].position.clone();
@@ -159,7 +159,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
        workers[j] = game.add.sprite(65 + ((j-5)*40),267,'lesson3',worker_names[j]);
        workers[j].scale.setTo(0.9,0.9);
        workers[j].inputEnabled= true;
-       workers[j].input.enableDrag(true);   
+       workers[j].input.enableDrag(true);
       workers[j].events.onDragStop.add(this.stopDrag_1,this);
       workers[j].number = j;
       workers[j].originalPosition = workers[j].position.clone();
@@ -193,7 +193,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         height : 20,
         weight : 20,
         strokeColor: 0xff0000, // red stroke
-        position: "top" 
+        position: "top"
         });
     }
     //question text
@@ -211,7 +211,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     borderWidth: 2,
     borderColor: '#0EC2F5',
     borderRadius: 6,
-    
+
 });
      var parathas_text = game.add.text(95,605,'पराठे |',style);
      sharing_done_btn = game.add.button(180,600,'hindi_buttons10',this.sharing_done_function,this,'hindi_SHARING_BUTTON_over','hindi_SHARING_BUTTON_normal','hindi_SHARING_BUTTON_down');
@@ -243,13 +243,13 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         modalCloseOnInput: true,
         itemsArr: [{
             type: 'image',
-    
+
             content : 'q3_large'
 
 
           },
           ]
-        
+
     });
      reg.modal.createModal({
         type: "modal2",
@@ -286,7 +286,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_HAPPY',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -360,7 +360,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -384,7 +384,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal5");
-                      
+
                     }
         },
         {
@@ -396,14 +396,14 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           callback: function()
           {
             reg.modal.hideModal("modal5");
-            
+
           }
 
         },
         {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -444,7 +444,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
@@ -485,12 +485,12 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
           ]
-    });  
+    });
            reg.modal.createModal({
         type: "modal8",
         includeBackground: true,
@@ -526,12 +526,12 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
         {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 140,
         },
           ]
-    });      
+    });
    },
     showModal1:function() {
     reg.modal.showModal("modal1");
@@ -568,16 +568,35 @@ help_function : function()
 {
  window.open("./assets/fraction-chart_copywrite.png");
 },
-  
+
     input_function1 : function(item)
     {
-        
+
+    },
+    division : function(a,b,c,d)
+     {
+       console.log(a/b);
+       console.log(c/d);
+       var and = a/b;
+       var mans = c/d;
+        var value;
+        if (and == mans)
+        {
+          value = true;
+        }
+        else
+        {
+          value = false;
+        }
+
+        return value;
     },
     sharing_done_function : function(item)
     {
           count_no_of_attempts = count_no_of_attempts + 1;
       if(count_no_of_attempts < 4)
   {
+    var splitted_text = [];
       var flag_1_in_group = false;
       var no_of_workers_in_group = [];
  var no_of_rotis_in_group = [];
@@ -599,7 +618,7 @@ help_function : function()
           }
         }
         no_of_rotis_in_group[i] = 0;
-        for (var k = 0; k < 14; k++) 
+        for (var k = 0; k < 14; k++)
         {
           game.physics.arcade.enable(rotis[k]);
           check3[k] = game.physics.arcade.overlap(rotis[k],rect[i+4]);
@@ -627,18 +646,24 @@ help_function : function()
         {
           count_groups++;
         }
-      
+
       }
       //final checking
       console.log('count_groups' + count_groups);
       console.log('group_length' + group_length);
+      var cd = input_answer.value;
+    splitted_text = cd.split("/");
+    console.log("a : " + splitted_text[0] );
+    console.log("b :" + splitted_text[1] );
+    var is_ans_true = this.division(splitted_text[0],splitted_text[1],6,1);
+
       if(flag_1_in_group == true)
       {
         this.showModal5();
       }
       else if(count_groups == 3 && group_length == 3)
       {
-        if(input_answer.value == '6')
+        if(input_answer.value == '6' || is_ans_true == true)
         {
         this.showModal2();
         }
@@ -650,7 +675,7 @@ help_function : function()
       }
       else if(count_groups == 2 && group_length == 2)
       {
-        if(input_answer.value == '6')
+        if(input_answer.value == '6' || is_ans_true == true)
         {
           this.showModal2();
         console.log('correct');
@@ -663,9 +688,9 @@ help_function : function()
       }
       else
       {
-        if(input_answer.value == '6')
+        if(input_answer.value == '6' || is_ans_true == true)
         {
-          this.showModal7(); 
+          this.showModal7();
           console.log('correct answer, incorrect distribution');
         }
         else
@@ -680,26 +705,26 @@ help_function : function()
       game.state.start('videoScreen');
      }
 
-       
+
     },
     stopDrag_1 :function(item)
     {
       click_sound.play('',0,1);
         worker_no = item.number;
         var pos = 0;
-        
+
 
          for(var i=0;i<3;i++)
         {
-          
+
             game.physics.arcade.enable(workers[worker_no]);
 
           check[i]=game.physics.arcade.overlap(workers[worker_no],rect[i]);
           console.log(check[i]);
           if(check[i] == true)
           {
-            //workers[worker_no].position.copyFrom(workers[worker_no].originalPosition);    
-            pos++;  
+            //workers[worker_no].position.copyFrom(workers[worker_no].originalPosition);
+            pos++;
 
           }
        //check[i] = Phaser.Rectangle.containsRect(cakes[cake_no].body, rect[i].body);
@@ -707,11 +732,11 @@ help_function : function()
        console.log(pos);
        if(pos >0)
        {
-         
+
        }
        else
        {
-         workers[worker_no].position.copyFrom(workers[worker_no].originalPosition); 
+         workers[worker_no].position.copyFrom(workers[worker_no].originalPosition);
        }
       //checking if there are any other in the worker area
         c=0;
@@ -733,12 +758,12 @@ help_function : function()
         {
 
           rotis[i].inputEnabled = true;
-          rotis[i].input.enableDrag(true);   
+          rotis[i].input.enableDrag(true);
       rotis[i].events.onDragStop.add(this.stopDrag_2,this);
 
         }
       }
-      
+
 
  },
     stopDrag_2 : function(item)
@@ -754,8 +779,8 @@ help_function : function()
           check[j]=game.physics.arcade.overlap(rotis[roti_no],rect[i]);
           console.log(check[i]);
           if(check[j] == true)
-          { 
-            pos++;  
+          {
+            pos++;
 
           }
           j++;
@@ -768,7 +793,7 @@ help_function : function()
        }
        else
        {
-         rotis[roti_no].position.copyFrom(rotis[roti_no].originalPosition); 
+         rotis[roti_no].position.copyFrom(rotis[roti_no].originalPosition);
        }
        //checking for rotis on foil
        c=0;
@@ -793,16 +818,16 @@ help_function : function()
     },
 reset_function : function()
   {
-     count_no_of_attempts = 0; 
+     count_no_of_attempts = 0;
   game.state.start('PlayGame');
   }
- 
-  
+
+
 
   }
-  
+
   var advice_stage = function(game){}
-  advice_stage.prototype = 
+  advice_stage.prototype =
   {
    init : function()
   {
@@ -810,13 +835,13 @@ reset_function : function()
   },
   preload : function()
   {
-    game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json'); 
-   game.load.atlasJSONHash('advice2', 'assets/advice_l3a3_2.png', 'assets/advice_l3a3_2.json'); 
+    game.load.atlasJSONHash('advice', 'assets/advice_page1.png', 'assets/advice_page2.json');
+   game.load.atlasJSONHash('advice2', 'assets/advice_l3a3_2.png', 'assets/advice_l3a3_2.json');
     game.load.webfont('tahoma','Tahoma');
     game.load.atlasJSONHash('modals','assets/spritesheet_l3a3.png','assets/sprites_l3a3.json');
     game.load.image('close_button','assets/close_button_normal.png');
     game.load.atlasJSONHash('buttons','assets/buttons.png','assets/buttons.json');
-    game.load.atlasJSONHash('hindi_buttons10','assets/hindi_buttons10.png','assets/hindi_buttons10.json');  
+    game.load.atlasJSONHash('hindi_buttons10','assets/hindi_buttons10.png','assets/hindi_buttons10.json');
      game.load.atlasJSONHash('hindisprites2','assets/spritesheet_l3a3_hi.png','assets/sprites_l3a3_hi.json');
        game.load.audio('click','assets/sounds/clicksound.wav');
     game.load.audio('yay','assets/sounds/yay.wav');
@@ -825,7 +850,7 @@ reset_function : function()
   create : function()
   {
     reg.modal = new gameModal(game);
-        this.createModals();  
+        this.createModals();
         yay_sound = game.add.audio('yay');
         click_sound = game.add.audio('click');
     background = game.add.sprite(0,0,'advice','BACKGROUND');
@@ -843,7 +868,7 @@ reset_function : function()
     var button2 = game.add.button(487,444,'hindi_buttons10',this.showModal5,this,'LEENA_ADVICE_ELEMENTS_OVER','LEENA_ADVICE_ELEMENTSNORMAL','LEENA_ADVICE_ELEMENTS_DOWN');
     question_text_lower = game.add.text(54,537,'समस्या के हल के लिए जामुनी किसकी सलाह माने?',style);
     var instruction_text2 = game.add.text(57,555,'नीचे दिए गए विकल्पों में से एक को चुनें और                   पर क्लिक करें। ',style2);
-    
+
     style3 = { font: "bold 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text3 = game.add.text(240,555,'चेक आनसर',style3);
     radio_buttons[0] = game.add.sprite(53,575,'advice','radio-highlighted');
@@ -865,20 +890,20 @@ reset_function : function()
      done_button = game.add.button(54,610,'hindi_buttons10',this.done_Action,this,'HINDI_DONE_OVER','HINDI_DONE_normal','HINDI_DONE_DOWN');
      done_button.scale.setTo(0.7,0.7);
      done_button.inputEnabled = false;
-    
+
   },
- 
-  done_Action : function() 
+
+  done_Action : function()
   {
     if(radio_buttons[0].selectedcheck == true)
     {
-      
+
        this.showModal2();
-    } 
+    }
     else if(radio_buttons[1].selectedcheck == true)
     {
       this.showModal3();
-    } 
+    }
     else
     {
       this.showModal3();
@@ -895,7 +920,7 @@ reset_function : function()
       {
         console.log('change');
         radio_buttons[i].selectedcheck = false;
-        radio_buttons[i].loadTexture('advice','radio-highlighted');  
+        radio_buttons[i].loadTexture('advice','radio-highlighted');
         radio_buttons[i].scale.setTo(0.5,0.5);
       }
     }
@@ -903,7 +928,7 @@ reset_function : function()
          radio_buttons[sprite_number].scale.setTo(0.5,0.5);
        done_button.inputEnabled = true;
     },
-    createModals: function() 
+    createModals: function()
     {
 
      reg.modal.createModal({
@@ -940,7 +965,7 @@ reset_function : function()
         {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_HAPPY',  
+          content: 'SMILEY_HAPPY',
           offsetX : 40,
           offsetY:  - 200,
         },
@@ -979,7 +1004,7 @@ reset_function : function()
          {
           type : 'sprite',
           atlasParent: 'buttons',
-          content: 'SMILEY_SAD',  
+          content: 'SMILEY_SAD',
           offsetX : 40,
           offsetY:  - 200,
         }]
@@ -1037,7 +1062,7 @@ reset_function : function()
             offsetY: -310,
             callback: function(){
                       reg.modal.hideModal("modal5");
-                      
+
                     }
         },
         {
@@ -1049,13 +1074,13 @@ reset_function : function()
           callback: function()
           {
             reg.modal.hideModal("modal5");
-            
+
           }
 
         }]
     });
         },
-      
+
 showModal2:function() {
    yay_sound.play('',0,1);
     reg.modal.showModal("modal2");
@@ -1091,7 +1116,7 @@ showModal5:function() {
         var back_text = game.add.text(700,5,'वापस',style2);
         back_text.inputEnabled = true;
         console.log(video.loop);
-        
+
         video.loop = false;
         video.onComplete.add(this.video_stop,this);
         back_text.events.onInputDown.add(this.back_function,this);
@@ -1099,11 +1124,11 @@ showModal5:function() {
         console.log(video.onComplete);
 
     //  true = loop
-       
+
 
        game.input.onDown.add(this.pause, this);
       },
-      pause : function() 
+      pause : function()
       {
 
       video.paused = (video.paused) ? false : true;
@@ -1111,9 +1136,9 @@ showModal5:function() {
       },
       video_stop : function()
       {
-       count_no_of_attempts = 0; 
+       count_no_of_attempts = 0;
        game.state.start('PlayGame');
-        
+
       },
       back_function : function()
       {
@@ -1129,8 +1154,3 @@ game.state.add('videoScreen',videoScreen);
 //game.state.add('answer_a1_p2',answer_a1_p2);
 game.state.start('PlayGame');
 }
-
-
- 
-
-

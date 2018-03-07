@@ -602,6 +602,24 @@
    {
     window.open("./assets/fraction-chart_copywrite.png");
    },
+   division : function(a,b,c,d)
+    {
+      console.log(a/b);
+      console.log(c/d);
+      var and = a/b;
+      var mans = c/d;
+       var value;
+       if (and == mans)
+       {
+         value = true;
+       }
+       else
+       {
+         value = false;
+       }
+
+       return value;
+   },
   final_check_function : function()
   {
     var check_child_on_group1 = [];
@@ -610,6 +628,8 @@
     no_of_attempts = no_of_attempts + 1;
     if(no_of_attempts <= 3)
     {
+      var splitted_text = [];
+      var splitted_text1 = [];
     var final_check_function=[];
     var correct_count = 0;
     console.log(input_answer1.value);
@@ -620,6 +640,16 @@
     }
     else
     {
+      var cd = input_answer1.value;
+    splitted_text = cd.split("/");
+    console.log("a : " + splitted_text[0] );
+    console.log("b :" + splitted_text[1] );
+    var is_ans_true = this.division(splitted_text[0],splitted_text[1],6,1);
+    var cd1 = input_answer2.value;
+  splitted_text1 = cd1.split("/");
+  console.log("a : " + splitted_text1[0] );
+  console.log("b :" + splitted_text1[1] );
+  var is_ans_true1 = this.division(splitted_text1[0],splitted_text1[1],6,1);
    for(var i=0;i<2;i++)
    {
      groups[i].numberof_childreningroup = 0;
@@ -645,25 +675,25 @@
    }
     if(groups[0].numberof_childreningroup == '4' && groups[1].numberof_childreningroup == '4')
     {
-    if(plates[0].sum == '6' && plates[1].sum== '6' && input_answer1.value== '6' && input_answer2.value == '6')
+    if(plates[0].sum == '6' && plates[1].sum== '6' && (input_answer1.value== '6' || is_ans_true == true) && (input_answer2.value == '6' || is_ans_true1 == true))
     {
       console.log('modal1');
       this.showModal1();
 
 
     }
-    else if(plates[0].sum == '6' && plates[1].sum == '6' && (input_answer1.value!== '6' || input_answer2.value!== '6'))
+    else if(plates[0].sum == '6' && plates[1].sum == '6' && ((input_answer1.value!== '6' || is_ans_true == false) || (input_answer2.value!== '6' || is_ans_true1 == false)))
     {
       console.log('modal3');
       this.showModal3();
       //this.showModal2();
     }
-    else if((plates[0].sum!== '6' || plates[1].sum !=='6') && (input_answer2.value == '6' && input_answer1.value =='6'))
+    else if((plates[0].sum!== '6' || plates[1].sum !=='6') && ((input_answer2.value == '6' || is_ans_true1 == true) && (input_answer1.value =='6' || is_ans_true == true)))
     {
       console.log('modal2');
       this.showModal2();
     }
-    else if((plates[0].sum!== '6' || plates[1].sum !=='6') && (input_answer2.value !== '6' && input_answer1.value !=='6'))
+    else if((plates[0].sum!== '6' || plates[1].sum !=='6') && ((input_answer2.value !== '6' || is_ans_true1 == false) && (input_answer1.value !=='6' || is_ans_true == false)))
     {
       console.log('modal4');
 

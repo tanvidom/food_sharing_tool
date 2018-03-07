@@ -1386,7 +1386,7 @@ division : function(a,b,c,d)
       this.showModal1();
       console.log('correct answer but please enter fractional value in textbox');
     }
-    else if( l==4 && (input_answer1.value!=='5/4' || is_ans_true== false))
+    else if( l==4 && (input_answer1.value!=='5/4' || is_ans_true == false))
     {
       this.showModal2();
     }

@@ -1975,6 +1975,7 @@ division : function(a,b,c,d)
    count_no_of_attempts_2 = count_no_of_attempts_2 + 1;
   if(count_no_of_attempts_2 < 4)
   {
+    var splitted_text = [];
   var expected_sum_1 = 4.5;
   var expected_sum_2 = 1.5;
   var l = 0;

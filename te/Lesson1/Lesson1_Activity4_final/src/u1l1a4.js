@@ -652,8 +652,28 @@ update : function()
    {
     window.open("./assets/fraction-chart_copywrite.png");
    },
+   division : function(a,b,c,d)
+    {
+      console.log(a/b);
+      console.log(c/d);
+      var and = a/b;
+      var mans = c/d;
+       var value;
+       if (and == mans)
+       {
+         value = true;
+       }
+       else
+       {
+         value = false;
+       }
+
+       return value;
+   },
   final_check_function : function()
   {
+    var splitted_text = [];
+    var splitted_text1 = [];
     var check_child_on_group1 = [];
     no_of_attempts = no_of_attempts + 1;
     if(no_of_attempts < 4)
@@ -669,6 +689,16 @@ update : function()
     }
     else
     {
+      var cd = input_answer1.value;
+    splitted_text = cd.split("/");
+    console.log("a : " + splitted_text[0] );
+    console.log("b :" + splitted_text[1] );
+    var is_ans_true = this.division(splitted_text[0],splitted_text[1],3,1);
+    var cd1 = input_answer2.value;
+  splitted_text1 = cd1.split("/");
+  console.log("a : " + splitted_text1[0] );
+  console.log("b :" + splitted_text1[1] );
+  var is_ans_true1 = this.division(splitted_text1[0],splitted_text1[1],9,1);
    for(var i=0;i<2;i++)
      {
       plates[i].sum = 0;
@@ -695,17 +725,17 @@ update : function()
    }
      if(groups[0].numberof_childreningroup == '2' && groups[1].numberof_childreningroup == '6')
     {
-    if(plates[0].sum == '3' && plates[1].sum== '9' && input_answer1.value == '3' && input_answer2.value == '9')
+    if(plates[0].sum == '3' && plates[1].sum== '9' && (input_answer1.value == '3' || is_ans_true == true) && (input_answer2.value == '9' || is_ans_true1 == true))
     {
       this.showModal1();
 
     }
-    else if(((plates[0].sum!== '3' && plates[1].sum !=='9') &&(input_answer2.value == '3' && input_answer1.value =='9')))
+    else if(((plates[0].sum!== '3' && plates[1].sum !=='9') &&((input_answer2.value == '3' || is_ans_true == true) && (input_answer1.value =='9' || is_ans_true1 == true))))
     {
       this.showModal2();
       console.log("incorrect distribution, correct numeric entry");
     }
-    else if (((plates[0].sum == '3' && plates[1].sum =='9') && (input_answer2.value !== '3' && input_answer1.value !=='9')))
+    else if (((plates[0].sum == '3' && plates[1].sum =='9') && ((input_answer2.value !== '3' || is_ans_true == false) && (input_answer1.value !=='9' || is_ans_true1 == false))))
     {
       this.showModal2();
       console.log("incorrect ans, correct distribution");

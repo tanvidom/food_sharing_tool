@@ -556,11 +556,30 @@ help_function : function()
     {
 
     },
+    division : function(a,b,c,d)
+     {
+       console.log(a/b);
+       console.log(c/d);
+       var and = a/b;
+       var mans = c/d;
+        var value;
+        if (and == mans)
+        {
+          value = true;
+        }
+        else
+        {
+          value = false;
+        }
+
+        return value;
+    },
     sharing_done_function : function(item)
     {
       count_no_of_attempts = count_no_of_attempts + 1;
       if(count_no_of_attempts < 4)
   {
+     var splitted_text = [];
       var flag_1_in_group = false;
       var no_of_workers_in_group = [];
  var no_of_rotis_in_group = [];
@@ -615,13 +634,19 @@ help_function : function()
       //final checking
       console.log('count_groups' + count_groups);
       console.log('group_length' + group_length);
+      var cd = input_answer.value;
+    splitted_text = cd.split("/");
+    console.log("a : " + splitted_text[0] );
+    console.log("b :" + splitted_text[1] );
+    var is_ans_true = this.division(splitted_text[0],splitted_text[1],9,1);
       if(flag_1_in_group == true)
       {
         this.showModal5();
       }
       else if(count_groups == 3 && group_length == 3)
       {
-        if(input_answer.value == '9')
+
+        if(input_answer.value == '9' || is_ans_true == true)
         {
         this.showModal2();
         }
@@ -633,7 +658,7 @@ help_function : function()
       }
       else if(count_groups == 2 && group_length == 2)
       {
-        if(input_answer.value == '9')
+        if(input_answer.value == '9' || is_ans_true == true)
         {
           this.showModal2();
         console.log('correct');
@@ -646,7 +671,7 @@ help_function : function()
       }
       else
       {
-        if(input_answer.value == '9')
+        if(input_answer.value == '9' || is_ans_true == true)
         {
           this.showModal7();
           console.log('correct answer, incorrect distribution');
