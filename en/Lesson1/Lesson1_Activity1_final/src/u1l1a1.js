@@ -70,6 +70,7 @@
   },
   create : function()
   {
+    sessionstart();
     reg.modal = new gameModal(game);
         this.createModals();
         cutting_sound = game.add.audio('cutting_board1');
@@ -953,7 +954,8 @@ showModal8 : function()
      if(check_cake_on_plate == true)
      {
       plates[i].sum = plates[i].sum + cakes[j].weight;
-      weightinplate[k] = cakes[j].weight;
+      weightinplate[k1] = cakes[j].weight;
+      k1=k1+1;
      }
 
     }
@@ -967,7 +969,7 @@ showModal8 : function()
     {
       k=k+1;
     }
-    sumineachplate[i] = plates[i].sum;
+    sumineachplate[i] = plates[i].sum; //for data storage
   }
     if(k == 4 && input_answer.value!== null)
     {
@@ -1015,13 +1017,13 @@ showModal8 : function()
       this.showModal4();
     }
  } }
- clueEnd(count_no_of_attempts,cd,sumineachplate,weightinplate);
+
  else
  {
   game.state.start('answer_screen');
 
  }
-
+clueEnd(count_no_of_attempts,cd,sumineachplate,weightinplate);
 },
 division : function(a,b,c,d)
  {

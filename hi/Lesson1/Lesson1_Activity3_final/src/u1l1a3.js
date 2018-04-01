@@ -305,7 +305,8 @@ update : function()
   },
   cutting_function : function(item)
   {
-    cutting_sound.play('',0,1);
+    //cutting_sound.play('',0,1);
+    cakes_on_board = [];
    for(var i=0; i<cakes.length; i++)
    {
      var check_cake_on_board = game.physics.arcade.overlap(cakes[i],rect[0]);

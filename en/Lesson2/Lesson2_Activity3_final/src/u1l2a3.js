@@ -547,7 +547,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(108,70,0,0);
+    rect[i+1].body.setSize(108,82,0,0);
     }
     else
     {
@@ -556,7 +556,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(108,70,0,0);
+    rect[i+1].body.setSize(108,82,0,0);
     }
    }
 
@@ -637,7 +637,8 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   cutting_function : function(item)
   {
-     cutting_sound.play('',0,1);
+     //cutting_sound.play('',0,1);
+     parathas_on_board = [];
    for(var i=0; i<parathas1.length; i++)
    {
      var check_cake_on_board = game.physics.arcade.overlap(parathas1[i],rect[0]);
@@ -1596,7 +1597,7 @@ division : function(a,b,c,d)
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(108,70,0,0);
+    rect[i+1].body.setSize(108,82,0,0);
     }
     else
     {
@@ -1605,7 +1606,7 @@ division : function(a,b,c,d)
     plates1[i].sum = 0;
     rect[i+1] = game.add.sprite(plates1[i].x,plates1[i].y,null);
     game.physics.enable(rect[i+1],Phaser.Physics.ARCADE);
-    rect[i+1].body.setSize(108,70,0,0);
+    rect[i+1].body.setSize(108,82,0,0);
     }
    }
 
@@ -1699,7 +1700,8 @@ division : function(a,b,c,d)
 },
   cutting_function : function(item)
   {
-     cutting_sound.play('',0,1);
+     //cutting_sound.play('',0,1);
+     parathas_on_board = [];
    for(var i=0; i<parathas1.length; i++)
    {
      var check_cake_on_board = game.physics.arcade.overlap(parathas1[i],rect[0]);

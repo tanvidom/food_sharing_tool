@@ -1,18 +1,23 @@
 
-var language1 = "en";
-var cluenumber = 0;
-var numberofattempts = [0,0,0,0,0,0,0,0];
-var degrees_of_position1 = 0;
-var degrees_of_position2 = 0;
+var language1 = "te";
+var lesson_number = "1";
+var activity_name = "Fair_sharing_among_friends-I";
+var answerintext = "";
+var attemptnumber = 0;
+var sumineachplate = [0,0,0,0];
+var weightinplate = [];
+
 function sessionstart()
 {
   var JsonArray =
   {
-  "app_name": "AstRoamer_Element_Hunt_Activity",
+  "app_name": "Food_sharing_tool",
   "event_type": "game_start",
   "params":
   {
-   "language" : language1
+   "language" : language1,
+   "Lesson" : lesson_number,
+   "Activity" :  activity_name
   }
 
   };
@@ -20,17 +25,19 @@ function sessionstart()
   saveDataOnExit(JsonArray);
   console.log(JsonArray);
 }
-function doQuit(score)
+function doQuit()
  {
 JsonArray2 =
 {
-"app_name": "AstRoamer_Element_Hunt_Activity",
-"event_type": "session_end",
+"app_name": "Food_sharing_tool",
+"event_type": "game_end",
 "params":
 {
-  "Final score" : score,
+  //"Final score" : score,
 
-  "language" : language1
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name
 }
 }
 //pass the method to calculate score.
@@ -42,18 +49,20 @@ console.log(JsonArray2);
 
 }
 
-function clueEnd(cluenumber,numberofattempts,degrees_of_position1,degrees_of_position2){
+function clueEnd(attemptnumber,answerintext,sumineachplate,weightinplate){
 var JsonArray =
 {
-"app_name": "AstRoamer_Element_Hunt_Activity",
-"event_type": "clue_end",
+"app_name": "Food_sharing_tool",
+"event_type": "sharing_done_btn_pressed",
 "params":
 {
-"Currentclue": cluenumber,
-"NumberofAttempts" : numberofattempts,
-"FirstAttemptAnswer" : degrees_of_position1,
-"SecondAttemptAnswer" : degrees_of_position2,
-"language" : language1
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "CurrentAttempt": attemptnumber,
+  "Answerintextbox" : answerintext,
+  "Sumineachplate" : sumineachplate,
+  "weightinplate" : weightinplate
 }
 
 };
@@ -116,6 +125,8 @@ class GameReporter
 		var date = new Date();
 		var csrftoken;
 		csrftoken = this.getCookie('csrftoken');
+    var buddy_details;
+    buddy_details = this.getCookie('user_and_buddy_ids');
     	var timestamp = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 		data_string['created_at'] = timestamp
 		for (var key in data) {data_string[key] = data[key];};
@@ -125,7 +136,8 @@ class GameReporter
                   type: "POST",
                   data:{
                         "user_data":data_string,
-                        "app_name":"AstRoamer_Element_Hunt_Activity",
+                        "app_name":"Food_sharing_tool",
+                        "buddy_details": buddy_details,
                         'csrfmiddlewaretoken':csrftoken,
                     },
                   url: "/tools/logging",

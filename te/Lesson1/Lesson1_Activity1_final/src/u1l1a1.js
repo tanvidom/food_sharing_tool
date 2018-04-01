@@ -70,6 +70,7 @@
   },
   create : function()
   {
+      sessionstart();
     reg.modal = new gameModal(game);
         this.createModals();
         cutting_sound = game.add.audio('cutting_board1');
@@ -918,6 +919,9 @@ showModal8 : function()
  sharing_done_function : function()
  {
   var splitted_text = [];
+  var cd = "";
+  var sumineachplate = [0,0,0,0];
+  var weightinplate = [];
   count_no_of_attempts = count_no_of_attempts + 1;
   if(count_no_of_attempts < 4)
   {
@@ -931,12 +935,13 @@ showModal8 : function()
   }
   else
   {
-    var cd = input_answer.value;
+    cd = input_answer.value;
   splitted_text = cd.split("/");
   console.log("a : " + splitted_text[0] );
   console.log("b :" + splitted_text[1] );
   var is_ans_true = this.division(splitted_text[0],splitted_text[1],3,4);
   console.log(is_ans_true);
+    var k1=0; // counter variable for weightinplate data collection
   for(var i=0;i<4;i++)
   {
     plates[i].sum = 0;
@@ -947,6 +952,8 @@ showModal8 : function()
      if(check_cake_on_plate == true)
      {
       plates[i].sum = plates[i].sum + cakes[j].weight;
+      weightinplate[k1] = cakes[j].weight;
+      k1=k1+1;
      }
     }
     console.log(expected_sum);
@@ -959,6 +966,7 @@ showModal8 : function()
     {
       k=k+1;
     }
+    sumineachplate[i] = plates[i].sum; //for data storage
   }
     if(k == 4 && input_answer.value!== null)
     {
@@ -1006,11 +1014,13 @@ showModal8 : function()
       this.showModal4();
     }
  } }
+
  else
  {
   game.state.start('answer_screen');
 
  }
+ clueEnd(count_no_of_attempts,cd,sumineachplate,weightinplate);
 },
 division : function(a,b,c,d)
  {
