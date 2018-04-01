@@ -795,7 +795,7 @@
     borderRadius: 6,
 
 });
-       var text4 = game.add.text(280, 570, 'of the total 12 cakes.',style);
+       var text4 = game.add.text(280, 570, 'part of the total 12 cakes.',style);
        submit_buttom = game.add.button(20,605, 'atlas4',this.check2_function,this,'sprite68','sprite53','sprite39');
 //text1.wordWrap = true;
        //text1.wordWrapWidth = 800;

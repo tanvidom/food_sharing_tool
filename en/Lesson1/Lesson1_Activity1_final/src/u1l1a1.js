@@ -307,7 +307,8 @@
   },
   cutting_function : function(item)
   {
-   cutting_sound.play('',0,1);
+    cakes_on_board = [];
+   //cutting_sound.play('',0,1);
    for(var i=0; i<cakes.length; i++)
    {
      var check_cake_on_board = game.physics.arcade.overlap(cakes[i],rect[0]);
@@ -321,8 +322,8 @@
    }
    console.log('hi');
    var num_of_pieces = item.num+1;
-   console.log(num_of_pieces);
-   if(cakes_on_board.length >0)
+   console.log(cakes_on_board.length);
+   if(cakes_on_board.length>0)
    {
    cutting_board.loadTexture('atlas2','CUTTING_BOARD_WITHOUT_GLOW');
    switch(num_of_pieces)
@@ -917,6 +918,9 @@ showModal8 : function()
  sharing_done_function : function()
  {
   var splitted_text = [];
+  var cd = "";
+  var sumineachplate = [0,0,0,0];
+  var weightinplate = [];
   count_no_of_attempts = count_no_of_attempts + 1;
   if(count_no_of_attempts < 4)
   {
@@ -926,16 +930,19 @@ showModal8 : function()
   var check_cake_on_plate;
   if(input_answer.value == '')
   {
+
     this.showModal3();
+
   }
   else
   {
-    var cd = input_answer.value;
+    cd = input_answer.value;
   splitted_text = cd.split("/");
   console.log("a : " + splitted_text[0] );
   console.log("b :" + splitted_text[1] );
   var is_ans_true = this.division(splitted_text[0],splitted_text[1],3,4);
   console.log(is_ans_true);
+  var k1=0; // counter variable for weightinplate data collection
   for(var i=0;i<4;i++)
   {
     plates[i].sum = 0;
@@ -946,7 +953,9 @@ showModal8 : function()
      if(check_cake_on_plate == true)
      {
       plates[i].sum = plates[i].sum + cakes[j].weight;
+      weightinplate[k] = cakes[j].weight;
      }
+
     }
     console.log(expected_sum);
     console.log(plates[i].sum);
@@ -958,6 +967,7 @@ showModal8 : function()
     {
       k=k+1;
     }
+    sumineachplate[i] = plates[i].sum;
   }
     if(k == 4 && input_answer.value!== null)
     {
@@ -1005,11 +1015,13 @@ showModal8 : function()
       this.showModal4();
     }
  } }
+ clueEnd(count_no_of_attempts,cd,sumineachplate,weightinplate);
  else
  {
   game.state.start('answer_screen');
 
  }
+
 },
 division : function(a,b,c,d)
  {
