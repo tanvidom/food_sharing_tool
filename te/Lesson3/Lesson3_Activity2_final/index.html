@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title> u1l3a2 </title>
+        <title> గమనించండి, పోల్చండి మరియు భాగస్వామ్యం చేయండి -II </title>
         <script type="text/javascript" src="src/phaser.min.js"></script>
         <link rel="stylesheet" type="text/css" href="src/css/mycss.css">
         <script src="src/build/phaser-input.js"></script>
@@ -14,8 +14,31 @@
          <script type = "text/javascript" src ="src/fontfaceobserver.js"></script>
         <script type = "text/javascript" src ="src/u1l3a2.js"></script>
           <script type = "text/javascript" src ="src/Reporting.js"></script>
+          <script>
+        function initSCORM()
+            {
+              BrowserDetection.init();
+              initAPI();
+            }
+        function init(argStatus, argLessonLocation)
+            {
+              if(argStatus != "completed"){
+                doSetValue("cmi.core.lesson_status", "incomplete");
+              }
+            }
 
-    </script>
+
+
+                window.onbeforeunload = function()
+                {
+                  //$j(window).unbind('unload');
+                  doQuit();
+                  //return 'Are you sure you want to exit';
+                }
+
+
+        </script>
+    
     </head>
 
     <body>

@@ -1,11 +1,11 @@
 
-var language1 = "en";
-var lesson_number = "1";
-var activity_name = "Fair_sharing_among_friends-I";
+var language1 = "te";
+var lesson_number = "3";
+var activity_name = "Observe, Compare and share - III";
 var answerintext = "";
 var attemptnumber = 0;
-var sumineachplate = [0,0,0,0];
-var weightinplate = [];
+var numberofworkersineachgroup = [0,0,0];
+var weightinplate = [0,0,0];
 
 function sessionstart()
 {
@@ -13,6 +13,24 @@ function sessionstart()
   {
   "app_name": "Food_sharing_tool",
   "event_type": "game_start",
+  "params":
+  {
+   "language" : language1,
+   "Lesson" : lesson_number,
+   "Activity" :  activity_name
+  }
+
+  };
+  //pass the method to calculate score.
+  saveDataOnExit(JsonArray);
+  console.log(JsonArray);
+}
+function sessionstart1()
+{
+  var JsonArray =
+  {
+  "app_name": "Food_sharing_tool",
+  "event_type": "second_screen_start",
   "params":
   {
    "language" : language1,
@@ -49,7 +67,7 @@ console.log(JsonArray2);
 
 }
 
-function clueEnd(attemptnumber,answerintext,sumineachplate,weightinplate){
+function clueEnd(attemptnumber,answerintext,numberofworkersineachgroup,weightinplate){
 var JsonArray =
 {
 "app_name": "Food_sharing_tool",
@@ -61,7 +79,7 @@ var JsonArray =
   "Activity" :  activity_name,
   "CurrentAttempt": attemptnumber,
   "Answerintextbox" : answerintext,
-  "Sumineachplate" : sumineachplate,
+  "numberofworkersineachgroup" : numberofworkersineachgroup,
   "weightinplate" : weightinplate
 }
 
@@ -71,6 +89,24 @@ saveDataOnExit(JsonArray);
 console.log(JsonArray);
 }
 
+function clueEnd1(){
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "sharing_done_btn_pressed",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "check_options" : check_options
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
 // function doQuit(){
 // var JsonArray =
 // {
