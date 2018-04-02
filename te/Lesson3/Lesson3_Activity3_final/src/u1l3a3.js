@@ -627,8 +627,11 @@ help_function : function()
             no_of_rotis_in_group[i] = no_of_rotis_in_group[i] + rotis[k].weight;
           }
         }
+        numberofworkersineachgroup[i] = no_of_workers_in_group[i];
+        weightinplate[i] = no_of_rotis_in_group[i];
         console.log(no_of_workers_in_group[i]);
         console.log(no_of_rotis_in_group[i]);
+
         if(no_of_workers_in_group[i] == 1)
         {
           flag_1_in_group = true;
