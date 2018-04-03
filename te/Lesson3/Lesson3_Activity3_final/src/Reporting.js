@@ -90,7 +90,7 @@ saveDataOnExit(JsonArray);
 console.log(JsonArray);
 }
 
-function clueEnd1(){
+function clueEnd1(check_options){
 var JsonArray =
 {
 "app_name": "Food_sharing_tool",
