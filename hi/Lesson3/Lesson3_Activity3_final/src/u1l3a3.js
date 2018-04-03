@@ -88,6 +88,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   create : function()
   {
+    sessionstart();
        reg.modal = new gameModal(game);
         this.createModals();
         yay_sound = game.add.audio('yay');
@@ -593,6 +594,9 @@ help_function : function()
     },
     sharing_done_function : function(item)
     {
+      var numberofworkersineachgroup = [0,0,0];
+      var weightinplate = [0,0,0];
+      var cd = "";
           count_no_of_attempts = count_no_of_attempts + 1;
       if(count_no_of_attempts < 4)
   {
@@ -627,6 +631,8 @@ help_function : function()
             no_of_rotis_in_group[i] = no_of_rotis_in_group[i] + rotis[k].weight;
           }
         }
+        numberofworkersineachgroup[i] = no_of_workers_in_group[i];
+        weightinplate[i] = no_of_rotis_in_group[i];
         console.log(no_of_workers_in_group[i]);
         console.log(no_of_rotis_in_group[i]);
         if(no_of_workers_in_group[i] == 1)
@@ -651,7 +657,7 @@ help_function : function()
       //final checking
       console.log('count_groups' + count_groups);
       console.log('group_length' + group_length);
-      var cd = input_answer.value;
+     cd = input_answer.value;
     splitted_text = cd.split("/");
     console.log("a : " + splitted_text[0] );
     console.log("b :" + splitted_text[1] );
@@ -704,7 +710,7 @@ help_function : function()
      {
       game.state.start('videoScreen');
      }
-
+     clueEnd(count_no_of_attempts,cd,numberofworkersineachgroup,weightinplate);
 
     },
     stopDrag_1 :function(item)
@@ -849,6 +855,7 @@ reset_function : function()
   },
   create : function()
   {
+    sessionstart1();
     reg.modal = new gameModal(game);
         this.createModals();
         yay_sound = game.add.audio('yay');
@@ -895,19 +902,23 @@ reset_function : function()
 
   done_Action : function()
   {
+      var check_options = [0,0,0];
     if(radio_buttons[0].selectedcheck == true)
     {
-
+        check_options[0] = 1;
        this.showModal2();
     }
     else if(radio_buttons[1].selectedcheck == true)
     {
+       check_options[1] = 1;
       this.showModal3();
     }
     else
     {
+       check_options[2] = 1;
       this.showModal3();
     }
+      clueEnd1(check_options);
   },
   input_function : function(item)
   {
