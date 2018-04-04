@@ -26,7 +26,7 @@ function sessionstart()
   };
   //pass the method to calculate score.
   saveDataOnExit(JsonArray);
-  console.log(JsonArray);
+  console.log('start');
 }
 function sessionstart1()
 {
