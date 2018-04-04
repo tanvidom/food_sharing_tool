@@ -59,7 +59,7 @@ JsonArray2 =
   "Lesson" : lesson_number,
   "Activity" :  activity_name
 }
-}
+};
 //pass the method to calculate score.
 console.log('doQuit1');
 console.log(JsonArray2);
@@ -86,6 +86,7 @@ var JsonArray =
   "weightineachplate" : weightineachplate
 
 
+}
 };
 //pass the method to calculate score.
 saveDataOnExit(JsonArray);
@@ -106,7 +107,7 @@ var JsonArray =
   "Answerintextbox3" : answerintext3
 
 
-};
+}};
 //pass the method to calculate score.
 saveDataOnExit(JsonArray);
 console.log(JsonArray);
