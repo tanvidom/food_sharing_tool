@@ -1,18 +1,27 @@
 
 var language1 = "en";
-var cluenumber = 0;
-var numberofattempts = [0,0,0,0,0,0,0,0];
-var degrees_of_position1 = 0;
-var degrees_of_position2 = 0;
+var lesson_number = "1";
+var activity_name = "Fair sharing: UnEqual groups";
+var answerintext1 = "";
+var answerintext2 = "";
+var answerintext3 = "";
+var answerintext4 = "";
+
+var attemptnumber = 0;
+var peopleineachgroup = [0,0];
+var weightineachplate = [0,0];
+
 function sessionstart()
 {
   var JsonArray =
   {
-  "app_name": "AstRoamer_Element_Hunt_Activity",
+  "app_name": "Food_sharing_tool",
   "event_type": "game_start",
   "params":
   {
-   "language" : language1
+   "language" : language1,
+   "Lesson" : lesson_number,
+   "Activity" :  activity_name
   }
 
   };
@@ -20,17 +29,36 @@ function sessionstart()
   saveDataOnExit(JsonArray);
   console.log(JsonArray);
 }
-function doQuit(score)
+function sessionstart1()
+{
+  var JsonArray =
+  {
+  "app_name": "Food_sharing_tool",
+  "event_type": "second_screen_start",
+  "params":
+  {
+   "language" : language1,
+   "Lesson" : lesson_number,
+   "Activity" :  activity_name
+  }
+
+  };
+  //pass the method to calculate score.
+  saveDataOnExit(JsonArray);
+  console.log(JsonArray);
+}
+function doQuit()
  {
 JsonArray2 =
 {
-"app_name": "AstRoamer_Element_Hunt_Activity",
-"event_type": "session_end",
+"app_name": "Food_sharing_tool",
+"event_type": "game_end",
 "params":
 {
-  "Final score" : score,
 
-  "language" : language1
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name
 }
 }
 //pass the method to calculate score.
@@ -42,26 +70,49 @@ console.log(JsonArray2);
 
 }
 
-function clueEnd(cluenumber,numberofattempts,degrees_of_position1,degrees_of_position2){
+function clueEnd(attemptnumber,answerintext,sumineachplate,weightinplate){
 var JsonArray =
 {
-"app_name": "AstRoamer_Element_Hunt_Activity",
-"event_type": "clue_end",
+"app_name": "Food_sharing_tool",
+"event_type": "sharing_done_btn_pressed",
 "params":
 {
-"Currentclue": cluenumber,
-"NumberofAttempts" : numberofattempts,
-"FirstAttemptAnswer" : degrees_of_position1,
-"SecondAttemptAnswer" : degrees_of_position2,
-"language" : language1
-}
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "CurrentAttempt": attemptnumber,
+  "Answerintextbox1" : answerintext1,
+  "Answerintextbox2" : answerintext2,
+  "NumberofPeopleineachgroup" : peopleineachgroup,
+  "weightineachplate" : weightineachplate
+
 
 };
 //pass the method to calculate score.
 saveDataOnExit(JsonArray);
 console.log(JsonArray);
 }
+function clueEnd1(attemptnumber,answerintext3,answerintext4)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "sharing_done_btn_pressed",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "CurrentAttempt": attemptnumber,
+  "Answerintextbox3" : answerintext3,
+  "Answerintextbox4" : answerintext4
 
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
 // function doQuit(){
 // var JsonArray =
 // {
@@ -116,8 +167,14 @@ class GameReporter
 		var date = new Date();
 		var csrftoken;
 		csrftoken = this.getCookie('csrftoken');
+    var buddy_details;
+    buddy_details = this.getCookie('user_and_buddy_ids');
+    var sessionid;
+    sessionid = this.getCookie('sessionid');
     	var timestamp = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 		data_string['created_at'] = timestamp
+      data_string['buddy_details'] = buddy_details
+        data_string['sessionid'] = sessionid
 		for (var key in data) {data_string[key] = data[key];};
 		data_string = JSON.stringify(data_string);
 	//alert(data_string)
@@ -125,7 +182,8 @@ class GameReporter
                   type: "POST",
                   data:{
                         "user_data":data_string,
-                        "app_name":"AstRoamer_Element_Hunt_Activity",
+                        "app_name":"Food_sharing_tool",
+                        //"buddy_details": buddy_details,
                         'csrfmiddlewaretoken':csrftoken,
                     },
                   url: "/tools/logging",
