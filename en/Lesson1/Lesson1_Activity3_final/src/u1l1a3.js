@@ -884,6 +884,7 @@ showModal8:function() {
  },
  sharing_done_function : function()
  {
+   var splitted_text = [];
   count_no_of_attempts = count_no_of_attempts + 1;
   var cd = "";
   var sumineachplate = [0,0,0,0];

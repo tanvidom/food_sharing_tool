@@ -62,6 +62,7 @@
   },
   create : function()
   {
+      sessionstart();
     reg.modal = new gameModal(game);
         this.createModals();
         yay_sound = game.add.audio('yay');
@@ -622,7 +623,10 @@ update : function()
   final_check_function : function()
   {
     var check_child_on_group1 = [];
-
+    var weightineachplate = [0,0];
+    var peopleineachgroup = [0,0];
+    var cd = "";
+    var cd1 = "";
 
     no_of_attempts = no_of_attempts + 1;
     if(no_of_attempts <= 3)
@@ -639,12 +643,12 @@ update : function()
     }
     else
     {
-      var cd = input_answer1.value;
+       cd = input_answer1.value;
     splitted_text = cd.split("/");
     console.log("a : " + splitted_text[0] );
     console.log("b :" + splitted_text[1] );
     var is_ans_true = this.division(splitted_text[0],splitted_text[1],6,1);
-    var cd1 = input_answer2.value;
+     cd1 = input_answer2.value;
   splitted_text1 = cd1.split("/");
   console.log("a : " + splitted_text1[0] );
   console.log("b :" + splitted_text1[1] );
@@ -661,6 +665,7 @@ update : function()
         groups[i].numberof_childreningroup = groups[i].numberof_childreningroup + 1;
       }
      }
+     peopleineachgroup[i] = groups[i].numberof_childreningroup;//for data storage
      for(var j =0;j<12;j++)
      {
       final_check_function[j] = game.physics.arcade.overlap(cakes[j],rect[i]);
@@ -670,6 +675,7 @@ update : function()
         plates[i].sum = plates[i].sum+1;
       }
      }
+     weightineachplate[i] = plates[i].sum; //for data storage
      console.log("sum"+ plates[i].sum);
    }
     if(groups[0].numberof_childreningroup == '4' && groups[1].numberof_childreningroup == '4')
@@ -710,6 +716,7 @@ update : function()
     {
       game.state.start('answerScreen');
     }
+      clueEnd(no_of_attempts,cd,cd1,peopleineachgroup,weightineachplate);
    },
  reset_function : function()
  {
@@ -777,6 +784,7 @@ update : function()
       },
       create : function()
       {
+          sessionstart1();
         reg.modal = new gameModal(game);
         this.createModals();
         game.stage.backgroundColor = "#D3FEB6";
@@ -854,6 +862,7 @@ update : function()
         {
           this.showModal2();
         }
+        clueEnd1(no_of_attempts1,cd);
       },
       createModals: function() {
 
