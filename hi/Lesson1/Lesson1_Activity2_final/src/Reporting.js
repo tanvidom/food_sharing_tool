@@ -69,7 +69,7 @@ console.log(JsonArray2);
 
 }
 
-function clueEnd(attemptnumber,answerintext1,answerintext2,sumineachplate,weightinplate){
+function clueEnd(attemptnumber,answerintext,sumineachplate,weightinplate){
 var JsonArray =
 {
 "app_name": "Food_sharing_tool",
