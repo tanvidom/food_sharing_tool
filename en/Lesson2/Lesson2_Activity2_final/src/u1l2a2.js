@@ -186,16 +186,18 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     if(radio_buttons[0].selectedcheck == true)
     {
      initial_choice[0] = 1;
+     firstscreen(initial_choice);
       this.showModal1();
 
     }
     else if(radio_buttons[1].selectedcheck == true)
     {
         initial_choice[1] = 1;
+        firstscreen(initial_choice);
       game.state.start('question_two');
 
     }
-      firstscreen(initial_choice);
+
   },
   input_function : function(item)
   {
