@@ -1343,7 +1343,7 @@ showModal8 : function()
      if(check_paratha_on_plate == true)
      {
       plates1[i].sum = plates1[i].sum + parathas1[j].weight;
-      weightinplate[k1] = cakes[j].weight;
+      weightinplate[k1] = parathas1[j].weight;
       k1=k1+1;
      }
     }
@@ -1357,7 +1357,7 @@ showModal8 : function()
     {
       k=k+1;
     }
-    sumineachplate[i] = plates[i].sum; //for data storage
+    sumineachplate[i] = plates1[i].sum; //for data storage
   }
     if(k == 5 && input_answer1.value!== null)
     {
@@ -2387,7 +2387,7 @@ division : function(a,b,c,d)
      if(check_paratha_on_plate == true)
      {
       plates1[i].sum = plates1[i].sum + parathas1[j].weight;
-      weightinplate[k1] = cakes[j].weight;
+      weightinplate[k1] = parathas1[j].weight;
       k1=k1+1;
      }
     }
@@ -2401,7 +2401,7 @@ division : function(a,b,c,d)
     {
       k=k+1;
     }
-    sumineachplate[i] = plates[i].sum; //for data storage
+    sumineachplate[i] = plates1[i].sum; //for data storage
   }
     if(k == 6 && input_answer1.value!== null)
     {
@@ -2756,7 +2756,7 @@ showModal3:function() {
 
       next11_function : function()
       {
-        var final_answer_options = [0,0,0,0];
+        var final_answer_options = [0,0,0];
         count_no_of_attempts_2 = count_no_of_attempts_2 + 1;
         if(count_no_of_attempts_2 < 3)
         {

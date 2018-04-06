@@ -30,6 +30,7 @@ var number_of_pieces = [];
  var parathas1 = [];
  var input_answer3;
  var input_answer4;
+ var input_answer5;
  var input_answer1;
  var parathas2= [];
  var paratha_num;
@@ -2087,6 +2088,7 @@ division : function(a,b,c,d)
       },
       next1_function : function()
       {
+
         game.state.start('a1_p5');
       }
     }
@@ -2318,19 +2320,23 @@ showModal3:function() {
 
       next1_function : function()
       {
+          var final_answer_options = [0,0,0];
         count_no_of_attempts_2 = count_no_of_attempts_2 + 1;
         if(count_no_of_attempts_2 < 3)
         {
         if(radio_buttons[0].selectedcheck == true)
         {
+          final_answer_options[0] = 1;
           this.showModal1();
         }
         else if(radio_buttons[1].selectedcheck == true)
         {
+          final_answer_options[1] = 1;
           this.showModal2();
         }
         else
         {
+           final_answer_options[2] = 1;
          this.showModal2();
         }
         }
@@ -2338,6 +2344,7 @@ showModal3:function() {
         {
          this.showModal3();
         }
+          finalanswer(final_answer_options);
       },
     }
      var a1_p66 = function(game){}
@@ -2369,7 +2376,7 @@ showModal3:function() {
     instruction_text = game.add.text(78,560,'Enter your answer below and click the             button',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text1 = game.add.text(305,560,'Done ',style2);
- var input_answer = game.add.inputField(78, 580, {
+ input_answer5 = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
     fontWeight: 'bold',
@@ -2429,6 +2436,9 @@ showModal3:function() {
     });
 },
 showModal1:function() {
+  var final_reason_for_choice = "";
+  final_reason_for_choice = input_answer5.value;
+  finalanswerchoice(final_reason_for_choice);
     console.log('modal1');
     reg.modal.showModal("modal1");
 },

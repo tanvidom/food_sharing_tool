@@ -12,7 +12,7 @@ var people_in_each_group_second_part = [0,0,0];
 var share_in_each_plate_second_part = [0,0,0];
 var text_entry_second_part = "";
 
-var final_answer_options = [0,0,0,0];
+var final_answer_options = [0,0,0];
 var final_reason_for_choice = "";
 
 
