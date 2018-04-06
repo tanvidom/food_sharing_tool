@@ -74,6 +74,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   create : function()
   {
+      sessionstart();
        reg.modal = new gameModal(game);
         this.createModals();
     background = game.add.sprite(0,0,'background');
@@ -190,14 +191,18 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 },
   done_Action : function()
   {
+    var initial_choice = [0,0];
     if(radio_buttons[0].selectedcheck == true)
     {
-
+      initial_choice[0] = 1;
+       firstscreen(initial_choice);
       this.showModal1();
 
     }
     else if(radio_buttons[1].selectedcheck == true)
     {
+      initial_choice[1] = 1;
+       firstscreen(initial_choice);
       game.state.start('a1_p1');
 
     }
