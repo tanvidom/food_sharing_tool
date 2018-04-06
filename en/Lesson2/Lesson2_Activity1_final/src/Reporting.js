@@ -11,6 +11,10 @@ var second_disribution_in_plates = [0,0,0,0,0,0];
 var second_answer_in_text = "";
 var final_answer_options = [0,0,0,0];
 var final_reason_for_choice = "";
+var count_no_of_attempts = 0;
+var count_no_of_attempts_1 = 0;
+var weightinplatesforfirstpart = [];
+var weightinplatesforsecondpart = [];
 
 
 function sessionstart()
@@ -118,7 +122,7 @@ var JsonArray =
 saveDataOnExit(JsonArray);
 console.log(JsonArray);
 }
-function firstdistribution(text_reason_for_choice)
+function firstdistribution(count_no_of_attempts,first_answer_in_text,first_distribution_in_plates,weightinplatesforfirstpart)
 {
 var JsonArray =
 {
@@ -129,7 +133,9 @@ var JsonArray =
   "language" : language1,
   "Lesson" : lesson_number,
   "Activity" :  activity_name,
+  "CurrentAttempt" : count_no_of_attempts,
    "first_distribution_in_plates" : first_distribution_in_plates,
+   "Weightinallplatesforfirstpart" : weightinplatesforfirstpart,
    "first_answer_in_text" : first_answer_in_text
 }
 
@@ -138,7 +144,7 @@ var JsonArray =
 saveDataOnExit(JsonArray);
 console.log(JsonArray);
 }
-function seconddistribution(text_reason_for_choice)
+function seconddistribution(count_no_of_attempts_1,second_answer_in_text,second_disribution_in_plates,weightinplatesforsecondpart)
 {
 var JsonArray =
 {
@@ -149,7 +155,9 @@ var JsonArray =
   "language" : language1,
   "Lesson" : lesson_number,
   "Activity" :  activity_name,
+  "CurrentAttempt" : count_no_of_attempts_1,
    "second_disribution_in_plates" : second_disribution_in_plates,
+   "Weightinallplatesforsecondpart" : weightinplatesforsecondpart,
    "second_answer_in_text" : second_answer_in_text
 }
 

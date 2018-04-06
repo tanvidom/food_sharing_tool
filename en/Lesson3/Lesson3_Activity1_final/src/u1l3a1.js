@@ -584,7 +584,7 @@ help_function : function()
       if(count_no_of_attempts < 4)
   {
      var splitted_text = [];
-      var flag_1_in_group = false;
+    //  var flag_1_in_group = false;
       var no_of_workers_in_group = [];
  var no_of_rotis_in_group = [];
       var check2 = [];
@@ -618,18 +618,18 @@ help_function : function()
         weightinplate[i] = no_of_rotis_in_group[i];
         console.log(no_of_workers_in_group[i]);
         console.log(no_of_rotis_in_group[i]);
-        if(no_of_workers_in_group[i] == 1)
+      /*  if(no_of_workers_in_group[i] == 1)
         {
           flag_1_in_group = true;
-        }
-        else if(no_of_workers_in_group[i] == 0)
+        } */
+        if(no_of_workers_in_group[i] == 0)
         {
           group_length = group_length - 1;
         }
-        else if(no_of_workers_in_group[i] == 5)
+        /*else if(no_of_workers_in_group[i] == 5)
         {
           flag_1_in_group = true;
-        }
+        }*/
 
         if((no_of_rotis_in_group[i]/no_of_workers_in_group[i]) == share_of_each_worker)
         {
@@ -645,11 +645,12 @@ help_function : function()
     console.log("a : " + splitted_text[0] );
     console.log("b :" + splitted_text[1] );
     var is_ans_true = this.division(splitted_text[0],splitted_text[1],9,1);
-      if(flag_1_in_group == true)
+      /*if(flag_1_in_group == true)
       {
         this.showModal5();
-      }
-      else if(count_groups == 3 && group_length == 3)
+      }*/
+
+      if(count_groups == 3 && group_length == 3)
       {
 
         if(input_answer.value == '9' || is_ans_true == true)
@@ -663,6 +664,19 @@ help_function : function()
         }
       }
       else if(count_groups == 2 && group_length == 2)
+      {
+        if(input_answer.value == '9' || is_ans_true == true)
+        {
+          this.showModal2();
+        console.log('correct');
+        }
+        else
+        {
+          this.showModal6();
+          console.log('correct distribution, incorrect answer');
+        }
+      }
+      else if(count_groups == 1 && group_length == 1)
       {
         if(input_answer.value == '9' || is_ans_true == true)
         {

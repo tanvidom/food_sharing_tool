@@ -28,6 +28,8 @@ var number_of_pieces = [];
  var workers2 = [];
  var plates2 = [];
  var parathas1 = [];
+ var input_answer3;
+ var input_answer4;
  var input_answer1;
  var parathas2= [];
  var paratha_num;
@@ -71,6 +73,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   create : function()
   {
+    sessionstart();
        reg.modal = new gameModal(game);
         this.createModals();
     background = game.add.sprite(0,0,'background');
@@ -178,17 +181,20 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 },
   done_Action : function()
   {
+    var initial_choice = [0,0];
     if(radio_buttons[0].selectedcheck == true)
     {
-
+     initial_choice[0] = 1;
       this.showModal1();
 
     }
     else if(radio_buttons[1].selectedcheck == true)
     {
+        initial_choice[1] = 1;
       game.state.start('question_two');
 
     }
+      firstscreen(initial_choice);
   },
   input_function : function(item)
   {
@@ -267,6 +273,24 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   done_Action1 : function()
   {
+    var second_screen_choice = [0,0,0,0];
+    if(radio_buttons[0].selectedcheck == true)
+    {
+      second_screen_choice[0] = 1;
+    }
+    else if(radio_buttons[1].selectedcheck == true)
+    {
+      second_screen_choice[1] = 1;
+    }
+    else if(radio_buttons[2].selectedcheck == true)
+    {
+      second_screen_choice[2] = 1;
+    }
+    else
+    {
+      second_screen_choice[3] = 1;
+    }
+      secondscreen(second_screen_choice);
      game.state.start('question_three');
   },
   input_function1 : function(item)
@@ -380,7 +404,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     instruction_text = game.add.text(78,560,'Enter your answer below and click ',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text1 = game.add.text(280,560,'Done ',style2);
-    var input_answer = game.add.inputField(78, 580, {
+    input_answer3 = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
     fontWeight: 'bold',
@@ -438,6 +462,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    },
     showModal1:function()
   {
+    var text_reason_for_choice = "";
+    text_reason_for_choice = input_answer3.value;
+    thirdscreen(text_reason_for_choice);
     reg.modal.showModal("modal1");
   },
 
@@ -1100,6 +1127,10 @@ division : function(a,b,c,d)
   sharing_done_function : function()
   {
     worker_check_on_group = [];
+    var weightineachplate = [0,0,0,0];
+    var peopleineachgroup = [0,0,0,0];
+    var cd = "";
+
    count_no_of_attempts = count_no_of_attempts + 1;
   if(count_no_of_attempts < 4)
   {
@@ -1116,7 +1147,7 @@ division : function(a,b,c,d)
   }
   else
   {
-    var cd = input_answer1.value;
+    cd = input_answer1.value;
   splitted_text = cd.split("/");
   console.log("a : " + splitted_text[0] );
   console.log("b :" + splitted_text[1] );
@@ -1134,6 +1165,7 @@ division : function(a,b,c,d)
         rect[i+2].numberof_workeringroup = rect[i+2].numberof_workeringroup + 1;
       }
      }
+     peopleineachgroup[i] = rect[i+2].numberof_workeringroup;//for data storage
     for(var j=0;j<10;j++)
     {
       game.physics.arcade.enable(parathas1[j]);
@@ -1145,6 +1177,7 @@ division : function(a,b,c,d)
       //console.log('platesum'+'i'+plates1[i].sum);
      }
     }
+     weightineachplate[i] = rect[i+6].sum; //for data storage
     //console.log(expected_sum);
     //console.log(i + 'sum' + plates1[i].sum);
     if(rect[i+6].sum == expected_sum)
@@ -1213,6 +1246,7 @@ division : function(a,b,c,d)
   game.state.start('answer_screen');
 
  }
+ firstdistribution(count_no_of_attempts,cd,peopleineachgroup,weightineachplate);
 },
   reset_function : function()
   {
@@ -1901,6 +1935,9 @@ division : function(a,b,c,d)
   sharing_done_function : function()
   {
     var splitted_text = [];
+    var weightineachplate = [0,0,0];
+    var peopleineachgroup = [0,0,0];
+    var cd = "";
     worker_check_on_group = [];
    count_no_of_attempts_1 = count_no_of_attempts_1 + 1;
   if(count_no_of_attempts_1 < 4)
@@ -1917,7 +1954,7 @@ division : function(a,b,c,d)
   }
   else
   {
-    var cd = input_answer1.value;
+    cd = input_answer1.value;
   splitted_text = cd.split("/");
   console.log("a : " + splitted_text[0] );
   console.log("b :" + splitted_text[1] );
@@ -1935,6 +1972,7 @@ division : function(a,b,c,d)
         rect1[i+2].numberof_workeringroup = rect1[i+2].numberof_workeringroup + 1;
       }
      }
+      peopleineachgroup[i] = rect1[i+2].numberof_workeringroup;//for data storage
     for(var j=0;j<8;j++)
     {
       game.physics.arcade.enable(parathas1[j]);
@@ -1946,6 +1984,8 @@ division : function(a,b,c,d)
       //console.log('platesum'+'i'+plates1[i].sum);
      }
     }
+       weightineachplate[i] = rect1[i+5].sum; //for data storage
+
     //console.log(expected_sum);
     //console.log(i + 'sum' + plates1[i].sum);
     if(rect1[i+5].sum == expected_sum)
@@ -2009,6 +2049,7 @@ division : function(a,b,c,d)
   game.state.start('answer_screen_2');
 
  }
+ seconddistribution(count_no_of_attempts_1,cd,peopleineachgroup,weightineachplate);
 },
   reset_function : function()
   {

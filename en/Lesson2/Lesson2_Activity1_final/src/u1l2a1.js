@@ -27,6 +27,7 @@ var number_of_pieces = [];
  var plates2 = [];
  var parathas1 = [];
  var input_answer1;
+ var input_answer4;
  var parathas2= [];
  var paratha_num;
  var parathas2_num;
@@ -393,7 +394,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     instruction_text = game.add.text(78,560,'Enter your answer below and click ',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text1 = game.add.text(280,560,'Done ',style2);
-    var input_answer = game.add.inputField(78, 580, {
+    input_answer4 = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
     fontWeight: 'bold',
@@ -451,6 +452,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    },
     showModal1:function()
   {
+    var text_reason_for_choice = "";
+    text_reason_for_choice = input_answer4.value;
+    thirdscreen(text_reason_for_choice);
     reg.modal.showModal("modal1");
   },
 
