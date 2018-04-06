@@ -20,12 +20,15 @@ var number_of_pieces = [];
  var cutting_board;
  var plates1 = [];
  var paratha_no;
+ var input_answer4;
+
  var check = [];
  var parathas_on_board = [];
  var workers2 = [];
  var plates2 = [];
  var parathas1 = [];
  var input_answer1;
+  var input_answer3;
  var parathas2= [];
  var paratha_num;
  var parathas2_num;
@@ -67,6 +70,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   create : function()
   {
+    sessionstart();
        reg.modal = new gameModal(game);
         this.createModals();
     background = game.add.sprite(0,0,'background');
@@ -173,15 +177,18 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 },
   done_Action : function()
   {
+      var initial_choice = [0,0];
     if(radio_buttons[0].selectedcheck == true)
     {
-
+      initial_choice[0] = 1;
        game.state.start('a1_p1');
     }
     else if(radio_buttons[1].selectedcheck == true)
     {
+      initial_choice[1] = 1;
       this.showModal1();
     }
+      firstscreen(initial_choice);
   },
   input_function : function(item)
   {
@@ -259,6 +266,24 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   done_Action1 : function()
   {
+    var second_screen_choice = [0,0,0,0];
+    if(radio_buttons[0].selectedcheck == true)
+    {
+      second_screen_choice[0] = 1;
+    }
+    else if(radio_buttons[1].selectedcheck == true)
+    {
+      second_screen_choice[1] = 1;
+    }
+    else if(radio_buttons[2].selectedcheck == true)
+    {
+      second_screen_choice[2] = 1;
+    }
+    else
+    {
+      second_screen_choice[3] = 1;
+    }
+    secondscreen(second_screen_choice);
      game.state.start('question_three');
   },
   input_function1 : function(item)
@@ -373,7 +398,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     instruction_text = game.add.text(78,560,'మీ జవాబు క్రింద నమోదు చేయండి మరియు                  క్లిక్ చేయండి. ',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text1 = game.add.text(280,560,'చేయడమైనది ',style2);
-    var input_answer = game.add.inputField(78, 580, {
+    input_answer4 = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
     fontWeight: 'bold',
@@ -431,6 +456,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    },
     showModal1:function()
   {
+    var text_reason_for_choice = "";
+    text_reason_for_choice = input_answer4.value;
+    thirdscreen(text_reason_for_choice);
     reg.modal.showModal("modal1");
   },
 
@@ -1285,6 +1313,9 @@ showModal8 : function()
 
   sharing_done_function : function()
   {
+    var cd = "";
+    var sumineachplate = [0,0,0,0,0];
+    var weightinplate = [];
    count_no_of_attempts = count_no_of_attempts + 1;
   if(count_no_of_attempts < 4)
   {
@@ -1301,11 +1332,12 @@ showModal8 : function()
   else
   {
 
-      var cd = input_answer1.value;
+     cd = input_answer1.value;
     splitted_text = cd.split("/");
     console.log("a : " + splitted_text[0] );
     console.log("b :" + splitted_text[1] );
     var is_ans_true = this.division(splitted_text[0],splitted_text[1],4,5);
+      var k1=0; // counter variable for weightinplate data collection
   for(var i=0;i<5;i++)
   {
 
@@ -1317,6 +1349,8 @@ showModal8 : function()
      if(check_paratha_on_plate == true)
      {
       plates1[i].sum = plates1[i].sum + parathas1[j].weight;
+      weightinplate[k1] = parathas1[j].weight;
+      k1=k1+1;
      }
     }
     console.log(expected_sum);
@@ -1329,6 +1363,7 @@ showModal8 : function()
     {
       k=k+1;
     }
+      sumineachplate[i] = plates1[i].sum; //for data storage
   }
     if(k == 5 && input_answer1.value!== null)
     {
@@ -1374,6 +1409,7 @@ showModal8 : function()
   game.state.start('answer_screen');
 
  }
+ firstdistribution(count_no_of_attempts,cd,sumineachplate,weightinplate);
 },
   reset_function : function()
   {
@@ -2321,6 +2357,9 @@ division : function(a,b,c,d)
 },
   sharing_done_function : function()
   {
+    var cd = "";
+    var sumineachplate = [0,0,0,0,0,0];
+    var weightinplate = [];
    count_no_of_attempts_1 = count_no_of_attempts_1 + 1;
   if(count_no_of_attempts_1 < 4)
   {
@@ -2336,11 +2375,13 @@ division : function(a,b,c,d)
   }
   else
   {
-    var cd = input_answer1.value;
+   cd = input_answer1.value;
   splitted_text = cd.split("/");
   console.log("a : " + splitted_text[0] );
   console.log("b :" + splitted_text[1] );
   var is_ans_true = this.division(splitted_text[0],splitted_text[1],5,6);
+  var k1=0; // counter variable for weightinplate data collection
+
   for(var i=0;i<6;i++)
   {
     plates1[i].sum = 0;
@@ -2351,6 +2392,8 @@ division : function(a,b,c,d)
      if(check_paratha_on_plate == true)
      {
       plates1[i].sum = plates1[i].sum + parathas1[j].weight;
+      weightinplate[k1] = parathas1[j].weight;
+      k1=k1+1;
      }
     }
     console.log(expected_sum);
@@ -2363,6 +2406,7 @@ division : function(a,b,c,d)
     {
       k=k+1;
     }
+    sumineachplate[i] = plates1[i].sum; //for data storage
   }
     if(k == 6 && input_answer1.value!== null)
     {
@@ -2408,6 +2452,7 @@ division : function(a,b,c,d)
   game.state.start('answer_screen_2');
 
  }
+ seconddistribution(count_no_of_attempts,cd,sumineachplate,weightinplate);
 },
   reset_function : function()
   {
@@ -2716,19 +2761,23 @@ showModal3:function() {
 
       next11_function : function()
       {
+        var final_answer_options = [0,0,0];
         count_no_of_attempts_2 = count_no_of_attempts_2 + 1;
         if(count_no_of_attempts_2 < 3)
         {
         if(radio_buttons[0].selectedcheck == true)
         {
+            final_answer_options[0] = 1;
           this.showModal2();
         }
         else if(radio_buttons[1].selectedcheck == true)
         {
+            final_answer_options[1] = 1;
           this.showModal1();
         }
         else
         {
+          final_answer_options[2] = 1;
          this.showModal2();
         }
         }
@@ -2736,6 +2785,7 @@ showModal3:function() {
         {
          this.showModal3();
         }
+        finalanswer(final_answer_options);
       },
     }
     var a1_p6 = function(game){}
@@ -2767,7 +2817,7 @@ showModal3:function() {
     instruction_text = game.add.text(78,560,'మీ జవాబు క్రింద నమోదు చేయండి మరియు చేయడమైనది క్లిక్ చేయండి.',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
    // var instruction_text1 = game.add.text(305,560,'Done ',style2);
- var input_answer = game.add.inputField(78, 580, {
+ input_answer3 = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
     fontWeight: 'bold',
@@ -2829,6 +2879,9 @@ showModal3:function() {
     });
 },
 showModal1:function() {
+  var final_reason_for_choice = "";
+  final_reason_for_choice = input_answer3.value;
+  finalanswerchoice(final_reason_for_choice);
     console.log('modal1');
     reg.modal.showModal("modal1");
 },
