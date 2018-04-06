@@ -197,7 +197,7 @@ var JsonArray =
   "language" : language1,
   "Lesson" : lesson_number,
   "Activity" :  activity_name,
-   "final_answer_reason" : final_answer_reason
+   "final_answer_reason" : final_reason_for_choice
 
 }
 
