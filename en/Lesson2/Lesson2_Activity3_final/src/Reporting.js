@@ -1,11 +1,21 @@
 
 var language1 = "en";
-var lesson_number = "1";
-var activity_name = "Fair_sharing_among_friends-I";
-var answerintext = "";
-var attemptnumber = 0;
-var sumineachplate = [0,0,0,0];
-var weightinplate = [];
+var lesson_number = "2";
+var activity_name = " Is this distribution fair? I";
+var initial_choice = [0,0];
+var second_screen_choice = [0,0,0,0];
+var text_reason_for_choice = "";
+var first_distribution_in_plates = [0,0,0,0];
+var first_answer_in_text = "";
+var second_disribution_in_plates = [0,0,0,0,0];
+var second_answer_in_text = "";
+var final_answer_options = [0,0,0];
+var final_reason_for_choice = "";
+var count_no_of_attempts = 0;
+var count_no_of_attempts_1 = 0;
+var weightinplatesforfirstpart = [];
+var weightinplatesforsecondpart = [];
+
 
 function sessionstart()
 {
@@ -49,20 +59,146 @@ console.log(JsonArray2);
 
 }
 
-function clueEnd(attemptnumber,answerintext,sumineachplate,weightinplate){
+function firstscreen(initial_choice)
+{
 var JsonArray =
 {
 "app_name": "Food_sharing_tool",
-"event_type": "sharing_done_btn_pressed",
+"event_type": "first_screen_end",
 "params":
 {
   "language" : language1,
   "Lesson" : lesson_number,
   "Activity" :  activity_name,
-  "CurrentAttempt": attemptnumber,
-  "Answerintextbox" : answerintext,
-  "Sumineachplate" : sumineachplate,
-  "weightinplate" : weightinplate
+  "initial_choice" : initial_choice
+
+
+
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function secondscreen(second_screen_choice)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "second_screen_end",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "second_screen_choice" : second_screen_choice
+
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function thirdscreen(text_reason_for_choice)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "thirdscreenend",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "TextReasonforfirstchoice" : text_reason_for_choice
+
+
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function firstdistribution(count_no_of_attempts,first_answer_in_text,first_distribution_in_plates,weightinplatesforfirstpart)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "end_of_first_distribution",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "CurrentAttempt" : count_no_of_attempts,
+   "first_distribution_in_plates" : first_distribution_in_plates,
+   "Weightinallplatesforfirstpart" : weightinplatesforfirstpart,
+   "first_answer_in_text" : first_answer_in_text
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function seconddistribution(count_no_of_attempts_1,second_answer_in_text,second_disribution_in_plates,weightinplatesforsecondpart)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "end_of_second_distribution",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "CurrentAttempt" : count_no_of_attempts_1,
+   "second_disribution_in_plates" : second_disribution_in_plates,
+   "Weightinallplatesforsecondpart" : weightinplatesforsecondpart,
+   "second_answer_in_text" : second_answer_in_text
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function finalanswer(final_answer_options)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "final_answer",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+   "final_answer_options" : final_answer_options
+
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function finalanswerchoice(final_reason_for_choice)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "final_answer",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+   "final_answer_reason" : final_reason_for_choice
+
 }
 
 };

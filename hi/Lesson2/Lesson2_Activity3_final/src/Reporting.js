@@ -1,18 +1,33 @@
 
-var language1 = "en";
-var cluenumber = 0;
-var numberofattempts = [0,0,0,0,0,0,0,0];
-var degrees_of_position1 = 0;
-var degrees_of_position2 = 0;
+var language1 = "hi";
+var lesson_number = "2";
+var activity_name = " Is this distribution fair? I";
+var initial_choice = [0,0];
+var second_screen_choice = [0,0,0,0];
+var text_reason_for_choice = "";
+var first_distribution_in_plates = [0,0,0,0];
+var first_answer_in_text = "";
+var second_disribution_in_plates = [0,0,0,0,0];
+var second_answer_in_text = "";
+var final_answer_options = [0,0,0];
+var final_reason_for_choice = "";
+var count_no_of_attempts = 0;
+var count_no_of_attempts_1 = 0;
+var weightinplatesforfirstpart = [];
+var weightinplatesforsecondpart = [];
+
+
 function sessionstart()
 {
   var JsonArray =
   {
-  "app_name": "AstRoamer_Element_Hunt_Activity",
+  "app_name": "Food_sharing_tool",
   "event_type": "game_start",
   "params":
   {
-   "language" : language1
+   "language" : language1,
+   "Lesson" : lesson_number,
+   "Activity" :  activity_name
   }
 
   };
@@ -20,17 +35,19 @@ function sessionstart()
   saveDataOnExit(JsonArray);
   console.log(JsonArray);
 }
-function doQuit(score)
+function doQuit()
  {
 JsonArray2 =
 {
-"app_name": "AstRoamer_Element_Hunt_Activity",
-"event_type": "session_end",
+"app_name": "Food_sharing_tool",
+"event_type": "game_end",
 "params":
 {
-  "Final score" : score,
+  //"Final score" : score,
 
-  "language" : language1
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name
 }
 }
 //pass the method to calculate score.
@@ -42,18 +59,146 @@ console.log(JsonArray2);
 
 }
 
-function clueEnd(cluenumber,numberofattempts,degrees_of_position1,degrees_of_position2){
+function firstscreen(initial_choice)
+{
 var JsonArray =
 {
-"app_name": "AstRoamer_Element_Hunt_Activity",
-"event_type": "clue_end",
+"app_name": "Food_sharing_tool",
+"event_type": "first_screen_end",
 "params":
 {
-"Currentclue": cluenumber,
-"NumberofAttempts" : numberofattempts,
-"FirstAttemptAnswer" : degrees_of_position1,
-"SecondAttemptAnswer" : degrees_of_position2,
-"language" : language1
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "initial_choice" : initial_choice
+
+
+
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function secondscreen(second_screen_choice)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "second_screen_end",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "second_screen_choice" : second_screen_choice
+
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function thirdscreen(text_reason_for_choice)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "thirdscreenend",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "TextReasonforfirstchoice" : text_reason_for_choice
+
+
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function firstdistribution(count_no_of_attempts,first_answer_in_text,first_distribution_in_plates,weightinplatesforfirstpart)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "end_of_first_distribution",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "CurrentAttempt" : count_no_of_attempts,
+   "first_distribution_in_plates" : first_distribution_in_plates,
+   "Weightinallplatesforfirstpart" : weightinplatesforfirstpart,
+   "first_answer_in_text" : first_answer_in_text
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function seconddistribution(count_no_of_attempts_1,second_answer_in_text,second_disribution_in_plates,weightinplatesforsecondpart)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "end_of_second_distribution",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+  "CurrentAttempt" : count_no_of_attempts_1,
+   "second_disribution_in_plates" : second_disribution_in_plates,
+   "Weightinallplatesforsecondpart" : weightinplatesforsecondpart,
+   "second_answer_in_text" : second_answer_in_text
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function finalanswer(final_answer_options)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "final_answer",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+   "final_answer_options" : final_answer_options
+
+}
+
+};
+//pass the method to calculate score.
+saveDataOnExit(JsonArray);
+console.log(JsonArray);
+}
+function finalanswerchoice(final_reason_for_choice)
+{
+var JsonArray =
+{
+"app_name": "Food_sharing_tool",
+"event_type": "final_answer",
+"params":
+{
+  "language" : language1,
+  "Lesson" : lesson_number,
+  "Activity" :  activity_name,
+   "final_answer_reason" : final_reason_for_choice
+
 }
 
 };
@@ -116,8 +261,11 @@ class GameReporter
 		var date = new Date();
 		var csrftoken;
 		csrftoken = this.getCookie('csrftoken');
+    var buddy_details;
+    buddy_details = this.getCookie('user_and_buddy_ids');
     	var timestamp = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 		data_string['created_at'] = timestamp
+      data_string['buddy_details'] = buddy_details
 		for (var key in data) {data_string[key] = data[key];};
 		data_string = JSON.stringify(data_string);
 	//alert(data_string)
@@ -125,7 +273,8 @@ class GameReporter
                   type: "POST",
                   data:{
                         "user_data":data_string,
-                        "app_name":"AstRoamer_Element_Hunt_Activity",
+                        "app_name":"Food_sharing_tool",
+                        //"buddy_details": buddy_details,
                         'csrfmiddlewaretoken':csrftoken,
                     },
                   url: "/tools/logging",
