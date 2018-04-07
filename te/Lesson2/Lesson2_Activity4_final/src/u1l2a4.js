@@ -20,6 +20,8 @@ var number_of_pieces = [];
   var worker_set_names1 = ['B1','B2'];
  var plates = [];
  var workers1 = [];
+ var input_answer3;
+ var input_answer5;
  var workers2 = [];
  var rect1 = [];
  var cutting_board;
@@ -284,6 +286,24 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
   },
   done_Action1 : function()
   {
+      var second_screen_choice = [0,0,0,0];
+      if(radio_buttons[0].selectedcheck == true)
+      {
+        second_screen_choice[0] = 1;
+      }
+      else if(radio_buttons[1].selectedcheck == true)
+      {
+        second_screen_choice[1] = 1;
+      }
+      else if(radio_buttons[2].selectedcheck == true)
+      {
+        second_screen_choice[2] = 1;
+      }
+      else
+      {
+        second_screen_choice[3] = 1;
+      }
+        secondscreen(second_screen_choice);
      game.state.start('question_three');
   },
   input_function1 : function(item)
@@ -406,7 +426,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     instruction_text = game.add.text(78,560,'మీ జవాబు క్రింద నమోదు చేయండి మరియు చేయడమైనది క్లిక్ చేయండి.',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
 //    var instruction_text1 = game.add.text(280,560,'Done ',style2);
-    var input_answer = game.add.inputField(78, 580, {
+     input_answer3 = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
     fontWeight: 'bold',
@@ -464,6 +484,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    },
     showModal1:function()
   {
+    var text_reason_for_choice = "";
+    text_reason_for_choice = input_answer3.value;
+    thirdscreen(text_reason_for_choice);
     reg.modal.showModal("modal1");
   },
 
@@ -1119,6 +1142,9 @@ division : function(a,b,c,d)
 },
   sharing_done_function : function()
   {
+    var weightineachplate = [0,0,0,0];
+    var peopleineachgroup = [0,0,0,0];
+    var cd = "";
    count_no_of_attempts_1 = count_no_of_attempts_1 + 1;
   if(count_no_of_attempts_1 < 4)
   {
@@ -1136,7 +1162,7 @@ division : function(a,b,c,d)
   }
   else
   {
-    var cd = input_answer1.value;
+     cd = input_answer1.value;
   splitted_text = cd.split("/");
   console.log("a : " + splitted_text[0] );
   console.log("b :" + splitted_text[1] );
@@ -1154,6 +1180,7 @@ division : function(a,b,c,d)
         rect[i+2].numberof_workeringroup = rect[i+2].numberof_workeringroup + 1;
       }
      }
+       peopleineachgroup[i] = rect[i+2].numberof_workeringroup;//for data storage
     for(var j=0;j<12;j++)
     {
       game.physics.arcade.enable(parathas1[j]);
@@ -1165,6 +1192,7 @@ division : function(a,b,c,d)
       //console.log('platesum'+'i'+plates1[i].sum);
      }
     }
+     weightineachplate[i] = rect[i+6].sum; //for data storage
     //console.log(expected_sum);
     //console.log(i + 'sum' + plates1[i].sum);
     if(rect[i+4].sum == expected_sum)
@@ -1233,6 +1261,7 @@ division : function(a,b,c,d)
   game.state.start('answer_screen');
 
  }
+  firstdistribution(count_no_of_attempts_1,cd,peopleineachgroup,weightineachplate);
 },
   reset_function : function()
   {
@@ -1951,6 +1980,9 @@ division : function(a,b,c,d)
 },
   sharing_done_function : function()
   {
+    var weightineachplate = [0,0];
+    var peopleineachgroup = [0,0];
+    var cd = "";
    count_no_of_attempts_2 = count_no_of_attempts_2 + 1;
   if(count_no_of_attempts_2 < 4)
   {
@@ -1969,7 +2001,7 @@ division : function(a,b,c,d)
   }
   else
   {
-    var cd = input_answer1.value;
+     cd = input_answer1.value;
   splitted_text = cd.split("/");
   console.log("a : " + splitted_text[0] );
   console.log("b :" + splitted_text[1] );
@@ -1987,6 +2019,7 @@ division : function(a,b,c,d)
         rect1[i+2].numberof_workeringroup = rect1[i+2].numberof_workeringroup + 1;
       }
      }
+     peopleineachgroup[i] = rect[i+2].numberof_workeringroup;//for data storage
     for(var j=0;j<8;j++)
     {
       game.physics.arcade.enable(parathas1[j]);
@@ -1998,6 +2031,7 @@ division : function(a,b,c,d)
       //console.log('platesum'+'i'+plates1[i].sum);
      }
     }
+    weightineachplate[i] = rect[i+4].sum; //for data storage
   }
     //console.log(expected_sum);
     //console.log(i + 'sum' + plates1[i].sum);
@@ -2065,6 +2099,7 @@ division : function(a,b,c,d)
   game.state.start('answer_screen_2');
 
  }
+ seconddistribution(count_no_of_attempts_2,cd,peopleineachgroup,weightineachplate);
 },
   reset_function : function()
   {
@@ -2327,19 +2362,23 @@ showModal3:function() {
 
       next1_function : function()
       {
+          var final_answer_options = [0,0,0];
         count_no_of_attempts_3 = count_no_of_attempts_3 + 1;
         if(count_no_of_attempts_3 < 3)
         {
         if(radio_buttons[2].selectedcheck == true)
         {
+          final_answer_options[0] = 1;
           this.showModal1();
         }
         else if(radio_buttons[1].selectedcheck == true)
         {
+          final_answer_options[1] = 1;
           this.showModal2();
         }
         else
         {
+          final_answer_options[2] = 1;
          this.showModal2();
         }
         }
@@ -2347,6 +2386,7 @@ showModal3:function() {
         {
          this.showModal3();
         }
+          finalanswer(final_answer_options);
       },
     }
      var a1_p66 = function(game){}
@@ -2379,7 +2419,7 @@ showModal3:function() {
     instruction_text = game.add.text(78,560,'క్రింద మీ జవాబు టైప్ చేయండి మరియు చేయడమైనది క్లిక్ చేయండి.',style1);
     var style2 = { font: "italic bold 13px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
 //    var instruction_text1 = game.add.text(305,560,'Done ',style2);
- var input_answer = game.add.inputField(78, 580, {
+  input_answer5 = game.add.inputField(78, 580, {
     font: '11px Arial',
     fill: '#212121',
     fontWeight: 'bold',
@@ -2440,6 +2480,9 @@ showModal3:function() {
     });
 },
 showModal1:function() {
+  var final_reason_for_choice = "";
+  final_reason_for_choice = input_answer5.value;
+  finalanswerchoice(final_reason_for_choice);
     console.log('modal1');
     reg.modal.showModal("modal1");
 },
