@@ -49,7 +49,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
  var worker_names = ['1','2','3','4','5','6','7','8','9','10','11','12'];
  var p1 = 0;
 
- var share_of_each_worker = 0.6666666666666666;
+
  var reg={};
  var help_button;
  var game = new Phaser.Game(800, 640);
@@ -590,6 +590,8 @@ help_function : function()
     },
     sharing_done_function : function(item)
     {
+       var share_of_each_worker = 2/3;
+       console.log(share_of_each_worker);
       var numberofworkersineachgroup = [0,0,0];
       var weightinplate = [0,0,0];
       var cd = "";
@@ -631,6 +633,7 @@ help_function : function()
         weightinplate[i] = no_of_rotis_in_group[i];
         console.log(no_of_workers_in_group[i]);
         console.log(no_of_rotis_in_group[i]);
+        console.log(no_of_rotis_in_group[i]/no_of_workers_in_group[i]);
       /*  if(no_of_workers_in_group[i] == 1)
         {
           flag_1_in_group = true;
