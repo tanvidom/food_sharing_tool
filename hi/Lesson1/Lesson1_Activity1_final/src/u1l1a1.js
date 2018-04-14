@@ -331,7 +331,7 @@ update : function()
    {
      var check_cake_on_board = game.physics.arcade.overlap(cakes[i],rect[0]);
      console.log(check_cake_on_board);
-     if(check_cake_on_board == true)
+     if(check_cake_on_board == true && cakes[i].weight == 1)
      {
 
        cakes_on_board.push(cakes[i]);

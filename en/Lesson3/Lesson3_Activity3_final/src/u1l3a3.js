@@ -37,7 +37,7 @@ var number_of_pieces = [];
  var radio_buttons = [];
  var radio_texts = [];
  var selected = false;
-
+var p_weight = 1/3;
  var rotis = [];
  var roti_no;
  var workers = [];
@@ -178,8 +178,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
     }
     for(var k=8;k<14;k++)
     {
+
       rotis[k] = game.add.sprite(195,335 +((k-8)*30),'1');
-      rotis[k].weight=0.3333333333333333;
+      rotis[k].weight = p_weight;
       rotis[k].number = k;
       rotis[k].originalPosition = rotis[k].position.clone();
       tips[k-8] = new Phasetips(game,{

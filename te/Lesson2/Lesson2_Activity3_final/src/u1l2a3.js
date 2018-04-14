@@ -676,7 +676,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
    {
      var check_cake_on_board = game.physics.arcade.overlap(parathas1[i],rect[0]);
      console.log(check_cake_on_board);
-     if(check_cake_on_board == true)
+     if(check_cake_on_board == true && parathas1[i].weight == 1)
      {
 
        parathas_on_board.push(parathas1[i]);
@@ -1749,7 +1749,7 @@ division : function(a,b,c,d)
    {
      var check_cake_on_board = game.physics.arcade.overlap(parathas1[i],rect[0]);
      console.log(check_cake_on_board);
-     if(check_cake_on_board == true)
+     if(check_cake_on_board == true && parathas1[i].weight == 1)
      {
 
        parathas_on_board.push(parathas1[i]);
