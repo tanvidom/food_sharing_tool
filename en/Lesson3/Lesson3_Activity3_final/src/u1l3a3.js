@@ -655,13 +655,13 @@ help_function : function()
         //for additional case of groups (1,8) or (1,3,5)
         if(no_of_workers_in_group[i] == 5 || no_of_workers_in_group[i] == 8)
         {
-          var total_sum = parseInt(no_of_rotis_in_group[i]*1000)/1000
-          console.log(total_sum);
-          var expected_sum1 = parseInt(share_of_each_worker*1000)/1000
-          console.log(expected_sum1);
-          console.log(total_sum/no_of_workers_in_group[i]);
+          var total_sum = parseInt(no_of_rotis_in_group[i]*1000)/1000;
+
+          var expected_sum1 = parseInt(share_of_each_worker*1000)/1000;
+
+
           var calculated_sum = Math.floor((total_sum/no_of_workers_in_group[i]) * 1000 ) / 1000;
-          console.log(calculated_sum);
+
           if(calculated_sum == expected_sum1)
           {
               count_groups++;
