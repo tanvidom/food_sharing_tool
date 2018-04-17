@@ -2017,9 +2017,11 @@ showModal8 : function()
       if(worker_check_on_group == true)
       {
         rect1[i+2].numberof_workeringroup = rect1[i+2].numberof_workeringroup + 1;
+
       }
      }
      peopleineachgroup[i] = rect[i+2].numberof_workeringroup;//for data storage
+     console.log(peopleineachgroup[i]);
     for(var j=0;j<8;j++)
     {
       game.physics.arcade.enable(parathas1[j]);
@@ -2032,6 +2034,7 @@ showModal8 : function()
      }
     }
     weightineachplate[i] = rect[i+4].sum; //for data storage
+    console.log(weightineachplate[i]);
   }
     //console.log(expected_sum);
     //console.log(i + 'sum' + plates1[i].sum);
