@@ -676,10 +676,10 @@ update : function()
     var splitted_text = [];
     var splitted_text1 = [];
     var check_child_on_group1 = [];
-    var weightineachplate = [0,0];
-    var peopleineachgroup = [0,0];
-    var cd = "";
-    var cd1 = "";
+    var weightineachplate = [];
+    var peopleineachgroup = [];
+    var cd;
+    var cd1;
     no_of_attempts = no_of_attempts + 1;
     if(no_of_attempts < 4)
     {
