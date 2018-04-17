@@ -623,10 +623,10 @@ update : function()
   final_check_function : function()
   {
     var check_child_on_group1 = [];
-    var weightineachplate = [0,0];
-    var peopleineachgroup = [0,0];
-    var cd = "";
-    var cd1 = "";
+    var weightineachplate = [];
+    var peopleineachgroup = [];
+    var cd;
+    var cd1;
 
     no_of_attempts = no_of_attempts + 1;
     if(no_of_attempts <= 3)
@@ -839,8 +839,8 @@ update : function()
       {
         var splitted_text = [];
         no_of_attempts1 = no_of_attempts1 + 1;
-        var cd = input_answer3.value;
-      splitted_text = cd.split("/");
+        var cd2 = input_answer3.value;
+      splitted_text = cd2.split("/");
       console.log("a : " + splitted_text[0] );
       console.log("b :" + splitted_text[1] );
       var is_ans_true = this.division(splitted_text[0],splitted_text[1],1,2);
@@ -862,7 +862,7 @@ update : function()
         {
           this.showModal2();
         }
-        clueEnd1(no_of_attempts1,cd);
+        clueEnd1(no_of_attempts1,cd2);
       },
       createModals: function() {
 

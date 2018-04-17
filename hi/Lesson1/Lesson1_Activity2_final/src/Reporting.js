@@ -2,13 +2,13 @@
 var language1 = "hi";
 var lesson_number = "1";
 var activity_name = "Fair sharing: Equal groups";
-var answerintext1 = "";
-var answerintext2 = "";
-var answerintext3 = "";
+var answerintext1;
+var answerintext2;
+var answerintext3;
 
 var attemptnumber = 0;
-var peopleineachgroup = [0,0];
-var weightineachplate = [0,0];
+var peopleineachgroup = [];
+var weightineachplate = [];
 
 function sessionstart()
 {
@@ -83,7 +83,7 @@ var JsonArray =
   "Answerintextbox1" : answerintext1,
   "Answerintextbox2" : answerintext2,
   "NumberofPeopleineachgroup" : peopleineachgroup,
-  "weightineachplate" : weightineachplate
+  "weightineachplate" : weightinplate
 
 
 }};
