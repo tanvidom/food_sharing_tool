@@ -4,16 +4,17 @@ var lesson_number = "2";
 var activity_name = "Is this distribution fair? II";
 var initial_choice = [0,0];
 var second_screen_choice = [0,0,0,0];
-var text_reason_for_choice = "";
-var people_in_each_group_first_part = [0,0];
-var share_in_each_plate_first_part = [0,0];
-var text_entry_first_part = "";
-var people_in_each_group_second_part = [0,0];
-var share_in_each_plate_second_part = [0,0];
-var text_entry_second_part = "";
-
+var text_reason_for_choice;
+var people_in_each_group_first_part = [];
+var share_in_each_plate_first_part = [];
+var text_entry_first_part;
+var people_in_each_group_second_part = [];
+var share_in_each_plate_second_part = [];
+var text_entry_second_part;
+var count_no_of_attempts;
+var count_no_of_attempts_1;
 var final_answer_options = [0,0,0];
-var final_reason_for_choice = "";
+var final_reason_for_choice;
 
 
 function sessionstart()

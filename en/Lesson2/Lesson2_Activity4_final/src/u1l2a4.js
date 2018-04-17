@@ -1980,9 +1980,9 @@ showModal8 : function()
 },
   sharing_done_function : function()
   {
-    var weightineachplate = [0,0];
-    var peopleineachgroup = [0,0];
-    var cd = "";
+    var weightineachplate1 = [];
+    var peopleineachgroup1 = [];
+    var cd4;
    count_no_of_attempts_2 = count_no_of_attempts_2 + 1;
   if(count_no_of_attempts_2 < 4)
   {
@@ -2001,8 +2001,8 @@ showModal8 : function()
   }
   else
   {
-     cd = input_answer1.value;
-  splitted_text = cd.split("/");
+     cd4 = input_answer1.value;
+  splitted_text = cd4.split("/");
   console.log("a : " + splitted_text[0] );
   console.log("b :" + splitted_text[1] );
   var is_ans_true = this.division(splitted_text[0],splitted_text[1],9,2);
@@ -2020,8 +2020,8 @@ showModal8 : function()
 
       }
      }
-     peopleineachgroup[i] = rect[i+2].numberof_workeringroup;//for data storage
-     console.log(peopleineachgroup[i]);
+     peopleineachgroup1[i] = rect[i+2].numberof_workeringroup;//for data storage
+     console.log(peopleineachgroup1[i]);
     for(var j=0;j<8;j++)
     {
       game.physics.arcade.enable(parathas1[j]);
@@ -2033,8 +2033,8 @@ showModal8 : function()
       //console.log('platesum'+'i'+plates1[i].sum);
      }
     }
-    weightineachplate[i] = rect[i+4].sum; //for data storage
-    console.log(weightineachplate[i]);
+    weightineachplate1[i] = rect[i+4].sum; //for data storage
+    console.log(weightineachplate1[i]);
   }
     //console.log(expected_sum);
     //console.log(i + 'sum' + plates1[i].sum);
@@ -2102,7 +2102,7 @@ showModal8 : function()
   game.state.start('answer_screen_2');
 
  }
- seconddistribution(count_no_of_attempts_2,cd,peopleineachgroup,weightineachplate);
+ seconddistribution(count_no_of_attempts_2,cd4,peopleineachgroup1,weightineachplate1);
 },
   reset_function : function()
   {
