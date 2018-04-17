@@ -620,8 +620,8 @@
   {
     var check_child_on_group1 = [];
 
-    var weightineachplate = [0,0];
-    var peopleineachgroup = [0,0];
+    var weightineachplate = [];
+    var peopleineachgroup = [];
     var cd;
     var cd1;
     no_of_attempts = no_of_attempts + 1;
@@ -712,6 +712,10 @@
     {
       game.state.start('answerScreen');
     }
+    console.log(cd);
+    console.log(cd1);
+    console.log(peopleineachgroup);
+    console.log(weightineachplate);
     clueEnd(no_of_attempts,cd,cd1,peopleineachgroup,weightineachplate);
    },
  reset_function : function()

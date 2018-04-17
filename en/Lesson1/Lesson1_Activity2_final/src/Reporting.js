@@ -83,7 +83,7 @@ var JsonArray =
   "Answerintextbox1" : answerintext1,
   "Answerintextbox2" : answerintext2,
   "NumberofPeopleineachgroup" : peopleineachgroup,
-  "weightineachplate" : weightineachplate
+  "weightineachplate" : weightinplate
 
 
 }};
