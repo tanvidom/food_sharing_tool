@@ -2,13 +2,13 @@
 var language1 = "en";
 var lesson_number = "1";
 var activity_name = "Fair sharing: Equal groups";
-var answerintext1 = "";
-var answerintext2 = "";
-var answerintext3 = "";
+var answerintext1;
+var answerintext2;
+var answerintext3;
 
 var attemptnumber = 0;
-var peopleineachgroup = [0,0];
-var weightineachplate = [0,0];
+var peopleineachgroup = [];
+var weightineachplate = [];
 
 function sessionstart()
 {
