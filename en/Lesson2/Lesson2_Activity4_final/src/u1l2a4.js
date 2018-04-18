@@ -23,6 +23,7 @@ var number_of_pieces = [];
  var input_answer3;
  var input_answer5;
  var rect1 = [];
+ var rect2 = [];
  var cutting_board;
  var worker_check_on_group = [];
  var plates1 = [];
@@ -1181,6 +1182,7 @@ division : function(a,b,c,d)
       }
      }
        peopleineachgroup[i] = rect[i+2].numberof_workeringroup;//for data storage
+
     for(var j=0;j<12;j++)
     {
       game.physics.arcade.enable(parathas1[j]);
@@ -1384,33 +1386,33 @@ division : function(a,b,c,d)
     var style11 = { font: "italic 12px tahoma", fill: "#0000CC", boundsAlignH: "center", boundsAlignV: "middle" };
     var instruction_text_lower = game.add.text(66,560,'Enter your answer in the form of a whole number or a fraction and click                      to check your answer. ',style11);
     var instruction_text_lower1 = game.add.text(450,560,' Sharing Done',style2);
-    rect1[0] = game.add.sprite(49,120,null);
-   game.physics.enable(rect1[0],Phaser.Physics.ARCADE);
-   rect1[0].body.setSize(313,144,0,0);
-   rect1[1] = game.add.sprite(53,287,null);
-   game.physics.enable(rect1[1],Phaser.Physics.ARCADE);
-   rect1[1].body.setSize(214,144,0,0);
+    rect2[0] = game.add.sprite(49,120,null);
+   game.physics.enable(rect2[0],Phaser.Physics.ARCADE);
+   rect2[0].body.setSize(313,144,0,0);
+   rect2[1] = game.add.sprite(53,287,null);
+   game.physics.enable(rect2[1],Phaser.Physics.ARCADE);
+   rect2[1].body.setSize(214,144,0,0);
    //adding workers
 
    for(var i=2;i<4;i++)
    {
     groups[i-2] = game.add.sprite(380,120+((i-2)*200),'scrnshots',worker_set_names1[i-2]);
     groups[i-2].scale.setTo(0.85,1);
-   rect1[i] = game.add.sprite((groups[i-2].x + 20),groups[i-2].y,null);
-  game.physics.enable(rect1[i],Phaser.Physics.ARCADE);
+   rect2[i] = game.add.sprite((groups[i-2].x + 20),groups[i-2].y,null);
+  game.physics.enable(rect2[i],Phaser.Physics.ARCADE);
   //game.physics.arcade.enable(rect1[i]);
 
-   rect1[i].body.setSize(400,58,0,0);
-   rect1[i].numberof_workeringroup = 0;
+   rect2[i].body.setSize(400,58,0,0);
+   rect2[i].numberof_workeringroup = 0;
    }
    for(var i=4;i<6;i++)
    {
     plates[i-4] = game.add.sprite(400,192+((i-4)*200),'bg','1');
     plates[i-4].scale.setTo(0.85,1);
-   rect1[i] = game.add.sprite((plates[i-4].x + 20),plates[i-4].y,null);
-   game.physics.enable(rect1[i],Phaser.Physics.ARCADE);
-   rect1[i].body.setSize(400,58,0,0);
-   rect1[i].sum = 0;
+   rect2[i] = game.add.sprite((plates[i-4].x + 20),plates[i-4].y,null);
+   game.physics.enable(rect2[i],Phaser.Physics.ARCADE);
+   rect2[i].body.setSize(400,58,0,0);
+   rect2[i].sum = 0;
    }
 
    for(var i=0;i<8;i++)
@@ -1529,9 +1531,9 @@ division : function(a,b,c,d)
     {
         // game.physics.enable(rect1[i],Phaser.Physics.ARCADE);
               game.physics.arcade.enable(workers2[worker_no_1]);
-                   game.physics.arcade.enable(rect1[i]);
+                   game.physics.arcade.enable(rect2[i]);
 
-     worker_check_on_group[i-2] = game.physics.arcade.overlap(workers2[worker_no_1],rect1[i]);
+     worker_check_on_group[i-2] = game.physics.arcade.overlap(workers2[worker_no_1],rect2[i]);
      console.log(worker_check_on_group[i-2]);
      if(worker_check_on_group[i-2] == true)
      {
@@ -1547,7 +1549,7 @@ division : function(a,b,c,d)
     for(var r=0;r<6;r++)
     {
     game.physics.enable(workers2[r],Phaser.Physics.ARCADE);
-    var check_if_worker_on_area = game.physics.arcade.overlap(workers2[r],rect1[0]);
+    var check_if_worker_on_area = game.physics.arcade.overlap(workers2[r],rect2[0]);
 
     if(check_if_worker_on_area == true)
     {
@@ -1585,9 +1587,9 @@ division : function(a,b,c,d)
     for(var i=4;i<6;i++)
     {
       var pos;
-          game.physics.arcade.enable(rect1[i]);
+          game.physics.arcade.enable(rect2[i]);
 
-      check[i]=game.physics.arcade.overlap(parathas1[paratha_no],rect1[i]);
+      check[i]=game.physics.arcade.overlap(parathas1[paratha_no],rect2[i]);
       console.log(check[i]);
 
       if(check[i] == true)
@@ -1603,7 +1605,7 @@ division : function(a,b,c,d)
     for(var i=0;i<8;i++)
     {
       game.physics.arcade.enable(parathas1[i]);
-      check[10] = game.physics.arcade.overlap(parathas1[i],rect1[2]);
+      check[10] = game.physics.arcade.overlap(parathas1[i],rect2[2]);
       if(check[10] == false)
       {
         c1++;
@@ -2008,47 +2010,53 @@ showModal8 : function()
   var is_ans_true = this.division(splitted_text[0],splitted_text[1],9,2);
   for(var i=0;i<2;i++)
   {
-    rect1[i+2].numberof_workeringroup = 0;
-    rect1[i+4].sum = 0;
+    rect2[i+2].numberof_workeringroup = 0;
+    rect2[i+4].sum = 0;
       for(var j1 = 0; j1<8; j1++)
      {
       game.physics.arcade.enable(workers2[j1]);
-      worker_check_on_group = game.physics.arcade.overlap(workers2[j1],rect1[i+2]);
-      if(worker_check_on_group == true)
+      worker_check_on_group[j1] = game.physics.arcade.overlap(workers2[j1],rect2[i+2]);
+      //console.log(worker_check_on_group[j1]);
+      if(worker_check_on_group[j1] == true)
       {
-        rect1[i+2].numberof_workeringroup = rect1[i+2].numberof_workeringroup + 1;
+        rect2[i+2].numberof_workeringroup = rect2[i+2].numberof_workeringroup + 1;
 
       }
      }
-     peopleineachgroup1[i] = rect[i+2].numberof_workeringroup;//for data storage
-     console.log(peopleineachgroup1[i]);
+     peopleineachgroup1[i] = rect2[i+2].numberof_workeringroup;//for data storage
+     //console.log(peopleineachgroup1[0]);
+     //console.log(peopleineachgroup1[1]);
+     //console.log(i);
+     //console.log(rect2[2].numberof_workeringroup);
+     //console.log(rect2[3].numberof_workeringroup);
+
     for(var j=0;j<8;j++)
     {
       game.physics.arcade.enable(parathas1[j]);
-     var check_paratha_on_plate = game.physics.arcade.overlap(parathas1[j],rect1[i+4]);
+     var check_paratha_on_plate = game.physics.arcade.overlap(parathas1[j],rect2[i+4]);
      console.log(check_cake_on_plate);
      if(check_paratha_on_plate == true)
      {
-      rect1[i+4].sum = rect1[i+4].sum + parathas1[j].weight;
+      rect2[i+4].sum = rect2[i+4].sum + parathas1[j].weight;
       //console.log('platesum'+'i'+plates1[i].sum);
      }
     }
-    weightineachplate1[i] = rect[i+4].sum; //for data storage
+    weightineachplate1[i] = rect2[i+4].sum; //for data storage
     console.log(weightineachplate1[i]);
   }
     //console.log(expected_sum);
     //console.log(i + 'sum' + plates1[i].sum);
-    if((rect1[4].sum == expected_sum_1 && rect1[5].sum == expected_sum_2) || (rect1[5].sum == expected_sum_1 && rect1[4].sum == expected_sum_2))
+    if((rect2[4].sum == expected_sum_1 && rect2[5].sum == expected_sum_2) || (rect2[5].sum == expected_sum_1 && rect2[4].sum == expected_sum_2))
     {
      l=l+1;
     }
-    if(rect1[4].sum == 0 && rect1[5].sum == 0)
+    if(rect2[4].sum == 0 && rect2[5].sum == 0)
     {
       k=k+1;
     }
 
 
-    if((rect1[2].numberof_workeringroup == 6 && rect1[3].numberof_workeringroup == 2) || (rect1[2].numberof_workeringroup == 2 && rect1[3].numberof_workeringroup == 6))
+    if((rect2[2].numberof_workeringroup == 6 && rect2[3].numberof_workeringroup == 2) || (rect2[2].numberof_workeringroup == 2 && rect2[3].numberof_workeringroup == 6))
     {
      console.log('mmm' + m);
      m = m+ 1;
@@ -2502,5 +2510,5 @@ game.state.add('a1_p3',a1_p3);
 game.state.add('a1_p4',a1_p4);
 game.state.add('a1_p5',a1_p5);
 game.state.add('a1_p66',a1_p66);
-game.state.start('PlayGame');
+game.state.start('a1_p4');
 }
