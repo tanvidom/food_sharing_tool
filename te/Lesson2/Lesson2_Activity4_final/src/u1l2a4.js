@@ -2368,7 +2368,7 @@ showModal3:function() {
         {
         if(radio_buttons[2].selectedcheck == true)
         {
-          final_answer_options[0] = 1;
+          final_answer_options[2] = 1;
           this.showModal1();
         }
         else if(radio_buttons[1].selectedcheck == true)
@@ -2378,7 +2378,7 @@ showModal3:function() {
         }
         else
         {
-          final_answer_options[2] = 1;
+          final_answer_options[0] = 1;
          this.showModal2();
         }
         }
