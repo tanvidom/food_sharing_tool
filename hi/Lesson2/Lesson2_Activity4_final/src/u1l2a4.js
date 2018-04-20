@@ -643,6 +643,16 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
          parathas1[i].number = i;
          parathas1[i].anchor.setTo(0,0);
          parathas1[i].originalPosition = parathas1[i].position.clone();
+         tips[i-6] = new Phasetips(game,{
+           targetObject: parathas1[i],
+           font : 'fractionfont', //can be any phaser object (sprite, group, text, image, etc...)
+           context: '1/2',
+           height : 20,
+           weight : 20,
+           strokeColor: 0xff0000, // red stroke
+           position: "top"
+           });
+      }
       }
 
     }
@@ -1492,6 +1502,15 @@ division : function(a,b,c,d)
          parathas1[i].number = i;
          parathas1[i].anchor.setTo(0,0);
          parathas1[i].originalPosition = parathas1[i].position.clone();
+         tips[i+2] = new Phasetips(game,{
+            targetObject: parathas1[i],
+            font : 'fractionfont', //can be any phaser object (sprite, group, text, image, etc...)
+            context: '1/2',
+            height : 20,
+            weight : 20,
+            strokeColor: 0xff0000, // red stroke
+            position: "top"
+          });
       }
     }
    help_button = game.add.sprite(725,5,'hindi_buttons7','hindi_HELP_OVER');
