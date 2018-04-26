@@ -11,11 +11,10 @@ function sessionstart()
 {
   var JsonArray =
   {
-  "appName": "Food_sharing_tool",
-
-  "appData":
+  "app_name": "Food_sharing_tool",
+  "event_type": "game_start",
+  "params":
   {
-    "event_type": "game_start",
    "language" : language1,
    "Lesson" : lesson_number,
    "Activity" :  activity_name
@@ -30,12 +29,12 @@ function doQuit()
  {
 JsonArray2 =
 {
-"appName": "Food_sharing_tool",
-
-"appData":
+"app_name": "Food_sharing_tool",
+"event_type": "game_end",
+"params":
 {
   //"Final score" : score,
-  "event_type": "game_end",
+
   "language" : language1,
   "Lesson" : lesson_number,
   "Activity" :  activity_name
@@ -53,11 +52,10 @@ console.log(JsonArray2);
 function clueEnd(attemptnumber,answerintext,sumineachplate,weightinplate){
 var JsonArray =
 {
-"appName": "Food_sharing_tool",
-
-"appData":
+"app_name": "Food_sharing_tool",
+"event_type": "sharing_done_btn_pressed",
+"params":
 {
-  "event_type": "sharing_done_btn_pressed",
   "language" : language1,
   "Lesson" : lesson_number,
   "Activity" :  activity_name,
@@ -76,9 +74,9 @@ console.log(JsonArray);
 // function doQuit(){
 // var JsonArray =
 // {
-// "appName": "policesquadv2",
+// "app_name": "policesquadv2",
 // "event_type": "session_end",
-// "appData":
+// "params":
 // {
 // "MissionsPlayed": playedMission, // Mission attempted [0,0,0,0]  1 is yes
 // "MissionsCompleted": completedMission, //Mission completed - yes/ no
@@ -128,11 +126,11 @@ class GameReporter
 		var csrftoken;
 		csrftoken = this.getCookie('csrftoken');
     var buddy_details;
-    buddy_details = this.getCookie('buddy_ids');
+    buddy_details = this.getCookie('user_and_buddy_ids');
     var sessionid;
     sessionid = this.getCookie('sessionid');
     	var timestamp = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-		data_string['createdAt'] = timestamp
+		data_string['created_at'] = timestamp
       data_string['buddy_details'] = buddy_details
         data_string['sessionid'] = sessionid
 		for (var key in data) {data_string[key] = data[key];};
@@ -141,8 +139,8 @@ class GameReporter
 		$.ajax({
                   type: "POST",
                   data:{
-                        "payload":data_string,
-                        "appName":"Food_sharing_tool",
+                        "user_data":data_string,
+                        "app_name":"Food_sharing_tool",
                         //"buddy_details": buddy_details,
                         'csrfmiddlewaretoken':csrftoken,
                     },
