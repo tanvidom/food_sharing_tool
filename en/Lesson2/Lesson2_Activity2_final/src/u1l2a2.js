@@ -588,9 +588,9 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
 
    var style1 = { font: "bold 13px tahoma", fill: "#005DBA", boundsAlignH: "center", boundsAlignV: "middle" };
 
-   sharing_done_btn = game.add.button(66,615, 'lesson2',this.sharing_done_function,this,'sprite85','sprite87','sprite86');
+   sharing_done_btn = game.add.button(66,615,'lesson2',this.sharing_done_function,this,'sprite85','sprite87','sprite86');
    sharing_done_btn.inputEnabled = false;
-   sharing_done_btn.scale.setTo(0.8,0.8);
+   sharing_done_btn.scale.setTo(0.85,0.85);
    reset_btn = game.add.button(210, 615,'lesson2',this.reset_function,this,'sprite99','sprite97','sprite103');
    reset_btn.scale.setTo(0.8,0.8);
 
@@ -954,6 +954,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
             offsetX: 146,
             offsetY: -83,
             callback: function(){
+                      sharing_done_btn.inputEnabled = true;
                       reg.modal.hideModal("modal5");
                     }
         },
@@ -966,6 +967,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           callback: function()
           {
             reg.modal.hideModal("modal5");
+              sharing_done_btn.inputEnabled = true;
           }
 
         },
@@ -1148,6 +1150,7 @@ division : function(a,b,c,d)
 },
   sharing_done_function : function()
   {
+    sharing_done_btn.inputEnabled = false;
     worker_check_on_group = [];
     var weightineachplate = [0,0,0,0];
     var peopleineachgroup = [0,0,0,0];
@@ -1821,6 +1824,7 @@ division : function(a,b,c,d)
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal5");
+                      sharing_done_btn.inputEnabled = true;
                     }
         },
         {
@@ -1832,6 +1836,7 @@ division : function(a,b,c,d)
           callback: function()
           {
             reg.modal.hideModal("modal5");
+            sharing_done_btn.inputEnabled = true;
           }
 
         },
@@ -1974,6 +1979,7 @@ division : function(a,b,c,d)
 
   sharing_done_function : function()
   {
+    sharing_done_btn.inputEnabled = false;
     var splitted_text = [];
     var weightineachplate = [0,0,0];
     var peopleineachgroup = [0,0,0];

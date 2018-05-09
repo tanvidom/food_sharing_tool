@@ -959,6 +959,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal5");
+                        sharing_done_btn.inputEnabled = true;
                     }
         },
         {
@@ -970,6 +971,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           callback: function()
           {
             reg.modal.hideModal("modal5");
+              sharing_done_btn.inputEnabled = true;
           }
 
         },
@@ -1152,6 +1154,7 @@ division : function(a,b,c,d)
 },
   sharing_done_function : function()
   {
+    sharing_done_btn.inputEnabled = false;
    count_no_of_attempts_1 = count_no_of_attempts_1 + 1;
    var weightineachplate = [0,0];
    var peopleineachgroup = [0,0];
@@ -1825,6 +1828,7 @@ division : function(a,b,c,d)
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal5");
+                        sharing_done_btn.inputEnabled = true;
                     }
         },
         {
@@ -1836,6 +1840,7 @@ division : function(a,b,c,d)
           callback: function()
           {
             reg.modal.hideModal("modal5");
+              sharing_done_btn.inputEnabled = true;
           }
 
         },
@@ -2000,6 +2005,7 @@ showModal8 : function()
 },
   sharing_done_function : function()
   {
+    sharing_done_btn.inputEnabled = false;
     var weightineachplate1 = [];
     var peopleineachgroup1 = [];
     var cd4;

@@ -1157,6 +1157,7 @@ division : function(a,b,c,d)
 },
   sharing_done_function : function()
   {
+    sharing_done_btn.inputEnabled = false;
     var splitted_text = [];
     worker_check_on_group = [];
     var weightineachplate = [0,0,0,0];
@@ -1987,6 +1988,7 @@ showModal8 : function()
 },
   sharing_done_function : function()
   {
+    sharing_done_btn.inputEnabled = false;
     var splitted_text = [];
     worker_check_on_group = [];
     var weightineachplate = [0,0,0];

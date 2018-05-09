@@ -1151,6 +1151,7 @@ division : function(a,b,c,d)
 },
   sharing_done_function : function()
   {
+    sharing_done_btn.inputEnabled = false;
     var weightineachplate = [0,0,0,0];
     var peopleineachgroup = [0,0,0,0];
     var cd = "";
@@ -1201,7 +1202,7 @@ division : function(a,b,c,d)
       //console.log('platesum'+'i'+plates1[i].sum);
      }
     }
-     weightineachplate[i] = rect[i+6].sum; //for data storage
+     weightineachplate[i] = rect[i+4].sum; //for data storage
     //console.log(expected_sum);
     //console.log(i + 'sum' + plates1[i].sum);
     if(rect[i+4].sum == expected_sum)
@@ -1998,6 +1999,7 @@ division : function(a,b,c,d)
 },
   sharing_done_function : function()
   {
+    sharing_done_btn.inputEnabled = false;
     var weightineachplate = [0,0];
     var peopleineachgroup = [0,0];
     var cd = "";

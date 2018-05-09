@@ -655,7 +655,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
       }
       }
 
-    }
+
    help_button = game.add.sprite(725,5,'hindi_buttons7','hindi_HELP_OVER');
   help_button.inputEnabled = true;
   help_button.events.onInputDown.add(this.help_function,this);
@@ -969,6 +969,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
             offsetY: -83,
             callback: function(){
                       reg.modal.hideModal("modal5");
+
                     }
         },
         {
@@ -980,6 +981,7 @@ var buttons_down = ['1_MOUSE_DOWN','2_MOUSE_DOWN','3_MOUSE_DOWN','4_MOUSE_DOWN',
           callback: function()
           {
             reg.modal.hideModal("modal5");
+
           }
 
         },
@@ -1162,6 +1164,7 @@ division : function(a,b,c,d)
 },
   sharing_done_function : function()
   {
+    sharing_done_btn.inputEnabled = false;
     var weightineachplate = [0,0];
     var peopleineachgroup = [0,0];
     var cd = "";
@@ -2025,6 +2028,7 @@ division : function(a,b,c,d)
 
   sharing_done_function : function()
   {
+    sharing_done_btn.inputEnabled = false;
     var weightineachplate = [0,0];
     var peopleineachgroup = [0,0];
     var cd = "";
