@@ -1,5 +1,8 @@
 Food Sharing Tool
 
+![fst1](https://user-images.githubusercontent.com/20156664/41417346-b06cc84c-700a-11e8-9379-1aa962c4916f.png) 
+
+
 Food Sharing Tool (FST) is an activity based interactive tool, designed and developed by Connected Learning Initiative (CLIx). This interactive tool is designed by the CLIx Mathematics Team and MIT, based on the digital pedagogy concepts of Fractions and Food Sharing for high school students. This design was then converted into the digital tool by the CLIx technology team. 
 
 This tool is divided into 3 Lessons with a total of 11 activities. It is also available in two Indian languages - Hindi and Telegu apart from English.
